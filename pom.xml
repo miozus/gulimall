@@ -12,11 +12,19 @@
     <packaging>pom</packaging>
 
     <modules>
+        <!--    子模块    -->
         <module>gulimall-coupon</module>
         <module>gulimall-member</module>
         <module>gulimall-order</module>
         <module>gulimall-product</module>
         <module>gulimall-ware</module>
+
+        <!--   前后端分离     -->
+        <module>renren-fast</module>
+        <module>renren-generator</module>
+        <module>gulimall-common</module>
     </modules>
-    
+
+
 </project>
+

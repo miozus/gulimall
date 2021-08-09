@@ -8,57 +8,80 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
     <artifactId>gulimall-common</artifactId>
     <description>每一个微服务公共依赖，been，工具类等</description>
+
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <lombok.version>1.18.20</lombok.version>
+        <mysql.version>8.0.26</mysql.version>
+        <mybatis.plus.boot.version>3.3.1</mybatis.plus.boot.version>
+        <servlet.api.version>2.5</servlet.api.version>
+        <commons.lang.version>2.6</commons.lang.version>
+        <httpcore.version>4.4.13</httpcore.version>
+    </properties>
+
 
     <dependencies>
         <!--    mybatis-plus    -->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.3.1</version>
+            <version>${mybatis.plus.boot.version}</version>
         </dependency>
-
         <!--  lombok  -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.20</version>
-            <scope>compile</scope>
-        </dependency>
-        <!--    http components    -->
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpcore</artifactId>
-            <version>4.4.13</version>
-        </dependency>
-        <!-- commons.lang for query -->
-        <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
-            <version>2.6</version>
+            <version>${lombok.version}</version>
         </dependency>
         <!--    mysql    -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.26</version>
+            <version>${mysql.version}</version>
+        </dependency>
+
+        <!--    http components    -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore</artifactId>
+            <version>${httpcore.version}</version>
+        </dependency>
+        <!-- commons.lang for query -->
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>${commons.lang.version}</version>
         </dependency>
         <!--   servlet for XssFilter    -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
-            <version>2.5</version>
+            <version>${servlet.api.version}</version>
             <!--     脚手架提供的就行       -->
             <scope>provided</scope>
         </dependency>
+
+        <!-- 注册中心 -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
     </dependencies>
 
-
-    <properties>
-        <maven.compiler.source>16</maven.compiler.source>
-        <maven.compiler.target>16</maven.compiler.target>
-    </properties>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>2.2.5.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 </project>

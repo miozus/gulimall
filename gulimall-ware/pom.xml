@@ -18,6 +18,13 @@
         <spring-cloud.version>Hoxton.SR7</spring-cloud.version>
     </properties>
     <dependencies>
+        <!--    公共依赖包    -->
+        <dependency>
+            <groupId>cn.miozus.gulimall</groupId>
+            <artifactId>gulimall-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <!--    初始勾选的两个依赖    -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>

@@ -1,0 +1,20 @@
+package cn.miozus.gulimall.member.service;
+
+import com.baomidou.mybatisplus.extension.service.IService;
+import cn.miozus.common.utils.PageUtils;
+import cn.miozus.gulimall.member.entity.MemberCollectSubjectEntity;
+
+import java.util.Map;
+
+/**
+ * 会员收藏的专题活动
+ *
+ * @author SuDongpo
+ * @email miozus@outlook.com
+ * @date 2021-08-09 14:13:14
+ */
+public interface MemberCollectSubjectService extends IService<MemberCollectSubjectEntity> {
+
+    PageUtils queryPage(Map<String, Object> params);
+}
+

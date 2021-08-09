@@ -19,10 +19,12 @@
         <module>gulimall-product</module>
         <module>gulimall-ware</module>
 
+        <!--    公共工具模块    -->
+        <module>gulimall-common</module>
+
         <!--   前后端分离     -->
         <module>renren-fast</module>
         <module>renren-generator</module>
-        <module>gulimall-common</module>
     </modules>
 
 

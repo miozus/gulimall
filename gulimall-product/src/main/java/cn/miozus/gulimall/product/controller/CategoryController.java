@@ -1,6 +1,7 @@
 package cn.miozus.gulimall.product.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,14 +32,22 @@ public class CategoryController {
     private CategoryService categoryService;
 
     /**
-     * 列表
+     * 查询所有分类目录（含子分类），并以树目录形式显示出来
      */
-    @RequestMapping("/list")
-    public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = categoryService.queryPage(params);
-
-        return R.ok().put("page", page);
+    @RequestMapping("/list/tree")
+    public R listTree(){
+        List<CategoryEntity> entities = categoryService.listWithTree();
+        return R.ok().put("data", entities);
     }
+//    /**
+//     * 列表
+//     */
+//    @RequestMapping("/list")
+//    public R list(@RequestParam Map<String, Object> params){
+//        PageUtils page = categoryService.queryPage(params);
+//
+//        return R.ok().put("page", page);
+//    }
 
 
     /**
@@ -72,11 +81,18 @@ public class CategoryController {
     }
 
     /**
-     * 删除
+     *  删除
+     *
+     * @param catIds json数据 如[1432]
+     * @return {@link R} 约定的返回格式，哈希字典
+     * @see R
      */
     @RequestMapping("/delete")
     public R delete(@RequestBody Long[] catIds){
-		categoryService.removeByIds(Arrays.asList(catIds));
+//        检查当前菜单是否被其他地方引用
+//		categoryService.removeByIds(Arrays.asList(catIds));
+		// 批量删除
+        categoryService.removeMenuByIds(Arrays.asList(catIds));
 
         return R.ok();
     }

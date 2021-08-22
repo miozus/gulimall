@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>cn.miozus</groupId>
-    <artifactId>gulimall-ware</artifactId>
+    <artifactId>gulimall-gateway</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>gulimall-ware</name>
-    <description>Demo project for Spring Boot</description>
+    <name>gulimall-gateway</name>
+    <description>API网关</description>
     <properties>
         <java.version>8</java.version>
         <spring-cloud.version>Hoxton.SR7</spring-cloud.version>
@@ -24,14 +24,10 @@
             <artifactId>gulimall-common</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-        <!--    初始勾选的两个依赖    -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
+        <!--    初始勾选的依赖    -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <artifactId>spring-cloud-starter-gateway</artifactId>
         </dependency>
 
         <dependency>

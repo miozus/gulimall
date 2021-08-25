@@ -1,6 +1,17 @@
 <!--  -->
 <template>
   <div>
+    <el-switch v-model="draggable" active-text="开启拖拽" inactive-text="">
+    </el-switch>
+    <el-button
+      v-if="draggable"
+      @click="batchSave"
+      size="mini"
+      type="primary"
+      plain
+      >批量保存</el-button
+    >
+
     <el-tree
       :data="menus"
       :props="defaultProps"
@@ -8,7 +19,10 @@
       show-checkbox
       node-key="catId"
       :default-expanded-keys="expandedKey"
-      @node-click="handleNodeClick"
+      @node-drop="handleDrop"
+      :draggable="draggable"
+      :allow-drop="allowDrop"
+      :allow-drag="allowDrag"
     >
       <span class="custom-tree-node" slot-scope="{ node, data }">
         <span>{{ node.label }}</span>
@@ -36,7 +50,12 @@
         </span>
       </span>
     </el-tree>
-    <el-dialog :title="dialogTitle" :visible.sync="dialogVisible" width="30%" :close-on-click-modal="false">
+    <el-dialog
+      :title="dialogTitle"
+      :visible.sync="dialogVisible"
+      width="30%"
+      :close-on-click-modal="false"
+    >
       <el-form :model="category">
         <el-form-item label="分类名称">
           <el-input v-model="category.name" autocomplete="on"></el-input>
@@ -59,6 +78,10 @@
 export default {
   data() {
     return {
+      pCid: [],
+      draggable: false,
+      updateNodes: [],
+      maxNodeLevel: 0,
       dialogTitle: "",
       dialogType: "",
       category: {
@@ -81,18 +104,6 @@ export default {
     };
   },
   methods: {
-    submitData() {
-      switch (this.dialogType) {
-        case "save":
-          this.saveCategory();
-          break;
-        case "update":
-          this.updateCategory();
-          break;
-        default:
-          break;
-      }
-    },
     handleNodeClick(data) {
       console.log(data);
     },
@@ -104,6 +115,18 @@ export default {
         console.log("success get data... ", data.data);
         this.menus = data.data;
       });
+    },
+    submitData() {
+      switch (this.dialogType) {
+        case "save":
+          this.saveCategory();
+          break;
+        case "update":
+          this.updateCategory();
+          break;
+        default:
+          break;
+      }
     },
     save(data) {
       console.log(data);
@@ -193,6 +216,146 @@ export default {
           });
         });
       console.log(node, data);
+    },
+    /**
+     * 可拖拽节点
+     *
+     * 节点思维（A拖拽节点，B目标节点，位置类型：前中后）
+     *   A  ->    B
+     *            ├─parent
+     *            ├─level
+     *            ├─data─ (pCid)          inner
+     *            └─sblings(b + !b)
+     *
+     *   A  ->    B
+     *            ├─parent
+     *            |   ├─sblings(B + !B)
+     *            |   |                    pre
+     *            |   └─data-(pCid)
+     *            |                        next
+     *            ├─level
+     *            └─data─ (null)
+     *
+     * @var {integer} pCid B的身份证，即A移动后，继承父节点的身份证
+     * @var {Node} siblings C，即B的父节点的子节点数组，
+     *      因为移动后受影响的范围扩大到它和兄弟之间， 所以从它父节点向下辐射
+     *
+     */
+    handleDrop(draggingNode, dropNode, dropType, ev) {
+      console.log("tree drag: ", draggingNode, dropNode, dropType);
+      let pCid = 0;
+      let siblings = null;
+
+      if (dropType == "inner") {
+        pCid = dropNode.data.catId;
+        siblings = dropNode.childNodes;
+      } else {
+        // 修复：一级菜单到顶部后，它的pCid为null，因为前后B.data变成了数组，未定义
+        pCid = dropNode.parent.data.catId || 0;
+        siblings = dropNode.parent.childNodes;
+      }
+      this.pCid.push(pCid);
+
+      // A 的顺序，由拷贝B获得，（B内部移动：子节点集合 = 它自己 + 兄弟节点）
+      // （B前后移动：子节点集合 = 兄弟节点）
+      for (let i = 0; i < siblings.length; i++) {
+        //  B-b 它自己
+        if (siblings[i].data.catId == draggingNode.data.catId) {
+          let catLevel = draggingNode.level;
+          // B 层级变动：两点比较，并非同级，跳出包含关系
+          if (siblings[i].level != draggingNode.level) {
+            catLevel = siblings[i].level;
+            // B-b-（b1~bn） a的所有子节点层级变动
+            this.updateChildNodeLevel(siblings[i]);
+          }
+          this.updateNodes.push({
+            catId: siblings[i].data.catId,
+            sort: i,
+            parentCid: pCid,
+            catLevel: catLevel
+          });
+        } else {
+          // B-（!b） 兄弟节点
+          this.updateNodes.push({
+            catId: siblings[i].data.catId,
+            sort: i
+          });
+        }
+      }
+      console.log("updateNodes: ", this.updateNodes);
+    },
+    batchSave() {
+      // 发送请求到后端接口
+      this.$http({
+        url: this.$http.adornUrl("/product/category/update/sort"),
+        method: "post",
+        data: this.$http.adornData(this.updateNodes, false)
+      }).then(({ data }) => {
+        // 刷新页面放这里，页面所见即所得；否则放外围，被异步抢先，顺序是老的，还要手动刷新网页
+        this.expandedKey = this.pCid;
+        this.getMenus();
+        this.$message({
+          message: "菜单顺序修改成功",
+          type: "success"
+        });
+        // 修复：每次拖动，数组的中的历史越来越大，单页面应用不会自动刷新，记得清空回默认值
+        this.updateNodes = [];
+        this.maxNodeLevel = 0;
+        // this.pCid = [];
+      });
+    },
+    updateChildNodeLevel(node) {
+      if (node.childNodes.length > 0) {
+        for (let i = 0; i < node.childNodes.length; i++) {
+          var cNode = node.childNodes[i];
+          this.updateNodes.push({
+            catId: cNode.catId,
+            catLevel: node.childNodes[i].level
+          });
+          this.updateChildNodeLevel(node.childNodes[i]);
+        }
+      }
+    },
+    allowDrop(draggingNode, dropNode, type) {
+      console.log("drag: ", draggingNode, "drop: ", dropNode, type);
+      // 获取拖拽节点的最大深度
+      this.countNodeLevel(draggingNode);
+      // 被拖动的节点 + 所在父节点层数 < 3
+      // 从根节点拉出两条直线，它们间距 + 1 索引（从零开始）, 用页面实际的层级（因为多次变动，最后才提交到数据库）
+      // 间距是非负数，所以用绝对值方法
+      let deep = Math.abs(this.maxNodeLevel - dropNode.level) + 1;
+      console.log("deep: ", deep);
+      // debug
+      console.log(`
+    this.maxNodeLevel: ${this.maxNodeLevel}
+    draggingNode.level: ${draggingNode.level}
+    dropNode.level: ${dropNode.level}
+    `);
+      if (type == "inner") {
+        return deep + dropNode.level <= 3;
+      } else {
+        return deep + dropNode.parent.level <= 3;
+      }
+    },
+    // 找到节点自己的最大层级
+    // 递归遍历：它的子节点也要找到，最终找最大的level
+    // 一级1，二级2，三级3
+    countNodeLevel(node) {
+      if (node.childNodes != null && node.childNodes.length > 0) {
+        for (let i = 0; i < node.childNodes.length; i++) {
+          if (node.childNodes[i].level > this.maxNodeLevel) {
+            this.maxNodeLevel = node.childNodes[i].level;
+          }
+          this.countNodeLevel(node.childNodes[i]);
+        }
+      } else {
+        // 修复：第三级节点无子节点（0），默认为本层级（3）
+        this.maxNodeLevel = node.level;
+      }
+    },
+    allowDrag(draggingNode) {
+      return true;
+      // return draggingNode.data.catLevel !== 1;
     }
   },
   //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）

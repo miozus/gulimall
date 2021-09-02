@@ -15,22 +15,7 @@
         <el-input v-model="dataForm.name" placeholder="品牌名"></el-input>
       </el-form-item>
       <el-form-item label="品牌logo地址" prop="logo">
-        <!-- <el-upload
-          class="upload-demo"
-          action="https://jsonplaceholder.typicode.com/posts/"
-          :on-preview="handlePreview"
-          :on-remove="handleRemove"
-          :before-remove="beforeRemove"
-          multiple
-          :limit="3"
-          :on-exceed="handleExceed"
-          :file-list="fileList"
-        >
-          <el-button size="small" type="primary">点击上传</el-button>
-          <div slot="tip" class="el-upload__tip">
-            只能上传jpg/png文件，且不超过500kb
-          </div>
-        </el-upload> -->
+        <single-upload v-model="dataForm.logo"></single-upload>
         <el-input v-model="dataForm.logo" placeholder="品牌logo地址"></el-input>
       </el-form-item>
       <el-form-item label="介绍" prop="descript">
@@ -39,6 +24,8 @@
       <el-form-item label="显示状态" prop="showStatus">
         <el-switch
           v-model="dataForm.showStatus"
+          :active-value="1"
+          :inactive-value="0"
           active-color="#13ce66"
           inactive-color="#ff4949"
         >
@@ -51,7 +38,7 @@
         ></el-input>
       </el-form-item>
       <el-form-item label="排序" prop="sort">
-        <el-input v-model="dataForm.sort" placeholder="排序"></el-input>
+        <el-input v-model.number="dataForm.sort" placeholder="排序"></el-input>
       </el-form-item>
     </el-form>
     <span slot="footer" class="dialog-footer">
@@ -62,8 +49,25 @@
 </template>
 
 <script>
+import singleUpload from "@/components/upload/singleUpload";
 export default {
+  components: { singleUpload },
   data() {
+    var validateSort = (rule, value, callback) => {
+      if (!Number.isInteger(value) || value < 0) {
+        // if (!/^\d+$/.test(value)) {
+        callback(new Error("请输入一个整数"));
+      } else {
+        callback();
+      }
+    };
+    var validateFirstLetter = (rule, value, callback) => {
+      if ((value.length != 1) || !/^[a-zA-Z]$/.test(value)) {
+        callback(new Error("请输一个英文字母（不分大小写）"));
+      } else {
+        callback();
+      }
+    };
     return {
       visible: false,
       dataForm: {
@@ -71,9 +75,9 @@ export default {
         name: "",
         logo: "",
         descript: "",
-        showStatus: "",
+        showStatus: 1,
         firstLetter: "",
-        sort: ""
+        sort: 0
       },
       dataRule: {
         name: [{ required: true, message: "品牌名不能为空", trigger: "blur" }],
@@ -91,9 +95,9 @@ export default {
           }
         ],
         firstLetter: [
-          { required: true, message: "检索首字母不能为空", trigger: "blur" }
+          { validator: validateFirstLetter, required: true, trigger: "blur" }
         ],
-        sort: [{ required: true, message: "排序不能为空", trigger: "blur" }]
+        sort: [{ validator: validateSort, required: true, trigger: "blur" }]
       }
     };
   },

@@ -153,6 +153,7 @@ export default {
   data() {
     //这里存放数据
     return {
+      catelogId: 0,
       catId: 0,
       dataForm: {
         key: ""
@@ -176,6 +177,7 @@ export default {
       console.log("attrgroup感知被点击:", data, node, component);
       if (node.level == 3) {
         this.catId = data.catId;
+        this.catelogId = data.catId;
         this.getDataList();
       }
     },
@@ -219,6 +221,7 @@ export default {
     // 新增 / 修改
     addOrUpdateHandle(id) {
       this.addOrUpdateVisible = true;
+      // 上个（弹窗）组件完全显示后，才调用$方法
       this.$nextTick(() => {
         this.$refs.addOrUpdate.init(id);
       });

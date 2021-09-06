@@ -2,9 +2,7 @@ package cn.miozus.gulimall.product.service.impl;
 
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -57,12 +55,48 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
 
     }
 
+    /**
+     * 找到catelog路径, eg.[2,25,225]
+     *
+     * @param catelogId catelog id
+     * @return {@link Long[]}
+     */
+    @Override
+    public Long[] findCatelogPath(Long catelogId) {
+        List<Long> paths = new ArrayList<>();
+
+        List<Long> parentPath = findParentPath(catelogId, paths);
+        Collections.reverse(parentPath);
+
+        return (Long[]) parentPath.toArray(new Long[0]);
+    }
+
+    /**
+     * 找到父路径
+     * eg.[225, 25, 2]
+     *
+     * @param catlogId catlog id
+     * @param paths    路径
+     * @return {@link List}<{@link Long}>
+     */
+    private List<Long> findParentPath(Long catlogId, List<Long> paths) {
+        // current node > parent node
+        Long parentId;
+        paths.add(catlogId);
+
+        CategoryEntity byId = this.getById(catlogId);
+        if ((parentId = byId.getParentCid()) != 0) {
+            findParentPath(parentId, paths);
+        }
+        return paths;
+    }
+
     // 递归查找所有菜单的子菜单
     private List<CategoryEntity> getChildren(CategoryEntity root, List<CategoryEntity> all) {
 
         return all.stream()
                 // catId [1,21]
-                .filter(categoryEntity -> categoryEntity.getParentCid() == root.getCatId())
+                .filter(categoryEntity -> Objects.equals(categoryEntity.getParentCid(), root.getCatId()))
                 // 递归找子菜单，二级的 catId 同时转化成三级的 parentCid
                 .map(categoryEntity -> {
                     categoryEntity.setChildren(getChildren(categoryEntity, all));
@@ -70,7 +104,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
                 })
                 // 菜单排序
                 .sorted(Comparator.comparingInt(o -> (o.getSort() == null ? 0 : o.getSort())))
-//                .sorted((o1, o2) -> (o1.getSort() == null ? 0 : o1.getSort()) - (o2.getSort() == null ? 0 : o2.getSort()))
+                //                .sorted((o1, o2) -> (o1.getSort() == null ? 0 : o1.getSort()) - (o2.getSort() == null ? 0 : o2.getSort()))
                 .collect(Collectors.toList());
     }
 }

@@ -8,7 +8,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @EnableDiscoveryClient
 @SpringBootApplication
-@MapperScan(basePackages = "cn.miozus.gulimall.product.dao")
+//@MapperScan(basePackages = "cn.miozus.gulimall.product.dao")
 public class GulimallProductApplication {
 
     public static void main(String[] args) {

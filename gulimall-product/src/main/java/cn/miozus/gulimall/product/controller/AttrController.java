@@ -37,23 +37,35 @@ public class AttrController {
     }
 
 
+
     /**
      * 列表
      */
-    @GetMapping("/base/list/{catlogId}")
-    public R listBaseAttr(@RequestParam Map<String, Object> params, @PathVariable("catlogId") Long catlogId) {
-        PageUtils page = attrService.queryBaseAttrPage(params, catlogId);
+    @GetMapping("/{attrType}/list/{catlogId}")
+    public R listBaseAttr(@RequestParam Map<String, Object> params,
+                          @PathVariable("catlogId") Long catlogId,
+                          @PathVariable("attrType") String attrType
+                          ) {
+        PageUtils page = attrService.queryAttrPage(params, catlogId, attrType);
 
         return R.ok().put("page", page);
     }
 
 
+    /**
+     * 信息
+     *
+     * @param attrId attr id
+     * @return {@link R}
+     */
     @RequestMapping("/info/{attrId}")
     public R info(@PathVariable("attrId") Long attrId) {
         AttrRespVo attr = attrService.getAttrById(attrId);
 
         return R.ok().put("attr", attr);
     }
+
+
 
     /**
      * 保存

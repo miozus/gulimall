@@ -1,9 +1,17 @@
 package cn.miozus.gulimall.product.service.impl;
 
+import cn.miozus.gulimall.product.dao.AttrAttrgroupRelationDao;
+import cn.miozus.gulimall.product.entity.AttrAttrgroupRelationEntity;
+import cn.miozus.gulimall.product.vo.AttrGroupRelationVo;
 import com.alibaba.cloud.commons.lang.StringUtils;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -18,6 +26,10 @@ import cn.miozus.gulimall.product.service.AttrGroupService;
 
 @Service("attrGroupService")
 public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEntity> implements AttrGroupService {
+
+    @Autowired
+    AttrAttrgroupRelationDao  relationDao;
+
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -59,6 +71,18 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
             );
             return new PageUtils(page);
         }
+
+    }
+
+    @Override
+    public void removeRelation(AttrGroupRelationVo[] params) {
+        List<AttrAttrgroupRelationEntity> entities = Arrays.stream(params).map(param -> {
+            AttrAttrgroupRelationEntity relationEntity = new AttrAttrgroupRelationEntity();
+            BeanUtils.copyProperties(param, relationEntity);
+            return relationEntity;
+        }).collect(Collectors.toList());
+
+        relationDao.deleteBatchRelation(entities);
 
     }
 

@@ -2,10 +2,10 @@ spring:
     datasource:
         type: com.alibaba.druid.pool.DruidDataSource
         druid:
-            driver-class-name: com.mysql.cj.jdbc.Driver
-            url: jdbc:mysql://39.108.228.2:3306/gulimall_admin?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
-            username: admin
-            password: Admin*78
+#            driver-class-name: com.mysql.cj.jdbc.Driver
+#            url: jdbc:mysql://
+#            username:
+#            password:
             initial-size: 10
             max-active: 100
             min-idle: 10

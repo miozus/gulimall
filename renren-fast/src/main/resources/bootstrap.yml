@@ -1,4 +1,3 @@
-# nacos
 spring:
     application:
         name: renren-fast
@@ -6,6 +5,9 @@ spring:
         nacos:
             config:
                 extension-configs:
+                - data-id: datasource.yml
+                  group: pro
+                  refresh: true
                 - data-id: other.yml
                   group: pro
                   refresh: true

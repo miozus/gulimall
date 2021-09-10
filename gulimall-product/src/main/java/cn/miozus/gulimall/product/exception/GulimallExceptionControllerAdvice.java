@@ -38,6 +38,7 @@ public class GulimallExceptionControllerAdvice {
      */
     @ExceptionHandler(Throwable.class)
     public R handleException(Throwable throwable) {
-        return R.error(BizCodeEnum.UNKNOW_EXCEPTION.getCode(), BizCodeEnum.VALID_EXCEPTION.getMsg());
+        log.error("日志：{}",throwable.getLocalizedMessage());
+        return R.error(BizCodeEnum.UNKNOW_EXCEPTION.getCode(), BizCodeEnum.UNKNOW_EXCEPTION.getMsg());
     }
 }

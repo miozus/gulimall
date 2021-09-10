@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: gulimall-member
+  cloud:
+    nacos:
+      config:
+        extension-configs:
+          - data-id: datasource.yml
+            group: pro
+            refresh: true
+          - data-id: mybatis.yml
+            group: pro
+            refresh: true
+          - data-id: other.yml
+            group: pro
+            refresh: true
+        namespace: bc536abf-c763-425f-a1d6-4e934350dbf7
+        server-addr: 39.108.228.2:8848

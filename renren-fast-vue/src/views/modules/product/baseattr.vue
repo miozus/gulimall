@@ -136,7 +136,6 @@ export default {
     return {
       catId: 0,
       type: 1,
-      valueType: 0,
       dataForm: {
         key: ""
       },

@@ -9,7 +9,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableDiscoveryClient
 @EnableFeignClients(basePackages="cn.miozus.gulimall.member.feign")
 @SpringBootApplication
-@MapperScan(basePackages = "cn.miozus.gulimall.member.dao")
 public class GulimallMemberApplication {
 
     public static void main(String[] args) {

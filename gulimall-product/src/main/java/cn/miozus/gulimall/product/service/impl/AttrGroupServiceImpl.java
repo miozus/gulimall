@@ -2,6 +2,7 @@ package cn.miozus.gulimall.product.service.impl;
 
 import cn.miozus.gulimall.product.dao.AttrAttrgroupRelationDao;
 import cn.miozus.gulimall.product.entity.AttrAttrgroupRelationEntity;
+import cn.miozus.gulimall.product.service.AttrAttrgroupRelationService;
 import cn.miozus.gulimall.product.vo.AttrGroupRelationVo;
 import com.alibaba.cloud.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
@@ -75,10 +76,10 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
     }
 
     @Override
-    public void removeRelation(AttrGroupRelationVo[] params) {
-        List<AttrAttrgroupRelationEntity> entities = Arrays.stream(params).map(param -> {
+    public void removeRelation(AttrGroupRelationVo[] vos) {
+        List<AttrAttrgroupRelationEntity> entities = Arrays.stream(vos).map(vo -> {
             AttrAttrgroupRelationEntity relationEntity = new AttrAttrgroupRelationEntity();
-            BeanUtils.copyProperties(param, relationEntity);
+            BeanUtils.copyProperties(vo, relationEntity);
             return relationEntity;
         }).collect(Collectors.toList());
 

@@ -1,5 +1,6 @@
 package cn.miozus.gulimall.product.vo;
 
+import cn.miozus.gulimall.product.entity.AttrAttrgroupRelationEntity;
 import lombok.Data;
 
 /**
@@ -9,7 +10,7 @@ import lombok.Data;
  * @date 2021/09/09
  */
 @Data
-public class AttrGroupRelationVo {
+public class AttrGroupRelationVo extends AttrAttrgroupRelationEntity {
 
     // [{"attrId":1,"attrGroupId":2}]
     private Long attrId;

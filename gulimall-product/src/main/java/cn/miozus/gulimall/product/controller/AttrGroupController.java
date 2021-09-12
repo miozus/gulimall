@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import cn.miozus.gulimall.product.entity.AttrEntity;
+import cn.miozus.gulimall.product.service.AttrAttrgroupRelationService;
 import cn.miozus.gulimall.product.service.AttrService;
 import cn.miozus.gulimall.product.service.CategoryService;
 import cn.miozus.gulimall.product.vo.AttrGroupRelationVo;
@@ -35,6 +36,10 @@ public class AttrGroupController {
 
     @Autowired
     AttrService attrService;
+
+    @Autowired
+    AttrAttrgroupRelationService relationService;
+
 
     /**
      * 列表
@@ -95,6 +100,19 @@ public class AttrGroupController {
     @RequestMapping("/update")
     public R update(@RequestBody AttrGroupEntity attrGroup) {
         attrGroupService.updateById(attrGroup);
+
+        return R.ok();
+    }
+
+    /**
+     * 添加关系
+     *
+     * @param vos List<AttrGroupRelationVo>
+     * @return {@link R}
+     */
+    @PostMapping("/attr/relation")
+    public R addRelation(@RequestBody List<AttrGroupRelationVo> vos) {
+        relationService.addRelationBatch(vos);
 
         return R.ok();
     }

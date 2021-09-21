@@ -1,19 +1,15 @@
 package cn.miozus.gulimall.coupon.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import cn.miozus.gulimall.coupon.entity.SkuFullReductionEntity;
-import cn.miozus.gulimall.coupon.service.SkuFullReductionService;
+import cn.miozus.common.to.SkuReductionTo;
 import cn.miozus.common.utils.PageUtils;
 import cn.miozus.common.utils.R;
+import cn.miozus.gulimall.coupon.entity.SkuFullReductionEntity;
+import cn.miozus.gulimall.coupon.service.SkuFullReductionService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
+import java.util.Map;
 
 
 
@@ -29,6 +25,14 @@ import cn.miozus.common.utils.R;
 public class SkuFullReductionController {
     @Autowired
     private SkuFullReductionService skuFullReductionService;
+
+    @PutMapping("/saveinfo")
+    // 因为 To 保存内存庞杂，将就 To 写法了
+    public R saveInfo(@RequestBody SkuReductionTo skuReductionTo){
+        skuFullReductionService.saveSkuReduction(skuReductionTo);
+
+        return R.ok();
+    }
 
     /**
      * 列表

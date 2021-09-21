@@ -32,6 +32,10 @@ public class AttrVo /*implements Serializable */{
      */
     private String icon;
     /**
+     * 选择类型[0 : 单选， 1 : 多选]
+     */
+    private Integer valueType;
+    /**
      * 可选值列表[用逗号分隔]
      */
     private String valueSelect;

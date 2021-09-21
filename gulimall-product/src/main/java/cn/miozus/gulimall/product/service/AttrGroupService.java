@@ -1,6 +1,7 @@
 package cn.miozus.gulimall.product.service;
 
 import cn.miozus.gulimall.product.vo.AttrGroupRelationVo;
+import cn.miozus.gulimall.product.vo.AttrGroupWithAttrVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.miozus.common.utils.PageUtils;
 import cn.miozus.gulimall.product.entity.AttrGroupEntity;
@@ -23,5 +24,6 @@ public interface AttrGroupService extends IService<AttrGroupEntity> {
 
     void removeRelation(AttrGroupRelationVo[] params);
 
+    List<AttrGroupWithAttrVo> getAttrGroupWithAttrsByCatelogId(Long catelogId);
 }
 

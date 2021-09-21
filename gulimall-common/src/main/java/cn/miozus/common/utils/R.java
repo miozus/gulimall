@@ -61,4 +61,9 @@ public class R extends HashMap<String, Object> {
 		super.put(key, value);
 		return this;
 	}
+
+	// 因为经常用获取状态
+	public Integer getCode() {
+		return (Integer) this.get("code");
+	}
 }

@@ -1,21 +1,21 @@
 package cn.miozus.gulimall.product.controller;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-
+import cn.miozus.common.utils.PageUtils;
+import cn.miozus.common.utils.R;
 import cn.miozus.gulimall.product.entity.AttrEntity;
+import cn.miozus.gulimall.product.entity.AttrGroupEntity;
 import cn.miozus.gulimall.product.service.AttrAttrgroupRelationService;
+import cn.miozus.gulimall.product.service.AttrGroupService;
 import cn.miozus.gulimall.product.service.AttrService;
 import cn.miozus.gulimall.product.service.CategoryService;
 import cn.miozus.gulimall.product.vo.AttrGroupRelationVo;
+import cn.miozus.gulimall.product.vo.AttrGroupWithAttrVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import cn.miozus.gulimall.product.entity.AttrGroupEntity;
-import cn.miozus.gulimall.product.service.AttrGroupService;
-import cn.miozus.common.utils.PageUtils;
-import cn.miozus.common.utils.R;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -82,6 +82,22 @@ public class AttrGroupController {
         attrGroup.setCatelogPath(path);
 
         return R.ok().put("attrGroup", attrGroup);
+    }
+
+    /**
+     * attr group with attrs
+     *
+     * @param catelogId catelogId
+     * @return {@link R}
+     * @see R
+     */
+    @GetMapping("/{catelogId}/withattr")
+    public R attrGroupWithAttrs(@PathVariable("catelogId") Long catelogId) {
+        // 所有属性分组
+        // 每个属性分组之下的所有属性（嵌套）
+        List<AttrGroupWithAttrVo> vos = attrGroupService.getAttrGroupWithAttrsByCatelogId(catelogId);
+
+        return R.ok().put("data", vos);
     }
 
     /**

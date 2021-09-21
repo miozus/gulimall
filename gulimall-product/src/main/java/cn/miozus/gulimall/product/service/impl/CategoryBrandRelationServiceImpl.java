@@ -1,24 +1,25 @@
 package cn.miozus.gulimall.product.service.impl;
 
+import cn.miozus.common.utils.PageUtils;
+import cn.miozus.common.utils.Query;
 import cn.miozus.gulimall.product.dao.BrandDao;
+import cn.miozus.gulimall.product.dao.CategoryBrandRelationDao;
 import cn.miozus.gulimall.product.dao.CategoryDao;
 import cn.miozus.gulimall.product.entity.BrandEntity;
+import cn.miozus.gulimall.product.entity.CategoryBrandRelationEntity;
 import cn.miozus.gulimall.product.entity.CategoryEntity;
+import cn.miozus.gulimall.product.service.BrandService;
+import cn.miozus.gulimall.product.service.CategoryBrandRelationService;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
-
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import cn.miozus.common.utils.PageUtils;
-import cn.miozus.common.utils.Query;
-
-import cn.miozus.gulimall.product.dao.CategoryBrandRelationDao;
-import cn.miozus.gulimall.product.entity.CategoryBrandRelationEntity;
-import cn.miozus.gulimall.product.service.CategoryBrandRelationService;
+import java.util.stream.Collectors;
 
 
 @Service("categoryBrandRelationService")
@@ -29,6 +30,12 @@ public class CategoryBrandRelationServiceImpl extends ServiceImpl<CategoryBrandR
 
     @Autowired
     CategoryDao categoryDao;
+
+    @Autowired
+    CategoryBrandRelationDao relationDao;
+
+    @Autowired
+    BrandService brandService;
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -72,6 +79,16 @@ public class CategoryBrandRelationServiceImpl extends ServiceImpl<CategoryBrandR
     @Override
     public void updateCategory(Long catId, String name) {
         this.baseMapper.updateCategory(catId, name);
+    }
+
+    @Override
+    public List<BrandEntity> getBrandListByCatId(Long catId) {
+        List<CategoryBrandRelationEntity> entites = relationDao
+                .selectList(new QueryWrapper<CategoryBrandRelationEntity>().eq("catelog_id", catId));
+        // 注入服务更好，顺便拓展丰富常用方法，而Dao都是自动生成的，将就用；
+        return entites.stream()
+                .map(entity -> brandService.getById(entity.getBrandId()))
+                .collect(Collectors.toList());
     }
 
 }

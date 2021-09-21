@@ -1,19 +1,15 @@
 package cn.miozus.gulimall.product.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import cn.miozus.gulimall.product.entity.SpuInfoEntity;
-import cn.miozus.gulimall.product.service.SpuInfoService;
 import cn.miozus.common.utils.PageUtils;
 import cn.miozus.common.utils.R;
+import cn.miozus.gulimall.product.entity.SpuInfoEntity;
+import cn.miozus.gulimall.product.service.SpuInfoService;
+import cn.miozus.gulimall.product.vo.SpuSaveVo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
+import java.util.Map;
 
 
 
@@ -55,8 +51,10 @@ public class SpuInfoController {
      * 保存
      */
     @RequestMapping("/save")
-    public R save(@RequestBody SpuInfoEntity spuInfo){
-		spuInfoService.save(spuInfo);
+    public R save(@RequestBody SpuSaveVo vo){
+		//spuInfoService.save(vo);
+        // 牵扯太多，准备开始大保存
+        spuInfoService.saveSpuInfo(vo);
 
         return R.ok();
     }

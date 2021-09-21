@@ -2,11 +2,11 @@ package cn.miozus.gulimall.product.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-
-import java.math.BigDecimal;
-import java.io.Serializable;
-import java.util.Date;
 import lombok.Data;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * spu信息
@@ -50,11 +50,11 @@ public class SpuInfoEntity implements Serializable {
 	 */
 	private Integer publishStatus;
 	/**
-	 * 
+	 * 创建时间
 	 */
 	private Date createTime;
 	/**
-	 * 
+	 * 更新时间
 	 */
 	private Date updateTime;
 

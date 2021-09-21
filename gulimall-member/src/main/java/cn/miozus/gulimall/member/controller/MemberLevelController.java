@@ -1,19 +1,14 @@
 package cn.miozus.gulimall.member.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import cn.miozus.gulimall.member.entity.MemberLevelEntity;
-import cn.miozus.gulimall.member.service.MemberLevelService;
 import cn.miozus.common.utils.PageUtils;
 import cn.miozus.common.utils.R;
+import cn.miozus.gulimall.member.entity.MemberLevelEntity;
+import cn.miozus.gulimall.member.service.MemberLevelService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
+import java.util.Map;
 
 
 
@@ -27,6 +22,7 @@ import cn.miozus.common.utils.R;
 @RestController
 @RequestMapping("member/memberlevel")
 public class MemberLevelController {
+
     @Autowired
     private MemberLevelService memberLevelService;
 
@@ -35,7 +31,7 @@ public class MemberLevelController {
      */
     @RequestMapping("/list")
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = memberLevelService.queryMemberPage(params);
+        PageUtils page = memberLevelService.queryPage(params);
 
         return R.ok().put("page", page);
     }

@@ -1,8 +1,8 @@
 package cn.miozus.gulimall.product.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import cn.miozus.common.utils.PageUtils;
 import cn.miozus.gulimall.product.entity.SkuInfoEntity;
+import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.Map;
 
@@ -16,5 +16,7 @@ import java.util.Map;
 public interface SkuInfoService extends IService<SkuInfoEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    void saveSkuInfo(SkuInfoEntity skuInfoEntity);
 }
 

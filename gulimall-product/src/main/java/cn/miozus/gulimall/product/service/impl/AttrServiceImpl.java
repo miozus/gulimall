@@ -1,36 +1,34 @@
 package cn.miozus.gulimall.product.service.impl;
 
 import cn.miozus.common.constant.ProductConstant;
+import cn.miozus.common.utils.PageUtils;
+import cn.miozus.common.utils.Query;
 import cn.miozus.gulimall.product.dao.AttrAttrgroupRelationDao;
+import cn.miozus.gulimall.product.dao.AttrDao;
 import cn.miozus.gulimall.product.dao.AttrGroupDao;
 import cn.miozus.gulimall.product.dao.CategoryDao;
 import cn.miozus.gulimall.product.entity.AttrAttrgroupRelationEntity;
+import cn.miozus.gulimall.product.entity.AttrEntity;
 import cn.miozus.gulimall.product.entity.AttrGroupEntity;
 import cn.miozus.gulimall.product.entity.CategoryEntity;
+import cn.miozus.gulimall.product.service.AttrService;
 import cn.miozus.gulimall.product.service.CategoryService;
 import cn.miozus.gulimall.product.vo.AttrRespVo;
 import cn.miozus.gulimall.product.vo.AttrVo;
 import com.alibaba.cloud.commons.lang.StringUtils;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import cn.miozus.common.utils.PageUtils;
-import cn.miozus.common.utils.Query;
-
-import cn.miozus.gulimall.product.dao.AttrDao;
-import cn.miozus.gulimall.product.entity.AttrEntity;
-import cn.miozus.gulimall.product.service.AttrService;
-import org.springframework.transaction.annotation.Transactional;
 
 
 @Service("attrService")
@@ -214,11 +212,9 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
         List<Long> attrIds = relationEntities.stream()
                 .map(AttrAttrgroupRelationEntity::getAttrId)
                 .collect(Collectors.toList());
-
         if (attrIds.isEmpty()) {
             return null;
         }
-
         return this.listByIds(attrIds);
     }
 

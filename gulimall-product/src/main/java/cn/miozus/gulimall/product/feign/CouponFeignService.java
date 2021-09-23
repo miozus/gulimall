@@ -20,8 +20,6 @@ public interface CouponFeignService {
      *   只要 JSON 数据模块兼容，双方微服务无需使用同一个To
      *   即，为了开发方便，直接将 Controller 复制到这里
      *
-     *
-     *
      * @param spuBoundTo spu绑定到
      * @return {@link R}
      */

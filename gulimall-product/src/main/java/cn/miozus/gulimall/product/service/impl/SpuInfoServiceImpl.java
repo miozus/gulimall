@@ -65,6 +65,7 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
     /**
      * spu保存信息
      * TODO: 高级部分完善网络卡顿、部分数据回滚、异常集中收集的情况
+     *
      * @param vo 签证官
      */
     @Transactional
@@ -166,6 +167,43 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
     @Override
     public void saveBaseSpuInfo(SpuInfoEntity spuInfoEntity) {
         this.baseMapper.insert(spuInfoEntity);
+    }
+
+    @Override
+    public PageUtils queryPageByCondition(Map<String, Object> params) {
+        QueryWrapper<SpuInfoEntity> wrapper = new QueryWrapper<>();
+        /*
+            status:
+            key: 大米
+            brandId: 0
+            catelogId: 0
+         */
+        String key = (String) params.get("key");
+        if (StringUtils.isNotBlank(key)) {
+            // and ( ... ) 拼接的条件放在括号内，否则类似 or 1=1 永真
+            wrapper.and(w ->
+                    w.eq("id", key)
+                            .or()
+                            .like("spu_name", key));
+        }
+        String status = (String) params.get("status");
+        if (StringUtils.isNotBlank(status)) {
+            wrapper.eq("publish_status", status);
+        }
+        String brandId = (String) params.get("brandId");
+        if (StringUtils.isNotBlank(brandId) && !"0".equalsIgnoreCase(brandId)) {
+            wrapper.eq("brand_id", brandId);
+        }
+        String catelogId = (String) params.get("catelogId");
+        if (StringUtils.isNotBlank(catelogId) && !"0".equalsIgnoreCase(catelogId)) {
+            wrapper.eq("catalog_id", catelogId);
+        }
+        // 可从上面原生的写法搬过来修改
+        IPage<SpuInfoEntity> page = this.page(
+                new Query<SpuInfoEntity>().getPage(params),
+                wrapper
+        );
+        return new PageUtils(page);
     }
 
 

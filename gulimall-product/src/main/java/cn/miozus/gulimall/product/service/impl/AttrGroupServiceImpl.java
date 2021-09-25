@@ -59,14 +59,14 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
 
     @Override
     public PageUtils queryPage(Map<String, Object> params, Long catelogId) {
-        String key = (String) params.get("key");
-        QueryWrapper<AttrGroupEntity> wrapper = new QueryWrapper<>();
         /** SQL 模糊查询
          select * from pms_attr_group
          where catelog_id=?
          and (attr_group_id=key
          or attr_group_name like %key%)
          */
+        String key = (String) params.get("key");
+        QueryWrapper<AttrGroupEntity> wrapper = new QueryWrapper<>();
         if (StringUtils.isNotEmpty(key)) {
             wrapper.and(obj ->
                     obj.eq("attr_group_id", key)

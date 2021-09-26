@@ -1,16 +1,18 @@
 package cn.miozus.gulimall.product.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-
+import cn.miozus.common.utils.PageUtils;
+import cn.miozus.common.utils.R;
+import cn.miozus.gulimall.product.entity.ProductAttrValueEntity;
+import cn.miozus.gulimall.product.service.AttrService;
+import cn.miozus.gulimall.product.service.ProductAttrValueService;
 import cn.miozus.gulimall.product.vo.AttrRespVo;
 import cn.miozus.gulimall.product.vo.AttrVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import cn.miozus.gulimall.product.service.AttrService;
-import cn.miozus.common.utils.PageUtils;
-import cn.miozus.common.utils.R;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -26,6 +28,9 @@ public class AttrController {
     @Autowired
     private AttrService attrService;
 
+    @Autowired
+    ProductAttrValueService productAttrValueService;
+
     /**
      * 列表
      */
@@ -37,6 +42,34 @@ public class AttrController {
     }
 
 
+    /**
+     * spu基地attr列表
+     *
+     * @param spuId spu id
+     * @return {@link R}
+     */
+    @GetMapping("/base/listforspu/{spuId}")
+    public R baseAttrListForSpu(@PathVariable("spuId") Long spuId) {
+        // 查实体类一般都没有方法，原生都是批量查询
+        List<ProductAttrValueEntity> entities = productAttrValueService.baseAttrListForSpu(spuId);
+
+        return R.ok().put("data", entities);
+    }
+
+    /**
+     * 更新基本attr列表spu
+     *
+     * @param spuId    spu id
+     * @param entities 实体
+     * @return {@link R}
+     */
+    @PostMapping("/update/{spuId}")
+    public R updateBaseAttrListForSpu(@PathVariable("spuId") Long spuId,
+                                      @RequestBody List<ProductAttrValueEntity> entities) {
+        productAttrValueService.updateBaseAttrListForSpu(spuId, entities);
+
+        return R.ok();
+    }
 
     /**
      * 列表
@@ -45,7 +78,7 @@ public class AttrController {
     public R listBaseAttr(@RequestParam Map<String, Object> params,
                           @PathVariable("catlogId") Long catlogId,
                           @PathVariable("attrType") String attrType
-                          ) {
+    ) {
         PageUtils page = attrService.queryAttrPage(params, catlogId, attrType);
 
         return R.ok().put("page", page);
@@ -64,7 +97,6 @@ public class AttrController {
 
         return R.ok().put("attr", attr);
     }
-
 
 
     /**

@@ -14,6 +14,7 @@ import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -45,13 +46,34 @@ public class ProductAttrValueServiceImpl extends ServiceImpl<ProductAttrValueDao
                 valueEntity.setSpuId(id);
                 valueEntity.setAttrId(attr.getAttrId());
                 AttrEntity attrEntity = attrService.getById(attr.getAttrId());
-                valueEntity.setAttrName(attrEntity.getAttrName());  // 先留空；再调用表查询时补上；
+                valueEntity.setAttrName(attrEntity.getAttrName());  // 先留空；再调用表查询时补上；已补上;
                 valueEntity.setAttrValue(attr.getAttrValues());
                 valueEntity.setQuickShow(attr.getShowDesc());
                 return valueEntity;
 
             }).collect(Collectors.toList());
             this.saveBatch(collect);
-        }}
+        }
+    }
+
+    @Override
+    public List<ProductAttrValueEntity> baseAttrListForSpu(Long spuId) {
+        return this.baseMapper.selectList(new QueryWrapper<ProductAttrValueEntity>().eq("spu_id", spuId));
+    }
+
+    @Transactional
+    @Override
+    public void updateBaseAttrListForSpu(Long spuId, List<ProductAttrValueEntity> entities) {
+        // 可能会新增或取消一定单属性，直接把老属性全删掉，以新提交的为准
+        this.baseMapper.delete(new QueryWrapper<ProductAttrValueEntity>().eq("spu_id", spuId));
+        // 更新，插入
+        List<ProductAttrValueEntity> collect = entities.stream().map(entity -> {
+            entity.setSpuId(spuId);
+            return entity;
+        }).collect(Collectors.toList());
+
+        this.saveBatch(collect);
+    }
+
 
 }

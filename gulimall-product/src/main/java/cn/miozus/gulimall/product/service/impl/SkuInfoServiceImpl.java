@@ -12,6 +12,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Map;
 
 
@@ -73,7 +74,7 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> i
                     wrapper.le("price", max);
                 }
             } catch (Exception e) {
-                log.error("sku手动设定最大值时错误", e);
+                log.error("sku手动设定最大值时错误: {}", e);
 
             }
         }
@@ -83,5 +84,13 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> i
         );
         // 6*25 6*35 :  :=
         return new PageUtils(page);
+    }
+
+    @Override
+    public List<SkuInfoEntity> getSkusBySpuId(Long spuId) {
+        List<SkuInfoEntity> list = this.list(
+                new QueryWrapper<SkuInfoEntity>().eq("spu_id", spuId)
+        );
+        return list;
     }
 }

@@ -36,6 +36,12 @@ public class SpuInfoController {
         return R.ok().put("page", page);
     }
 
+    @PostMapping("/{spuId}/up")
+    public R publish(@PathVariable("spuId") Long spuId) {
+
+        spuInfoService.publish(spuId);
+        return R.ok();
+    }
 
     /**
      * 信息

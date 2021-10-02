@@ -5,9 +5,9 @@ import cn.miozus.common.utils.R;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,7 +39,7 @@ public class GulimallExceptionControllerAdvice {
      */
     @ExceptionHandler(Throwable.class)
     public R handleException(Throwable throwable) {
-        log.error("错误：", throwable);
+        log.error("错误：{}", throwable);
 
         return R.error(BizCodeEnum.UNKNOW_EXCEPTION.getCode(), BizCodeEnum.UNKNOW_EXCEPTION.getMsg());
     }

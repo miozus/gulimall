@@ -40,7 +40,6 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
     @Autowired
     AttrGroupDao attrGroupDao;
 
-
     @Autowired
     CategoryDao categoryDao;
 
@@ -256,5 +255,19 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
         IPage<AttrEntity> page = this.page(new Query<AttrEntity>().getPage(params), wrapper);
 
         return new PageUtils(page);
+    }
+
+    /**
+     * 选择搜索attr id
+     * 在指定的所有属性集合里，筛选出检索属性
+     *
+     * @param attrIds attr id
+     * @return {@link List}<{@link Long}>
+     */
+    @Override
+    public List<Long> selectSearchAttrIds(List<Long> attrIds) {
+
+        /* 本类服务可以直接 baseMapper ，不用重复注入依赖 AttrService */
+        return baseMapper.selectSearchAttrIds(attrIds);
     }
 }

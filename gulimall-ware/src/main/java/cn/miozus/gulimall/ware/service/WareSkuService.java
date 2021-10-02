@@ -1,9 +1,11 @@
 package cn.miozus.gulimall.ware.service;
 
+import cn.miozus.gulimall.ware.vo.SkuHasStockVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.miozus.common.utils.PageUtils;
 import cn.miozus.gulimall.ware.entity.WareSkuEntity;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -20,5 +22,7 @@ public interface WareSkuService extends IService<WareSkuEntity> {
     PageUtils queryWareSkuPage(Map<String, Object> params);
 
     void addStock(Long skuId, Long wareId, Integer skuNum);
+
+    List<SkuHasStockVo> getSkuHasStock(List<Long> skuIds);
 }
 

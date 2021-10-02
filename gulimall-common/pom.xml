@@ -21,42 +21,50 @@
         <servlet.api.version>2.5</servlet.api.version>
         <commons.lang.version>2.6</commons.lang.version>
         <httpcore.version>4.4.13</httpcore.version>
+        <fastjson.version>1.2.78</fastjson.version>
+        <validation.api.version>2.0.1.Final</validation.api.version>
     </properties>
 
 
     <dependencies>
-        <!--    mybatis-plus    -->
+        <!--    MyBatis-Plus    -->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>${mybatis.plus.boot.version}</version>
         </dependency>
-        <!--  lombok  -->
+        <!--  Lombok  -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
         </dependency>
-        <!--    mysql    -->
+        <!-- JSON 格式转换 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>
+        <!--    MySQL    -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql.version}</version>
         </dependency>
 
-        <!--    http components    -->
+        <!--    HTTP components    -->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpcore</artifactId>
             <version>${httpcore.version}</version>
         </dependency>
-        <!-- commons.lang for query -->
+        <!-- Commons.lang for query -->
         <dependency>
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
             <version>${commons.lang.version}</version>
         </dependency>
-        <!--   servlet for XssFilter    -->
+        <!--   Servlet for XssFilter    -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
@@ -64,11 +72,11 @@
             <!--     脚手架提供的就行       -->
             <scope>provided</scope>
         </dependency>
-        <!--   validation     -->
+        <!-- 参数校验 -->
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
-            <version>2.0.1.Final</version>
+            <version>${validation.api.version}</version>
         </dependency>
         <!-- 注册中心 -->
         <dependency>
@@ -76,11 +84,12 @@
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
 
-        <!--    配置中心    -->
+        <!--  配置中心 -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
+
 
 
     </dependencies>

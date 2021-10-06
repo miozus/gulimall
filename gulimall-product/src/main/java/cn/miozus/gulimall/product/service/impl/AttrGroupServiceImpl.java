@@ -58,10 +58,10 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
     }
 
     @Override
-    public PageUtils queryPage(Map<String, Object> params, Long catelogId) {
+    public PageUtils queryPage(Map<String, Object> params, Long catalogId) {
         /** SQL 模糊查询
          select * from pms_attr_group
-         where catelog_id=?
+         where catalog_id=?
          and (attr_group_id=key
          or attr_group_name like %key%)
          */
@@ -73,14 +73,14 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
                             .or()
                             .like("attr_group_name", key));
         }
-        if (catelogId == 0) {
+        if (catalogId == 0) {
             IPage<AttrGroupEntity> page = this.page(
                     new Query<AttrGroupEntity>().getPage(params),
                     wrapper
             );
             return new PageUtils(page);
         } else {
-            wrapper.eq("catelog_id", catelogId);
+            wrapper.eq("catalog_id", catalogId);
             IPage<AttrGroupEntity> page = this.page(
                     new Query<AttrGroupEntity>().getPage(params),
                     wrapper
@@ -105,15 +105,15 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
     /**
      * 被catlog attr组attrs id
      *
-     * @param catelogId catelog id
+     * @param catalogId catalog id
      * @return {@link List<AttrGroupWithAttrVo>}
      */
     @Override
-    public List<AttrGroupWithAttrVo> getAttrGroupWithAttrsByCatelogId(Long catelogId) {
+    public List<AttrGroupWithAttrVo> getAttrGroupWithAttrsByCatalogId(Long catalogId) {
 
         // 查询属性分组
         List<AttrGroupEntity> attrGroupEntities = this.list(
-                new QueryWrapper<AttrGroupEntity>().eq("catelog_id", catelogId)
+                new QueryWrapper<AttrGroupEntity>().eq("catalog_id", catalogId)
         );
         // 查询属性分组关联的所有属性（已写过方法）
         if (CollectionUtils.isNotEmpty(attrGroupEntities)) {

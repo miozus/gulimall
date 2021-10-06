@@ -193,7 +193,7 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
             status:
             key: 大米
             brandId: 0
-            catelogId: 0
+            catalogId: 0
          */
         String key = (String) params.get("key");
         if (StringUtils.isNotBlank(key)) {
@@ -211,9 +211,9 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
         if (StringUtils.isNotBlank(brandId) && !"0".equalsIgnoreCase(brandId)) {
             wrapper.eq("brand_id", brandId);
         }
-        String catelogId = (String) params.get("catelogId");
-        if (StringUtils.isNotBlank(catelogId) && !"0".equalsIgnoreCase(catelogId)) {
-            wrapper.eq("catalog_id", catelogId);
+        String catalogId = (String) params.get("catalogId");
+        if (StringUtils.isNotBlank(catalogId) && !"0".equalsIgnoreCase(catalogId)) {
+            wrapper.eq("catalog_id", catalogId);
         }
         // 可从上面原生的写法搬过来修改
         IPage<SpuInfoEntity> page = this.page(

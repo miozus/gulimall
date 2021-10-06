@@ -39,7 +39,7 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> i
     public PageUtils queryPageByCondition(Map<String, Object> params) {
         /*
         * key:
-        catelogId: 0
+        catalogId: 0
         brandId: 0
         min: 0
         max: 0
@@ -55,9 +55,9 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> i
         if (StringUtils.isNotBlank(brandId) && !"0".equalsIgnoreCase(brandId)) {
             wrapper.eq("brand_id", brandId);
         }
-        String catelogId = (String) params.get("catelogId");
-        if (StringUtils.isNotBlank(catelogId) && !"0".equalsIgnoreCase(catelogId)) {
-            wrapper.eq("catalog_id", catelogId);
+        String catalogId = (String) params.get("catalogId");
+        if (StringUtils.isNotBlank(catalogId) && !"0".equalsIgnoreCase(catalogId)) {
+            wrapper.eq("catalog_id", catalogId);
         }
         String min = (String) params.get("min");
         if (StringUtils.isNotBlank(min)) {

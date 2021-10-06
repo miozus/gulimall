@@ -41,8 +41,8 @@
       <el-form-item label="属性图标" prop="icon">
         <el-input v-model="dataForm.icon" placeholder="属性图标"></el-input>
       </el-form-item>
-      <el-form-item label="所属分类" prop="catelogId">
-        <category-cascader :catelogPath.sync="catelogPath"></category-cascader>
+      <el-form-item label="所属分类" prop="catalogId">
+        <category-cascader :catalogPath.sync="catalogPath"></category-cascader>
       </el-form-item>
       <el-form-item label="所属分组" prop="attrGroupId" v-if="type == 1">
         <el-select ref="groupSelect" v-model="dataForm.attrGroupId" placeholder="请选择">
@@ -104,11 +104,11 @@ export default {
         valueSelect: "",
         attrType: 1,
         enable: 1,
-        catelogId: "",
+        catalogId: "",
         attrGroupId: "",
         showDesc: 0
       },
-      catelogPath: [],
+      catalogPath: [],
       attrGroups: [],
       dataRule: {
         attrName: [
@@ -145,7 +145,7 @@ export default {
             trigger: "blur"
           }
         ],
-        catelogId: [
+        catalogId: [
           {
             required: true,
             message: "需要选择正确的三级分类数据",
@@ -169,12 +169,12 @@ export default {
     }
   },
   watch: {
-    catelogPath(path) {
+    catalogPath(path) {
       //监听到路径变化需要查出这个三级分类的分组信息
       console.log("路径变了", path);
       this.attrGroups = [];
       this.dataForm.attrGroupId = "";
-      this.dataForm.catelogId = path[path.length - 1];
+      this.dataForm.catalogId = path[path.length - 1];
       if (path && path.length == 3) {
         this.$http({
           url: this.$http.adornUrl(
@@ -190,10 +190,10 @@ export default {
           }
         });
       } else if (path.length == 0) {
-        this.dataForm.catelogId = "";
+        this.dataForm.catalogId = "";
       } else {
         this.$message.error("请选择正确的分类");
-        this.dataForm.catelogId = "";
+        this.dataForm.catalogId = "";
       }
     }
   },
@@ -221,11 +221,11 @@ export default {
               this.dataForm.valueSelect = data.attr.valueSelect.split(";");
               this.dataForm.attrType = data.attr.attrType;
               this.dataForm.enable = data.attr.enable;
-              this.dataForm.catelogId = data.attr.catelogId;
+              this.dataForm.catalogId = data.attr.catalogId;
               this.dataForm.showDesc = data.attr.showDesc;
               //attrGroupId
-              //catelogPath
-              this.catelogPath = data.attr.catelogPath;
+              //catalogPath
+              this.catalogPath = data.attr.catalogPath;
               this.$nextTick(() => {
                 this.dataForm.attrGroupId = data.attr.attrGroupId;
               });
@@ -252,7 +252,7 @@ export default {
               valueSelect: this.dataForm.valueSelect.join(";"),
               attrType: this.dataForm.attrType,
               enable: this.dataForm.enable,
-              catelogId: this.dataForm.catelogId,
+              catalogId: this.dataForm.catalogId,
               attrGroupId: this.dataForm.attrGroupId,
               showDesc: this.dataForm.showDesc
             })
@@ -276,7 +276,7 @@ export default {
     },
     //dialogClose
     dialogClose() {
-      this.catelogPath = [];
+      this.catalogPath = [];
     }
   }
 };

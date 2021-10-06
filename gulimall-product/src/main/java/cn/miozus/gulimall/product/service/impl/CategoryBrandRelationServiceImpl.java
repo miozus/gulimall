@@ -55,13 +55,13 @@ public class CategoryBrandRelationServiceImpl extends ServiceImpl<CategoryBrandR
     @Override
     public void saveDetails(CategoryBrandRelationEntity categoryBrandRelation) {
         Long brandId = categoryBrandRelation.getBrandId();
-        Long catelogId = categoryBrandRelation.getCatelogId();
+        Long catalogId = categoryBrandRelation.getCatalogId();
         // 查询详细名字和分类名，需要这两个 DO
         BrandEntity brandEntity = brandDao.selectById(brandId);
-        CategoryEntity categoryEntity = categoryDao.selectById(catelogId);
+        CategoryEntity categoryEntity = categoryDao.selectById(catalogId);
         // 设置关联关系
         categoryBrandRelation.setBrandName(brandEntity.getName());
-        categoryBrandRelation.setCatelogName(categoryEntity.getName());
+        categoryBrandRelation.setCatalogName(categoryEntity.getName());
         // 调用保存, 自己的 DO ( baseMapper / service)
         this.save(categoryBrandRelation);
     }
@@ -84,7 +84,7 @@ public class CategoryBrandRelationServiceImpl extends ServiceImpl<CategoryBrandR
     @Override
     public List<BrandEntity> getBrandListByCatId(Long catId) {
         List<CategoryBrandRelationEntity> entites = relationDao
-                .selectList(new QueryWrapper<CategoryBrandRelationEntity>().eq("catelog_id", catId));
+                .selectList(new QueryWrapper<CategoryBrandRelationEntity>().eq("catalog_id", catId));
         // 注入服务更好，顺便拓展丰富常用方法，而Dao都是自动生成的，将就用；
         return entites.stream()
                 .map(entity -> brandService.getById(entity.getBrandId()))

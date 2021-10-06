@@ -20,10 +20,10 @@ public interface AttrGroupService extends IService<AttrGroupEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
 
-    PageUtils queryPage(Map<String, Object> params, Long catelogId);
+    PageUtils queryPage(Map<String, Object> params, Long catalogId);
 
     void removeRelation(AttrGroupRelationVo[] params);
 
-    List<AttrGroupWithAttrVo> getAttrGroupWithAttrsByCatelogId(Long catelogId);
+    List<AttrGroupWithAttrVo> getAttrGroupWithAttrsByCatalogId(Long catalogId);
 }
 

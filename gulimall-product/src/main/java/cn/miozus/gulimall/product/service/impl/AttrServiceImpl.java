@@ -90,7 +90,7 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
         QueryWrapper<AttrEntity> wrapper = new QueryWrapper<>();
         // 不选择菜单时，且菜单有分类
         if (catlogId != 0) {
-            wrapper.eq("catelog_id", catlogId);
+            wrapper.eq("catalog_id", catlogId);
         }
         // 模糊查询
         String key = (String) params.get("key");
@@ -123,9 +123,9 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
                     attrRespVo.setGroupName(attrGroupEntity.getAttrGroupName());
                 }
                 // 设置分类的名字：属性表 > 目录表 > 名字
-                CategoryEntity categoryEntity = categoryDao.selectById(attrEntity.getCatelogId());
+                CategoryEntity categoryEntity = categoryDao.selectById(attrEntity.getCatalogId());
                 if (categoryEntity != null) {
-                    attrRespVo.setCatelogName(categoryEntity.getName());
+                    attrRespVo.setCatalogName(categoryEntity.getName());
                 }
                 return attrRespVo;
             }).collect(Collectors.toList());
@@ -158,14 +158,14 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
             }
         }
         // 设置分类名字：属性表 > 目录表 > 名字
-        CategoryEntity categoryEntity = categoryDao.selectById(attrEntity.getCatelogId());
+        CategoryEntity categoryEntity = categoryDao.selectById(attrEntity.getCatalogId());
         if (categoryEntity != null) {
-            attrRespVo.setCatelogName(categoryEntity.getName());
+            attrRespVo.setCatalogName(categoryEntity.getName());
         }
         // 设置分组路径：目录表服务 > 路径
-        Long[] catelogPath = categoryService.findCatelogPath(attrEntity.getCatelogId());
-        if (catelogPath != null) {
-            attrRespVo.setCatelogPath(catelogPath);
+        Long[] catalogPath = categoryService.findCatalogPath(attrEntity.getCatalogId());
+        if (catalogPath != null) {
+            attrRespVo.setCatalogPath(catalogPath);
         }
 
         return attrRespVo;
@@ -230,10 +230,10 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
         // 当前分组，只能关联别的分组，没有引用的属性（一个属性只能与一个属性分组绑定）（属性：分组~1：1）
         // attrGroupId:catlogId ~ 1:N  所以从一个 catlogId 找到它的同类
         AttrGroupEntity attrGroupEntity = attrGroupDao.selectById(attrgroupId);
-        Long catelogId = attrGroupEntity.getCatelogId();
+        Long catalogId = attrGroupEntity.getCatalogId();
         // 1- 属性分组表：当前分类下的其他分组 1-> N1 💧  N2 <- N1 如同水滴溅射
         List<Long> attrGroupIds = attrGroupDao.selectList(
-                new QueryWrapper<AttrGroupEntity>().eq("catelog_id", catelogId)
+                new QueryWrapper<AttrGroupEntity>().eq("catalog_id", catalogId)
         ).stream().map(AttrGroupEntity::getAttrGroupId).collect(Collectors.toList());
         // 2- 关联表：中转翻译，为查询其关联的属性做准备
         List<Long> attrIds = relationDao.selectList(
@@ -241,7 +241,7 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
         ).stream().map(AttrAttrgroupRelationEntity::getAttrId).collect(Collectors.toList());
         // 3- 属性表：当前分类的所有属性 - 移除（notIn）这些关联的属性
         QueryWrapper<AttrEntity> wrapper = new QueryWrapper<AttrEntity>()
-                .eq("catelog_id", catelogId)
+                .eq("catalog_id", catalogId)
                 .eq("search_type", ProductConstant.AttrEnum.ATTR_TYPE_BASE.getCode());
         if (CollectionUtils.isNotEmpty(attrIds)) {
             wrapper.notIn("attr_id", attrIds);

@@ -70,7 +70,7 @@
               <i class="el-icon-error" v-else></i>
             </template>
           </el-table-column>
-          <el-table-column prop="catelogName" header-align="center" align="center" label="所属分类"></el-table-column>
+          <el-table-column prop="catalogName" header-align="center" align="center" label="所属分类"></el-table-column>
           <el-table-column
             v-if="attrtype == 1"
             prop="groupName"

@@ -1,23 +1,29 @@
 package cn.miozus.gulimall.product.service.impl;
 
+import cn.miozus.common.utils.PageUtils;
+import cn.miozus.common.utils.Query;
+import cn.miozus.gulimall.product.dao.CategoryDao;
+import cn.miozus.gulimall.product.entity.CategoryEntity;
 import cn.miozus.gulimall.product.service.CategoryBrandRelationService;
+import cn.miozus.gulimall.product.service.CategoryService;
+import cn.miozus.gulimall.product.vo.Catalog2Vo;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import cn.miozus.common.utils.PageUtils;
-import cn.miozus.common.utils.Query;
 
-import cn.miozus.gulimall.product.dao.CategoryDao;
-import cn.miozus.gulimall.product.entity.CategoryEntity;
-import cn.miozus.gulimall.product.service.CategoryService;
-
-
+/**
+ * 类别服务impl
+ *
+ * @author miao
+ * @date 2021/10/05
+ */
 @Service("categoryService")
 public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity> implements CategoryService {
 
@@ -29,7 +35,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
     public PageUtils queryPage(Map<String, Object> params) {
         IPage<CategoryEntity> page = this.page(
                 new Query<CategoryEntity>().getPage(params),
-                new QueryWrapper<CategoryEntity>()
+                new QueryWrapper<>()
         );
 
         return new PageUtils(page);
@@ -62,16 +68,16 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
     }
 
     /**
-     * 找到catelog路径, eg.[2,25,225]
+     * 找到catalog路径, eg.[2,25,225]
      *
-     * @param catelogId catelog id
+     * @param catalogId catalog id
      * @return {@link Long[]}
      */
     @Override
-    public Long[] findCatelogPath(Long catelogId) {
+    public Long[] findCatalogPath(Long catalogId) {
         List<Long> paths = new ArrayList<>();
 
-        List<Long> parentPath = findParentPath(catelogId, paths);
+        List<Long> parentPath = findParentPath(catalogId, paths);
         Collections.reverse(parentPath);
 
         return parentPath.toArray(new Long[0]);
@@ -86,6 +92,61 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
     public void updateCascade(CategoryEntity category) {
         this.updateById(category);
         categoryBrandRelationService.updateCategory(category.getCatId(), category.getName());
+    }
+
+    @Override
+    public List<CategoryEntity> getLevel1Categories() {
+
+        return baseMapper.selectList(new QueryWrapper<CategoryEntity>().eq("parent_cid", 0));
+    }
+
+    /**
+     * 获取目录json
+     *
+     * @return {@link Map}<{@link Integer}, {@link Object}>
+     */
+    @Override
+    public Map<String, List<Catalog2Vo>> getCatalogJson() {
+        // 1️⃣ 一级分类：parent_cid 统一查询继承关系
+        List<CategoryEntity> firstCategories = getLevel1Categories();
+        // 封装数据
+        return firstCategories.stream().collect(Collectors.toMap(key -> key.getCatId().toString(), value -> {
+            // 2️⃣ 二级分类：每个一级分类，查到其下的二级分类
+            List<CategoryEntity> secondCategories = baseMapper.selectList(
+                    new QueryWrapper<CategoryEntity>().eq("parent_cid", value.getCatId()));
+            List<Catalog2Vo> catalog2Vos = null;
+            if (CollectionUtils.isNotEmpty(secondCategories)) {
+                catalog2Vos = secondCategories.stream().map(secondCategory -> {
+                            // 简化名字，同类型中强调区分; 或者直接匿名 item ，但嵌套容易混同；
+                            // 全参构造，简化拷贝值
+                            Catalog2Vo catalog2Vo = new Catalog2Vo(
+                                    value.getCatId().toString(),
+                                    // 占位可用""红下划线的提醒，或者null不提醒，先写其他的; 善用 zc zo 折叠或展开代码；
+                                    // 超越时空的收集？ > 先赋值null ，最后用 set 补刀；
+                                    null,
+                                    secondCategory.getCatId().toString(),
+                                    secondCategory.getName()
+                            );
+                            // 3️⃣ 三级分类
+                            List<CategoryEntity> thirdCategories = baseMapper.selectList(
+                                    new QueryWrapper<CategoryEntity>().eq
+                                            ("parent_cid", secondCategory.getCatId()));
+                            if (CollectionUtils.isNotEmpty(thirdCategories)) {
+                                List<Catalog2Vo.Catalog3Vo> catalog3Vos = thirdCategories.stream().map(
+                                        thirdCategory -> new Catalog2Vo.Catalog3Vo(
+                                                secondCategory.getCatId().toString(),
+                                                thirdCategory.getCatId().toString(),
+                                                thirdCategory.getName()
+                                        )).collect(Collectors.toList());
+                                catalog2Vo.setCatalog3List(catalog3Vos);
+                            }
+                            return catalog2Vo;
+                        }
+                ).collect(Collectors.toList());
+            }
+            // 抽取变量时，生成的复杂嵌套类型，此时可用来修改接口类型、实体类了 Object -> xxx
+            return catalog2Vos;
+        }));
     }
 
     /**
@@ -108,7 +169,13 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
         return paths;
     }
 
-    // 递归查找所有菜单的子菜单
+    /**
+     * 递归查找所有菜单的子菜单
+     *
+     * @param root 根
+     * @param all  所有
+     * @return {@link List}<{@link CategoryEntity}>
+     */
     private List<CategoryEntity> getChildren(CategoryEntity root, List<CategoryEntity> all) {
 
         return all.stream()

@@ -41,6 +41,20 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <!-- 模板引擎:开启缓存，性能也是可以的 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+
+        <!-- 热部署: 简陋版 JRebel ; 关闭叶子缓存 > 开启自动保存和编译 / 手动或快捷键点击编译斧头; 代码配置推荐重启-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+
     </dependencies>
     <dependencyManagement>
         <dependencies>

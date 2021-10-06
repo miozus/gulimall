@@ -10,7 +10,7 @@
         <result property="sort" column="sort"/>
         <result property="descript" column="descript"/>
         <result property="icon" column="icon"/>
-        <result property="catelogId" column="catelog_id"/>
+        <result property="catalogId" column="catalog_id"/>
     </resultMap>
 
 

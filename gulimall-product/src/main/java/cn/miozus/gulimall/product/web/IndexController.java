@@ -25,16 +25,24 @@ public class IndexController {
     CategoryService categoryService;
 
 
+    /**
+     * 访问首页
+     * 业务服务: 访问数据库、模板渲染，都会影响速度
+     * @param model 模型
+     * @return {@link String}
+     */
     @GetMapping({"/", "/index.html"})
     public String indexPage(Model model) {
-        // 查询一级分类
+        // 查询一级分类 1️⃣ 访问数据库
         List<CategoryEntity> categoryEntities = categoryService.getLevel1Categories();
+        // 2️⃣ 模板渲染
         model.addAttribute("categories", categoryEntities);
         return "index";
     }
 
     /**
      * 获取目录 JSON
+     * 业务服务：巨慢的原因 db
      *
      * @return {@link Map}<{@link Integer}, {@link Object}> 适用[JSON]
      * @Annotation ResponseBody 以JSON 格式返回
@@ -43,5 +51,18 @@ public class IndexController {
     @GetMapping("/index/json/catalog.json")
     public Map<String, List<Catalog2Vo>> getCatalogJson() {
         return categoryService.getCatalogJson();
+    }
+
+    /**
+     * 你好
+     * 简单服务：可以附带两个中间件 Nginx + Gateway
+     * 不查数据库等
+     *
+     * @return {@link String}
+     */
+    @ResponseBody
+    @GetMapping("/hello")
+    public String hello(){
+        return "hello";
     }
 }

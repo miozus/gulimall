@@ -11,6 +11,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +26,10 @@ import java.util.stream.Collectors;
  * @date 2021/10/05
  */
 @Service("categoryService")
+@Slf4j
 public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity> implements CategoryService {
+
+    private Map<String, Object> cache = new HashMap<>();
 
     @Autowired
     CategoryBrandRelationService categoryBrandRelationService;
@@ -96,8 +100,8 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
 
     @Override
     public List<CategoryEntity> getLevel1Categories() {
-
-        return baseMapper.selectList(new QueryWrapper<CategoryEntity>().eq("parent_cid", 0));
+        return baseMapper.selectList(
+                new QueryWrapper<CategoryEntity>().eq("parent_cid", 0));
     }
 
     /**
@@ -107,13 +111,14 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
      */
     @Override
     public Map<String, List<Catalog2Vo>> getCatalogJson() {
-        // 1️⃣ 一级分类：parent_cid 统一查询继承关系
-        List<CategoryEntity> firstCategories = getLevel1Categories();
+        // 1️⃣ 优化：将数据库的查询由三次，降低为一次查全表储存在在一个集合中，多次复用
+        List<CategoryEntity> categoryEntities = baseMapper.selectList(null);
         // 封装数据
+        // 一级分类：parent_cid 统一查询继承关系
+        List<CategoryEntity> firstCategories = getParentCid(categoryEntities, 0L);
         return firstCategories.stream().collect(Collectors.toMap(key -> key.getCatId().toString(), value -> {
-            // 2️⃣ 二级分类：每个一级分类，查到其下的二级分类
-            List<CategoryEntity> secondCategories = baseMapper.selectList(
-                    new QueryWrapper<CategoryEntity>().eq("parent_cid", value.getCatId()));
+            // 二级分类：每个一级分类，查到其下的二级分类
+            List<CategoryEntity> secondCategories = getParentCid(categoryEntities, value.getCatId());
             List<Catalog2Vo> catalog2Vos = null;
             if (CollectionUtils.isNotEmpty(secondCategories)) {
                 catalog2Vos = secondCategories.stream().map(secondCategory -> {
@@ -121,16 +126,16 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
                             // 全参构造，简化拷贝值
                             Catalog2Vo catalog2Vo = new Catalog2Vo(
                                     value.getCatId().toString(),
-                                    // 占位可用""红下划线的提醒，或者null不提醒，先写其他的; 善用 zc zo 折叠或展开代码；
+                                    // 占位可用""红下划线的提醒，或者null不提醒，先写其他的; 善用zc zo折叠或展开代码；
                                     // 超越时空的收集？ > 先赋值null ，最后用 set 补刀；
                                     null,
                                     secondCategory.getCatId().toString(),
                                     secondCategory.getName()
                             );
-                            // 3️⃣ 三级分类
-                            List<CategoryEntity> thirdCategories = baseMapper.selectList(
-                                    new QueryWrapper<CategoryEntity>().eq
-                                            ("parent_cid", secondCategory.getCatId()));
+                            // 三级分类
+                            List<CategoryEntity> thirdCategories = getParentCid(
+                                    categoryEntities, secondCategory.getCatId()
+                            );
                             if (CollectionUtils.isNotEmpty(thirdCategories)) {
                                 List<Catalog2Vo.Catalog3Vo> catalog3Vos = thirdCategories.stream().map(
                                         thirdCategory -> new Catalog2Vo.Catalog3Vo(
@@ -147,6 +152,19 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
             // 抽取变量时，生成的复杂嵌套类型，此时可用来修改接口类型、实体类了 Object -> xxx
             return catalog2Vos;
         }));
+    }
+
+    /**
+     * 从已知集合内挑出 Cid
+     *
+     * @param categories 类别
+     * @param parentCid  父母cid
+     * @return {@link List}<{@link CategoryEntity}>
+     */
+    private List<CategoryEntity> getParentCid(List<CategoryEntity> categories, Long parentCid) {
+        return categories.stream()
+                .filter(category -> Objects.equals(category.getParentCid(), parentCid))
+                .collect(Collectors.toList());
     }
 
     /**

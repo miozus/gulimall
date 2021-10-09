@@ -43,6 +43,7 @@ public class IndexController {
     /**
      * 获取目录 JSON
      * 业务服务：巨慢的原因 db
+     * 优化：启用分布式缓存 Redis
      *
      * @return {@link Map}<{@link Integer}, {@link Object}> 适用[JSON]
      * @Annotation ResponseBody 以JSON 格式返回

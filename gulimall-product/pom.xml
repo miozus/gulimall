@@ -55,6 +55,15 @@
             <optional>true</optional>
         </dependency>
 
+        <!-- 分布式缓存 redis -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
+
+
+
     </dependencies>
     <dependencyManagement>
         <dependencies>

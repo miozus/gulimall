@@ -1,4 +1,4 @@
-package cn.miozus.gulimall.search.controller.Service;
+package cn.miozus.gulimall.search.service;
 
 import cn.miozus.common.to.es.SkuEsModel;
 

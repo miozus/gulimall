@@ -11,16 +11,13 @@ spring:
                     -   data-id: mybatis.yml
                         group: pro
                         refresh: true
-                    -   data-id: test.yml
+                    -   data-id: other.yml
                         group: pro
                         refresh: true
                     -   data-id: redis.yml
                         group: pro
                         refresh: true
                     -   data-id: cache.yml
-                        group: pro
-                        refresh: true
-                    -   data-id: redis.yml
                         group: pro
                         refresh: true
                 namespace: f6354e3a-8a37-4d1e-a115-063fc703d43c

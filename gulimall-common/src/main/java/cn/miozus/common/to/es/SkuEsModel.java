@@ -24,11 +24,11 @@ public class SkuEsModel {
     private Long saleCount;
     private Boolean hasStock;
     private Long hotScore;
-    private Long brandId;
     private Long catalogId;
+    private String catalogName;
+    private Long brandId;
     private String brandName;
     private String brandImg;
-    private String catalogName;
     private List<Attrs> attrs;
 
     /**

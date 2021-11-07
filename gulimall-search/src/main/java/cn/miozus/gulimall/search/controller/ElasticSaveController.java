@@ -4,7 +4,7 @@ package cn.miozus.gulimall.search.controller;
 import cn.miozus.common.exception.BizCodeEnum;
 import cn.miozus.common.to.es.SkuEsModel;
 import cn.miozus.common.utils.R;
-import cn.miozus.gulimall.search.controller.Service.ProductSaveService;
+import cn.miozus.gulimall.search.service.ProductSaveService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

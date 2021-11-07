@@ -1,9 +1,9 @@
-package cn.miozus.gulimall.search.controller.Service.impl;
+package cn.miozus.gulimall.search.service.impl;
 
 import cn.miozus.common.to.es.SkuEsModel;
 import cn.miozus.gulimall.search.config.ElasticsearchConfig;
 import cn.miozus.gulimall.search.constant.EsConstant;
-import cn.miozus.gulimall.search.controller.Service.ProductSaveService;
+import cn.miozus.gulimall.search.service.ProductSaveService;
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.action.bulk.BulkItemResponse;

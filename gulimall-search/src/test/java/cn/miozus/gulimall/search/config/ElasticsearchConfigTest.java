@@ -17,16 +17,15 @@ import org.elasticsearch.search.aggregations.bucket.terms.Terms;
 import org.elasticsearch.search.aggregations.metrics.Avg;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Objects;
 
-@SpringBootTest
-@RunWith(SpringRunner.class)
+//@SpringBootTest
+//@RunWith(SpringRunner.class)
 public class ElasticsearchConfigTest {
 
     @Autowired
@@ -118,6 +117,20 @@ public class ElasticsearchConfigTest {
         IndexResponse index = client.index(indexRequest, ElasticsearchConfig.COMMON_OPTIONS);
         // 提取有效响应数据
         System.out.println("index = " + index);
+    }
+
+    @Test
+    public void splitText(){
+        String[] s1 = "_500".split("_");
+        String[] s2 = "0_500".split("_");
+        String[] s3 = "500_".split("_");
+        System.out.println(Arrays.toString(s1));
+        System.out.println(Arrays.toString(s2));
+        System.out.println(Arrays.toString(s3));
+        System.out.println(s1[0]);
+        System.out.println(s1[0].getClass());
+        System.out.println(s1[0] == null);
+        System.out.println(Objects.equals(s1[0], ""));
     }
 
     @Data

@@ -30,7 +30,7 @@ public class SearchParam {
     /**
      * 是否有货（默认为有库存）
      */
-    private Integer hasStock = 1;
+    private Integer hasStock;
 
     /**
      * sku价格区间

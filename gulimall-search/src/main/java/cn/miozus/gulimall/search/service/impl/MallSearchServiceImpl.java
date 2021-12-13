@@ -1,13 +1,17 @@
 package cn.miozus.gulimall.search.service.impl;
 
 import cn.miozus.common.to.es.SkuEsModel;
+import cn.miozus.common.utils.R;
 import cn.miozus.gulimall.search.config.ElasticsearchConfig;
 import cn.miozus.gulimall.search.constant.EsConstant;
+import cn.miozus.gulimall.search.feign.ProductFeignService;
 import cn.miozus.gulimall.search.service.MallSearchService;
+import cn.miozus.gulimall.search.vo.AttrResponseVo;
 import cn.miozus.gulimall.search.vo.SearchParam;
 import cn.miozus.gulimall.search.vo.SearchResult;
 import com.alibaba.cloud.commons.lang.StringUtils;
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import com.alibaba.nacos.common.utils.CollectionUtils;
 import com.alibaba.nacos.common.utils.Objects;
 import org.apache.lucene.search.join.ScoreMode;
@@ -35,7 +39,11 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -52,12 +60,18 @@ public class MallSearchServiceImpl implements MallSearchService {
     @Autowired
     private RestHighLevelClient client;
 
+    @Autowired
+    private ProductFeignService productFeignService;
+
+    @Autowired
+    private HttpServletRequest httpServletRequest;
+
     @Override
     public SearchResult search(SearchParam param) {
         // 1️⃣ 动态构建需要查询的 DSL 语句
         SearchResult result;
 
-        // 2️⃣ 拼装 ES 检索请求
+        // 2️⃣ 拼装 ES 检索请求（RestFul）：复杂的 JSON 体
         SearchRequest request = buildSearchRequest(param);
         try {
             SearchResponse response = client.search(request, ElasticsearchConfig.COMMON_OPTIONS);
@@ -72,7 +86,7 @@ public class MallSearchServiceImpl implements MallSearchService {
     }
 
     /**
-     * 建立搜索结果
+     * 建立搜索结果：属性拼接成地址
      *
      * @param response 响应
      * @return {@link SearchResult}
@@ -132,10 +146,56 @@ public class MallSearchServiceImpl implements MallSearchService {
         // 5️⃣ 分页: 总记录数，共计页数（计算），当前页码
         long total = hits.getTotalHits().value;
         int totalPages = (int) (total - 1) / EsConstant.PRODUCT_PAGESIZE + 1;
+        List<Integer> pageNavs = new ArrayList<>();
+        for (int i = 1; i < totalPages; i++) {
+            pageNavs.add(i);
+        }
         result.setTotal(total);
         result.setTotalPages(totalPages);
         result.setPageNum(param.getPageNum());
+        result.setPageNavs(pageNavs);
+
+        //6️⃣ 面包屑导航：实现撤回搜索词条（仅限检索属性，attrs=1_其他:安卓&attrs=2_5寸:6寸。不包括关键字，排序，页码，分类等）
+        // 从请求参数解析SearchParam，而非从零构造
+        if (CollectionUtils.isNotEmpty(param.getAttrs())) {
+            List<SearchResult.NavVo> navs = param.getAttrs().stream().map(attr -> {
+                SearchResult.NavVo vo = new SearchResult.NavVo();
+                String[] split = attr.split("_");
+                // vo.setNavName(split[0]); // 💡 属性是数字了，需要商品服务联查，名字提高可读性
+                // a.跨服务耦合! 查表 （复习一遍）
+                // b.将就刚才储存的冗余结果，遍历获取 👍
+                // c.前端渲染和地址跳转
+                vo.setNavValue(split[1]);
+                R r = productFeignService.attrInfo(Long.valueOf(split[0]));
+                // 封装了方法可以转换JSON 格式
+                if (r.getCode() == 0) {
+                    AttrResponseVo data = r.getData("attr", new TypeReference<AttrResponseVo>() {
+                    });
+                    vo.setNavName(data.getAttrName());
+                } else {
+                    // 实在找不到还是用数字
+                    vo.setNavName(split[0]);
+                }
+                // 取消面包屑后，我们要跳转的那个地方:备忘录，将请求地址替换掉
+                // 编码不一致问题：中文编码，浏览器对空格的编码和Java不同（加号）
+                // a.统一不彻底：包括 httpServletRequest 全部编码 👎，在前端全部是%字符串，所有匹配规则都失效了。
+                // b.打补丁：encode 编码后，再翻译回去，httpServletRequest 能识别 ⇒ 匹配规则继续生效
+                String encode = null;
+                try {
+                    encode = URLEncoder.encode(attr, "UTF-8");
+                    encode = encode.replace("%3B", ";");
+                    encode = encode.replace("+", "%20");
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                String replace = httpServletRequest.getQueryString().replace("&attrs=" + encode, "");
+                vo.setNavLink("http://search.gulimall.com/search.html?" + replace);
+                return vo;
+            }).collect(Collectors.toList());
+            result.setNavs(navs);
+        }
         return result;
+
     }
 
     /**
@@ -192,7 +252,7 @@ public class MallSearchServiceImpl implements MallSearchService {
                 boolQuery.filter(nestedQuery);
             }
         }
-        // 1.2.4 库存：0 无，1 有（可设置默认值1, 一般查有库存的）
+        // 1.2.4 库存：0 无，1 有（可设置默认值1, 一般查有库存的; 还有第三种情况 0、1 都查）
         if (!Objects.isNull(param.getHasStock())) {
             boolQuery.filter(QueryBuilders.termQuery("hasStock", param.getHasStock() == 1));
         }

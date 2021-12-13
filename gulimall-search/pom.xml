@@ -16,7 +16,7 @@
 
     <properties>
         <java.version>8</java.version>
-        <spring-cloud.version>Hoxton.SR7</spring-cloud.version >
+        <spring-cloud.version>Hoxton.SR7</spring-cloud.version>
         <elasticsearch.version>7.15.0</elasticsearch.version>
     </properties>
 
@@ -42,6 +42,12 @@
             <version>${elasticsearch.version}</version>
         </dependency>
 
+        <!--    微服务通信    -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+
         <!--    公共依赖包    -->
         <dependency>
             <groupId>cn.miozus.gulimall</groupId>
@@ -55,15 +61,26 @@
         </dependency>
 
 
-        <dependency >
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
 
-
     </dependencies>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    
     <build>
         <plugins>
             <plugin>

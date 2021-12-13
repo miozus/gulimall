@@ -25,6 +25,8 @@ public class SearchResult {
     private Long total;
     /** 总页数 */
     private Integer totalPages;
+    private List<Integer> pageNavs;
+
 
     /**
      * 品牌：当前查询结果，头部展示栏，涉及所有品牌
@@ -34,6 +36,19 @@ public class SearchResult {
     private List<CatalogVo> catalogs;
 
     // =========== 以上返给页面 ===============
+
+    // =========== 面包屑导航数据 ===============
+
+    private List<NavVo> navs;
+
+    @Data
+    public static class NavVo {
+        private String navName;
+        private String navValue;
+        private String navLink;
+    }
+
+
 
     /**
      * sku es attrs

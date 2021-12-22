@@ -45,8 +45,14 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
+
+/**
+ * 商城搜索服务impl
+ */
 
 /**
  * 商城搜索服务impl
@@ -92,58 +98,114 @@ public class MallSearchServiceImpl implements MallSearchService {
      * @return {@link SearchResult}
      */
     private SearchResult buildSearchResult(SearchResponse response, SearchParam param) {
+
         SearchResult result = new SearchResult();
-        // 1️⃣ 返回所有查询的商品：查询有记录 NPE
         SearchHits hits = response.getHits();
-        if (hits.getHits() != null && hits.getHits().length > 0) {
-            List<SkuEsModel> products = Arrays.stream(hits.getHits()).map(hit -> {
-                SkuEsModel skuEsModel = new SkuEsModel();
-                SkuEsModel esModel = JSON.parseObject(hit.getSourceAsString(), SkuEsModel.class);
-                BeanUtils.copyProperties(esModel, skuEsModel);
-                // 💡 语法高亮
-                if (StringUtils.isNotEmpty(param.getKeyword())) {
-                    String skuTitle = hit.getHighlightFields().get("skuTitle").getFragments()[0].string();
-                    skuEsModel.setSkuTitle(skuTitle);
-                }
-                return skuEsModel;
-            }).collect(Collectors.toList());
-            result.setProducts(products);
-        }
         Aggregations aggs = response.getAggregations();
-        // 2️⃣ 聚合分类 : 子聚合，一定要手动强制转换（long/string），才能继续访问内部属性；关联属性只有一个，可以从索引获取key（如名字）
-        ParsedLongTerms catalogAgg = aggs.get("catalog_agg");
-        List<SearchResult.CatalogVo> catalogs = catalogAgg.getBuckets().stream().map(bucket -> {
-            SearchResult.CatalogVo vo = new SearchResult.CatalogVo();
-            vo.setCatalogId(bucket.getKeyAsNumber().longValue());
-            vo.setCatalogName(getAggBindKey(bucket, "catalog_name"));
-            return vo;
-        }).collect(Collectors.toList());
+
+        List<SkuEsModel> products = parseEsProducts(hits, param);
+        List<SearchResult.CatalogVo> catalogs = parseEsCatalogVos(aggs);
+        List<SearchResult.BrandVo> brands = parseEsBrandVos(aggs);
+        List<SearchResult.AttrsVo> attrs = parseEsAttrsVos(aggs);
+        List<SearchResult.NavVo> attrNavs = createBreadNavForAttr(param, result);
+        attrNavs = addBreadNavForBrand(attrNavs, param, brands);
+
+
+        result.setProducts(products);
         result.setCatalogs(catalogs);
-        // 3️⃣ 聚合品牌
-        ParsedLongTerms brandAgg = aggs.get("brand_agg");
-        List<SearchResult.BrandVo> brands = brandAgg.getBuckets().stream().map(bucket -> {
-            SearchResult.BrandVo vo = new SearchResult.BrandVo();
-            vo.setBrandId(bucket.getKeyAsNumber().longValue());
-            vo.setBrandName(getAggBindKey(bucket, "brand_name"));
-            vo.setBrandImg(getAggBindKey(bucket, "brand_img"));
-            return vo;
-        }).collect(Collectors.toList());
         result.setBrands(brands);
-        // 4️⃣ 聚合属性
-        ParsedNested attrAgg = aggs.get("attr_agg");
-        ParsedLongTerms attrIdAgg = attrAgg.getAggregations().get("attr_id");
-        List<SearchResult.AttrsVo> attrs = attrIdAgg.getBuckets().stream().map(bucket -> {
-            SearchResult.AttrsVo vo = new SearchResult.AttrsVo();
-            ParsedStringTerms attrValueAgg = bucket.getAggregations().get("attr_value_agg");
-            List<String> attrValues = attrValueAgg.getBuckets().stream().map(
-                    MultiBucketsAggregation.Bucket::getKeyAsString).collect(Collectors.toList());
-            vo.setAttrId(bucket.getKeyAsNumber().longValue());
-            vo.setAttrName(getAggBindKey(bucket, "attr_name_agg"));
-            vo.setAttrValue(attrValues);
-            return vo;
-        }).collect(Collectors.toList());
         result.setAttrs(attrs);
-        // 5️⃣ 分页: 总记录数，共计页数（计算），当前页码
+        result.setNavs(attrNavs);
+        saveEsPage(param, result, hits);
+
+        // TODO: 8️⃣ 面包屑导航III 分类：不要导航
+
+        return result;
+    }
+
+    private List<Long> copyAttrProperty(List<SearchResult.AttrsVo> attrs) {
+        return attrs.stream().map(SearchResult.AttrsVo::getAttrId).collect(Collectors.toList());
+    }
+
+    /**
+     * 7️⃣ 面包屑导航II 品牌：点击后从检索状态区域中消失 （采用将就查询）
+     *
+     * @param param  param
+     * @param brands 品牌
+     * @return
+     */
+    private List<SearchResult.NavVo> addBreadNavForBrand(List<SearchResult.NavVo> nav, SearchParam param, List<SearchResult.BrandVo> brands) {
+        if (CollectionUtils.isNotEmpty(param.getBrandId()) ) {
+            SearchResult.NavVo vo = new SearchResult.NavVo();
+            AtomicReference<String> replace = new AtomicReference<>("");
+            String brandNames = brands.stream()
+                    .filter(brand -> param.getBrandId().contains(brand.getBrandId()))
+                    .map(brand -> {
+                        replace.set(parseQueryString(String.valueOf(brand.getBrandId()), "brandId"));
+                        return brand.getBrandName();
+                    })
+                    .reduce("", (partialString, element) -> partialString + ";" + element);
+            vo.setNavValue(brandNames);
+            vo.setNavName("品牌");
+            vo.setNavLink("http://search.gulimall.com/search.html?" + replace);
+            if (CollectionUtils.isNotEmpty(nav)){
+                nav.add(vo);
+            } else {
+                nav = Arrays.asList(vo);
+            }
+        }
+        return nav;
+    }
+
+    /**
+     * 6️⃣ 面包屑导航I 记录和撤回搜索词条
+     * （仅限检索属性，attrs=1_其他:安卓&attrs=2_5寸:6寸。不包括关键字，排序，页码，分类等）
+     * <p>
+     * vo.setNavName(split[0]); // 💡 属性是数字，名字提高可读性
+     * b.将就刚才储存的冗余结果，遍历获取 👍
+     * c.前端渲染和地址跳转
+     * d.重新发请求给 ES 查询 👎（内部解决更快）
+     * a.跨服务耦合! 查表 （接下来复习一遍）
+     * R 封装了方法可以转换 JSON 格式，实在找不到才用数字
+     *
+     * @param param param
+     * @param result
+     * @return {@link List}
+     * @see List
+     * @see SearchResult.NavVo
+     */
+    private List<SearchResult.NavVo> createBreadNavForAttr(SearchParam param, SearchResult result) {
+
+        if (CollectionUtils.isNotEmpty(param.getAttrs())) {
+            return param.getAttrs().stream().map(attr -> {
+                SearchResult.NavVo vo = new SearchResult.NavVo();
+                String[] split = attr.split("_");
+                vo.setNavValue(split[1]);
+                R r = productFeignService.attrInfo(Long.valueOf(split[0]));
+                result.getAttrIds().add(Long.valueOf(split[0]));
+                if (r.getCode() == 0) {
+                    AttrResponseVo data = r.getData("attr", new TypeReference<AttrResponseVo>() {
+                    });
+                    vo.setNavName(data.getAttrName());
+                } else {
+                    vo.setNavName(split[0]);
+                }
+                String replace = parseQueryString(attr, "attrs");
+                vo.setNavLink("http://search.gulimall.com/search.html?" + replace);
+                return vo;
+            }).collect(Collectors.toList());
+        }
+        return Collections.emptyList();
+    }
+
+    /**
+     * 5️⃣ 分页: 总记录数，共计页数（计算），当前页码
+     *
+     * @param param  param
+     * @param result 结果
+     * @param hits   支安打
+     */
+    private void saveEsPage(SearchParam param, SearchResult result, SearchHits hits) {
         long total = hits.getTotalHits().value;
         int totalPages = (int) (total - 1) / EsConstant.PRODUCT_PAGESIZE + 1;
         List<Integer> pageNavs = new ArrayList<>();
@@ -154,48 +216,112 @@ public class MallSearchServiceImpl implements MallSearchService {
         result.setTotalPages(totalPages);
         result.setPageNum(param.getPageNum());
         result.setPageNavs(pageNavs);
+    }
 
-        //6️⃣ 面包屑导航：实现撤回搜索词条（仅限检索属性，attrs=1_其他:安卓&attrs=2_5寸:6寸。不包括关键字，排序，页码，分类等）
-        // 从请求参数解析SearchParam，而非从零构造
-        if (CollectionUtils.isNotEmpty(param.getAttrs())) {
-            List<SearchResult.NavVo> navs = param.getAttrs().stream().map(attr -> {
-                SearchResult.NavVo vo = new SearchResult.NavVo();
-                String[] split = attr.split("_");
-                // vo.setNavName(split[0]); // 💡 属性是数字了，需要商品服务联查，名字提高可读性
-                // a.跨服务耦合! 查表 （复习一遍）
-                // b.将就刚才储存的冗余结果，遍历获取 👍
-                // c.前端渲染和地址跳转
-                vo.setNavValue(split[1]);
-                R r = productFeignService.attrInfo(Long.valueOf(split[0]));
-                // 封装了方法可以转换JSON 格式
-                if (r.getCode() == 0) {
-                    AttrResponseVo data = r.getData("attr", new TypeReference<AttrResponseVo>() {
-                    });
-                    vo.setNavName(data.getAttrName());
-                } else {
-                    // 实在找不到还是用数字
-                    vo.setNavName(split[0]);
+    /**
+     * 4️⃣ 聚合属性
+     *
+     * @param aggs 聚合
+     * @return {@link List}
+     * @see List
+     * @see SearchResult.AttrsVo
+     */
+    private List<SearchResult.AttrsVo> parseEsAttrsVos(Aggregations aggs) {
+        ParsedNested attrAgg = aggs.get("attr_agg");
+        ParsedLongTerms attrIdAgg = attrAgg.getAggregations().get("attr_id");
+        return attrIdAgg.getBuckets().stream().map(bucket -> {
+            SearchResult.AttrsVo vo = new SearchResult.AttrsVo();
+            ParsedStringTerms attrValueAgg = bucket.getAggregations().get("attr_value_agg");
+            Long attrIds = bucket.getKeyAsNumber().longValue();
+            String attrName = getAggBindKey(bucket, "attr_name_agg");
+            List<String> attrValues = attrValueAgg.getBuckets().stream().map(
+                    MultiBucketsAggregation.Bucket::getKeyAsString).collect(Collectors.toList());
+            vo.setAttrId(attrIds);
+            vo.setAttrName(attrName);
+            vo.setAttrValue(attrValues);
+            return vo;
+        }).collect(Collectors.toList());
+    }
+
+    private List<SearchResult.BrandVo> parseEsBrandVos(Aggregations aggs) {
+        // 3️⃣ 聚合品牌
+        ParsedLongTerms brandAgg = aggs.get("brand_agg");
+        return brandAgg.getBuckets().stream().map(bucket -> {
+            SearchResult.BrandVo vo = new SearchResult.BrandVo();
+            vo.setBrandId(bucket.getKeyAsNumber().longValue());
+            vo.setBrandName(getAggBindKey(bucket, "brand_name"));
+            vo.setBrandImg(getAggBindKey(bucket, "brand_img"));
+            return vo;
+        }).collect(Collectors.toList());
+    }
+
+    /**
+     * 2️⃣ 聚合分类 : 子聚合，一定要手动强制转换（long/string），才能继续访问内部属性；
+     * 关联属性只有一个，可以从索引获取key（如名字）
+     *
+     * @param aggs 聚合
+     * @return {@link List}
+     * @see List
+     * @see SearchResult.CatalogVo
+     */
+    private List<SearchResult.CatalogVo> parseEsCatalogVos(Aggregations aggs) {
+
+        ParsedLongTerms catalogAgg = aggs.get("catalog_agg");
+        return catalogAgg.getBuckets().stream().map(bucket -> {
+            SearchResult.CatalogVo vo = new SearchResult.CatalogVo();
+            vo.setCatalogId(bucket.getKeyAsNumber().longValue());
+            vo.setCatalogName(getAggBindKey(bucket, "catalog_name"));
+            return vo;
+        }).collect(Collectors.toList());
+    }
+
+    /**
+     * 1️⃣ 返回所有查询的商品：查询有记录 NPE
+     *
+     * @param hits  ES 查询结果
+     * @param param param
+     * @return {@link List}
+     * @see List
+     * @see SkuEsModel
+     */
+    private List<SkuEsModel> parseEsProducts(SearchHits hits, SearchParam param) {
+        if (hits.getHits() != null && hits.getHits().length > 0) {
+            return Arrays.stream(hits.getHits()).map(hit -> {
+                SkuEsModel skuEsModel = new SkuEsModel();
+                SkuEsModel esModel = JSON.parseObject(hit.getSourceAsString(), SkuEsModel.class);
+                BeanUtils.copyProperties(esModel, skuEsModel);
+                // 💡 语法高亮
+                if (StringUtils.isNotEmpty(param.getKeyword())) {
+                    String skuTitle = hit.getHighlightFields().get("skuTitle").getFragments()[0].string();
+                    skuEsModel.setSkuTitle(skuTitle);
                 }
-                // 取消面包屑后，我们要跳转的那个地方:备忘录，将请求地址替换掉
-                // 编码不一致问题：中文编码，浏览器对空格的编码和Java不同（加号）
-                // a.统一不彻底：包括 httpServletRequest 全部编码 👎，在前端全部是%字符串，所有匹配规则都失效了。
-                // b.打补丁：encode 编码后，再翻译回去，httpServletRequest 能识别 ⇒ 匹配规则继续生效
-                String encode = null;
-                try {
-                    encode = URLEncoder.encode(attr, "UTF-8");
-                    encode = encode.replace("%3B", ";");
-                    encode = encode.replace("+", "%20");
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
-                String replace = httpServletRequest.getQueryString().replace("&attrs=" + encode, "");
-                vo.setNavLink("http://search.gulimall.com/search.html?" + replace);
-                return vo;
+                return skuEsModel;
             }).collect(Collectors.toList());
-            result.setNavs(navs);
         }
-        return result;
+        return Collections.emptyList();
+    }
 
+    /**
+     * 解析查询字符串
+     * <p>
+     * 编码不一致问题：中文编码，浏览器对空格的编码和Java不同（加号）
+     * a.统一不彻底：包括 httpServletRequest 全部编码 👎，在前端全部是%字符串，所有匹配规则都失效了。
+     * b.打补丁：encode 编码后，再翻译回去，httpServletRequest 能识别 ⇒ 匹配规则继续生效
+     *
+     * @param param 原文
+     * @param key   关键词
+     * @return {@link String} 替换后 URI 请求参数
+     * @see String
+     */
+    private String parseQueryString(String param, String key) {
+        String encode = null;
+        try {
+            encode = URLEncoder.encode(param, "UTF-8");
+            encode = encode.replace("%3B", ";").replace("+", "%20");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return httpServletRequest.getQueryString().replace("&" + key + "=" + encode, "");
     }
 
     /**

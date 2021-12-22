@@ -3,6 +3,7 @@ package cn.miozus.gulimall.search.vo;
 import cn.miozus.common.to.es.SkuEsModel;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,32 +15,26 @@ import java.util.List;
 @Data
 public class SearchResult {
 
-    /**
-     * 查询到所有的商品信息
-     */
+    /** 查询到所有的商品信息 */
     private List<SkuEsModel> products;
 
-    /** 第几页 */
-    private Integer pageNum;
-    /** 总计 */
+    /** 分页查询 */
     private Long total;
-    /** 总页数 */
+    private Integer pageNum;
     private Integer totalPages;
     private List<Integer> pageNavs;
 
-
-    /**
-     * 品牌：当前查询结果，头部展示栏，涉及所有品牌
-     */
+    /** 品牌：当前查询结果，头部展示栏，涉及所有品牌 */
     private List<AttrsVo> attrs;
     private List<BrandVo> brands;
     private List<CatalogVo> catalogs;
 
+    /** 面包屑导航 */
+    private List<NavVo> navs = new ArrayList<>();
+    /** 记录已经使用过的属性值: 集合判断是否包含 */
+    private List<Long> attrIds = new ArrayList<>();
+
     // =========== 以上返给页面 ===============
-
-    // =========== 面包屑导航数据 ===============
-
-    private List<NavVo> navs;
 
     @Data
     public static class NavVo {
@@ -47,8 +42,6 @@ public class SearchResult {
         private String navValue;
         private String navLink;
     }
-
-
 
     /**
      * sku es attrs
@@ -68,8 +61,6 @@ public class SearchResult {
         private String brandName;
         private String brandImg;
     }
-
-
 
     @Data
     public static class CatalogVo {

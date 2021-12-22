@@ -8,6 +8,7 @@ import cn.miozus.gulimall.product.service.ProductAttrValueService;
 import cn.miozus.gulimall.product.vo.AttrRespVo;
 import cn.miozus.gulimall.product.vo.AttrVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -91,10 +92,10 @@ public class AttrController {
      * @param attrId attr id
      * @return {@link R}
      */
+    @Cacheable(value="attr", key="'attrInfo:'+#root.args[0]")
     @RequestMapping("/info/{attrId}")
     public R info(@PathVariable("attrId") Long attrId) {
         AttrRespVo attr = attrService.getAttrById(attrId);
-
         return R.ok().put("attr", attr);
     }
 

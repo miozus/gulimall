@@ -768,17 +768,14 @@
                 <a href="/static/search/#">游戏手机</a>
             </div>
         </div>
-
+        <i><img src="/static/search/image/right-@1x.png" alt=""></i>
         <div class="JD_ipone_one c">
             <!--   遍历面包屑功能：可撤回属性   -->
             <div class="qqq"> 已选参数</div>
             <a th:each="nav:${result.navs}" th:href="${nav.navLink}">
                 <span th:text="${nav.navName}"></span>:<span th:text="${nav.navValue}"></span> x
             </a>
-
         </div>
-
-        <i><img src="/static/search/image/right-@1x.png" alt=""></i>
     </div>
 
 
@@ -793,9 +790,12 @@
                 <h3><b>手机</b><em>商品筛选</em></h3>
                 <div class="st-ext">共&nbsp;<span>10135</span>个商品</div>
             </div>
-            <div class="JD_nav_logo">
+            <!-- with 优先级比 if 低，必须放在外围 -->
+            <div class="JD_nav_logo" th:with="brandid=${param.brandId}">
                 <!--品牌-->
-                <div class="JD_nav_wrap">
+                <!-- debug 查看表达式的值  -->
+                [[${#strings.isEmpty(brandid)}]]
+                <div th:if="${#strings.isEmpty(brandid)}" class="JD_nav_wrap">
                     <div class="sl_key">
                         <span><b>品牌：</b></span>
                     </div>
@@ -803,7 +803,6 @@
                         <div class="sl_value_logo">
                             <ul th:each="brand:${result.brands}">
                                 <li>
-
                                     <a href="/static/search/#"
                                        th:href="${'javascript:searchProducts(&quot;brandId&quot;,'+brand.brandId+')'}">
                                         <img th:src="${brand.brandImg}" alt="">
@@ -815,6 +814,7 @@
                             </ul>
                         </div>
                     </div>
+
                     <div class="sl_ext">
                         <a href="/static/search/#">
                             更多
@@ -836,15 +836,21 @@
                     <div class="sl_value">
                         <ul th:each="catalog:${result.catalogs}">
                             <li>
+
                                 <a href="/static/search/#"
                                    th:href="'javascript:searchProducts(\'catalog3Id\', '+${catalog.catalogId}+')'"
-                                   th:text="${catalog.catalogName}"></a>
+                                   th:text="${catalog.catalogName}">
+                                </a>
+
+
                             </li>
                         </ul>
                     </div>
                 </div>
-                <!--屏幕尺寸-->
-                <div class="JD_pre" th:each="attr:${result.attrs}">
+                <!--属性：屏幕尺寸等-->
+                <div class="JD_pre" th:each="attr:${result.attrs}"
+                     th:if="${!#lists.contains(result.attrIds, attr.attrId)}"
+                >
                     <div class="sl_key">
                         <span th:text="${attr.attrName}"></span>
                     </div>
@@ -855,6 +861,7 @@
                                    th:href="'javascript:searchProducts(\'attrs\', \''+${attr.attrId+'_'+value}+'\')'"
                                    href="/static/search/#"
                                 ></a>
+                                <div>[[ ${#lists.contains(result.attrIds, attr.attrId)} ]]</div>
                             </li>
                         </ul>
                     </div>
@@ -2249,8 +2256,8 @@
                 return urlStr + prep + param + '=' + replace;
             }
         } else {
-            // 多选：不重复，才添加
-            let re = eval(`/${replace}/gi`);
+            // 多选：不重复，才添加，必须附带参数名，否则 225 也包含 2
+            let re = eval(`/${param}=${replace}/gi`);
             if (!re.test(decodeURI(urlStr))) {
                 let prep = urlStr.includes("?") ? "&" : "?";
                 return urlStr + prep + param + '=' + replace;

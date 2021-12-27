@@ -2,6 +2,7 @@ package cn.miozus.gulimall.product.service;
 
         import cn.miozus.common.utils.PageUtils;
         import cn.miozus.gulimall.product.entity.SkuInfoEntity;
+        import cn.miozus.gulimall.product.vo.SkuItemVo;
         import com.baomidou.mybatisplus.extension.service.IService;
 
         import java.util.List;
@@ -23,5 +24,7 @@ public interface SkuInfoService extends IService<SkuInfoEntity> {
     PageUtils queryPageByCondition(Map<String, Object> params);
 
     List<SkuInfoEntity> getSkusBySpuId(Long spuId);
+
+    SkuItemVo item(Long skuId);
 }
 

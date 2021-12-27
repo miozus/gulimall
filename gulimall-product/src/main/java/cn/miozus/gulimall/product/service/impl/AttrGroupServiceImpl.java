@@ -12,6 +12,7 @@ import cn.miozus.gulimall.product.service.AttrGroupService;
 import cn.miozus.gulimall.product.service.AttrService;
 import cn.miozus.gulimall.product.vo.AttrGroupRelationVo;
 import cn.miozus.gulimall.product.vo.AttrGroupWithAttrVo;
+import cn.miozus.gulimall.product.vo.SkuItemVo;
 import com.alibaba.cloud.commons.lang.StringUtils;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -126,5 +127,17 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
             }).collect(Collectors.toList());
         }
         return Collections.emptyList();
+    }
+
+    /**
+     * 多表联查：查询出当前 spu 对应的所有属性所有分组信息，以及分组下所有属性对应的值
+     *
+     * @return {@link List}
+     * @see List
+     */
+    @Override
+        public List<SkuItemVo.SpuItemGroupAttrVo> queryAttrGroupWithAttrsBySpuId(Long spuId, Long catalogId) {
+        AttrGroupDao baseMapper = this.getBaseMapper();
+        return baseMapper.getAttrGroupWithAttrsBySpuId(spuId, catalogId);
     }
 }

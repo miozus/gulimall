@@ -3,12 +3,16 @@ package cn.miozus.gulimall.product.service.impl;
 import cn.miozus.common.utils.PageUtils;
 import cn.miozus.common.utils.Query;
 import cn.miozus.gulimall.product.dao.SkuInfoDao;
+import cn.miozus.gulimall.product.entity.SkuImagesEntity;
 import cn.miozus.gulimall.product.entity.SkuInfoEntity;
-import cn.miozus.gulimall.product.service.SkuInfoService;
+import cn.miozus.gulimall.product.entity.SpuInfoDescEntity;
+import cn.miozus.gulimall.product.service.*;
+import cn.miozus.gulimall.product.vo.SkuItemVo;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -16,8 +20,25 @@ import java.util.List;
 import java.util.Map;
 
 
+/**
+ * sku信息服务
+ *
+ * @author miao
+ * @date 2021/12/24
+ */
 @Service("skuInfoService")
 public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> implements SkuInfoService {
+
+    @Autowired
+    SkuImagesService skuImagesService;
+    @Autowired
+    SpuInfoDescService spuInfoDescService;
+    @Autowired
+    ProductAttrValueService productAttrValueService;
+    @Autowired
+    AttrGroupService attrGroupService;
+    @Autowired
+    SkuSaleAttrValueService skuSaleAttrValueService;
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -82,15 +103,46 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> i
                 new Query<SkuInfoEntity>().getPage(params),
                 wrapper
         );
-        // 6*25 6*35 :  :=
         return new PageUtils(page);
     }
 
     @Override
     public List<SkuInfoEntity> getSkusBySpuId(Long spuId) {
-        List<SkuInfoEntity> list = this.list(
+        return this.list(
                 new QueryWrapper<SkuInfoEntity>().eq("spu_id", spuId)
         );
-        return list;
+    }
+
+    /**
+     * 封装整个商品详情页的数据
+     * <p>
+     * 1.sku 基本信息
+     * 2.sku 图片
+     * 3.sku 销售属性: 属性组合 > 动态切换 URL
+     * 4.spu 商品介绍: 所有的描述（一张长图）
+     * 5.sku 规格与包装：(分组 > 商品规格属性键值对)*N
+     *
+     * @param skuId sku id
+     * @return {@link SkuItemVo}
+     */
+    @Override
+    public SkuItemVo item(Long skuId) {
+        SkuItemVo vo = new SkuItemVo();
+        SkuInfoEntity info = getById(skuId);
+        Long spuId = info.getSpuId();
+        Long catalogId = info.getCatalogId();
+
+        SpuInfoDescEntity desc = spuInfoDescService.getById(spuId);
+        List<SkuImagesEntity> images = skuImagesService.getImagesBySkuId(skuId);
+        List<SkuItemVo.SkuItemSaleAttrVo> saleAttr = skuSaleAttrValueService.querySaleAttrsBySkuId(spuId);
+        List<SkuItemVo.SpuItemGroupAttrVo> groupAttrVo = attrGroupService.queryAttrGroupWithAttrsBySpuId(spuId, catalogId);
+
+        vo.setInfo(info);
+        vo.setImages(images);
+        vo.setSaleAttr(saleAttr);
+        vo.setDesc(desc);
+        vo.setGroupAttrs(groupAttrVo);
+
+        return vo;
     }
 }

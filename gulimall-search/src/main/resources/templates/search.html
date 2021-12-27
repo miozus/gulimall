@@ -1254,7 +1254,7 @@
                                     <a href="/static/search/#">关注</a>
                                 </div>
                                 <p class="da">
-                                    <a href="/static/search/#" th:title="${product.skuTitle}">
+                                    <a th:href="|http://item.gulimall.com/${product.skuId}.html|" th:title="${product.skuTitle}">
                                         <img th:src="${product.skuImg}" class="dim">
                                     </a>
                                 </p>

@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: gulimall-auth-server
+  cloud:
+    nacos:
+      config:
+        extension-configs:
+          - data-id: other.yml
+            group: pro
+            refresh: true
+        namespace: ed428595-e7c5-4198-94c7-221bbaade2d0
+        server-addr: 39.108.228.2:8848

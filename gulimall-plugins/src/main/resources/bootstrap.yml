@@ -11,6 +11,9 @@ spring:
           - data-id: other.yml
             group: pro
             refresh: true
+          - data-id: sms.yml
+            group: pro
+            refresh: true
         namespace: 9b272e13-75f8-49dd-8129-f609ae27d823
 
         server-addr: 39.108.228.2:8848

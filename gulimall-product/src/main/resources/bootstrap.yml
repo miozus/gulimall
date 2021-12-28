@@ -1,24 +1,27 @@
 spring:
-    application:
-        name: gulimall-product
-    cloud:
-        nacos:
-            config:
-                extension-configs:
-                    -   data-id: datasource.yml
-                        group: pro
-                        refresh: true
-                    -   data-id: mybatis.yml
-                        group: pro
-                        refresh: true
-                    -   data-id: other.yml
-                        group: pro
-                        refresh: true
-                    -   data-id: redis.yml
-                        group: pro
-                        refresh: true
-                    -   data-id: cache.yml
-                        group: pro
-                        refresh: true
-                namespace: f6354e3a-8a37-4d1e-a115-063fc703d43c
-                server-addr: 39.108.228.2:8848
+  application:
+    name: gulimall-product
+  cloud:
+    nacos:
+      config:
+        extension-configs:
+          - data-id: datasource.yml
+            group: pro
+            refresh: true
+          - data-id: mybatis.yml
+            group: pro
+            refresh: true
+          - data-id: other.yml
+            group: pro
+            refresh: true
+          - data-id: redis.yml
+            group: pro
+            refresh: true
+          - data-id: cache.yml
+            group: pro
+            refresh: true
+          - data-id: threadpool.yml
+            group: pro
+            refresh: true
+        namespace: f6354e3a-8a37-4d1e-a115-063fc703d43c
+        server-addr: 39.108.228.2:8848

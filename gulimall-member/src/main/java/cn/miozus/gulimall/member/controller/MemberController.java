@@ -1,20 +1,20 @@
 package cn.miozus.gulimall.member.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-
-import cn.miozus.gulimall.member.feign.CouponFeignService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import cn.miozus.gulimall.member.entity.MemberEntity;
-import cn.miozus.gulimall.member.service.MemberService;
+import cn.miozus.common.exception.BizCodeEnum;
 import cn.miozus.common.utils.PageUtils;
 import cn.miozus.common.utils.R;
+import cn.miozus.gulimall.member.entity.MemberEntity;
+import cn.miozus.gulimall.member.exception.PhoneNumberAlreadyExistsException;
+import cn.miozus.gulimall.member.exception.UsernameAlreadyExistsException;
+import cn.miozus.gulimall.member.feign.CouponFeignService;
+import cn.miozus.gulimall.member.service.MemberService;
+import cn.miozus.gulimall.member.vo.MemberLoginVo;
+import cn.miozus.gulimall.member.vo.MemberRegisterVo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
+import java.util.Map;
 
 
 /**
@@ -25,7 +25,7 @@ import cn.miozus.common.utils.R;
  * @date 2021-08-09 14:13:14
  */
 @RestController
-@RequestMapping("member/member")
+@RequestMapping("/member/member")
 public class MemberController {
     @Autowired
     private MemberService memberService;
@@ -33,7 +33,7 @@ public class MemberController {
     @Autowired
     CouponFeignService couponFeignService;
 
-    @RequestMapping("coupons")
+    @RequestMapping("/coupons")
     public R test() {
         MemberEntity memberEntity = new MemberEntity();
         memberEntity.setNickname("海贼王");
@@ -94,4 +94,27 @@ public class MemberController {
         return R.ok();
     }
 
+    @PostMapping("/register")
+    public R register(@RequestBody MemberRegisterVo vo) {
+        try {
+            memberService.register(vo);
+        } catch (UsernameAlreadyExistsException e) {
+            return R.error(BizCodeEnum.USERNAME_ALREADY_EXISTS_EXCEPTION.getCode(),
+                    BizCodeEnum.USERNAME_ALREADY_EXISTS_EXCEPTION.getMsg());
+        } catch (PhoneNumberAlreadyExistsException e) {
+            return R.error(BizCodeEnum.PHONE_ALREADY_EXISTS_EXCEPTION.getCode(),
+                    BizCodeEnum.PHONE_ALREADY_EXISTS_EXCEPTION.getMsg());
+        }
+        return R.ok();
+    }
+
+    @PostMapping("/login")
+    public R login(@RequestBody MemberLoginVo vo) {
+        MemberEntity member = memberService.login(vo);
+        if (member == null) {
+            return R.error(BizCodeEnum.USERNAME_OR_PASSWORD_INVALID_EXCEPTION.getCode(),
+                    BizCodeEnum.USERNAME_OR_PASSWORD_INVALID_EXCEPTION.getMsg());
+        }
+        return R.ok();
+    }
 }

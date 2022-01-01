@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @date 2021/12/28
  */
 @FeignClient("gulimall-plugins")
-public interface PluginsService {
+public interface PluginsFeignService {
 
     /**
      * 发送短信验证码

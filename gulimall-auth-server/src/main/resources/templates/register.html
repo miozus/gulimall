@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8"/>
@@ -37,7 +37,9 @@ Calibri;mso-fareast-font-family:宋体;">在<span class="GramE">您注册</span>
 							</span>
 							</span><span style="mso-bookmark:OLE_LINK6"><span style="mso-bookmark:OLE_LINK5">
 							<b style="mso-bidi-font-weight:normal"><u><span lang="EN-US" style="mso-bidi-font-size:
-10.5pt;line-height:150%"><o:p></o:p></span></u>
+10.5pt;line-height:150%">
+								<o:p></o:p>
+							</span></u>
 							</b>
 							</span>
 							</span>
@@ -5946,25 +5948,34 @@ Cookie</span>是由网页服务器存放在您的访问设备上的文本文件�
     </div>
 </header>
 <section>
-    <form action="" class="one">
+    <form action="/register" method="post" class="one">
+        <div class="tips"
+             style="color:red" th:text="${errors != null ? (#maps.containsKey(errors, 'msg') ? errors.msg :'') : ''}"
+        >
+        </div>
         <div class="register-box">
-            <label for="username" class="username_label">用 户 名
-                <input maxlength="20" type="text" placeholder="您的用户名和登录名">
+            <label class="username_label">用 户 名
+                <input name="username" maxlength="20" type="text" placeholder="您的用户名和登录名">
             </label>
-            <div class="tips">
+            <div class="tips"
+                 style="color:red"
+                 th:text="${errors != null ? (#maps.containsKey(errors, 'username') ? errors.username :'') : ''}">
 
             </div>
         </div>
         <div class="register-box">
-            <label for="username" class="other_label">设 置 密 码
-                <input maxlength="20" type="password" placeholder="建议至少使用两种字符组合">
+            <label class="other_label">设 置 密 码
+                <input name="password" maxlength="20" type="password" placeholder="建议至少使用两种字符组合">
             </label>
-            <div class="tips">
+            <div class="tips"
+                 style="color:red"
+                 th:text="${errors != null ? (#maps.containsKey(errors, 'password' ) ? errors.password :'') : ''}"
+            >
 
             </div>
         </div>
         <div class="register-box">
-            <label for="username" class="other_label">确 认 密 码
+            <label class="other_label">确 认 密 码
                 <input maxlength="20" type="password" placeholder="请再次输入密码">
             </label>
             <div class="tips">
@@ -5972,22 +5983,27 @@ Cookie</span>是由网页服务器存放在您的访问设备上的文本文件�
             </div>
         </div>
         <div class="register-box">
-            <label for="username" class="other_label">
+            <label class="other_label">
                 <span>中国 0086∨</span>
-                <input class="phone" id="phone" maxlength="20" type="text" placeholder="建议使用常用手机">
+                <input name="phone" class="phone" id="phone" maxlength="20" type="text" placeholder="建议使用常用手机">
             </label>
-            <div class="tips">
+            <div class="tips"
+                 style="color:red"
+                 th:text="${errors != null ? (#maps.containsKey(errors, 'phone') ? errors.phone :'') : ''}"
+            >
 
             </div>
         </div>
         <div class="register-box">
-            <label for="username" class="other_label">验 证 码
-                <input maxlength="20" type="text" placeholder="请输入验证码" class="caa">
+            <label class="other_label">验 证 码
+                <input name="code" maxlength="20" type="text" placeholder="请输入验证码" class="caa">
             </label>
             <a id="sendCode">发送验证码</a>
             <!--					<span id="code">发送验证码</span>-->
-            <div class="tips">
-
+            <div class="tips"
+                 style="color:red"
+                 th:text="${errors != null ? (#maps.containsKey(errors, 'code') ? errors.code :'') : ''}"
+            >
             </div>
         </div>
         <div class="arguement">
@@ -6147,10 +6163,11 @@ Cookie</span>是由网页服务器存放在您的访问设备上的文本文件�
         })
         //	手机号
         $('input').eq(3).blur(function () {
+            var pattern = /^(?:\+?86)?1(?:3\d{3}|5[^4\D]\d{2}|8\d{3}|7(?:[0-35-9]\d{2}|4(?:0\d|1[0-2]|9\d))|9[0-35-9]\d{2}|6[2567]\d{2}|4(?:(?:10|4[01])\d{3}|[68]\d{4}|[579]\d{2}))\d{6}$/
             if ($(this).val().length == 0) {
                 $(this).parent().next("div").text("");
                 $(this).parent().next("div").css("color", '#ccc');
-            } else if ($(this).val().substr(0, 3) != 138 && $(this).val().substr(0, 3) != 189 && $(this).val().substr(0, 3) != 139 && $(this).val().substr(0, 3) != 158 && $(this).val().substr(0, 3) != 188 && $(this).val().substr(0, 3) != 157 || $(this).val().length != 11) {
+            } else if (!pattern.test($(this).val())) {
                 $(this).parent().next("div").text("手机号格式不正确");
                 $(this).parent().next("div").css("color", 'red');
             } else {
@@ -6159,62 +6176,62 @@ Cookie</span>是由网页服务器存放在您的访问设备上的文本文件�
         })
         // 	验证码
         //	 验证码刷新
-        function code() {
-            var str = "qwertyuiopasdfghjklzxcvbnm1234567890QWERTYUIOPLKJHGFDSAZXCVBNM";
-            var str1 = 0;
-            for (var i = 0; i < 4; i++) {
-                str1 += str.charAt(Math.floor(Math.random() * 62))
-            }
-            str1 = str1.substring(1)
-            $("#code").text(str1);
-        }
-
-        code();
-        $("#code").click(code);
-        //	验证码验证
-        $('input').eq(4).blur(function () {
-            if ($(this).val().length == 0) {
-                $(this).parent().next().next("div").text("");
-                $(this).parent().next().next("div").css("color", '#ccc');
-            } else if ($(this).val().toUpperCase() != $("#code").text().toUpperCase()) {
-                $(this).parent().next().next("div").text("验证码不正确");
-                $(this).parent().next().next("div").css("color", 'red');
-            } else {
-                $(this).parent().next().next("div").text("");
-            }
-        })
+        // function code() {
+        //     var str = "qwertyuiopasdfghjklzxcvbnm1234567890QWERTYUIOPLKJHGFDSAZXCVBNM";
+        //     var str1 = 0;
+        //     for (var i = 0; i < 4; i++) {
+        //         str1 += str.charAt(Math.floor(Math.random() * 62))
+        //     }
+        //     str1 = str1.substring(1)
+        //     $("#code").text(str1);
+        // }
+        //
+        // code();
+        // $("#code").click(code);
+        // //	验证码验证
+        // $('input').eq(4).blur(function () {
+        //     if ($(this).val().length == 0) {
+        //         $(this).parent().next().next("div").text("");
+        //         $(this).parent().next().next("div").css("color", '#ccc');
+        //     } else if ($(this).val().toUpperCase() != $("#code").text().toUpperCase()) {
+        //         $(this).parent().next().next("div").text("验证码不正确");
+        //         $(this).parent().next().next("div").css("color", 'red');
+        //     } else {
+        //         $(this).parent().next().next("div").text("");
+        //     }
+        // })
         //	提交按钮
-        $("#submit_btn").click(function (e) {
-            for (var j = 0; j < 5; j++) {
-                if ($('input').eq(j).val().length == 0) {
-                    $('input').eq(j).focus();
-                    if (j == 4) {
-                        $('input').eq(j).parent().next().next("div").text("此处不能为空");
-                        $('input').eq(j).parent().next().next("div").css("color", 'red');
-                        e.preventDefault();
-                        return;
-                    }
-                    $('input').eq(j).parent().next(".tips").text("此处不能为空");
-                    $('input').eq(j).parent().next(".tips").css("color", 'red');
-                    e.preventDefault();
-                    return;
-                }
-            }
-            //协议
-            if ($("#xieyi")[0].checked) {
-                //向变量stuList数组添加一个数值，数值内部格式Student(name,password,tel,id)
-                //发送用户信息
-                stuList.push(new Student($('input').eq(0).val(), $('input').eq(1).val(), $('input').eq(3).val(), stuList.length + 1));
-                localStorage.setItem('stuList', JSON.stringify(stuList));
-                alert("注册成功");
-                window.open("userlist.html", "_blank");
-            } else {
-                $("#xieyi").next().next().next(".tips").text("请勾选协议");
-                $("#xieyi").next().next().next(".tips").css("color", 'red');
-                e.preventDefault();
-                return;
-            }
-        })
+        // $("#submit_btn").click(function (e) {
+        //     for (var j = 0; j < 5; j++) {
+        //         if ($('input').eq(j).val().length == 0) {
+        //             $('input').eq(j).focus();
+        //             if (j == 4) {
+        //                 $('input').eq(j).parent().next().next("div").text("此处不能为空");
+        //                 $('input').eq(j).parent().next().next("div").css("color", 'red');
+        //                 e.preventDefault();
+        //                 return;
+        //             }
+        //             $('input').eq(j).parent().next(".tips").text("此处不能为空");
+        //             $('input').eq(j).parent().next(".tips").css("color", 'red');
+        //             e.preventDefault();
+        //             return;
+        //         }
+        //     }
+        //     //协议
+        //     if ($("#xieyi")[0].checked) {
+        //         //向变量stuList数组添加一个数值，数值内部格式Student(name,password,tel,id)
+        //         //发送用户信息
+        //         stuList.push(new Student($('input').eq(0).val(), $('input').eq(1).val(), $('input').eq(3).val(), stuList.length + 1));
+        //         localStorage.setItem('stuList', JSON.stringify(stuList));
+        //         alert("注册成功");
+        //         window.open("userlist.html", "_blank");
+        //     } else {
+        //         $("#xieyi").next().next().next(".tips").text("请勾选协议");
+        //         $("#xieyi").next().next().next(".tips").css("color", 'red');
+        //         e.preventDefault();
+        //         return;
+        //     }
+        // })
 
         //  建立构造函数，构造学生信息模板
         function Student(name, password, tel, id) {
@@ -6249,27 +6266,32 @@ Cookie</span>是由网页服务器存放在您的访问设备上的文本文件�
         $("#sendCode").click(function () {
             if (!$(this).hasClass("disabled")) {
                 // 发送验证码
-                $.get("/sms/sendcode?phone=" + $("#phone").val());
+                $.get("/sms/sendcode?phone=" + $("#phone").val(), function (data) {
+                    if (data.code != 0) {
+                        alert(data.msg);
+                    }
+                    ;
+                });
                 // 倒计时
                 timeoutChangeStyle();
             }
         })
     });
-    var duration = 60;
+    var timeout = 60;
 
     // 计时器：递归调用，每次秒自减1，确保边界正常访问
     function timeoutChangeStyle() {
         $("#sendCode").attr("class", "disabled");
-        if (duration == 0) {
+        if (timeout == 0) {
             $("#sendCode").text("发送验证");
-            duration = 60;
+            timeout = 60;
             $("#sendCode").attr("class", "");
         } else {
-            var timeoutStr = duration + "秒 后再次发送验证码";
+            var timeoutStr = timeout + "秒 后再次发送验证码";
             $("#sendCode").text(timeoutStr);
             setTimeout("timeoutChangeStyle()", 1000);
         }
-        duration--;
+        timeout--;
 
     }
 

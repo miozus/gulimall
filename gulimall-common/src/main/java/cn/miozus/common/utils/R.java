@@ -24,6 +24,9 @@ public class R extends HashMap<String, Object> {
     private static final long serialVersionUID = 1L;
 
 
+    /**
+     * 无参构造：ok() 默认返回响应成功，code是0 而非 HTTP 常见的 200;
+     */
     public R() {
         put("code", 0);
         put("msg", "success");

@@ -1,7 +1,8 @@
-package cn.miozus.auth.vo;
+package cn.miozus.common.vo;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -11,7 +12,7 @@ import java.util.Date;
  * @date 2022/01/02
  */
 @Data
-public class MemberRespVo {
+public class MemberRespVo implements Serializable {
 
     /**
      * id

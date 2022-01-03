@@ -3,7 +3,7 @@ package cn.miozus.auth.controller;
 
 import cn.miozus.auth.feign.MemberFeignService;
 import cn.miozus.auth.feign.PluginsFeignService;
-import cn.miozus.auth.vo.MemberRespVo;
+import cn.miozus.common.vo.MemberRespVo;
 import cn.miozus.auth.vo.UserLoginVo;
 import cn.miozus.auth.vo.UserRegisterVo;
 import cn.miozus.common.constant.AuthServerConstant;

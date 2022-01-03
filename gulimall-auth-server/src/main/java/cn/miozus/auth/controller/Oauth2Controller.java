@@ -2,7 +2,7 @@ package cn.miozus.auth.controller;
 
 import cn.miozus.auth.api.GiteeApi;
 import cn.miozus.auth.feign.MemberFeignService;
-import cn.miozus.auth.vo.MemberRespVo;
+import cn.miozus.common.vo.MemberRespVo;
 import cn.miozus.auth.vo.SocialUser;
 import cn.miozus.common.utils.R;
 import com.alibaba.fastjson.TypeReference;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,7 +33,7 @@ public class Oauth2Controller {
     MemberFeignService memberFeignService;
 
     @GetMapping("/oauth2/gitee/redirect")
-    public String gitee(@RequestParam("code") String code, RedirectAttributes redirectAttributes){
+    public String gitee(@RequestParam("code") String code, RedirectAttributes redirectAttributes, HttpSession session) {
         SocialUser socialUser = giteeApi.fetchToken(code);
         R r = memberFeignService.oauthLogin(socialUser);
         if (r.getCode() != 0) {
@@ -42,12 +43,16 @@ public class Oauth2Controller {
             redirectAttributes.addFlashAttribute("errors", errors);
             return "redirect:http://auth.gulimall.com/login.html";
         }
-        MemberRespVo memberRespVo = r.getData("data", new TypeReference<MemberRespVo>() {
+        MemberRespVo data = r.getData("data", new TypeReference<MemberRespVo>() {
         });
-        String username = memberRespVo.getUsername();
-        Map<String, String> userInfo = new HashMap<>(1);
-        userInfo.put("username", username);
-        redirectAttributes.addFlashAttribute("userInfo", userInfo);
+        log.info("登陆成功 data {}",data);
+
+        session.setAttribute("loginUser", data);
+        //String username = memberRespVo.getUsername();
+        //Map<String, String> userInfo = new HashMap<>(1);
+        //userInfo.put("username", username);
+        //redirectAttributes.addFlashAttribute("userInfo", userInfo);
         return "redirect:http://gulimall.com";
     }
+
 }

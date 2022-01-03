@@ -95,8 +95,9 @@
             </b>
             <ul>
                 <li>
-                    <a href="http://auth.gulimall.com/login.html">你好，请登录</a>
+                <a href="http://auth.gulimall.com/login.html" >你好，[[${session.loginUser.nickname !=null ?session.loginUser.nickname : '' }]]</a>
                 </li>
+<!--                <a href="http://auth.gulimall.com/login.html" th:text="${userInfo != null ? (#maps.containsKey(userInfo, 'username') ? '你好' + userInfo.username :'你好，请登录') : '你好，请登录'}"></a>-->
                 <li>
                     <a href="http://auth.gulimall.com/register.html" class="li_2">免费注册</a>
                 </li>

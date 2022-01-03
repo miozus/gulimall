@@ -88,7 +88,6 @@ public class GiteeApi {
             int statusCode = response.getStatusLine().getStatusCode();
             if (statusCode == 200) {
                 String s = EntityUtils.toString(response.getEntity());
-                log.info("giteeInfo: {}", s);
                 return JSON.parseObject(s, GiteeUserInfo.class);
             }
         } catch (Exception e) {

@@ -87,9 +87,7 @@ public class SmsComponent {
         }
     }
 
-    /*
-     * 读取返回结果
-     */
+    /** 读取返回结果 */
     private static String read(InputStream is) throws IOException {
         StringBuffer sb = new StringBuffer();
         BufferedReader br = new BufferedReader(new InputStreamReader(is));

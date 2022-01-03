@@ -1,11 +1,26 @@
 package cn.miozus.gulimall.member;
 
+import cn.miozus.gulimall.member.service.MemberService;
+import cn.miozus.gulimall.member.vo.SocialUser;
 import org.apache.commons.codec.digest.Md5Crypt;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-//@SpringBootTest
+@SpringBootTest
 class GulimallMemberApplicationTests {
+
+    @Autowired
+    MemberService memberService;
+
+    @Test
+    void testFetchGithubInfo(){
+        SocialUser user = new SocialUser();
+        //user.setAccessToken();
+        memberService.login(user);
+    }
+
     /**
      * 加密器
      *

@@ -6,6 +6,7 @@ import cn.miozus.gulimall.member.exception.PhoneNumberAlreadyExistsException;
 import cn.miozus.gulimall.member.exception.UsernameAlreadyExistsException;
 import cn.miozus.gulimall.member.vo.MemberLoginVo;
 import cn.miozus.gulimall.member.vo.MemberRegisterVo;
+import cn.miozus.gulimall.member.vo.SocialUser;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.Map;
@@ -68,5 +69,13 @@ public interface MemberService extends IService<MemberEntity> {
      * @return
      */
     MemberEntity login(MemberLoginVo vo);
+
+    /**
+     * 社交授权登录
+     *
+     * @param socialUser 社会用户
+     * @return {@link MemberEntity}
+     */
+    MemberEntity login(SocialUser socialUser);
 }
 

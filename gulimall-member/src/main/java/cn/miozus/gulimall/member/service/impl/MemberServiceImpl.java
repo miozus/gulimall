@@ -167,7 +167,7 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> impl
 
 
     /**
-     * 更新令牌,反馈成员实体
+     * 更新令牌信息（部分字段）,反馈成员实体
      * 获取 MyBatis 自动生成的 id 才能更新
      *
      * @param socialUser 社会用户
@@ -176,9 +176,9 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> impl
      * @return {@link MemberEntity}
      */
     private MemberEntity updateTokenAndGetMemberEntity(SocialUser socialUser, MemberDao dao, MemberEntity entity) {
-        MemberEntity update = new MemberEntity();
         String accessToken = socialUser.getAccessToken();
         String expiresIn = socialUser.getExpiresIn();
+        MemberEntity update = new MemberEntity();
         Long id = entity.getId();
 
         update.setId(id);

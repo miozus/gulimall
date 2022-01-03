@@ -1,5 +1,6 @@
 package cn.miozus.auth.feign;
 
+import cn.miozus.auth.vo.SocialUser;
 import cn.miozus.auth.vo.UserLoginVo;
 import cn.miozus.auth.vo.UserRegisterVo;
 import cn.miozus.common.utils.R;
@@ -35,6 +36,13 @@ public interface MemberFeignService {
     @PostMapping("/member/member/login")
     R login(@RequestBody UserLoginVo vo);
 
-
+    /**
+     * oauth登录
+     *
+     * @param socialUser 社会用户
+     * @return {@link R}
+     */
+    @PostMapping("/member/member/oauth2/login")
+    R oauthLogin(@RequestBody SocialUser socialUser);
 
 }

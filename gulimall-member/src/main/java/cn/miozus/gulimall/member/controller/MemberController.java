@@ -10,6 +10,7 @@ import cn.miozus.gulimall.member.feign.CouponFeignService;
 import cn.miozus.gulimall.member.service.MemberService;
 import cn.miozus.gulimall.member.vo.MemberLoginVo;
 import cn.miozus.gulimall.member.vo.MemberRegisterVo;
+import cn.miozus.gulimall.member.vo.SocialUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +28,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/member/member")
 public class MemberController {
+
     @Autowired
     private MemberService memberService;
 
@@ -117,4 +119,16 @@ public class MemberController {
         }
         return R.ok();
     }
+
+
+    @PostMapping("/oauth2/login")
+    public R oauthLogin(@RequestBody SocialUser socialUser) {
+        MemberEntity member = memberService.login(socialUser);
+        if (member == null) {
+            return R.error(BizCodeEnum.USERNAME_OR_PASSWORD_INVALID_EXCEPTION.getCode(),
+                    BizCodeEnum.USERNAME_OR_PASSWORD_INVALID_EXCEPTION.getMsg());
+        }
+        return R.ok().setData(member);
+    }
+
 }

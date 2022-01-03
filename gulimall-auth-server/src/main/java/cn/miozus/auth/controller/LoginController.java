@@ -1,8 +1,9 @@
-package cn.miozus.auth.web;
+package cn.miozus.auth.controller;
 
 
 import cn.miozus.auth.feign.MemberFeignService;
 import cn.miozus.auth.feign.PluginsFeignService;
+import cn.miozus.auth.vo.MemberRespVo;
 import cn.miozus.auth.vo.UserLoginVo;
 import cn.miozus.auth.vo.UserRegisterVo;
 import cn.miozus.common.constant.AuthServerConstant;
@@ -10,6 +11,7 @@ import cn.miozus.common.exception.BizCodeEnum;
 import cn.miozus.common.utils.R;
 import com.alibaba.cloud.commons.lang.StringUtils;
 import com.alibaba.fastjson.TypeReference;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Controller;
@@ -37,6 +39,7 @@ import java.util.stream.Collectors;
  * @date 2021/12/28
  */
 @Controller
+@Slf4j
 public class LoginController {
 
     @Autowired
@@ -118,6 +121,9 @@ public class LoginController {
             redirectAttributes.addFlashAttribute("errors", errors);
             return "redirect:http://auth.gulimall.com/login.html";
         }
+        MemberRespVo registerVo = r.getData("data", new TypeReference<MemberRespVo>() {
+        });
+        log.info("登陆成功： registerVo {}" , registerVo);
         return "redirect:http://gulimall.com";
     }
 

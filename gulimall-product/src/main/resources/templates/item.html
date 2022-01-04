@@ -58,8 +58,14 @@
                 </li>
             </ul>
             <ul class="header_ul_right">
-                <li style="border: 0;"><a href="/static/item/../登录页面\index.html" class="aa">你好，请登录</a></li>
-                <li><a href="/static/item/../注册页面\index.html" style="color: red;">免费注册</a> |</li>
+                <li style="border: 0;">
+                    <a th:if="${session.loginUser != null}" class="aa">[[${session.loginUser.nickname}]]</a>
+                    <a th:unless="${session.loginUser != null}" href="http://auth.gulimall.com/login.html" class="aa">你好，请登录</a>
+                </li>
+                <li>
+                    <a th:if="${session.loginUser == null}" href="http://auth.gulimall.com/register.html" class="li_2">免费注册</a>
+                    |
+                </li>
                 <li><a href="/static/item/javascript:;" class="aa">我的订单</a> |</li>
                 <li class="jingdong"><a href="/static/item/javascript:;">我的京东</a><span
                         class="glyphicon glyphicon-menu-down">|</span>
@@ -256,9 +262,9 @@
     <nav>
         <div class="nav_min">
             <div class="nav_top">
-                <div class="nav_top_one"><a href="/static/item/#"><img src="/static/item/img/111.png"/></a></div>
-                <div class="nav_top_two"><input type="text"/>
-                    <button>搜索</button>
+                <div class="nav_top_one"><a href="http://gulimall.com"><img src="/static/item/img/111.png"/></a></div>
+                <div class="nav_top_two"><input id="searchText" type="text"/>
+                    <button href="javascript:search();">搜索</button>
                 </div>
                 <div class="nav_top_three"><a href="/static/item/../JD_Shop/One_JDshop.html">我的购物车</a><span
                         class="glyphicon glyphicon-shopping-cart"></span>
@@ -1302,17 +1308,23 @@
         // console.log("skus:", skus);
 
         var filterEle = skus[0];
-        for (var i = 1; i<skus.length; i++){
+        for (var i = 1; i < skus.length; i++) {
             filterEle = $(filterEle).filter(skus[i]);
         }
         // console.log("filterELe", filterEle);
         location.href = "http://item.gulimall.com/" + filterEle[0] + ".html"
     });
     // 当前属性的商品详情页，添加红色边框。先清空所有边框，再将特殊的渲染成红色
-    $(function(){
+    $(function () {
         $(".sku_attr_value").parent().css({"border": "solid 1px #CCCCCC"});
         $("a[class='sku_attr_value checked']").parent().css({"border": "solid 1px red"});
     })
+
+    function search() {
+        var keyword = $("#searchText").val()
+        window.location.href = "http://search.gulimall.com/search.html?keyword=" + keyword;
+    }
+
 </script>
 
 </html>

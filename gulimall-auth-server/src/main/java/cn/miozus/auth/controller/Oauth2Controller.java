@@ -2,6 +2,7 @@ package cn.miozus.auth.controller;
 
 import cn.miozus.auth.api.GiteeApi;
 import cn.miozus.auth.feign.MemberFeignService;
+import cn.miozus.common.constant.AuthServerConstant;
 import cn.miozus.common.vo.MemberRespVo;
 import cn.miozus.auth.vo.SocialUser;
 import cn.miozus.common.utils.R;
@@ -45,13 +46,8 @@ public class Oauth2Controller {
         }
         MemberRespVo data = r.getData("data", new TypeReference<MemberRespVo>() {
         });
+        session.setAttribute(AuthServerConstant.LOGIN_USER, data);
         log.info("登陆成功 data {}",data);
-
-        session.setAttribute("loginUser", data);
-        //String username = memberRespVo.getUsername();
-        //Map<String, String> userInfo = new HashMap<>(1);
-        //userInfo.put("username", username);
-        //redirectAttributes.addFlashAttribute("userInfo", userInfo);
         return "redirect:http://gulimall.com";
     }
 

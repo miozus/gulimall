@@ -117,7 +117,7 @@ public class MemberController {
             return R.error(BizCodeEnum.USERNAME_OR_PASSWORD_INVALID_EXCEPTION.getCode(),
                     BizCodeEnum.USERNAME_OR_PASSWORD_INVALID_EXCEPTION.getMsg());
         }
-        return R.ok();
+        return R.ok().setData(member);
     }
 
 

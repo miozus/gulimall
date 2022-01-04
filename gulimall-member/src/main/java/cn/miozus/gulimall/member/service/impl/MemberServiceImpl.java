@@ -10,7 +10,10 @@ import cn.miozus.gulimall.member.entity.MemberLevelEntity;
 import cn.miozus.gulimall.member.exception.PhoneNumberAlreadyExistsException;
 import cn.miozus.gulimall.member.exception.UsernameAlreadyExistsException;
 import cn.miozus.gulimall.member.service.MemberService;
-import cn.miozus.gulimall.member.vo.*;
+import cn.miozus.gulimall.member.vo.MemberGiteeUserInfo;
+import cn.miozus.gulimall.member.vo.MemberLoginVo;
+import cn.miozus.gulimall.member.vo.MemberRegisterVo;
+import cn.miozus.gulimall.member.vo.SocialUser;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -24,6 +27,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 
 @Service("memberService")
@@ -48,6 +52,7 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> impl
      * <p>
      * 异常机制：只要字段被注册过，都不通过
      * 加密储存：BCryptPasswordEncoder 加密器托管
+     * 昵称: 默认随机值，防止前端欢迎页字段判空
      *
      * @param vo 注册页面提交的用户信息表单
      */
@@ -67,6 +72,10 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> impl
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encode = passwordEncoder.encode(vo.getPassword());
 
+        String uuid = UUID.randomUUID().toString();
+        String defaultNickname = "谷粒用户"+ "_" + uuid.substring(0, 5);
+
+        entity.setNickname(defaultNickname);
         entity.setLevelId(id);
         entity.setUsername(username);
         entity.setMobile(phone);
@@ -80,16 +89,15 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> impl
         String password = vo.getPassword();
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         MemberDao dao = this.baseMapper;
-        MemberEntity entity = dao.selectOne(new QueryWrapper<MemberEntity>().eq("username", account).or().eq("mobile", account));
+        MemberEntity entity = dao.selectOne(
+                new QueryWrapper<MemberEntity>().eq("username", account).or().eq("mobile", account)
+        );
         if (entity == null) {
             return null;
         }
         String encode = entity.getPassword();
         boolean matches = passwordEncoder.matches(password, encode);
-        if (matches) {
-            return entity;
-        }
-        return null;
+        return  matches ? entity : null;
     }
 
     /**

@@ -3,12 +3,12 @@ package cn.miozus.auth.controller;
 
 import cn.miozus.auth.feign.MemberFeignService;
 import cn.miozus.auth.feign.PluginsFeignService;
-import cn.miozus.common.vo.MemberRespVo;
 import cn.miozus.auth.vo.UserLoginVo;
 import cn.miozus.auth.vo.UserRegisterVo;
 import cn.miozus.common.constant.AuthServerConstant;
 import cn.miozus.common.exception.BizCodeEnum;
 import cn.miozus.common.utils.R;
+import cn.miozus.common.vo.MemberRespVo;
 import com.alibaba.cloud.commons.lang.StringUtils;
 import com.alibaba.fastjson.TypeReference;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
@@ -100,19 +101,22 @@ public class LoginController {
             redirectAttributes.addFlashAttribute("errors", errors);
             return "redirect:http://auth.gulimall.com/register.html";
         }
-        return verifyCodeValid(vo, redirectAttributes);
+        return verifyCodeValidAndRegister(vo, redirectAttributes);
     }
 
 
     /**
      * 登录
+     * <p>
+     * 注册登录和社交登录都返回成员实体，成功时，可取出放入会话
      *
      * @param vo                 视图模型，提交的KV（而非JSON，不用RequestBody）
      * @param redirectAttributes 重定向属性
+     * @param session
      * @return {@link String}
      */
     @PostMapping("/login")
-    public String login(UserLoginVo vo, RedirectAttributes redirectAttributes) {
+    public String login(UserLoginVo vo, RedirectAttributes redirectAttributes, HttpSession session) {
         R r = memberFeignService.login(vo);
         if (r.getCode() != 0) {
             Map<String, String> errors = new HashMap<>(1);
@@ -121,11 +125,20 @@ public class LoginController {
             redirectAttributes.addFlashAttribute("errors", errors);
             return "redirect:http://auth.gulimall.com/login.html";
         }
-        MemberRespVo registerVo = r.getData("data", new TypeReference<MemberRespVo>() {
+        MemberRespVo data = r.getData("data", new TypeReference<MemberRespVo>() {
         });
-        log.info("登陆成功： registerVo {}" , registerVo);
+        session.setAttribute(AuthServerConstant.LOGIN_USER, data);
+        log.info("登陆成功： data {}", data);
         return "redirect:http://gulimall.com";
     }
+
+    @GetMapping("/login.html")
+    public String loginPage(HttpSession session) {
+        Object data = session.getAttribute(AuthServerConstant.LOGIN_USER);
+        return (data != null) ? "redirect:http://gulimall.com" : "login";
+
+    }
+
 
     /**
      * 校验验证码
@@ -136,7 +149,7 @@ public class LoginController {
      * @param redirectAttributes 重定向属性
      * @return {@link String}
      */
-    private String verifyCodeValid(UserRegisterVo vo, RedirectAttributes redirectAttributes) {
+    private String verifyCodeValidAndRegister(UserRegisterVo vo, RedirectAttributes redirectAttributes) {
         String code = vo.getCode();
         String redisKey = AuthServerConstant.SMS_CODE_CACHE_PREFIX + vo.getPhone();
         String redisCode = redisTemplate.opsForValue().get(redisKey);
@@ -147,6 +160,17 @@ public class LoginController {
             return "redirect:http://auth.gulimall.com/register.html";
         }
         redisTemplate.delete(redisKey);
+        return registerByVo(vo, redirectAttributes);
+    }
+
+    /**
+     * 注册封装用户信息
+     *
+     * @param vo                 签证官
+     * @param redirectAttributes 重定向属性
+     * @return {@link String}
+     */
+    private String registerByVo(UserRegisterVo vo, RedirectAttributes redirectAttributes) {
         R r = memberFeignService.register(vo);
         if (r.getCode() != 0) {
             Map<String, String> errors = new HashMap<>(1);

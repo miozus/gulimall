@@ -63,7 +63,7 @@ public interface MemberService extends IService<MemberEntity> {
     void checkPhoneUnique(String phone) throws PhoneNumberAlreadyExistsException;
 
     /**
-     * 检查登录
+     * 注册登录
      *
      * @param vo 签证官
      * @return
@@ -71,7 +71,7 @@ public interface MemberService extends IService<MemberEntity> {
     MemberEntity login(MemberLoginVo vo);
 
     /**
-     * 社交授权登录
+     * 社交登录
      *
      * @param socialUser 社会用户
      * @return {@link MemberEntity}

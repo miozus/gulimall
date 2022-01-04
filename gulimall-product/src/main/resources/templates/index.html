@@ -95,18 +95,16 @@
             </b>
             <ul>
                 <li>
-                <a href="http://auth.gulimall.com/login.html" >你好，[[${session.loginUser.nickname !=null ?session.loginUser.nickname : '' }]]</a>
+                    <a th:if="${session.loginUser != null}">你好，[[${session.loginUser.nickname}]]</a>
+                    <a th:unless="${session.loginUser != null}" href="http://auth.gulimall.com/login.html" >你好，请登录</a>
                 </li>
-<!--                <a href="http://auth.gulimall.com/login.html" th:text="${userInfo != null ? (#maps.containsKey(userInfo, 'username') ? '你好' + userInfo.username :'你好，请登录') : '你好，请登录'}"></a>-->
                 <li>
-                    <a href="http://auth.gulimall.com/register.html" class="li_2">免费注册</a>
+                    <a th:if="${session.loginUser == null}" href="http://auth.gulimall.com/register.html" class="li_2">免费注册</a>
                 </li>
                 <span>|</span>
                 <li>
                     <a href="/static/#">我的订单</a>
                 </li>
-
-
             </ul>
         </div>
     </div>
@@ -115,8 +113,7 @@
         <div class="header_form">
             <input id="searchText" type="text" placeholder=""/>
             <span style="background: url('/static/index/img/img_12.png') 0 -1px;"></span>
-            <!--<button><i class="glyphicon"></i></button>-->
-            <a href="javascript:search();"><img src="/static/index/img/img_09.png" /></a>
+            <a href="javascript:search();"><img src="/static/index/img/img_09.png"/></a>
         </div>
         <div class="header_ico">
             <div class="header_gw">
@@ -201,10 +198,12 @@
     <div class="header_main">
         <div class="header_banner">
             <div class="header_main_left">
-               <ul><li th:each="category : ${categories}">
-                    <a href="/static/#" class="header_main_left_a" th:attr="ctg-data=${category.catId}">
-                        <b th:text="${ category.name }"></b></a>
-                </li></ul>
+                <ul>
+                    <li th:each="category : ${categories}">
+                        <a href="/static/#" class="header_main_left_a" th:attr="ctg-data=${category.catId}">
+                            <b th:text="${ category.name }"></b></a>
+                    </li>
+                </ul>
             </div>
             <div class="header_main_center">
                 <div class="swiper-container swiper1">

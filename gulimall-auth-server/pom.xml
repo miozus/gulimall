@@ -41,7 +41,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
         <!--    初始勾选的依赖    -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

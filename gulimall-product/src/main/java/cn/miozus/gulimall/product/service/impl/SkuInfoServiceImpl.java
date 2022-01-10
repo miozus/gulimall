@@ -152,7 +152,7 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> i
         }, executor);
 
         CompletableFuture<Void> saleAttrFuture = infoFuture.thenAcceptAsync((info) -> {
-            List<SkuItemVo.SkuItemSaleAttrVo> saleAttr = skuSaleAttrValueService.querySaleAttrsBySkuId(info.getSpuId());
+            List<SkuItemVo.SkuItemSaleAttrVo> saleAttr = skuSaleAttrValueService.querySaleAttrsBySpuId(info.getSpuId());
             vo.setSaleAttr(saleAttr);
         }, executor);
 

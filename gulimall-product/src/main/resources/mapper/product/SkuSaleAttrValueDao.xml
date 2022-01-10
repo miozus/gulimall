@@ -20,7 +20,7 @@
             <result property="skuIds" column="sku_ids"/>
         </collection>
     </resultMap>
-    <select id="getSaleAttrsBySkuId" resultMap="saleAttrsBySkuId">
+    <select id="getSaleAttrsBySpuId" resultMap="saleAttrsBySkuId">
         -- 传入 spuId，分析 spu 有多少个 sku ，所有 sku 的属性组合
         SELECT ssav.attr_id,
                ssav.attr_name,
@@ -32,6 +32,14 @@
         GROUP BY ssav.attr_id,
                  ssav.attr_name,
                  ssav.attr_value
+    </select>
+    <select id="querySkuAttrs" resultType="java.lang.String">
+        SELECT
+            CONCAT( attr_name, ":", attr_value )
+        FROM
+            `pms_sku_sale_attr_value`
+        WHERE
+            sku_id = #{skuId}
     </select>
 
 

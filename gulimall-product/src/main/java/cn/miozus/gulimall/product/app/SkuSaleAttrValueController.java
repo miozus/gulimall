@@ -1,19 +1,15 @@
 package cn.miozus.gulimall.product.app;
 
-import java.util.Arrays;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import cn.miozus.gulimall.product.entity.SkuSaleAttrValueEntity;
-import cn.miozus.gulimall.product.service.SkuSaleAttrValueService;
 import cn.miozus.common.utils.PageUtils;
 import cn.miozus.common.utils.R;
+import cn.miozus.gulimall.product.entity.SkuSaleAttrValueEntity;
+import cn.miozus.gulimall.product.service.SkuSaleAttrValueService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 
 
@@ -29,6 +25,13 @@ import cn.miozus.common.utils.R;
 public class SkuSaleAttrValueController {
     @Autowired
     private SkuSaleAttrValueService skuSaleAttrValueService;
+
+
+    @GetMapping("/stringlist/{skuId}")
+    public List<String> querySkuAttrs(@PathVariable("skuId") Long skuId){
+        List<String> skuAttrs = skuSaleAttrValueService.querySkuAttrs(skuId);
+        return skuAttrs;
+    };
 
     /**
      * 列表

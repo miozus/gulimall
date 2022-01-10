@@ -11,10 +11,14 @@ import java.util.List;
  */
 public class CartItem {
     private Long skuId;
+
+    /**
+     * 选中与否
+     */
     private Boolean check = true;
     private String title ;
     private String image ;
-    private List<String> skuAttrValues;
+    private List<String> skuAttrs;
     private BigDecimal price;
     private Integer count;
     private BigDecimal totalPrice;
@@ -51,12 +55,12 @@ public class CartItem {
         this.image = image;
     }
 
-    public List<String> getSkuAttrValues() {
-        return skuAttrValues;
+    public List<String> getSkuAttrs() {
+        return skuAttrs;
     }
 
-    public void setSkuAttrValues(List<String> skuAttrValues) {
-        this.skuAttrValues = skuAttrValues;
+    public void setSkuAttrs(List<String> skuAttrs) {
+        this.skuAttrs = skuAttrs;
     }
 
     public BigDecimal getPrice() {

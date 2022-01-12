@@ -26,6 +26,41 @@ public class CartController {
     @Autowired
     CartService cartService;
 
+    /**
+     * 改：是否勾选
+     * <p>
+     * 前端 ⇒ 后端：更新 Redis 缓存 ⇒ 后端：访问购物车列表
+     *
+     * @param skuId     sku id
+     * @param isChecked 检查
+     * @return {@link String}
+     */
+    @GetMapping("/checkItem")
+    public String checkItem(@RequestParam("skuId") Long skuId,
+                            @RequestParam("isChecked") Integer isChecked) {
+        cartService.updateRedisItemCheckStatus(skuId, isChecked);
+        return "redirect:http://cart.gulimall.com/cart.html";
+    }
+
+    /**
+     * 改：单品数量
+     *
+     * @param skuId sku id
+     * @param count 数
+     * @return {@link String}
+     */
+    @GetMapping("/countItem")
+    public String countItem(@RequestParam("skuId") Long skuId,
+                            @RequestParam("count") Integer count) {
+        cartService.updateRedisItemCount(skuId, count);
+        return "redirect:http://cart.gulimall.com/cart.html";
+    }
+
+    @GetMapping("/deleteItem")
+    public String deleteItem(@RequestParam("skuId") Long skuId) {
+        cartService.deleteRedisItem(skuId);
+        return "redirect:http://cart.gulimall.com/cart.html";
+    }
 
     /**
      * 购物车列表页面

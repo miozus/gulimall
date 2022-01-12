@@ -30,7 +30,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
- * 车服务impl
+ * 购物车服务实现
  *
  * @author miao
  * @date 2022/01/04
@@ -38,6 +38,7 @@ import java.util.stream.Collectors;
 @Service
 @Slf4j
 public class CartServiceImpl implements CartService {
+
     @Autowired
     StringRedisTemplate redisTemplate;
     @Autowired
@@ -141,11 +142,44 @@ public class CartServiceImpl implements CartService {
         List<CartItem> oauthCartItems = collectRedisCartItems(oauthCartKey);
 
         if (CollectionUtils.isNotEmpty(tempCartItems)) {
-            oauthCartItems =  addAllRedisCartItemsByKey(tempCartItems, oauthCartItems, oauthCartKey);
+            oauthCartItems = addAllRedisCartItemsByKey(tempCartItems, oauthCartItems, oauthCartKey);
         }
         cart.setItems(oauthCartItems);
         //deleteRedisCartItems(tempCartKey);
         return cart;
+    }
+
+    /**
+     * 更新勾选状态
+     * 有 2 次 查询 Redis
+     * [TODO] AOP：前后重复的动作，真应该放入 切面 去完成
+     *
+     * @param skuId     sku id
+     * @param isChecked 检查
+     */
+    @Override
+    public void updateRedisItemCheckStatus(Long skuId, Integer isChecked) {
+        BoundHashOperations<String, Object, Object> ops = boundUserIdFirstRedisHashOps();
+        CartItem cartItem = fetchCartItem(skuId);
+        boolean b = isChecked == 1;
+        cartItem.setIsChecked(b);
+        String s = JSON.toJSONString(cartItem);
+        ops.put(skuId.toString(), s);
+    }
+
+    @Override
+    public void updateRedisItemCount(Long skuId, Integer count) {
+        BoundHashOperations<String, Object, Object> ops = boundUserIdFirstRedisHashOps();
+        CartItem cartItem = fetchCartItem(skuId);
+        cartItem.setCount(count);
+        String s = JSON.toJSONString(cartItem);
+        ops.put(skuId.toString(), s);
+    }
+
+    @Override
+    public void deleteRedisItem(Long skuId) {
+        BoundHashOperations<String, Object, Object> ops = boundUserIdFirstRedisHashOps();
+        ops.delete(skuId.toString());
     }
 
     /**
@@ -191,8 +225,8 @@ public class CartServiceImpl implements CartService {
     }
 
     /**
-     * 收集,购物车条目
-     *
+     * 查询购物车单品并转成列表
+     * <p>
      * redis.value ⇒ java.List
      *
      * @param cartKey 购物车键

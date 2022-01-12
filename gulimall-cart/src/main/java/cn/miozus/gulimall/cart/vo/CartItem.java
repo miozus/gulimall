@@ -15,7 +15,7 @@ public class CartItem {
     /**
      * 选中与否
      */
-    private Boolean check = true;
+    private Boolean isChecked = true;
     private String title ;
     private String image ;
     private List<String> skuAttrs;
@@ -31,12 +31,12 @@ public class CartItem {
         this.skuId = skuId;
     }
 
-    public Boolean getCheck() {
-        return check;
+    public Boolean getIsChecked() {
+        return isChecked;
     }
 
-    public void setCheck(Boolean check) {
-        this.check = check;
+    public void setIsChecked(Boolean isChecked) {
+        this.isChecked = isChecked;
     }
 
     public String getTitle() {

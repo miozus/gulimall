@@ -66,7 +66,7 @@ public class CartInterceptor implements HandlerInterceptor {
                 String name = cookie.getName();
                 if (name.equalsIgnoreCase(CartConstant.TEMP_USER_COOKIE_NAME)) {
                     userInfo.setUserKey(cookie.getValue());
-                    userInfo.setTempUser(true);
+                    userInfo.setHasTempUser(true);
                 }
             }
         }
@@ -91,7 +91,7 @@ public class CartInterceptor implements HandlerInterceptor {
      */
     private void setCookieAtBrowser(HttpServletResponse response) {
         UserInfoTo userInfoTo = threadLocal.get();
-        if (Boolean.FALSE.equals(userInfoTo.isTempUser())) {
+        if (Boolean.FALSE.equals(userInfoTo.isHasTempUser())) {
             Cookie cookie = new Cookie(CartConstant.TEMP_USER_COOKIE_NAME, userInfoTo.getUserKey());
             cookie.setDomain("gulimall.com");
             cookie.setMaxAge(CartConstant.TEMP_USER_COOKIE_TIMEOUT);

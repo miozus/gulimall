@@ -1,18 +1,20 @@
 package cn.miozus.gulimall.cart.vo;
 
 import com.alibaba.nacos.common.utils.CollectionUtils;
+import lombok.ToString;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 /**
  * 购物车数据
- *
+ * <p>
  * 需要计算的属性：必须重写它的 get 方法，保证每次都会计算
  *
  * @author miao
  * @date 2022/01/04
  */
+@ToString
 public class Cart {
     List<CartItem> items;
     /**
@@ -23,6 +25,10 @@ public class Cart {
      * 商品类型数量
      */
     private Integer countType;
+
+    public void setTotalAmount(BigDecimal totalAmount) {
+        this.totalAmount = totalAmount;
+    }
 
     /**
      * 商品总价
@@ -70,17 +76,16 @@ public class Cart {
     /**
      * 总金额 = 商品总价 - 减免优惠
      *
-     * @return {@link BigDecimal}
+     * @return {@link BigDecimal} 超级静态的变量：调用者不会改变，必须找到接收者
      */
     public BigDecimal getTotalAmount() {
         BigDecimal amount = BigDecimal.ZERO;
         if (CollectionUtils.isNotEmpty(items)) {
             for (CartItem item : items) {
-                amount.add(item.getTotalPrice());
+                amount = amount.add(item.getTotalPrice());
             }
         }
-        amount.subtract(reduce);
-        return amount;
+        return amount.subtract(reduce);
     }
 
     public BigDecimal getReduce() {

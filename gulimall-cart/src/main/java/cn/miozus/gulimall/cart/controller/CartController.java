@@ -3,7 +3,9 @@ package cn.miozus.gulimall.cart.controller;
 import cn.miozus.gulimall.cart.interceptor.CartInterceptor;
 import cn.miozus.gulimall.cart.service.CartService;
 import cn.miozus.gulimall.cart.to.UserInfoTo;
+import cn.miozus.gulimall.cart.vo.Cart;
 import cn.miozus.gulimall.cart.vo.CartItem;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  * @date 2022/01/04
  */
 @Controller
+@Slf4j
 public class CartController {
 
     @Autowired
@@ -28,21 +31,20 @@ public class CartController {
      * 购物车列表页面
      * <p>
      * 最快速获取用户信息： ThreadLocal 同一个线程共享数据
+     * 从 Redis 查询所有单品，如果从临时身份切换到登录，则合并购物车
      *
      * @return {@link String}
      */
     @GetMapping(value = {"/cart.html", "/cartList.html"})
-    public String cartListPage() {
+    public String cartListPage(Model model) {
         UserInfoTo userInfoTo = CartInterceptor.threadLocal.get();
-        System.out.println("userInfoTo = " + userInfoTo);
+        log.info("userInfoTo {} ", userInfoTo);
+        Cart cart = cartService.fetchTotalCartItems();
+        log.info("cart {} ", cart);
+        model.addAttribute("cart", cart);
         return "cartList";
     }
 
-    @GetMapping("/success.html")
-    public String addItem() {
-
-        return "success";
-    }
 
     /**
      * 加入购物车
@@ -58,11 +60,11 @@ public class CartController {
      * @param count 数量
      * @return {@link String}
      */
-    @GetMapping("/joinCart")
-    public String joinCart(@RequestParam("skuId") Long skuId, @RequestParam("count") Integer count, RedirectAttributes ra) {
-        cartService.joinCart(skuId, count);
+    @GetMapping("/addToCart")
+    public String addToCart(@RequestParam("skuId") Long skuId, @RequestParam("count") Integer count, RedirectAttributes ra) {
+        cartService.addToCart(skuId, count);
         ra.addAttribute("skuId", skuId);
-        return "redirect:http://cart.gulimall.com/joinCartSuccessPage.html";
+        return "redirect:http://cart.gulimall.com/addToCartSuccessPage.html";
     }
 
     /**
@@ -71,8 +73,8 @@ public class CartController {
      * @param skuId 商品信息
      * @return {@link String}
      */
-    @GetMapping("/joinCartSuccessPage.html")
-    public String joinCartSuccessPage(@RequestParam("skuId") Long skuId, Model model) {
+    @GetMapping("/addToCartSuccessPage.html")
+    public String addToCartSuccessPage(@RequestParam("skuId") Long skuId, Model model) {
         CartItem item = cartService.fetchCartItem(skuId);
         model.addAttribute("item", item);
         return "success";

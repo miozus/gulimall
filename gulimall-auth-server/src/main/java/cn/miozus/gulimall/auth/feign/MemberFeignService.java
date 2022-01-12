@@ -28,7 +28,7 @@ public interface MemberFeignService {
     R register(@RequestBody UserRegisterVo vo);
 
     /**
-     * 检查登录
+     * 临时登录（默认：临时用户凭证）
      *
      * @param vo 签证官, 前端传来KV，远程传递 JSON
      * @return {@link R}

@@ -1,5 +1,6 @@
 package cn.miozus.gulimall.cart.service;
 
+import cn.miozus.gulimall.cart.vo.Cart;
 import cn.miozus.gulimall.cart.vo.CartItem;
 
 /**
@@ -16,7 +17,7 @@ public interface CartService {
      * @param count 数
      * @return {@link CartItem}
      */
-    CartItem joinCart(Long skuId, Integer count);
+    CartItem addToCart(Long skuId, Integer count);
 
     /**
      * 单品加入购物车的镜像只读页面
@@ -25,4 +26,11 @@ public interface CartService {
      * @return {@link CartItem}
      */
     CartItem fetchCartItem(Long skuId);
+
+    /**
+     * 获取总车项目
+     *
+     * @return {@link Cart}
+     */
+    Cart fetchTotalCartItems();
 }

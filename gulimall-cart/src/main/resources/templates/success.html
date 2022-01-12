@@ -26,7 +26,7 @@
 
     <ul class="hd_wrap_right">
       <li class="forel">
-        <a th:if="${session.loginUser != null}" class="link_login">你好，[[${session.loginUser.nickname}]]</a>
+        <a th:if="${session.loginUser != null}" style="width: 150px;" class="link_login">你好，[[${session.loginUser.nickname}]]</a>
         <a th:unless="${session.loginUser != null}" href="http://auth.gulimall.com/login.html"
            class="link_login">你好，请登录</a>
         &nbsp;<a th:if="${session.loginUser == null}" href="http://auth.gulimall.com/register.html"
@@ -103,7 +103,7 @@
           </div>
         </div>
         <div th:unless="${item != null}" class="mc success-cont">
-          <h2>购物车是空的</h2><a src="http://gulimall.com">开始购物</a>
+          <h2>购物车是空的</h2><a src="http://gulimall.com">去购物</a>
         </div>
       </div>
     </div>

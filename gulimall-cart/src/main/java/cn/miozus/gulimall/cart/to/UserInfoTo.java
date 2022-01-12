@@ -21,5 +21,5 @@ public class UserInfoTo {
     /**
      * 临时用户: Cookie 中是否放入，在 postHandle 中储存，相当于读写锁
      */
-    private boolean isTempUser = false;
+    private boolean hasTempUser = false;
 }

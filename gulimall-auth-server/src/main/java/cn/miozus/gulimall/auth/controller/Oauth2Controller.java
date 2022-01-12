@@ -47,7 +47,7 @@ public class Oauth2Controller {
         MemberRespVo data = r.getData("data", new TypeReference<MemberRespVo>() {
         });
         session.setAttribute(AuthServerConstant.LOGIN_USER, data);
-        log.info("登陆成功 data {}",data);
+        log.info("登陆成功 data {}", data);
         return "redirect:http://gulimall.com";
     }
 

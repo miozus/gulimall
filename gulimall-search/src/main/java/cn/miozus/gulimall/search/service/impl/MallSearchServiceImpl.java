@@ -353,7 +353,7 @@ public class MallSearchServiceImpl implements MallSearchService {
             boolQuery.must(QueryBuilders.matchQuery("skuTitle", param.getKeyword()));
         }
         // 1.2.1
-        if (!Objects.isNull(param.getCatalog3Id())) {
+        if (Objects.nonNull(param.getCatalog3Id())) {
             boolQuery.filter(QueryBuilders.termQuery("catalogId", param.getCatalog3Id()));
         }
         // 1.2.2
@@ -379,7 +379,7 @@ public class MallSearchServiceImpl implements MallSearchService {
             }
         }
         // 1.2.4 库存：0 无，1 有（可设置默认值1, 一般查有库存的; 还有第三种情况 0、1 都查）
-        if (!Objects.isNull(param.getHasStock())) {
+        if (Objects.nonNull(param.getHasStock())) {
             boolQuery.filter(QueryBuilders.termQuery("hasStock", param.getHasStock() == 1));
         }
         // 1.2.5 价格区间，分情况 range ，  skuPrice=1_500/_500/500_
@@ -405,7 +405,7 @@ public class MallSearchServiceImpl implements MallSearchService {
             source.sort(s[0], SortOrder.fromString(s[1]));
         }
         // 3 分页: 从全局索引计算 (第 N 页 - 1 ) * size = from
-        if (!Objects.isNull(param.getPageNum())) {
+        if (Objects.nonNull(param.getPageNum())) {
             source.from((param.getPageNum() - 1) * EsConstant.PRODUCT_PAGESIZE);
             source.size(EsConstant.PRODUCT_PAGESIZE);
         }

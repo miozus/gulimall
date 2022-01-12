@@ -51,7 +51,10 @@ public class GithubApi {
                 String s = EntityUtils.toString(response.getEntity());
                 Map<String, String> map = Splitter.on("&").withKeyValueSeparator("=").split(s);
                 SocialUser user = new SocialUser();
-                user.setAccessToken(map.get("access_token"));
+                String accessToken = map.get("access_token");
+                GithubUserInfo githubUserInfo = fetchUserInfo(accessToken);
+                user.setAccessToken(accessToken);
+                user.setSocialUid(githubUserInfo.getId());
                 return user;
             }
         } catch (Exception e) {

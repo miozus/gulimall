@@ -76,13 +76,17 @@ public class Cart {
     /**
      * 总金额 = 商品总价 - 减免优惠
      *
+     * 勾选：才计算
+     *
      * @return {@link BigDecimal} 超级静态的变量：调用者不会改变，必须找到接收者
      */
     public BigDecimal getTotalAmount() {
         BigDecimal amount = BigDecimal.ZERO;
         if (CollectionUtils.isNotEmpty(items)) {
             for (CartItem item : items) {
-                amount = amount.add(item.getTotalPrice());
+                if (item.getIsChecked()) {
+                    amount = amount.add(item.getTotalPrice());
+                }
             }
         }
         return amount.subtract(reduce);

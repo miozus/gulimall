@@ -18,6 +18,12 @@
         <spring-cloud.version>Hoxton.SR7</spring-cloud.version>
     </properties>
     <dependencies>
+        <!--    消息队列 RabbitMQ    -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+
         <!--    公共依赖包    -->
         <dependency>
             <groupId>cn.miozus.gulimall</groupId>

@@ -5,6 +5,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
+/**
+ * gulimall产品应用
+ *
+ * @author miao
+ * @date 2022/01/13
+ */
 @EnableDiscoveryClient
 @SpringBootApplication
 @EnableFeignClients(basePackages="cn.miozus.gulimall.product.feign")

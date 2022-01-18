@@ -1,19 +1,15 @@
 package cn.miozus.gulimall.member.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import cn.miozus.gulimall.member.entity.MemberReceiveAddressEntity;
-import cn.miozus.gulimall.member.service.MemberReceiveAddressService;
 import cn.miozus.common.utils.PageUtils;
 import cn.miozus.common.utils.R;
+import cn.miozus.gulimall.member.entity.MemberReceiveAddressEntity;
+import cn.miozus.gulimall.member.service.MemberReceiveAddressService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 
 
@@ -29,6 +25,12 @@ import cn.miozus.common.utils.R;
 public class MemberReceiveAddressController {
     @Autowired
     private MemberReceiveAddressService memberReceiveAddressService;
+
+    @GetMapping("/{memberId}/address")
+    public List<MemberReceiveAddressEntity> queryAddressByMemberId(@RequestParam("memberId") Long memberId) {
+        return memberReceiveAddressService.getAddressByMemberId(memberId);
+    }
+
 
     /**
      * 列表

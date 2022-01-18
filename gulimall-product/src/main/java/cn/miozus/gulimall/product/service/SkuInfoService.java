@@ -1,12 +1,12 @@
 package cn.miozus.gulimall.product.service;
 
-        import cn.miozus.common.utils.PageUtils;
-        import cn.miozus.gulimall.product.entity.SkuInfoEntity;
-        import cn.miozus.gulimall.product.vo.SkuItemVo;
-        import com.baomidou.mybatisplus.extension.service.IService;
+import cn.miozus.common.utils.PageUtils;
+import cn.miozus.gulimall.product.entity.SkuInfoEntity;
+import cn.miozus.gulimall.product.vo.SkuItemVo;
+import com.baomidou.mybatisplus.extension.service.IService;
 
-        import java.util.List;
-        import java.util.Map;
+import java.util.List;
+import java.util.Map;
 
 /**
  * sku信息
@@ -26,5 +26,6 @@ public interface SkuInfoService extends IService<SkuInfoEntity> {
     List<SkuInfoEntity> getSkusBySpuId(Long spuId);
 
     SkuItemVo item(Long skuId);
+
 }
 

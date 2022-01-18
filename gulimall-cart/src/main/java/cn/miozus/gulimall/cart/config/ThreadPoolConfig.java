@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit;
  * @date 2021/12/28
  */
 @Configuration
-public class ThreadConfig {
+public class ThreadPoolConfig {
 
     @Value("${gulimall.thread.core-size}")
     private Integer corePoolSize;

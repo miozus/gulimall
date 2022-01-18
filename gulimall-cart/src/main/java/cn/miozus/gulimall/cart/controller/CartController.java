@@ -11,7 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
 
 /**
  * 购物车控制器
@@ -25,6 +28,12 @@ public class CartController {
 
     @Autowired
     CartService cartService;
+
+    @GetMapping("/cartItems")
+    @ResponseBody
+    public List<CartItem> fetchOrderCartItems() {
+        return cartService.fetchOrderCartItems();
+    }
 
     /**
      * 改：是否勾选

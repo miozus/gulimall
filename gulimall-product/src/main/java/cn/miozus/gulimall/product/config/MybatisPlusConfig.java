@@ -7,6 +7,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+/**
+ * mybatis +配置
+ *
+ * @author miao
+ * @date 2022/10/14
+ */
 @Configuration
 @EnableTransactionManagement
 @MapperScan("cn.miozus.gulimall.product.dao")

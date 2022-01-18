@@ -1,5 +1,9 @@
 package cn.miozus.gulimall.cart.vo;
 
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.Setter;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -9,6 +13,7 @@ import java.util.List;
  * @author miao
  * @date 2022/01/04
  */
+@Data
 public class CartItem {
     private Long skuId;
 
@@ -21,64 +26,8 @@ public class CartItem {
     private List<String> skuAttrs;
     private BigDecimal price;
     private Integer count;
+    @Setter(AccessLevel.NONE)
     private BigDecimal totalPrice;
-
-    public Long getSkuId() {
-        return skuId;
-    }
-
-    public void setSkuId(Long skuId) {
-        this.skuId = skuId;
-    }
-
-    public Boolean getIsChecked() {
-        return isChecked;
-    }
-
-    public void setIsChecked(Boolean isChecked) {
-        this.isChecked = isChecked;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public List<String> getSkuAttrs() {
-        return skuAttrs;
-    }
-
-    public void setSkuAttrs(List<String> skuAttrs) {
-        this.skuAttrs = skuAttrs;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-    public Integer getCount() {
-        return count;
-    }
-
-    public void setCount(Integer count) {
-        this.count = count;
-    }
-
     /**
      * 得到总价格
      *

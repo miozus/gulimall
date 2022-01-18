@@ -1,5 +1,6 @@
 package cn.miozus.gulimall.order.service;
 
+import cn.miozus.gulimall.order.vo.OrderConfirmVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.miozus.common.utils.PageUtils;
 import cn.miozus.gulimall.order.entity.OrderEntity;
@@ -16,5 +17,12 @@ import java.util.Map;
 public interface OrderService extends IService<OrderEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    /**
+     * 结算页渲染数据
+     *
+     * @return {@link OrderConfirmVo}
+     */
+    OrderConfirmVo confirmOrder();
 }
 

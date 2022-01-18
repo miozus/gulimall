@@ -3,6 +3,7 @@ package cn.miozus.gulimall.product.config;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -18,11 +19,20 @@ import java.io.IOException;
 @Configuration
 public class RedissonConfig {
 
+    @Value("${spring.redis.host}")
+    private String host;
+    @Value("${spring.redis.password}")
+    private String password;
+    @Value("${spring.redis.port}")
+    private String port;
+
     @Bean(destroyMethod="shutdown")
     public RedissonClient redisson() throws IOException {
         // 创建配置
         Config config = new Config();
-        config.useSingleServer().setAddress("redis://39.108.228.2:6379").setPassword("Redis*78");
+        String url = "redis://" + host + ":" + port;
+
+        config.useSingleServer().setAddress(url).setPassword(password);
 
         // 创建实例
         return Redisson.create(config);

@@ -183,6 +183,31 @@ public class CartServiceImpl implements CartService {
     }
 
     /**
+     * 获取当前购物车商品
+     *
+     * 未登录：（通过URL访问），不予查询
+     * 登录：商品服务查询最新价格
+     *
+     * @return {@link List}<{@link CartItem}>
+     */
+    @Override
+    public List<CartItem> fetchOrderCartItems() {
+        UserInfoTo userInfoTo = CartInterceptor.threadLocal.get();
+        Long userId = userInfoTo.getUserId();
+        if (Objects.isNull(userId)) {
+            return Collections.emptyList();
+        }
+        String oauthCartKey = CART_PREFIX + userId;
+        List<CartItem> cartItems = collectRedisCartItems(oauthCartKey);
+        return cartItems.stream().map(item -> {
+            Long skuId = item.getSkuId();
+            BigDecimal price = productFeignService.querySkuPrice(skuId);
+            item.setPrice(price);
+            return item;
+        }).collect(Collectors.toList());
+    }
+
+    /**
      * 合并两个购物车单品：离线+在线（同类合并和更新数量）
      * 离线购物车 =
      * 重复：更新数量

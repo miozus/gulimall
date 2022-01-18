@@ -3,6 +3,8 @@ package cn.miozus.gulimall.cart.service;
 import cn.miozus.gulimall.cart.vo.Cart;
 import cn.miozus.gulimall.cart.vo.CartItem;
 
+import java.util.List;
+
 /**
  * 购物车服务
  *
@@ -56,4 +58,11 @@ public interface CartService {
      * @param skuId sku id
      */
     void deleteRedisItem(Long skuId);
+
+    /**
+     * 获取当前购物车条目（结算页）
+     *
+     * @return {@link List}<{@link CartItem}>
+     */
+    List<CartItem> fetchOrderCartItems();
 }

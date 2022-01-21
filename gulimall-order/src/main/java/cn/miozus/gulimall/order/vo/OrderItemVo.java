@@ -21,7 +21,7 @@ public class OrderItemVo {
     private Integer count;
     private BigDecimal totalPrice;
 
-    private boolean hasStock;
+    /** 查表 */
     private BigDecimal weight;
 
 

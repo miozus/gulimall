@@ -1,9 +1,11 @@
 package cn.miozus.gulimall.ware.service;
 
+import cn.miozus.gulimall.ware.vo.FareVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.miozus.common.utils.PageUtils;
 import cn.miozus.gulimall.ware.entity.WareInfoEntity;
 
+import java.math.BigDecimal;
 import java.util.Map;
 
 /**
@@ -18,5 +20,13 @@ public interface WareInfoService extends IService<WareInfoEntity> {
     PageUtils queryPage(Map<String, Object> params);
 
     PageUtils queryWareInfoPage(Map<String, Object> params);
+
+    /**
+     * 查询运费
+     *
+     * @param addrId addr id
+     * @return {@link BigDecimal}
+     */
+    FareVo queryFare(Long addrId);
 }
 

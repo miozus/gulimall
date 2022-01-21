@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 订单确认签证官
@@ -23,6 +24,7 @@ public class OrderConfirmVo {
     private List<OrderItemVo> items;
     /** 发票 */
 
+    Map<Long, Boolean> stocks;
     /** 积分 */
     private Integer integration;
     /** 商品数量 */
@@ -37,6 +39,10 @@ public class OrderConfirmVo {
     @Setter(AccessLevel.NONE)
     @Getter(AccessLevel.NONE)
     private BigDecimal payPrice;
+
+
+    /** 运费 */
+    private BigDecimal fare;
     /** 防重令牌 */
     private String orderToken;
 
@@ -82,7 +88,7 @@ public class OrderConfirmVo {
      * @return {@link BigDecimal}
      */
     public BigDecimal getPayPrice() {
-        return this.total;
+        return getTotal();
     }
 
 }

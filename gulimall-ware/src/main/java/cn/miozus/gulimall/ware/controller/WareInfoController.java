@@ -1,19 +1,15 @@
 package cn.miozus.gulimall.ware.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import cn.miozus.gulimall.ware.entity.WareInfoEntity;
-import cn.miozus.gulimall.ware.service.WareInfoService;
 import cn.miozus.common.utils.PageUtils;
 import cn.miozus.common.utils.R;
+import cn.miozus.gulimall.ware.entity.WareInfoEntity;
+import cn.miozus.gulimall.ware.service.WareInfoService;
+import cn.miozus.gulimall.ware.vo.FareVo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
+import java.util.Map;
 
 
 
@@ -29,6 +25,12 @@ import cn.miozus.common.utils.R;
 public class WareInfoController {
     @Autowired
     private WareInfoService wareInfoService;
+
+    @GetMapping("/fare")
+    public R fetchFare(@RequestParam("addrId") Long addrId) {
+        FareVo fareVo = wareInfoService.queryFare(addrId);
+        return R.ok().put("fareVo", fareVo);
+    }
 
     /**
      * 列表

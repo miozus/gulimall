@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 /**
- * 假装成员服务
+ * 调用成员服务
  *
  * @author miao
  * @date 2022/01/15
@@ -17,5 +17,6 @@ import java.util.List;
 public interface MemberFeignService {
 
     @GetMapping("/member/memberreceiveaddress/{memberId}/address")
-    public List<MemberReceiveAddressVo> queryAddressByMemberId(@RequestParam("memberId") Long memberId) ;
+    public List<MemberReceiveAddressVo> queryAddressByMemberId(@RequestParam("memberId") Long memberId);
+
 }

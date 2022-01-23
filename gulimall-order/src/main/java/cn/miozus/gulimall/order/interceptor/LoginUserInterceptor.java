@@ -24,7 +24,7 @@ public class LoginUserInterceptor implements HandlerInterceptor {
     /**
      * 让其他服务共享
      */
-    public static ThreadLocal<MemberRespVo> threadLocal = new ThreadLocal<>();
+    public static ThreadLocal<MemberRespVo> loginUserThreadLocal = new ThreadLocal<>();
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -40,7 +40,7 @@ public class LoginUserInterceptor implements HandlerInterceptor {
             response.sendRedirect("http://auth.gulimall.com/login.html");
             return false;
         }
-        threadLocal.set(loginUser);
+        LoginUserInterceptor.loginUserThreadLocal.set(loginUser);
         return true;
 
     }

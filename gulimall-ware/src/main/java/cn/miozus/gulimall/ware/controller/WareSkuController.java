@@ -1,11 +1,17 @@
 package cn.miozus.gulimall.ware.controller;
 
+import cn.miozus.common.exception.BizCodeEnum;
 import cn.miozus.common.utils.PageUtils;
 import cn.miozus.common.utils.R;
 import cn.miozus.gulimall.ware.entity.WareSkuEntity;
+import cn.miozus.common.exception.NoStockException;
 import cn.miozus.gulimall.ware.service.WareSkuService;
 import cn.miozus.gulimall.ware.vo.SkuHasStockVo;
+import cn.miozus.gulimall.ware.vo.WareSkuLockVo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -23,10 +29,28 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("ware/waresku")
+@Slf4j
 public class WareSkuController {
     @Autowired
     private WareSkuService wareSkuService;
 
+    @PostMapping("/lock")
+    @Transactional
+    public R lockOrderStock(@RequestBody WareSkuLockVo wareSkuLockVo) {
+
+        try {
+            boolean lock = wareSkuService.lockOrderStock(wareSkuLockVo);
+            log.debug("📦 lock {} ", lock);
+            return R.ok().setData(lock);
+        } catch (NoStockException e) {
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+            e.printStackTrace();
+            return R.error(
+                    BizCodeEnum.NO_STOCK_EXCEPTION.getCode(),
+                    BizCodeEnum.NO_STOCK_EXCEPTION.getMsg()
+            );
+        }
+    }
 
     @PostMapping("/hasStock")
     public R querySkuHasStock(@RequestBody List<Long> skuIds){

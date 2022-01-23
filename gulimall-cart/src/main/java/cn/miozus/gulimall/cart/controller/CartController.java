@@ -84,7 +84,7 @@ public class CartController {
         UserInfoTo userInfoTo = CartInterceptor.threadLocal.get();
         log.info("userInfoTo {} ", userInfoTo);
         Cart cart = cartService.fetchTotalCartItems();
-        log.info("cart {} ", cart);
+        log.debug("cart {} ", cart);
         model.addAttribute("cart", cart);
         return "cartList";
     }

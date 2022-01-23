@@ -3,7 +3,7 @@ package cn.miozus.gulimall.ware.vo;
 import lombok.Data;
 
 /**
- * sku有股票签证官
+ * sku商品有库存
  *
  * @author miao
  * @date 2021/10/01

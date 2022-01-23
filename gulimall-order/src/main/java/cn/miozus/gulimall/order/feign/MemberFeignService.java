@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 /**
- * 调用成员服务
+ * 调用会员服务
  *
  * @author miao
  * @date 2022/01/15

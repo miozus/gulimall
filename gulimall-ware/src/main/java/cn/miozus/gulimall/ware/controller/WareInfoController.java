@@ -27,7 +27,7 @@ public class WareInfoController {
     private WareInfoService wareInfoService;
 
     @GetMapping("/fare")
-    public R fetchFare(@RequestParam("addrId") Long addrId) {
+    public R queryFare(@RequestParam("addrId") Long addrId) {
         FareVo fareVo = wareInfoService.queryFare(addrId);
         return R.ok().put("fareVo", fareVo);
     }

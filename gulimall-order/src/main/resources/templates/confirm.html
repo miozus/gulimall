@@ -346,7 +346,7 @@
   <img src="/static/order/confirm/img/08.png" class="img2"/>
 </div>
 <!--主体部分-->
-<p class="p1">填写并核对订单信息</p>
+<p class="p1">填写并核对订单信息 <span style="color:red;" th:if="${session.msg != null}">[[${session.msg}]]</span></p>
 <div class="section">
   <!--收货人信息-->
   <div class="top-2">
@@ -501,7 +501,12 @@
     </p>
     <p class="yfze_b">寄送至：<b id="detailAddr"></b> 收货人：<b id="receiver"></b></p>
   </div>
-  <button class="tijiao">提交订单</button>
+  <form action="http://order.gulimall.com/submit" method="post">
+    <input type="hidden" name="addrId" id="addrIdInput">
+    <input type="hidden" name="payPrice" id="payPriceInput">
+    <input type="hidden" name="orderToken" id="orderTokenInput" th:value="${orderConfirmVo.orderToken}">
+    <button class="tijiao" type="submit">提交订单</button>
+  </form>
 </div>
 </div>
 
@@ -744,28 +749,31 @@
         $('.addr-item p[addrStatus="1"]').css({'border': '2px solid red'});
     }
 
+    // 获取点击元素焦点，高亮并刷新运费
     $('.addr-item p').click(function () {
         $('.addr-item p').attr('attrStatus', '0');
         $(this).attr('attrStatus', '1');
         highlight();
-        // 获取点击元素焦点
         var addrId = $(this).attr('addrId');
-
-        // 发送Ajax 请求获取运费信息
         fetchFare(addrId);
     })
 
 
+    // 发送Ajax 请求获取运费信息，刷新表单数据
     function fetchFare(addrId) {
         $.get("http://gulimall.com/api/ware/wareinfo/fare?addrId=" + addrId, function (data) {
             if (data.msg === "success") {
                 var fare = data.fareVo.fare;
                 var addr = data.fareVo.address;
                 var total = [[${orderConfirmVo.total}]];
-                var payPrice = total * 1 - fare * 1;
+                var payPrice = total * 1 + fare * 1;
                 $("#payPrice").text(payPrice.toFixed(2));
+                $("#farePrice").text(fare.toFixed(2));
                 $("#detailAddr").text(addr.province + " " + addr.detailAddress);
                 $("#receiver").text(addr.name);
+                // 刷新表单数据
+                $("#addrIdInput").val(addrId);
+                $("#payPriceInput").val(payPrice);
             }
         })
     }

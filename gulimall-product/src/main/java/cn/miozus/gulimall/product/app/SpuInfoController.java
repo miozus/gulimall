@@ -25,6 +25,20 @@ public class SpuInfoController {
     @Autowired
     private SpuInfoService spuInfoService;
 
+
+    /**
+     * 根据skuId查询spu信息
+     * 用于购物车封装
+     *
+     * @param skuId sku id
+     * @return {@link R}
+     */
+    @PostMapping("/bySkuId/{skuId}")
+    public R querySpuInfoBySkuId(@PathVariable("skuId") Long skuId) {
+        SpuInfoEntity spuInfo = spuInfoService.querySpuInfoBySkuId(skuId);
+        return R.ok().put("spuInfo", spuInfo);
+    }
+
     /**
      * 列表
      */

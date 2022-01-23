@@ -10,6 +10,7 @@ package cn.miozus.common.exception;
  * 13: 购物车
  * 14: 物流
  * 15: 用户
+ * 21: 库存
  *
  * @author miao
  * @date 2021/10/02
@@ -21,7 +22,8 @@ public enum BizCodeEnum {
     PUBLISH_EXCEPTION(11000, "商品上架异常"),
     PHONE_ALREADY_EXISTS_EXCEPTION(15001,"手机号已存在"),
     USERNAME_ALREADY_EXISTS_EXCEPTION(15002,"用户名已存在"),
-    USERNAME_OR_PASSWORD_INVALID_EXCEPTION(15003,"用户名或密码错误");
+    USERNAME_OR_PASSWORD_INVALID_EXCEPTION(15003,"用户名或密码错误"),
+    NO_STOCK_EXCEPTION(21000,"没有库存");
 
     /**
      * 代码

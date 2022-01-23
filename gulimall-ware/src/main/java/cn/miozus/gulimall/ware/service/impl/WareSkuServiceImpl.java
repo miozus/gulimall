@@ -5,15 +5,18 @@ import cn.miozus.common.utils.Query;
 import cn.miozus.common.utils.R;
 import cn.miozus.gulimall.ware.dao.WareSkuDao;
 import cn.miozus.gulimall.ware.entity.WareSkuEntity;
+import cn.miozus.common.exception.NoStockException;
 import cn.miozus.gulimall.ware.feign.ProductFeignService;
 import cn.miozus.gulimall.ware.service.WareSkuService;
-import cn.miozus.gulimall.ware.vo.SkuHasStockVo;
+import cn.miozus.gulimall.ware.vo.*;
+import com.alibaba.nacos.common.utils.CollectionUtils;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -106,6 +109,57 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
                     return vo;
                 }
         ).collect(Collectors.toList());
+    }
+
+    /**
+     * 为某个订单锁定库存
+     * 收集数据 + 分析数据
+     * 简单：每个成功，才代表所有成功; 只要有一个失败，就提前返回 False
+     * Transactional: 默认运行时异常回滚，所以省略value，在Controller层回滚
+     *
+     * @param wareSkuLockVo 锁定库存传输必备信息
+     * @return {@link List}<{@link LockStockResult}>
+     */
+    @Override
+    @Transactional(rollbackFor=NoStockException.class)
+    public boolean lockOrderStock(WareSkuLockVo wareSkuLockVo) throws NoStockException {
+        boolean skuStocked = false;
+        List<SkuWareHasStock> skuWareHasStocks = queryWareIdsBySkuId(wareSkuLockVo);
+
+        for (SkuWareHasStock stock : skuWareHasStocks) {
+            Long skuId = stock.getSkuId();
+            List<Long> wareIds = stock.getWareIds();
+            if (CollectionUtils.isEmpty(wareIds)) {
+                throw new NoStockException(skuId);
+            }
+            Integer num = stock.getNum();
+            for (Long wareId : wareIds) {
+                Long update = wareSkuDao.updateStockLock(skuId, wareId, num);
+                if (update == 1) {
+                    skuStocked = true;
+                    break;
+                }
+                // 仓库锁失败，尝试下一个仓库
+            }
+            if (!skuStocked) {
+                throw new NoStockException(skuId);
+            }
+
+        }
+        return true;
+    }
+
+    private List<SkuWareHasStock> queryWareIdsBySkuId(WareSkuLockVo wareSkuLockVo) {
+        List<OrderItemVo> orderItems = wareSkuLockVo.getOrderItems();
+        return orderItems.stream().map(item -> {
+            SkuWareHasStock skuWareHasStock = new SkuWareHasStock();
+            Long skuId = item.getSkuId();
+            List<Long> wareIds = wareSkuDao.queryWareIdsBySkuId(skuId);
+            skuWareHasStock.setSkuId(skuId);
+            skuWareHasStock.setWareIds(wareIds);
+            skuWareHasStock.setNum(item.getCount());
+            return skuWareHasStock;
+        }).collect(Collectors.toList());
     }
 
 }

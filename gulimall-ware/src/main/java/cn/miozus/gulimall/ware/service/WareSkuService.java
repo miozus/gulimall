@@ -1,6 +1,9 @@
 package cn.miozus.gulimall.ware.service;
 
+import cn.miozus.common.exception.NoStockException;
+import cn.miozus.gulimall.ware.vo.LockStockResult;
 import cn.miozus.gulimall.ware.vo.SkuHasStockVo;
+import cn.miozus.gulimall.ware.vo.WareSkuLockVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.miozus.common.utils.PageUtils;
 import cn.miozus.gulimall.ware.entity.WareSkuEntity;
@@ -24,5 +27,13 @@ public interface WareSkuService extends IService<WareSkuEntity> {
     void addStock(Long skuId, Long wareId, Integer skuNum);
 
     List<SkuHasStockVo> querySkuHasStock(List<Long> skuIds);
+
+    /**
+     * 锁定库存，并回执每个商品锁定结果
+     *
+     * @param wareSkuLockVo 库存 sku 锁定数据
+     * @return {@link List}<{@link LockStockResult}>
+     */
+    boolean lockOrderStock(WareSkuLockVo wareSkuLockVo) throws NoStockException;
 }
 

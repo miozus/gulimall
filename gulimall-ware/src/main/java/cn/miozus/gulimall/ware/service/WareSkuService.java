@@ -1,12 +1,12 @@
 package cn.miozus.gulimall.ware.service;
 
 import cn.miozus.common.exception.NoStockException;
-import cn.miozus.gulimall.ware.vo.LockStockResult;
+import cn.miozus.common.to.stock.StockLockedUndoLogTo;
+import cn.miozus.common.utils.PageUtils;
+import cn.miozus.gulimall.ware.entity.WareSkuEntity;
 import cn.miozus.gulimall.ware.vo.SkuHasStockVo;
 import cn.miozus.gulimall.ware.vo.WareSkuLockVo;
 import com.baomidou.mybatisplus.extension.service.IService;
-import cn.miozus.common.utils.PageUtils;
-import cn.miozus.gulimall.ware.entity.WareSkuEntity;
 
 import java.util.List;
 import java.util.Map;
@@ -32,8 +32,17 @@ public interface WareSkuService extends IService<WareSkuEntity> {
      * 锁定库存，并回执每个商品锁定结果
      *
      * @param wareSkuLockVo 库存 sku 锁定数据
-     * @return {@link List}<{@link LockStockResult}>
+     * @return boolean
+     * @throws NoStockException 库存不足异常
      */
     boolean lockOrderStock(WareSkuLockVo wareSkuLockVo) throws NoStockException;
+
+    /**
+     * 解锁库存：只有正常关闭的订单，会解锁
+     *
+     * @param to 传输数据
+     * @throws RuntimeException 远程调用失败异常
+     */
+    void unlockOrderStock(StockLockedUndoLogTo to) throws RuntimeException;
 }
 

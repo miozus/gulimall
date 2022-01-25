@@ -42,9 +42,19 @@ public class OrderController {
      */
     @RequestMapping("/info/{id}")
     public R info(@PathVariable("id") Long id){
-		OrderEntity order = orderService.getById(id);
+        OrderEntity order = orderService.getById(id);
 
         return R.ok().put("order", order);
+    }
+
+    /**
+     * 信息
+     */
+    @GetMapping("/SN/{sn}")
+    public R queryOrderStatus(@PathVariable("sn") String orderSn){
+		OrderEntity order = orderService.queryOrderBySn(orderSn);
+
+        return R.ok().setData(order);
     }
 
     /**

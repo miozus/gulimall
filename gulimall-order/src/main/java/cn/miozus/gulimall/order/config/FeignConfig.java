@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * Feign 反洗钱拦截器
  *
- * 讲生产者携带的Cookie通过上下文保留器，继续传递给消费者
+ * 保留请求头：讲生产者携带的Cookie通过上下文保留器，继续传递给消费者
  *
  * @author miao
  * @date 2022/01/15

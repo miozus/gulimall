@@ -4,6 +4,7 @@ import cn.miozus.common.constant.AuthServerConstant;
 import cn.miozus.common.vo.MemberRespVo;
 import com.alibaba.nacos.common.utils.Objects;
 import lombok.SneakyThrows;
+import org.springframework.util.AntPathMatcher;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,11 +29,32 @@ public class LoginUserInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        if (callBetweenFeignService(request)) {
+            return true;
+        }
         return releaseLoginUserOnly(request, response);
     }
 
+    private boolean callBetweenFeignService(HttpServletRequest request) {
+        String uri = request.getRequestURI();
+        boolean match = new AntPathMatcher().match("/order/order/SN/**", uri);
+        if (match) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 只释放登录用户
+     * 例外：路径匹配，则放行，用于微服务之间调用
+     *
+     * @param request  请求
+     * @param response 响应
+     * @return boolean
+     */
     @SneakyThrows
     private boolean releaseLoginUserOnly(HttpServletRequest request, HttpServletResponse response) {
+
         HttpSession session = request.getSession();
         MemberRespVo loginUser = (MemberRespVo) session.getAttribute(AuthServerConstant.LOGIN_USER);
         if (Objects.isNull(loginUser)) {

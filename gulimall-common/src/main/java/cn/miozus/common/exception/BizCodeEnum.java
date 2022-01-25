@@ -16,6 +16,10 @@ package cn.miozus.common.exception;
  * @date 2021/10/02
  */
 public enum BizCodeEnum {
+    /**
+     *  微服务通用错误码
+     *
+     */
     UNKNOWN_EXCEPTION(10000, "系统未知异常"),
     VALID_EXCEPTION(10001, "参数校验失败"),
     SMS_CODE_EXCEPTION(10002, "短信验证码获取频率太高，稍后再试"),
@@ -30,7 +34,7 @@ public enum BizCodeEnum {
      */
     private final int code;
     /**
-     * 味精
+     * 注释
      */
     private final String msg;
 

@@ -1,20 +1,17 @@
 package cn.miozus.gulimall.ware.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import cn.miozus.gulimall.ware.entity.WareOrderTaskEntity;
-import cn.miozus.gulimall.ware.service.WareOrderTaskService;
 import cn.miozus.common.utils.PageUtils;
 import cn.miozus.common.utils.R;
+import cn.miozus.gulimall.ware.entity.WareOrderTaskEntity;
+import cn.miozus.gulimall.ware.service.WareOrderTaskService;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
+import java.util.Date;
+import java.util.Map;
+import java.util.UUID;
 
 
 /**
@@ -29,6 +26,20 @@ import cn.miozus.common.utils.R;
 public class WareOrderTaskController {
     @Autowired
     private WareOrderTaskService wareOrderTaskService;
+    @Autowired
+    RabbitTemplate rabbitTemplate;
+
+    @GetMapping("/mq/testDelayQueue")
+    @ResponseBody
+    public String testDelayQueue() {
+        WareOrderTaskEntity entity = new WareOrderTaskEntity();
+        String uuid = UUID.randomUUID().toString();
+        entity.setOrderSn(uuid);
+        entity.setCreateTime(new Date());
+
+        rabbitTemplate.convertAndSend("order-event-exchange","order.create.order",entity);
+        return "ok";
+    }
 
     /**
      * 列表

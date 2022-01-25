@@ -6,7 +6,7 @@ import cn.miozus.common.utils.PageUtils;
 import cn.miozus.common.utils.Query;
 import cn.miozus.common.utils.R;
 import cn.miozus.common.vo.MemberRespVo;
-import cn.miozus.gulimall.order.constant.OrderConstant;
+import cn.miozus.common.constant.OrderConstant;
 import cn.miozus.gulimall.order.dao.OrderDao;
 import cn.miozus.gulimall.order.entity.OrderEntity;
 import cn.miozus.gulimall.order.entity.OrderItemEntity;
@@ -128,7 +128,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
      * 创建订单
      * 验价：2 失败：零头误差大于等于 0.01
      * 保存订单
-     * 锁库存: 3 远程调用失败抛出异常
+     * 远程锁库存: 3 调用失败抛出异常
      *
      * @param orderSubmitVo 订单提交签证官
      * @return {@link OrderSubmitRespVo}
@@ -196,7 +196,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
             return itemVo;
         }).collect(Collectors.toList());
         lockVo.setOrderItems(itemVos);
-        log.info("lockVo {} ", lockVo);
+        log.debug("lockVo {} ", lockVo);
         return wareFeignService.lockOrderStock(lockVo);
     }
 
@@ -236,6 +236,17 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         to.setOrder(order);
         to.setOrderItems(orderItems);
         return to;
+    }
+
+    /**
+     * 查询订单状态
+     *
+     * @param orderSn 订单sn
+     * @return {@link OrderEntity}
+     */
+    @Override
+    public OrderEntity queryOrderBySn(String orderSn) {
+        return this.getOne(new QueryWrapper<OrderEntity>().eq("order_sn", orderSn));
     }
 
     /**
@@ -409,6 +420,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         order.setReceiverName(addr.getName());
         order.setReceiverPhone(addr.getPhone());
 
+        order.setCreateTime(new Date());
         order.setStatus(OrderStatusEnum.CREATE_NEW.getCode());
         order.setConfirmStatus(0);
         order.setAutoConfirmDay(7);

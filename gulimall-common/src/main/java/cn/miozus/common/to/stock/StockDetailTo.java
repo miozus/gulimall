@@ -1,8 +1,7 @@
-package cn.miozus.gulimall.ware.entity;
+package cn.miozus.common.to.stock;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.Builder;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -15,9 +14,8 @@ import java.io.Serializable;
  * @date 2021-08-09 14:20:54
  */
 @Data
-@Builder
 @TableName("wms_ware_order_task_detail")
-public class WareOrderTaskDetailEntity implements Serializable {
+public class StockDetailTo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**

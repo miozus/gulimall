@@ -1,18 +1,21 @@
 spring:
-    application:
-        name: gulimall-ware
-    cloud:
-        nacos:
-            config:
-                extension-configs:
-                    -   data-id: datasource.yml
-                        group: pro
-                        refresh: true
-                    -   data-id: mybatis.yml
-                        group: pro
-                        refresh: true
-                    -   data-id: other.yml
-                        group: pro
-                        refresh: true
-                namespace: 66ba619e-cf35-40d5-b78f-72260f7de318
-                server-addr: 39.108.228.2:8848
+  application:
+    name: gulimall-ware
+  cloud:
+    nacos:
+      config:
+        extension-configs:
+          - data-id: datasource.yml
+            group: pro
+            refresh: true
+          - data-id: mybatis.yml
+            group: pro
+            refresh: true
+          - data-id: other.yml
+            group: pro
+            refresh: true
+          - data-id: rabbitmq.yml
+            group: pro
+            refresh: true
+        namespace: 66ba619e-cf35-40d5-b78f-72260f7de318
+        server-addr: 39.108.228.2:8848

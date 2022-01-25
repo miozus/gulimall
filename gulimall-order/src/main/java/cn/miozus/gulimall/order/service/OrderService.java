@@ -43,5 +43,13 @@ public interface OrderService extends IService<OrderEntity> {
      * @return {@link OrderCreateTo}
      */
     OrderCreateTo createOrder();
+
+    /**
+     * 查询订单状态
+     *
+     * @param orderSn 订单编号
+     * @return {@link OrderEntity}
+     */
+    OrderEntity queryOrderBySn(String orderSn);
 }
 

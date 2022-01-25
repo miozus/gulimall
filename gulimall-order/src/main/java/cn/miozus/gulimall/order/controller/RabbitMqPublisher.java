@@ -1,5 +1,6 @@
 package cn.miozus.gulimall.order.controller;
 
+import cn.miozus.gulimall.order.entity.OrderEntity;
 import cn.miozus.gulimall.order.entity.OrderReturnReasonEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.DirectExchange;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Nullable;
+import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -42,11 +44,27 @@ public class RabbitMqPublisher {
      * 2️⃣ 线程安全：  [接收-处理] 是绑定操作，只有消费完这个，才能接收下一个
      * 测试条件同1️⃣，增加打印结果处理前后，间隔 3 秒，结果呈现 BBAADD 格式
      */
-    @GetMapping("/sendMsg")
+    @GetMapping("/mq/sendMsg")
     public String testRabbitTemplateSendObjectManyTimes(@RequestParam(value = "num", defaultValue = "5") Integer num) {
         for (int i = 0; i < num; i++) {
             testRabbitTemplateSendObject(i);
         }
+        return "ok";
+    }
+
+    /**
+     * 测试延迟队列
+     * 模拟下单成功
+     * @return {@link String}
+     */
+    @GetMapping("/mq/testDelayQueue")
+    public String testDelayQueue() {
+        OrderEntity entity = new OrderEntity();
+        String uuid = UUID.randomUUID().toString();
+        entity.setOrderSn(uuid);
+        entity.setModifyTime(new Date());
+
+        rabbitTemplate.convertAndSend("order-event-exchange","order.create.order",entity);
         return "ok";
     }
 

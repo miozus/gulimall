@@ -1,15 +1,16 @@
 package cn.miozus.gulimall.ware.service.impl;
 
-import cn.miozus.common.constant.OrderConstant;
 import cn.miozus.common.constant.WareConstant;
+import cn.miozus.common.enume.OrderStatusEnum;
 import cn.miozus.common.exception.FeignDeliverException;
 import cn.miozus.common.exception.NoStockException;
-import cn.miozus.common.to.stock.StockDetailTo;
-import cn.miozus.common.to.stock.StockLockedUndoLogTo;
+import cn.miozus.common.to.mq.OrderTo;
+import cn.miozus.common.to.mq.StockDetailTo;
+import cn.miozus.common.to.mq.StockLockedUndoLogTo;
 import cn.miozus.common.utils.PageUtils;
 import cn.miozus.common.utils.Query;
 import cn.miozus.common.utils.R;
-import cn.miozus.gulimall.ware.config.RabbitMqConfig;
+import cn.miozus.gulimall.ware.config.StockRabbitMqConfig;
 import cn.miozus.gulimall.ware.dao.WareSkuDao;
 import cn.miozus.gulimall.ware.entity.WareOrderTaskDetailEntity;
 import cn.miozus.gulimall.ware.entity.WareOrderTaskEntity;
@@ -164,16 +165,16 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
      *              │ │  exists   0  success              │
      *              ▼ ▼                                   │
      *            unlock──────────────────────────────────┘
-     *
+     * <p>
      * 先查快照表记录
-     * 无：无需解锁
-     * 有：状态未锁定，无需解锁
-     *
+     * * 无：无需解锁
+     * * 有：状态未锁定，无需解锁
+     * <p>
      * 再查询全局订单记录
-     * *
      * * 有：成功/待支付，无需解锁
      * * 无：（自动到时）关闭/方法异常，需要回滚，并签收消息
      * * 其他：网络调用故障，需要回滚解锁，拒收消息
+     *
      * @param to 来
      */
     @Override
@@ -182,7 +183,7 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
         StockDetailTo snapshot = to.getStockDetailSnapshot();
         Long snapshotDetailId = snapshot.getId();
         WareOrderTaskDetailEntity detail = wareOrderTaskDetailService.getById(snapshotDetailId);
-        if (Objects.isNull(detail) || detail.getLockStatus() != WareConstant.StockLockedStatusEnum.LOCKED.getCode()) {
+        if (Objects.isNull(detail) || detail.getLockStatus() != WareConstant.LockedStatusEnum.LOCKED.getCode()) {
             return;
         }
         WareOrderTaskEntity stockTask = wareOrderTaskService.getById(taskId);
@@ -193,16 +194,41 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
         }
         OrderVo data = r.getData(new TypeReference<OrderVo>() {
         });
-        if (Objects.isNull(data) || data.getStatus() == OrderConstant.StatusEnum.CLOSED.code) {
+        if (Objects.isNull(data) || data.getStatus() == OrderStatusEnum.CANCELED.getCode()) {
             unlockOrderStockBySql(detail, snapshotDetailId);
         }
+    }
+
+    /**
+     * 解锁库存：关闭订单后，排除时差影响的二次确认
+     *
+     * @param to 来
+     */
+    @Override
+    @Transactional
+    public void unlockOrderStock(OrderTo to) {
+        String orderSn = to.getOrderSn();
+        WareOrderTaskEntity stockTask = wareOrderTaskService.getOne(
+                new QueryWrapper<WareOrderTaskEntity>().eq("order_sn", orderSn)
+        );
+        Long taskId = stockTask.getId();
+        List<WareOrderTaskDetailEntity> details = wareOrderTaskDetailService.list(
+                new QueryWrapper<WareOrderTaskDetailEntity>()
+                        .eq("task_id", taskId)
+                        .eq("lock_status", WareConstant.LockedStatusEnum.LOCKED.getCode())
+        );
+        for (WareOrderTaskDetailEntity detail : details) {
+            unlockOrderStockBySql(detail, taskId);
+        }
+
+
     }
 
     private void unlockOrderStockBySql(WareOrderTaskDetailEntity detail, Long detailId) {
         wareSkuDao.updateStockBackToLastStatus(detail.getSkuId(), detail.getWareId(), detail.getSkuNum());
         WareOrderTaskDetailEntity entity = WareOrderTaskDetailEntity.builder()
                 .id(detailId)
-                .lockStatus(WareConstant.StockLockedStatusEnum.UNLOCKED.getCode()).build();
+                .lockStatus(WareConstant.LockedStatusEnum.UNLOCKED.getCode()).build();
         wareOrderTaskDetailService.updateById(entity);
     }
 
@@ -244,7 +270,6 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
                     break;
                 }
                 // 仓库锁失败，尝试下一个仓库
-                int i = 10 /0;
             }
             // 全局失败则回滚
             if (!stockLocked) {
@@ -254,6 +279,7 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
         }
         return true;
     }
+
     private WareOrderTaskDetailEntity saveStockLockedSnapshot(WareOrderTaskEntity task, Long skuId, String skuName, Integer num, Long wareId) {
         WareOrderTaskDetailEntity stockDetail = WareOrderTaskDetailEntity.builder()
                 .skuId(skuId)
@@ -280,8 +306,8 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
         StockDetailTo stockDetailTo = new StockDetailTo();
         BeanUtils.copyProperties(stockDetail, stockDetailTo);
         undoLogTo.setStockDetailSnapshot(stockDetailTo);
-        rabbitTemplate.convertAndSend(RabbitMqConfig.STOCK_EVENT_EXCHANGE,
-                RabbitMqConfig.STOCK_DELAY_QUEUE_ROUTING_KEY,
+        rabbitTemplate.convertAndSend(StockRabbitMqConfig.EXCHANGE,
+                StockRabbitMqConfig.DELAY_QUEUE_ROUTING_KEY,
                 undoLogTo);
     }
 

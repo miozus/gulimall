@@ -4,7 +4,6 @@ import cn.miozus.gulimall.order.entity.OrderEntity;
 import lombok.Data;
 
 /**
- * 订单提交resp签证官
  * 订单提交后接收到的实体类
  *
  * @author miao

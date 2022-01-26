@@ -51,5 +51,12 @@ public interface OrderService extends IService<OrderEntity> {
      * @return {@link OrderEntity}
      */
     OrderEntity queryOrderBySn(String orderSn);
+
+    /**
+     * 关闭订单
+     *
+     * @param to 一个订单
+     */
+    void closeOrder(OrderEntity to);
 }
 

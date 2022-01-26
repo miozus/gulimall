@@ -37,16 +37,13 @@ public class LoginUserInterceptor implements HandlerInterceptor {
 
     private boolean callBetweenFeignService(HttpServletRequest request) {
         String uri = request.getRequestURI();
-        boolean match = new AntPathMatcher().match("/order/order/SN/**", uri);
-        if (match) {
-            return true;
-        }
-        return false;
+        return new AntPathMatcher().match("/order/order/SN/**", uri);
     }
 
     /**
      * 只释放登录用户
      * 例外：路径匹配，则放行，用于微服务之间调用
+     * attribute 设置过一次，却没有清空，所以手动赋值为空
      *
      * @param request  请求
      * @param response 响应
@@ -58,10 +55,11 @@ public class LoginUserInterceptor implements HandlerInterceptor {
         HttpSession session = request.getSession();
         MemberRespVo loginUser = (MemberRespVo) session.getAttribute(AuthServerConstant.LOGIN_USER);
         if (Objects.isNull(loginUser)) {
-            session.setAttribute("msg", "请登录再试");
+            session.setAttribute("loginMsg", "请登录再试");
             response.sendRedirect("http://auth.gulimall.com/login.html");
             return false;
         }
+        session.setAttribute("loginMg", "");
         LoginUserInterceptor.loginUserThreadLocal.set(loginUser);
         return true;
 

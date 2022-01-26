@@ -11,8 +11,8 @@ import lombok.Getter;
  */
 public class WareConstant {
 
-    @AllArgsConstructor
     @Getter
+    @AllArgsConstructor
     public enum PurchaseStatusEnum {
         /**
          * 购买状态
@@ -46,8 +46,8 @@ public class WareConstant {
 
     @Getter
     @AllArgsConstructor
-    public enum StockLockedStatusEnum {
-        /**]
+    public enum LockedStatusEnum {
+        /**
          * 锁库存状态
          */
         LOCKED(1, "已锁定"),

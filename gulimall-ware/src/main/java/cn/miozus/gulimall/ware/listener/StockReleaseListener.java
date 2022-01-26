@@ -1,7 +1,8 @@
 package cn.miozus.gulimall.ware.listener;
 
-import cn.miozus.common.to.stock.StockLockedUndoLogTo;
-import cn.miozus.gulimall.ware.config.RabbitMqConfig;
+import cn.miozus.common.to.mq.OrderTo;
+import cn.miozus.common.to.mq.StockLockedUndoLogTo;
+import cn.miozus.gulimall.ware.config.StockRabbitMqConfig;
 import cn.miozus.gulimall.ware.service.WareSkuService;
 import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
@@ -19,19 +20,19 @@ import java.io.IOException;
  * @author miao
  * @date 2022/01/24
  */
-@Service
-@RabbitListener(queues = RabbitMqConfig.STOCK_RELEASE_ORDER_QUEUE)
 @Slf4j
+@Service
+@RabbitListener(queues = StockRabbitMqConfig.RELEASE_ORDER_QUEUE)
 public class StockReleaseListener {
 
     @Autowired
     WareSkuService wareSkuService;
 
     @RabbitHandler
-    public void handleStockLockedReleaseListener(StockLockedUndoLogTo to, Message message, Channel channel) throws IOException {
+    public void handleStockReleaseListener(StockLockedUndoLogTo to, Message message, Channel channel) throws IOException {
         long deliveryTag = message.getMessageProperties().getDeliveryTag();
 
-        log.info("************************收到库存解锁的消息********************************");
+        log.info("************************听到库存解锁的消息********************************");
         try {
             wareSkuService.unlockOrderStock(to);
             channel.basicAck(deliveryTag, false);
@@ -39,6 +40,19 @@ public class StockReleaseListener {
             channel.basicReject(deliveryTag, true);
             e.printStackTrace();
         }
+    }
 
+    @RabbitHandler
+    public void handleStockReleaseByOrderCloseListener(OrderTo to, Message message, Channel channel) throws IOException {
+        long deliveryTag = message.getMessageProperties().getDeliveryTag();
+
+        log.info("**********************听到库存解锁的消息：订单取消的二次确认******************************");
+        try {
+            wareSkuService.unlockOrderStock(to);
+            channel.basicAck(deliveryTag, false);
+        } catch (Exception e) {
+            channel.basicReject(deliveryTag, true);
+            e.printStackTrace();
+        }
     }
 }

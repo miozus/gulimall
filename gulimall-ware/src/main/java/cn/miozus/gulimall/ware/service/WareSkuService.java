@@ -1,7 +1,8 @@
 package cn.miozus.gulimall.ware.service;
 
 import cn.miozus.common.exception.NoStockException;
-import cn.miozus.common.to.stock.StockLockedUndoLogTo;
+import cn.miozus.common.to.mq.OrderTo;
+import cn.miozus.common.to.mq.StockLockedUndoLogTo;
 import cn.miozus.common.utils.PageUtils;
 import cn.miozus.gulimall.ware.entity.WareSkuEntity;
 import cn.miozus.gulimall.ware.vo.SkuHasStockVo;
@@ -44,5 +45,12 @@ public interface WareSkuService extends IService<WareSkuEntity> {
      * @throws RuntimeException 远程调用失败异常
      */
     void unlockOrderStock(StockLockedUndoLogTo to) throws RuntimeException;
+
+    /**
+     * 解锁库存：关闭订单后，排除时差影响的二次确认
+     *
+     * @param to 30分钟后传过来的数据
+     */
+    void unlockOrderStock(OrderTo to);
 }
 

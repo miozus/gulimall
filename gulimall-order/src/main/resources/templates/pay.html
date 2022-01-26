@@ -25,7 +25,7 @@
   <div class="Jdbox_BuySuc">
     <dl>
       <dt><img src="/static/order/pay/img/saoyisao.png" alt=""></dt>
-      <dd>
+      <dd th:if="${orderSubmitResp!= null}">
         <span>订单提交成功，请尽快付款！订单号：[[${orderSubmitResp.order.orderSn}]]</span>
         <span>应付金额<font>[[${#numbers.formatDecimal(orderSubmitResp.order.payAmount, 1, 2)}]]</font>元</span>
       </dd>

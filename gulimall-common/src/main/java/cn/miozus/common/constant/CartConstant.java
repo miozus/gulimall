@@ -7,6 +7,11 @@ package cn.miozus.common.constant;
  * @date 2022/01/04
  */
 public class CartConstant {
+
+    private CartConstant() {
+
+    }
+
     public static final String TEMP_USER_COOKIE_NAME = "user-key";
     public static final int TEMP_USER_COOKIE_TIMEOUT = 60 * 1000 * 60 * 24 * 30;
 }

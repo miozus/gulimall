@@ -1,16 +1,18 @@
 package cn.miozus.gulimall.order.service.impl;
 
+import cn.miozus.common.constant.OrderConstant;
+import cn.miozus.common.enume.OrderStatusEnum;
 import cn.miozus.common.exception.NoStockException;
 import cn.miozus.common.to.SkuHasStockVo;
+import cn.miozus.common.to.mq.OrderTo;
 import cn.miozus.common.utils.PageUtils;
 import cn.miozus.common.utils.Query;
 import cn.miozus.common.utils.R;
 import cn.miozus.common.vo.MemberRespVo;
-import cn.miozus.common.constant.OrderConstant;
+import cn.miozus.gulimall.order.config.OrderRabbitMqConfig;
 import cn.miozus.gulimall.order.dao.OrderDao;
 import cn.miozus.gulimall.order.entity.OrderEntity;
 import cn.miozus.gulimall.order.entity.OrderItemEntity;
-import cn.miozus.gulimall.order.enume.OrderStatusEnum;
 import cn.miozus.gulimall.order.feign.CartFeignService;
 import cn.miozus.gulimall.order.feign.MemberFeignService;
 import cn.miozus.gulimall.order.feign.ProductFeignService;
@@ -29,6 +31,8 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.buf.StringUtils;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
@@ -71,6 +75,8 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
     ProductFeignService productFeignService;
     @Autowired
     OrderItemService orderItemService;
+    @Autowired
+    RabbitTemplate rabbitTemplate;
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -146,24 +152,34 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
             return response;
         }
 
-        OrderCreateTo order = createOrder();
+        OrderCreateTo orderTo = createOrder();
 
-        double subtract = checkPriceSubtractAccuracy(order, orderSubmitVo);
+        double subtract = checkPriceSubtractAccuracy(orderTo, orderSubmitVo);
         if (Math.abs(subtract) >= OrderConstant.FRONT_BACK_PRICE_FLOAT_THRESHOLD) {
             response.setCode(2);
             return response;
         }
 
-        saveOrder(order);
+        saveOrder(orderTo);
 
-        R r = lockStockWareFeignService(order);
+        R r = lockStockWareFeignService(orderTo);
         if (r.getCode() != 0) {
             String msg = r.getMsg();
             throw new NoStockException(msg);
         }
 
-        response.setOrder(order.getOrder());
+        response.setOrder(orderTo.getOrder());
+        pushMqDelayQueue(orderTo.getOrder());
         return response;
+    }
+
+    /**
+     * 推送mq延迟队列
+     *
+     * @param order 订单
+     */
+    private void pushMqDelayQueue(OrderEntity order) {
+        rabbitTemplate.convertAndSend(OrderRabbitMqConfig.EXCHANGE, OrderRabbitMqConfig.DELAY_QUEUE_ROUTING_KEY, order);
     }
 
     /**
@@ -202,7 +218,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
     /**
      * 保存订单: 订单表格 + 商品
-     *
      * 调用服务的批量保存
      *
      * @param order 订单
@@ -217,7 +232,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
     /**
      * 创建订单总流程
-     * <p>
      * IdWorker:生成订单流水号
      *
      * @return {@link OrderCreateTo}
@@ -250,6 +264,38 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
     }
 
     /**
+     * 关闭订单
+     * <p>
+     * 第二次解锁库存，推送订单给解锁库存，排除网络故障时间差影响。
+     *
+     * @param to 30 分钟后收到的消息携带的实体,To 为了传输规范，新建套壳踢皮球
+     */
+    @Override
+    public void closeOrder(OrderEntity to) {
+        OrderEntity fresh = this.getById(to.getId());
+        Integer orderStatus = fresh.getStatus();
+        if (orderStatus != OrderStatusEnum.CREATE_NEW.getCode()) {
+            return;
+        }
+        updateOrderStatusCanceled(fresh);
+        pushMqReleaseOtherQueue(fresh);
+    }
+
+    private void pushMqReleaseOtherQueue(OrderEntity fresh) {
+        OrderTo orderTo = new OrderTo();
+        BeanUtils.copyProperties(fresh, orderTo);
+        rabbitTemplate.convertAndSend(OrderRabbitMqConfig.EXCHANGE,
+                OrderRabbitMqConfig.RELEASE_OTHER_ROUTING_KEY, orderTo);
+    }
+
+    private void updateOrderStatusCanceled(OrderEntity fresh) {
+        OrderEntity update = new OrderEntity();
+        update.setId(fresh.getId());
+        update.setStatus(OrderStatusEnum.CANCELED.getCode());
+        this.updateById(update);
+    }
+
+    /**
      * 追加订单状态信息
      * 0:未删除
      *
@@ -260,7 +306,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
     }
 
     /**
-     * 计算价格：叠加统计所有商品
+     * 计算总价格：叠加统计所有商品
      * 局部变量小计：
      * 优惠：促销优化 | 积分抵扣 | 优惠券抵扣 | 后台折扣（忽略）
      * 积分：
@@ -269,15 +315,14 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
      *
      * @param order      订单
      * @param orderItems 订单项
-     * @return {@link OrderEntity}
      */
     private void calculateAggregatePrice(OrderEntity order, List<OrderItemEntity> orderItems) {
         BigDecimal total = BigDecimal.ZERO;
         BigDecimal promotion = BigDecimal.ZERO;
         BigDecimal coupon = BigDecimal.ZERO;
         BigDecimal integrationAmount = BigDecimal.ZERO;
-        int giftGrowth = 0, giftIntegration = 0;
-
+        int giftGrowth = 0;
+        int giftIntegration = 0;
         for (OrderItemEntity item : orderItems) {
             coupon = coupon.add(item.getCouponAmount());
             integrationAmount = integrationAmount.add(item.getIntegrationAmount());
@@ -321,13 +366,13 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
      * 封装所有购物车商品
      * 最后确定每个购物项的价格
      *
-     * @param orderSn
+     * @param orderSn 订单sn
      * @return {@link List}<{@link OrderItemEntity}>
      */
     private List<OrderItemEntity> buildOrderItems(String orderSn) {
         List<OrderItemVo> orderItems = cartFeignService.fetchOrderCartItems();
         if (CollectionUtils.isEmpty(orderItems)) {
-            return null;
+            return Collections.emptyList();
         }
         return orderItems.stream().map(item -> {
             OrderItemEntity orderItemEntity = buildOrderItemSingle(item);

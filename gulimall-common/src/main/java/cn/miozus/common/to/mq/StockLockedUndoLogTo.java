@@ -1,4 +1,4 @@
-package cn.miozus.common.to.stock;
+package cn.miozus.common.to.mq;
 
 import lombok.Data;
 

@@ -43,12 +43,12 @@ public class OrderWebController {
     @PostMapping("/submit")
     public String submitOrder(OrderSubmitVo orderSubmitVo, Model model, RedirectAttributes redirectAttributes) {
         OrderSubmitRespVo respVo = null;
+        String msg = "下单失败，";
+        Integer code = null;
         try {
             respVo = orderService.submitOrder(orderSubmitVo);
-            Integer code = respVo.getCode();
-            log.info("📨 code {} ", code);
+            code = respVo.getCode();
             if (code != 0) {
-                String msg = "下单失败，";
                 switch (code) {
                     case 1:
                         msg += "防重令牌校验失败，请重新提交";
@@ -61,12 +61,12 @@ public class OrderWebController {
                 redirectAttributes.addFlashAttribute("msg", msg);
                 return "redirect:http://order.gulimall.com/toTrade";
             }
-        } catch (Exception e) {
-            if (e instanceof NoStockException) {
-                String msg = "下单失败，库存锁定失败，商品库存不足";
-                redirectAttributes.addFlashAttribute("msg", msg);
-            }
+            msg = "提交成功";
+        } catch (NoStockException e) {
+            msg = "库存锁定失败，因为商品库存不足";
+            redirectAttributes.addFlashAttribute("msg", msg);
         }
+        log.info("📤 BizCode {} : {} ", code, msg);
         model.addAttribute("orderSubmitResp", respVo);
         return "pay";
     }

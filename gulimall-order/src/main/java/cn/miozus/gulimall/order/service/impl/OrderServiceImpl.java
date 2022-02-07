@@ -42,6 +42,7 @@ import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -98,7 +99,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
     @Override
     public OrderConfirmVo confirmOrder() {
         OrderConfirmVo confirmVo = new OrderConfirmVo();
-        MemberRespVo loginUser = LoginUserInterceptor.loginUserThreadLocal.get();
+        MemberRespVo loginUser = LoginUserInterceptor.threadLocal.get();
         Long uid = loginUser.getId();
         RequestAttributes feignRequestAttributes = RequestContextHolder.getRequestAttributes();
 
@@ -281,6 +282,54 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         pushMqReleaseOtherQueue(fresh);
     }
 
+    /**
+     * 得到订单支付
+     *
+     * 金额：保留两位小数，向上取整
+     * 商户名称：随机查商品名称
+     * 备注：商品属性
+     * @param orderSn 订单sn
+     * @return {@link PayVo}
+     */
+    @Override
+    public PayVo getOrderPay(String orderSn) {
+        PayVo payVo = new PayVo();
+        OrderEntity order = this.queryOrderBySn(orderSn);
+        BigDecimal payAmount = order.getPayAmount().setScale(2, RoundingMode.UP);
+        payVo.setOutTradeNo(orderSn);
+        payVo.setTotalAmount(payAmount.toString());
+        List<OrderItemEntity> orderItems = orderItemService.list(new QueryWrapper<OrderItemEntity>().eq("order_sn", orderSn));
+        OrderItemEntity example = orderItems.get(0);
+        payVo.setSubject(example.getSkuName());
+        payVo.setBody(example.getSkuAttrsVals());
+        return payVo;
+    }
+
+    /**
+     * 分页查询：包含购物车项目
+     *
+     * 本质是表单列表集合的装饰器：表名 + 装饰器
+     * getRecords: 分页封装的结果，每条记录
+     *
+     * @param params 模板参数
+     * @return {@link PageUtils}
+     */
+    @Override
+    public PageUtils queryPageWithItems(Map<String, Object> params) {
+        MemberRespVo loginUser = LoginUserInterceptor.threadLocal.get();
+        IPage<OrderEntity> page = this.page(
+                new Query<OrderEntity>().getPage(params),
+                new QueryWrapper<OrderEntity>().eq("member_id", loginUser.getId()).orderByDesc("id")
+        );
+        List<OrderEntity> orders = page.getRecords().stream().map(order -> {
+            List<OrderItemEntity> orderItems = orderItemService.list(new QueryWrapper<OrderItemEntity>().eq("order_sn", order.getOrderSn()));
+            order.setOrderItems(orderItems);
+            return order;
+        }).collect(Collectors.toList());
+        page.setRecords(orders);
+        return new PageUtils(page);
+    }
+
     private void pushMqReleaseOtherQueue(OrderEntity fresh) {
         OrderTo orderTo = new OrderTo();
         BeanUtils.copyProperties(fresh, orderTo);
@@ -349,7 +398,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
      * @return {@link Long}
      */
     private Long checkAndDeleteRedisToken(OrderSubmitVo orderSubmitVo) {
-        MemberRespVo loginUser = LoginUserInterceptor.loginUserThreadLocal.get();
+        MemberRespVo loginUser = LoginUserInterceptor.threadLocal.get();
         Long uid = loginUser.getId();
         String tokenKey = OrderConstant.ORDER_USER_TOKEN_PREFIX + uid;
         String token = orderSubmitVo.getOrderToken();
@@ -443,7 +492,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         OrderEntity order = new OrderEntity();
         order.setOrderSn(orderSn);
 
-        MemberRespVo loginUser = LoginUserInterceptor.loginUserThreadLocal.get();
+        MemberRespVo loginUser = LoginUserInterceptor.threadLocal.get();
         Long memberId = loginUser.getId();
         String nickname = loginUser.getNickname();
         order.setMemberUsername(nickname);

@@ -13,7 +13,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @date 2021/12/28
  */
 @Configuration
-public class WebConfig implements WebMvcConfigurer {
+public class OrderWebConfig implements WebMvcConfigurer {
 
     /**
      * 添加拦截器: 拦截所有请求

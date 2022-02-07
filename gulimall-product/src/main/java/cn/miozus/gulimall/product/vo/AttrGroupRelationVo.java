@@ -12,7 +12,6 @@ import lombok.Data;
 @Data
 public class AttrGroupRelationVo extends AttrAttrgroupRelationEntity {
 
-    // [{"attrId":1,"attrGroupId":2}]
     private Long attrId;
     private Long attrGroupId;
 

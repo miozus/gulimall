@@ -1,4 +1,4 @@
-package cn.miozus.gulimall.cart.config;
+package cn.miozus.gulimall.order.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +14,7 @@ import org.springframework.session.web.http.DefaultCookieSerializer;
  * @date 2022/01/03
  */
 @Configuration
-public class SessionConfig {
+public class GulimallSessionConfig {
 
     @Bean
     public CookieSerializer cookieSerializer (){

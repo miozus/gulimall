@@ -1,4 +1,4 @@
-package cn.miozus.gulimall.order.config;
+package cn.miozus.gulimall.member.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,12 +9,13 @@ import org.springframework.session.web.http.DefaultCookieSerializer;
 
 /**
  * 会话配置
+ * pom + nacos + bootstrap + @Enable + Interceptor
  * 拓宽域名，redis 序列化器
  * @author miao
  * @date 2022/01/03
  */
 @Configuration
-public class SessionConfig {
+public class GulimallSessionConfig {
 
     @Bean
     public CookieSerializer cookieSerializer (){

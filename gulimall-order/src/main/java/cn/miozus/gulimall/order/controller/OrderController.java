@@ -36,6 +36,15 @@ public class OrderController {
         return R.ok().put("page", page);
     }
 
+    /**
+     * 列表，包含购物车商品详情
+     * RequestBody: JSON 格式传输比TEXT 好
+     */
+    @PostMapping("/listWithItems")
+    public R listWithItems(@RequestBody Map<String, Object> params){
+        PageUtils page = orderService.queryPageWithItems(params);
+        return R.ok().put("page", page);
+    }
 
     /**
      * 信息

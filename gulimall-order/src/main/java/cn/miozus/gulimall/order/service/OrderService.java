@@ -5,6 +5,7 @@ import cn.miozus.gulimall.order.to.OrderCreateTo;
 import cn.miozus.gulimall.order.vo.OrderConfirmVo;
 import cn.miozus.gulimall.order.vo.OrderSubmitRespVo;
 import cn.miozus.gulimall.order.vo.OrderSubmitVo;
+import cn.miozus.gulimall.order.vo.PayVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.miozus.common.utils.PageUtils;
 import cn.miozus.gulimall.order.entity.OrderEntity;
@@ -58,5 +59,21 @@ public interface OrderService extends IService<OrderEntity> {
      * @param to 一个订单
      */
     void closeOrder(OrderEntity to);
+
+    /**
+     * 得到订单支付表单
+     *
+     * @param orderSn 订单sn
+     * @return {@link PayVo}
+     */
+    PayVo getOrderPay(String orderSn);
+
+    /**
+     * 列表，包含购物车商品详情
+     *
+     * @param params 参数个数
+     * @return {@link PageUtils}
+     */
+    PageUtils queryPageWithItems(Map<String, Object> params);
 }
 

@@ -30,8 +30,8 @@ public class OrderWebController {
     @GetMapping("/{page}.html")
     public String renderPage(@PathVariable("page") String page) {
         return page;
-
     }
+
 
     @GetMapping("/toTrade")
     public String toTrade(Model model) {

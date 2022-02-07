@@ -19,7 +19,7 @@ public interface AttrAttrgroupRelationService extends IService<AttrAttrgroupRela
 
     PageUtils queryPage(Map<String, Object> params);
 
-    void addRelationBatch(List<AttrGroupRelationVo> vos);
+    void saveRelations(List<AttrGroupRelationVo> vos);
 
 }
 

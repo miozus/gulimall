@@ -1,20 +1,22 @@
-package cn.miozus.gulimall.cart.config;
+package cn.miozus.gulimall.member.config;
 
-import cn.miozus.gulimall.cart.interceptor.CartInterceptor;
+import cn.miozus.gulimall.member.interceptor.LoginUserInterceptor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
- * 网络配置
- * 拦截所有请求，跨域共享线程中变量
+ * 成员网络配置
  *
  * @author miao
- * @date 2021/12/28
+ * @date 2022/01/27
  */
 @Configuration
-public class WebConfig implements WebMvcConfigurer {
+public class MemberWebConfig implements WebMvcConfigurer {
 
+    @Autowired
+    LoginUserInterceptor loginUserInterceptor;
     /**
      * 添加拦截器: 拦截所有请求
      *
@@ -22,6 +24,6 @@ public class WebConfig implements WebMvcConfigurer {
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new CartInterceptor()).addPathPatterns("/**");
+        registry.addInterceptor(loginUserInterceptor).addPathPatterns("/**");
     }
 }

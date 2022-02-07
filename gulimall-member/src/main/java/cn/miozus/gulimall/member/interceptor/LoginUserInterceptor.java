@@ -1,9 +1,10 @@
-package cn.miozus.gulimall.order.interceptor;
+package cn.miozus.gulimall.member.interceptor;
 
 import cn.miozus.common.constant.AuthServerConstant;
 import cn.miozus.common.vo.MemberRespVo;
 import com.alibaba.nacos.common.utils.Objects;
 import lombok.SneakyThrows;
+import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -20,12 +21,13 @@ import javax.servlet.http.HttpSession;
  * @author miao
  * @date 2022/01/04
  */
+@Component
 public class LoginUserInterceptor implements HandlerInterceptor {
 
     /**
      * 让其他服务共享
      */
-    public static ThreadLocal<MemberRespVo> threadLocal = new ThreadLocal<>();
+    public static ThreadLocal<MemberRespVo> loginUserThreadLocal = new ThreadLocal<>();
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -37,7 +39,7 @@ public class LoginUserInterceptor implements HandlerInterceptor {
 
     private boolean callBetweenFeignService(HttpServletRequest request) {
         String uri = request.getRequestURI();
-        return new AntPathMatcher().match("/order/order/SN/**", uri);
+        return new AntPathMatcher().match("/member/**", uri);
     }
 
     /**
@@ -60,7 +62,7 @@ public class LoginUserInterceptor implements HandlerInterceptor {
             return false;
         }
         session.setAttribute("loginMg", "");
-        LoginUserInterceptor.threadLocal.set(loginUser);
+        LoginUserInterceptor.loginUserThreadLocal.set(loginUser);
         return true;
 
     }

@@ -18,6 +18,11 @@
         <spring-cloud.version>Hoxton.SR7</spring-cloud.version>
     </properties>
     <dependencies>
+        <!--   面向切面编程    -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
         <!-- 分布式缓存 redis -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

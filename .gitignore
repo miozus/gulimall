@@ -1,5 +1,6 @@
 # root
 .idea
+log/
 target/
 pom.xml.tag
 pom.xml.releaseBackup

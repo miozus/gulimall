@@ -13,6 +13,7 @@ import cn.miozus.gulimall.order.config.OrderRabbitMqConfig;
 import cn.miozus.gulimall.order.dao.OrderDao;
 import cn.miozus.gulimall.order.entity.OrderEntity;
 import cn.miozus.gulimall.order.entity.OrderItemEntity;
+import cn.miozus.gulimall.order.entity.PaymentInfoEntity;
 import cn.miozus.gulimall.order.feign.CartFeignService;
 import cn.miozus.gulimall.order.feign.MemberFeignService;
 import cn.miozus.gulimall.order.feign.ProductFeignService;
@@ -20,6 +21,7 @@ import cn.miozus.gulimall.order.feign.WareFeignService;
 import cn.miozus.gulimall.order.interceptor.LoginUserInterceptor;
 import cn.miozus.gulimall.order.service.OrderItemService;
 import cn.miozus.gulimall.order.service.OrderService;
+import cn.miozus.gulimall.order.service.PaymentInfoService;
 import cn.miozus.gulimall.order.to.OrderCreateTo;
 import cn.miozus.gulimall.order.vo.*;
 import com.alibaba.fastjson.TypeReference;
@@ -78,6 +80,8 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
     OrderItemService orderItemService;
     @Autowired
     RabbitTemplate rabbitTemplate;
+    @Autowired
+    PaymentInfoService paymentInfoService;
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -328,6 +332,33 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         }).collect(Collectors.toList());
         page.setRecords(orders);
         return new PageUtils(page);
+    }
+
+    /**
+     * 处理支付结果
+     * 保存订单流水信息
+     * 更新订单状态：已取消 -> 已付款
+     * 购物车：-> 删除产品
+     *
+     * @param vo 签证官
+     * @return
+     */
+    @Override
+    public String handlePayResult(PayAsyncVo vo) {
+        PaymentInfoEntity info = new PaymentInfoEntity();
+
+        String tradeStatus = vo.getTradeStatus();
+        info.setAlipayTradeNo(vo.getTradeNo());
+        info.setOrderSn(vo.getOutTradeNo());
+        info.setCallbackTime(vo.getNotifyTime());
+        info.setPaymentStatus(tradeStatus);
+        paymentInfoService.save(info);
+
+        if ("TRADE_SUCCESS".equals(tradeStatus) || "TRADE_FINISHED".equals(tradeStatus)) {
+            String outTradeNo = vo.getOutTradeNo();
+            this.baseMapper.updateOrderStatus(outTradeNo, OrderStatusEnum.PAYED.getCode());
+        }
+        return "success";
     }
 
     private void pushMqReleaseOtherQueue(OrderEntity fresh) {

@@ -39,7 +39,6 @@ public class Cart {
      */
     private BigDecimal reduce = BigDecimal.ZERO;
 
-
     public List<CartItem> getItems() {
         return items;
     }

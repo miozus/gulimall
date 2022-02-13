@@ -424,7 +424,7 @@
             style="color:#999999;font-size: 12px">0.095kg</span></p>
   </div>
   <div class="to_right" th:each="item:${orderConfirmVo.items}">
-    <h5>商家：谷粒学院自营</h5>
+    <h5>商家：谷粒学院自营 </h5>
     <div>
       <button>换购</button>
       <span>已购满20.00元，再加49.90元，可返回购物车领取赠品</span></div>
@@ -433,14 +433,14 @@
       <img style="width:100px; height:100px;" th:src="${item.image}" class="yun"/>
       <div class="mi">
         <p>[[${item.title}]]<span style="color: red;"> ￥ [[${#numbers.formatDecimal(item.price, 1, 2)}]] </span>
-          <span> x[[${item.count}]] </span> <span>[[${orderConfirmVo.stocks[item.skuId] ? '有货':'无货'}]]</span></p>
+          <span> x[[${item.count}]] </span> <span style="color: red">[[${orderConfirmVo.stocks[item.skuId] ? '有货':'无货'}]]</span></p>
         <p>[[${item.skuAttrs}]]<span>[[${item.weight}]]kg</span></p>
         <p class="tui-1"><img src="/static/order/confirm/img/i_07.png"/>支持7天无理由退货</p>
       </div>
     </div>
 
 
-    <div class="hh1"></div>
+    <div class="hh1"><span th:if="${msg != null}">[[${msg}]]</span></div>
     <p>退换无忧 <span class="money">￥ 0.00</span></p>
   </div>
 </div>

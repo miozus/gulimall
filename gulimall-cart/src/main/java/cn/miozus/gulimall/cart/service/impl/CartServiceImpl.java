@@ -1,5 +1,8 @@
 package cn.miozus.gulimall.cart.service.impl;
 
+import cn.miozus.common.annotation.DeleteRedis;
+import cn.miozus.common.annotation.GetRedis;
+import cn.miozus.common.annotation.PutRedis;
 import cn.miozus.common.utils.R;
 import cn.miozus.gulimall.cart.feign.ProductFeignService;
 import cn.miozus.gulimall.cart.interceptor.CartInterceptor;
@@ -8,15 +11,11 @@ import cn.miozus.gulimall.cart.to.UserInfoTo;
 import cn.miozus.gulimall.cart.vo.Cart;
 import cn.miozus.gulimall.cart.vo.CartItem;
 import cn.miozus.gulimall.cart.vo.SkuInfoVo;
-import com.alibaba.cloud.commons.lang.StringUtils;
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import com.alibaba.nacos.common.utils.CollectionUtils;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.BoundHashOperations;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -25,6 +24,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -35,16 +35,16 @@ import java.util.stream.Collectors;
  * @author miao
  * @date 2022/01/04
  */
-@Service
 @Slf4j
+@Service
 public class CartServiceImpl implements CartService {
 
-    @Autowired
-    StringRedisTemplate redisTemplate;
     @Autowired
     ProductFeignService productFeignService;
     @Autowired
     ThreadPoolExecutor executor;
+    @Autowired
+    private CartService cartService;
 
     private final String CART_PREFIX = "gulimall:cart:";
 
@@ -64,18 +64,19 @@ public class CartServiceImpl implements CartService {
      */
     @SneakyThrows
     @Override
+    @PutRedis("更新数量或新增单品")
     public CartItem addToCart(Long skuId, Integer count) {
-        BoundHashOperations<String, Object, Object> ops = boundUserIdFirstRedisHashOps();
-        String res = (String) ops.get(skuId.toString());
-
-        if (StringUtils.isNotEmpty(res)) {
-            CartItem cartItem = JSON.parseObject(res, CartItem.class);
-            cartItem.setCount(cartItem.getCount() + count);
-            String s = JSON.toJSONString(cartItem);
-            ops.put(skuId.toString(), s);
+        CartItem cartItem = cartService.fetchCartItem(skuId);
+        if (Objects.nonNull(cartItem)) {
+            int sum = cartItem.getCount() + count;
+            cartItem.setCount(sum);
             return cartItem;
         }
+        return buildCartItemAsync(skuId, count);
+    }
 
+
+    private CartItem buildCartItemAsync(Long skuId, Integer count) throws InterruptedException, ExecutionException {
         CartItem cartItem = new CartItem();
         CompletableFuture<Void> skuInfoFuture = CompletableFuture.runAsync(() -> {
             R info = productFeignService.info(skuId);
@@ -96,8 +97,6 @@ public class CartServiceImpl implements CartService {
         }, executor);
 
         CompletableFuture.allOf(skuInfoFuture, skuAttrsFuture).get();
-        String s = JSON.toJSONString(cartItem);
-        ops.put(skuId.toString(), s);
         return cartItem;
     }
 
@@ -108,10 +107,9 @@ public class CartServiceImpl implements CartService {
      * @return {@link CartItem}
      */
     @Override
-    public CartItem fetchCartItem(Long skuId) {
-        BoundHashOperations<String, Object, Object> ops = boundUserIdFirstRedisHashOps();
-        String res = (String) ops.get(skuId.toString());
-        return JSON.parseObject(res, CartItem.class);
+    @GetRedis("获取单品镜像")
+    public CartItem fetchCartItem(@GetRedis("key") Long skuId) {
+        return null;
     }
 
     /**
@@ -129,64 +127,65 @@ public class CartServiceImpl implements CartService {
         Cart cart = new Cart();
         UserInfoTo userInfoTo = CartInterceptor.threadLocal.get();
         Long userId = userInfoTo.getUserId();
-
         String tempCartKey = CART_PREFIX + userInfoTo.getUserKey();
-        List<CartItem> tempCartItems = collectRedisCartItems(tempCartKey);
 
         if (Objects.isNull(userId)) {
+            List<CartItem> tempCartItems = cartService.collectRedisCartItems(tempCartKey);
             cart.setItems(tempCartItems);
             return cart;
         }
 
         String oauthCartKey = CART_PREFIX + userId;
-        List<CartItem> oauthCartItems = collectRedisCartItems(oauthCartKey);
+        return addAllCartItems(cart, oauthCartKey, tempCartKey);
+    }
+
+    private Cart addAllCartItems(Cart cart, String oauthCartKey, String tempCartKey) {
+
+        List<CartItem> oauthCartItems = cartService.collectRedisCartItems(oauthCartKey);
+        List<CartItem> tempCartItems = cartService.collectRedisCartItems(tempCartKey);
 
         if (CollectionUtils.isNotEmpty(tempCartItems)) {
-            oauthCartItems = addAllRedisCartItemsByKey(tempCartItems, oauthCartItems, oauthCartKey);
+            oauthCartItems = cartService.addAllRedisCartItemsByKey(tempCartItems, oauthCartItems);
         }
         cart.setItems(oauthCartItems);
-        //deleteRedisCartItems(tempCartKey);
         return cart;
     }
 
     /**
      * 更新勾选状态
      * 有 2 次 查询 Redis
-     * [TODO] AOP：前后重复的动作，真应该放入 切面 去完成
+     * <p>
+     * AOP：前后重复的动作，真应该放入 切面 去完成
      *
      * @param skuId     sku id
      * @param isChecked 检查
+     * @return {@link CartItem}
      */
     @Override
-    public void updateRedisItemCheckStatus(Long skuId, Integer isChecked) {
-        BoundHashOperations<String, Object, Object> ops = boundUserIdFirstRedisHashOps();
-        CartItem cartItem = fetchCartItem(skuId);
-        boolean b = isChecked == 1;
-        cartItem.setIsChecked(b);
-        String s = JSON.toJSONString(cartItem);
-        ops.put(skuId.toString(), s);
+    @PutRedis("勾选状态")
+    public boolean updateRedisItemCheckStatus(Long skuId, Integer isChecked) {
+        return isChecked == 1;
     }
 
     @Override
-    public void updateRedisItemCount(Long skuId, Integer count) {
-        BoundHashOperations<String, Object, Object> ops = boundUserIdFirstRedisHashOps();
-        CartItem cartItem = fetchCartItem(skuId);
-        cartItem.setCount(count);
-        String s = JSON.toJSONString(cartItem);
-        ops.put(skuId.toString(), s);
+    @PutRedis("商品数量")
+    public Integer updateRedisItemCount(Long skuId, Integer count) {
+        return count;
     }
 
+
     @Override
+    @DeleteRedis("删除单品")
     public void deleteRedisItem(Long skuId) {
-        BoundHashOperations<String, Object, Object> ops = boundUserIdFirstRedisHashOps();
-        ops.delete(skuId.toString());
+        // 注解抽取参数代为执行
     }
 
     /**
      * 获取当前购物车商品
-     *
+     * <p>
      * 未登录：（通过URL访问），不予查询
      * 登录：商品服务查询最新价格
+     * 筛选：只返回缓存中已勾选的商品
      *
      * @return {@link List}<{@link CartItem}>
      */
@@ -198,13 +197,14 @@ public class CartServiceImpl implements CartService {
             return Collections.emptyList();
         }
         String oauthCartKey = CART_PREFIX + userId;
-        List<CartItem> cartItems = collectRedisCartItems(oauthCartKey);
-        return cartItems.stream().map(item -> {
+        List<CartItem> cartItems = cartService.collectRedisCartItems(oauthCartKey);
+        return cartItems.stream()
+                .map(item -> {
             Long skuId = item.getSkuId();
             BigDecimal price = productFeignService.querySkuPrice(skuId);
             item.setPrice(price);
             return item;
-        }).collect(Collectors.toList());
+        }).filter(CartItem::getIsChecked).collect(Collectors.toList());
     }
 
     /**
@@ -216,37 +216,28 @@ public class CartServiceImpl implements CartService {
      * 离线购物车转成集合，去重（更新并删除重复）后，更新Redis
      *
      * @param tempCartItems  离线购物车
-     * @param oauthCartKey   登录用户购物车的键
      * @param oauthCartItems 登录用户购物车的单品
-     * @return {@link List}<{@link CartItem}> 合并后用户在线购物车商品
+     * @return {@link List}<{@link CartItem}>
      */
-    private List<CartItem> addAllRedisCartItemsByKey(List<CartItem> tempCartItems, List<CartItem> oauthCartItems, String oauthCartKey) {
-        BoundHashOperations<String, Object, Object> ops = redisTemplate.boundHashOps(oauthCartKey);
-        Map<Long, CartItem> tempCartItemsMap = tempCartItems.stream().collect(Collectors.toMap(CartItem::getSkuId, Function.identity()));
+    @Override
+    @PutRedis("合并购物车")
+    @DeleteRedis("合并后删除离线购物车缓存")
+    public List<CartItem> addAllRedisCartItemsByKey(List<CartItem> tempCartItems, List<CartItem> oauthCartItems) {
+        Map<Long, CartItem> tempCartItemsMap = tempCartItems.stream().collect(
+                Collectors.toMap(CartItem::getSkuId, Function.identity()));
         List<CartItem> newOauthCartItems = oauthCartItems.stream().map(v -> {
             Long skuId = v.getSkuId();
             if (tempCartItemsMap.containsKey(skuId)) {
                 int updateCount = tempCartItemsMap.get(skuId).getCount() + v.getCount();
                 v.setCount(updateCount);
-                String s = JSON.toJSONString(v);
-                ops.put(skuId.toString(), s);
                 tempCartItemsMap.remove(skuId);
             }
             return v;
         }).collect(Collectors.toList());
-        List<CartItem> newTempCartItems = tempCartItemsMap.entrySet().stream().map(e -> {
-            Long skuId = e.getKey();
-            CartItem cartItem = e.getValue();
-            String s = JSON.toJSONString(cartItem);
-            ops.put(skuId.toString(), s);
-            return cartItem;
-        }).collect(Collectors.toList());
+        List<CartItem> newTempCartItems = tempCartItemsMap.entrySet().stream().map(Map.Entry::getValue)
+                .collect(Collectors.toList());
         newOauthCartItems.addAll(newTempCartItems);
         return newOauthCartItems;
-    }
-
-    private void deleteRedisCartItems(String tempCartKey) {
-        redisTemplate.delete(tempCartKey);
     }
 
     /**
@@ -257,31 +248,9 @@ public class CartServiceImpl implements CartService {
      * @param cartKey 购物车键
      * @return {@link List}<{@link CartItem}>
      */
-    private List<CartItem> collectRedisCartItems(String cartKey) {
-        BoundHashOperations<String, Object, Object> ops = redisTemplate.boundHashOps(cartKey);
-        List<Object> values = ops.values();
-        if (Objects.nonNull(values)) {
-            return values.stream().map((value) ->
-                    JSON.parseObject((String) value, CartItem.class)).collect(Collectors.toList());
-        }
+    @GetRedis("获取整车商品")
+    public List<CartItem> collectRedisCartItems(@GetRedis("key") String cartKey) {
         return Collections.emptyList();
-    }
-
-    /**
-     * 绑定购物车的 Redis 操作命令
-     * cart_prefix:userId/userKey:
-     * <p>
-     * 从本地线程变量中获取用户信息，
-     * 优先使用已登录的用户 Id ，其次临时身份（该缓存持续时间一个月）
-     *
-     * @return {@link BoundHashOperations}<{@link String}, {@link Object}, {@link Object}>
-     */
-    private BoundHashOperations<String, Object, Object> boundUserIdFirstRedisHashOps() {
-        UserInfoTo userInfoTo = CartInterceptor.threadLocal.get();
-        Long userId = userInfoTo.getUserId();
-        String userKey = userInfoTo.getUserKey();
-        String cartKey = CART_PREFIX + (Objects.nonNull(userId) ? String.valueOf(userId) : userKey);
-        return redisTemplate.boundHashOps(cartKey);
     }
 
 }

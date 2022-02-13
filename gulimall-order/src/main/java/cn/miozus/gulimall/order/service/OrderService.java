@@ -2,10 +2,7 @@ package cn.miozus.gulimall.order.service;
 
 import cn.miozus.common.exception.NoStockException;
 import cn.miozus.gulimall.order.to.OrderCreateTo;
-import cn.miozus.gulimall.order.vo.OrderConfirmVo;
-import cn.miozus.gulimall.order.vo.OrderSubmitRespVo;
-import cn.miozus.gulimall.order.vo.OrderSubmitVo;
-import cn.miozus.gulimall.order.vo.PayVo;
+import cn.miozus.gulimall.order.vo.*;
 import com.baomidou.mybatisplus.extension.service.IService;
 import cn.miozus.common.utils.PageUtils;
 import cn.miozus.gulimall.order.entity.OrderEntity;
@@ -35,6 +32,7 @@ public interface OrderService extends IService<OrderEntity> {
      *
      * @param orderSubmitVo 订单提交签证官
      * @return {@link OrderSubmitRespVo}
+     * @throws NoStockException 没有库存异常
      */
     OrderSubmitRespVo submitOrder(OrderSubmitVo orderSubmitVo) throws NoStockException;
 
@@ -75,5 +73,13 @@ public interface OrderService extends IService<OrderEntity> {
      * @return {@link PageUtils}
      */
     PageUtils queryPageWithItems(Map<String, Object> params);
+
+    /**
+     * 处理支付结果
+     *
+     * @param vo 签证官
+     * @return
+     */
+    String handlePayResult(PayAsyncVo vo);
 }
 

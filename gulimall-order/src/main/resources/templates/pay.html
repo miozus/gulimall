@@ -29,11 +29,12 @@
         <span>订单提交成功，请尽快付款！订单号：[[${orderSubmitResp.order.orderSn}]]</span>
         <span>应付金额<font>[[${#numbers.formatDecimal(orderSubmitResp.order.payAmount, 1, 2)}]]</font>元</span>
       </dd>
-      <dd>
+      <dd >
         <span>推荐使用</span>
         <span>扫码支付请您在<font>24小时</font>内完成支付，否则订单会被自动取消(库存紧订单请参见详情页时限)</span>
         <span>订单详细</span>
       </dd>
+
     </dl>
   </div>
   <div class="Jd_Con">
@@ -105,7 +106,7 @@
       <li>
         <img src="/static/order/pay/img/weixin.png" alt="">微信支付
       </li>
-      <li>
+      <li th:if="${orderSubmitResp!= null}">
         <img src="/static/order/pay/img/zhifubao.png" style="weight:auto;height:30px;" alt="">
         <a th:href="'http://order.gulimall.com/aliPay?orderSn='+ ${orderSubmitResp.order.orderSn}">支付宝</a>
       </li>

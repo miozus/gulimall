@@ -23,10 +23,17 @@
         <httpcore.version>4.4.13</httpcore.version>
         <fastjson.version>1.2.78</fastjson.version>
         <validation.api.version>2.0.1.Final</validation.api.version>
+        <hutool.all.version>5.7.20</hutool.all.version>
     </properties>
 
 
     <dependencies>
+        <!--    无依赖工具箱    -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool.all.version}</version>
+        </dependency>
         <!--    MyBatis-Plus    -->
         <dependency>
             <groupId>com.baomidou</groupId>
@@ -89,18 +96,12 @@
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
-
         <!-- 修复版本过低，Maven 找不到 lombok 依赖 -->
         <dependency>
             <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
             <version>7.0.0.Final</version>
         </dependency>
-
-
-
-
-
     </dependencies>
 
     <dependencyManagement>

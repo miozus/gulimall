@@ -29,15 +29,17 @@ public class LoginUserInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        if (callBetweenFeignService(request)) {
+        if (callBetweenFeignServiceOrNotifyPay(request)) {
             return true;
         }
         return releaseLoginUserOnly(request, response);
     }
 
-    private boolean callBetweenFeignService(HttpServletRequest request) {
+    private boolean callBetweenFeignServiceOrNotifyPay(HttpServletRequest request) {
         String uri = request.getRequestURI();
-        return new AntPathMatcher().match("/order/order/SN/**", uri);
+        boolean isNotify = new AntPathMatcher().match("/notify/pay", uri);
+        boolean isOrderFeignService = new AntPathMatcher().match("/order/order/SN/**", uri);
+        return isNotify || isOrderFeignService;
     }
 
     /**

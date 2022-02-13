@@ -1,8 +1,6 @@
 package cn.miozus.gulimall.cart.controller;
 
-import cn.miozus.gulimall.cart.interceptor.CartInterceptor;
 import cn.miozus.gulimall.cart.service.CartService;
-import cn.miozus.gulimall.cart.to.UserInfoTo;
 import cn.miozus.gulimall.cart.vo.Cart;
 import cn.miozus.gulimall.cart.vo.CartItem;
 import lombok.extern.slf4j.Slf4j;
@@ -81,8 +79,6 @@ public class CartController {
      */
     @GetMapping(value = {"/cart.html", "/cartList.html"})
     public String cartListPage(Model model) {
-        UserInfoTo userInfoTo = CartInterceptor.threadLocal.get();
-        log.info("userInfoTo {} ", userInfoTo);
         Cart cart = cartService.fetchTotalCartItems();
         log.debug("cart {} ", cart);
         model.addAttribute("cart", cart);
@@ -123,4 +119,5 @@ public class CartController {
         model.addAttribute("item", item);
         return "success";
     }
+
 }

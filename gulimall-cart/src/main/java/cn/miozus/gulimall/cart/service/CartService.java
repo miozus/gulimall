@@ -13,6 +13,15 @@ import java.util.List;
  */
 public interface CartService {
     /**
+     * 合并购物车：因为只有 Bean 可以被 AOP 代理
+     *
+     * @param tempCartItems  离线购物车
+     * @param oauthCartItems 登录购物车
+     * @return {@link List}<{@link CartItem}>
+     */
+    List<CartItem> addAllRedisCartItemsByKey(List<CartItem> tempCartItems, List<CartItem> oauthCartItems);
+
+    /**
      * 加入购物车
      *
      * @param skuId sku id
@@ -38,19 +47,19 @@ public interface CartService {
 
     /**
      * 更新:是否勾选
-     *
-     * @param skuId     sku id
+     *  @param skuId     sku id
      * @param isChecked 检查
+     * @return
      */
-    void updateRedisItemCheckStatus(Long skuId, Integer isChecked);
+    boolean updateRedisItemCheckStatus(Long skuId, Integer isChecked);
 
     /**
      * 更新：数量
-     *
-     * @param skuId sku id
+     *  @param skuId sku id
      * @param count 数
+     * @return
      */
-    void updateRedisItemCount(Long skuId, Integer count);
+    Integer updateRedisItemCount(Long skuId, Integer count);
 
     /**
      * 删除：购物车单品
@@ -65,4 +74,15 @@ public interface CartService {
      * @return {@link List}<{@link CartItem}>
      */
     List<CartItem> fetchOrderCartItems();
+
+    /**
+     * 查询购物车单品并转成列表
+     * <p>
+     * redis.value ⇒ java.List
+     *
+     * @param cartKey 购物车键
+     * @return {@link List}<{@link CartItem}>
+     */
+    List<CartItem> collectRedisCartItems( String cartKey) ;
+
 }

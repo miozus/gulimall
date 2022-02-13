@@ -65,6 +65,7 @@ public class OrderWebController {
         } catch (NoStockException e) {
             msg = "库存锁定失败，因为商品库存不足";
             redirectAttributes.addFlashAttribute("msg", msg);
+            return "redirect:http://order.gulimall.com/toTrade";
         }
         log.info("📤 BizCode {} : {} ", code, msg);
         model.addAttribute("orderSubmitResp", respVo);

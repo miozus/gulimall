@@ -3,18 +3,22 @@ package cn.miozus.gulimall.cart.vo;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
+import lombok.ToString;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 
 /**
+ * 车项目
  * 购物车商品
  *
  * @author miao
  * @date 2022/01/04
  */
 @Data
-public class CartItem {
+@ToString
+public class CartItem implements Serializable {
     private Long skuId;
 
     /**
@@ -29,7 +33,7 @@ public class CartItem {
     @Setter(AccessLevel.NONE)
     private BigDecimal totalPrice;
     /**
-     * 得到总价格
+     * 实时计算总价格
      *
      * @return {@link BigDecimal}
      */

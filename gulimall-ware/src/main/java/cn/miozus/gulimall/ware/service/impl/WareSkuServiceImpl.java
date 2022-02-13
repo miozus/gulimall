@@ -205,7 +205,7 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
      * @param to 来
      */
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void unlockOrderStock(OrderTo to) {
         String orderSn = to.getOrderSn();
         WareOrderTaskEntity stockTask = wareOrderTaskService.getOne(

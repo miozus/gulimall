@@ -50,7 +50,7 @@
     </resultMap>
     <update id="updateOrderStatus">
         UPDATE oms_order
-        SET `status` = #{code},
+        SET `status` = #{code}
         WHERE
             order_sn = #{outTradeNo}
     </update>

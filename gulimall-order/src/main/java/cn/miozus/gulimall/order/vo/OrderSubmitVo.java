@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 
 /**
  * 订单提交（前端）
+ *
  * 商品信息直接从购物车获取，不用重复提交了
  * 可添加：优惠、发票
  *
@@ -20,5 +21,7 @@ public class OrderSubmitVo {
     private BigDecimal payPrice;
     /** 备注 */
     private String note;
+    /** 登录用户序号 */
+    private Long uid;
 
 }

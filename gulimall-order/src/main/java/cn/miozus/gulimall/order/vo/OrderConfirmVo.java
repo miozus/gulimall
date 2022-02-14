@@ -22,7 +22,6 @@ public class OrderConfirmVo {
     private List<MemberReceiveAddressVo> address;
     /** 单品 */
     private List<OrderItemVo> items;
-    /** 发票 */
 
     Map<Long, Boolean> stocks;
     /** 积分 */

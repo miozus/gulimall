@@ -93,6 +93,7 @@ public class AlipayTemplate {
 
         alipayRequest.setBizContent("{\"out_trade_no\":\"" + outTradeNo + "\"," + "\"total_amount\":\"" + totalAmount
                 + "\"," + "\"subject\":\"" + subject + "\"," + "\"body\":\"" + body + "\","
+                +"\"timeout_express\":\"1m\","
                 + "\"product_code\":\"FAST_INSTANT_TRADE_PAY\"}");
 
         String result = alipayClient.pageExecute(alipayRequest).getBody();

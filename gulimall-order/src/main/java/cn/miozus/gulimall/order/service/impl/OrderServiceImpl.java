@@ -36,6 +36,7 @@ import org.apache.tomcat.util.buf.StringUtils;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.stereotype.Service;
@@ -82,6 +83,8 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
     RabbitTemplate rabbitTemplate;
     @Autowired
     PaymentInfoService paymentInfoService;
+    @Autowired
+    private OrderService orderService;
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -115,7 +118,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
         CompletableFuture<Void> orderItemFuture = CompletableFuture.runAsync(() -> {
             RequestContextHolder.setRequestAttributes(feignRequestAttributes);
-            List<OrderItemVo> orderItems = cartFeignService.fetchOrderCartItems();
+            List<OrderItemVo> orderItems = orderService.fetchOrderItemVosCache(uid);
             confirmVo.setItems(orderItems);
         }, executor).thenRunAsync(() -> {
             updateStocksWareFeignService(confirmVo);
@@ -129,6 +132,11 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
         CompletableFuture.allOf(addressFuture, orderItemFuture).get();
         return confirmVo;
+    }
+
+    @CachePut(value = "orderSubmitted", key = "'uid'+#uid")
+    public List<OrderItemVo> fetchOrderItemVosCache(Long uid) {
+        return cartFeignService.fetchOrderCartItems();
     }
 
     /**
@@ -145,9 +153,10 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
      * @return {@link OrderSubmitRespVo}
      */
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public OrderSubmitRespVo submitOrder(OrderSubmitVo orderSubmitVo) throws NoStockException {
-        orderSubmitVoThreadLocal.set(orderSubmitVo);
+        backupOrderSubmitThreadLocal(orderSubmitVo);
+
         OrderSubmitRespVo response = new OrderSubmitRespVo();
         response.setCode(0);
 
@@ -176,6 +185,13 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         response.setOrder(orderTo.getOrder());
         pushMqDelayQueue(orderTo.getOrder());
         return response;
+    }
+
+    private void backupOrderSubmitThreadLocal(OrderSubmitVo orderSubmitVo) {
+        MemberRespVo memberRespVo = LoginUserInterceptor.threadLocal.get();
+        Long uid = memberRespVo.getId();
+        orderSubmitVo.setUid(uid);
+        orderSubmitVoThreadLocal.set(orderSubmitVo);
     }
 
     /**
@@ -288,10 +304,11 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
     /**
      * 得到订单支付
-     *
+     * <p>
      * 金额：保留两位小数，向上取整
      * 商户名称：随机查商品名称
      * 备注：商品属性
+     *
      * @param orderSn 订单sn
      * @return {@link PayVo}
      */
@@ -311,9 +328,11 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
     /**
      * 分页查询：包含购物车项目
-     *
+     * <p>
      * 本质是表单列表集合的装饰器：表名 + 装饰器
      * getRecords: 分页封装的结果，每条记录
+     *
+     * 一次性：只有付款成功成功时调用，如果 orderSubmit: 存在即是锁
      *
      * @param params 模板参数
      * @return {@link PageUtils}
@@ -321,12 +340,15 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
     @Override
     public PageUtils queryPageWithItems(Map<String, Object> params) {
         MemberRespVo loginUser = LoginUserInterceptor.threadLocal.get();
+        Long uid = loginUser.getId();
+        deleteRedisCartItemPayed();
         IPage<OrderEntity> page = this.page(
                 new Query<OrderEntity>().getPage(params),
-                new QueryWrapper<OrderEntity>().eq("member_id", loginUser.getId()).orderByDesc("id")
+                new QueryWrapper<OrderEntity>().eq("member_id", uid).orderByDesc("id")
         );
         List<OrderEntity> orders = page.getRecords().stream().map(order -> {
-            List<OrderItemEntity> orderItems = orderItemService.list(new QueryWrapper<OrderItemEntity>().eq("order_sn", order.getOrderSn()));
+            List<OrderItemEntity> orderItems = orderItemService.list(
+                    new QueryWrapper<OrderItemEntity>().eq("order_sn", order.getOrderSn()));
             order.setOrderItems(orderItems);
             return order;
         }).collect(Collectors.toList());
@@ -336,29 +358,44 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
     /**
      * 处理支付结果
+     * <p>
      * 保存订单流水信息
      * 更新订单状态：已取消 -> 已付款
-     * 购物车：-> 删除产品
+     * 清空局部购物车：删除已付款的商品
      *
      * @param vo 签证官
-     * @return
+     * @return 返回给支付宝的信息
      */
     @Override
     public String handlePayResult(PayAsyncVo vo) {
-        PaymentInfoEntity info = new PaymentInfoEntity();
+        String tradeStatus = vo.getTrade_status();
 
-        String tradeStatus = vo.getTradeStatus();
-        info.setAlipayTradeNo(vo.getTradeNo());
-        info.setOrderSn(vo.getOutTradeNo());
-        info.setCallbackTime(vo.getNotifyTime());
-        info.setPaymentStatus(tradeStatus);
-        paymentInfoService.save(info);
+        savePaymentInfoEntity(vo);
 
         if ("TRADE_SUCCESS".equals(tradeStatus) || "TRADE_FINISHED".equals(tradeStatus)) {
-            String outTradeNo = vo.getOutTradeNo();
-            this.baseMapper.updateOrderStatus(outTradeNo, OrderStatusEnum.PAYED.getCode());
+            updateOrderStatusPayed(vo);
         }
         return "success";
+    }
+
+    private void deleteRedisCartItemPayed() {
+        cartFeignService.deleteOrderCartItems();
+    }
+
+    private void updateOrderStatusPayed(PayAsyncVo vo) {
+        String outTradeNo = vo.getOut_trade_no();
+        this.baseMapper.updateOrderStatus(outTradeNo, OrderStatusEnum.PAYED.getCode());
+    }
+
+    private void savePaymentInfoEntity(PayAsyncVo vo) {
+        PaymentInfoEntity info = new PaymentInfoEntity();
+        info.setAlipayTradeNo(vo.getTrade_no());
+        info.setOrderSn(vo.getOut_trade_no());
+        info.setCallbackTime(vo.getNotify_time());
+        info.setPaymentStatus(vo.getTrade_status());
+        info.setCreateTime(new Date());
+        info.setSubject(vo.getSubject());
+        paymentInfoService.save(info);
     }
 
     private void pushMqReleaseOtherQueue(OrderEntity fresh) {

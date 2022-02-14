@@ -35,11 +35,17 @@ public class LoginUserInterceptor implements HandlerInterceptor {
         return releaseLoginUserOnly(request, response);
     }
 
+    /**
+     * 无需登录的路径
+     *
+     * @param request 请求
+     * @return boolean
+     */
     private boolean callBetweenFeignServiceOrNotifyPay(HttpServletRequest request) {
         String uri = request.getRequestURI();
-        boolean isNotify = new AntPathMatcher().match("/notify/pay", uri);
+        boolean isNotifyUrl = new AntPathMatcher().match("/notify/pay", uri);
         boolean isOrderFeignService = new AntPathMatcher().match("/order/order/SN/**", uri);
-        return isNotify || isOrderFeignService;
+        return isNotifyUrl || isOrderFeignService ;
     }
 
     /**

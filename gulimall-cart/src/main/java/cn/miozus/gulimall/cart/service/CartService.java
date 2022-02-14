@@ -12,6 +12,7 @@ import java.util.List;
  * @date 2022/01/04
  */
 public interface CartService {
+
     /**
      * 合并购物车：因为只有 Bean 可以被 AOP 代理
      *
@@ -85,4 +86,19 @@ public interface CartService {
      */
     List<CartItem> collectRedisCartItems( String cartKey) ;
 
+    /**
+     * 获取当前购物车条目（结算页）
+     * 加缓存：付款成功后方便删除
+     *
+     * @param userId 用户id
+     * @return {@link List}<{@link CartItem}>
+     */
+    List<CartItem> fetchCheckedOrderCartItems(Long userId) ;
+
+    /**
+     * 删除购物车缓存（已付款）
+     *
+     * @return {@link Boolean}
+     */
+    Boolean deleteOrderCartItems();
 }

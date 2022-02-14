@@ -61,13 +61,13 @@ public class OrderWebController {
                 redirectAttributes.addFlashAttribute("msg", msg);
                 return "redirect:http://order.gulimall.com/toTrade";
             }
-            msg = "提交成功";
+            msg = "订单提交成功";
         } catch (NoStockException e) {
             msg = "库存锁定失败，因为商品库存不足";
             redirectAttributes.addFlashAttribute("msg", msg);
             return "redirect:http://order.gulimall.com/toTrade";
         }
-        log.info("📤 BizCode {} : {} ", code, msg);
+        log.info("📤 OrderBizCode {} : {} ", code, msg);
         model.addAttribute("orderSubmitResp", respVo);
         return "pay";
     }

@@ -13,6 +13,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -56,7 +57,7 @@ public class CartInterceptor implements HandlerInterceptor {
 
         UserInfoTo userInfo = new UserInfoTo();
 
-        if (member != null) {
+        if (Objects.nonNull(member)) {
             userInfo.setUserId(member.getId());
         }
 

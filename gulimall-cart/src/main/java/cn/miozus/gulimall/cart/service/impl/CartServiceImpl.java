@@ -196,15 +196,27 @@ public class CartServiceImpl implements CartService {
         if (Objects.isNull(userId)) {
             return Collections.emptyList();
         }
+        return cartService.fetchCheckedOrderCartItems(userId);
+    }
+
+    @Override
+    public List<CartItem> fetchCheckedOrderCartItems(Long userId) {
         String oauthCartKey = CART_PREFIX + userId;
         List<CartItem> cartItems = cartService.collectRedisCartItems(oauthCartKey);
         return cartItems.stream()
                 .map(item -> {
-            Long skuId = item.getSkuId();
-            BigDecimal price = productFeignService.querySkuPrice(skuId);
-            item.setPrice(price);
-            return item;
-        }).filter(CartItem::getIsChecked).collect(Collectors.toList());
+                    Long skuId = item.getSkuId();
+                    BigDecimal price = productFeignService.querySkuPrice(skuId);
+                    item.setPrice(price);
+                    return item;
+                }).filter(CartItem::getIsChecked).collect(Collectors.toList());
+    }
+
+    @Override
+    @DeleteRedis("删除已付款购物车商品")
+    //@CacheEvict(value = "orderSubmitted", key = "'uid'+#uid")
+    public Boolean  deleteOrderCartItems() {
+        return false;
     }
 
     /**

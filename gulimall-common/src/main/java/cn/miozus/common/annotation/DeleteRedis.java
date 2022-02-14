@@ -8,7 +8,7 @@ import java.lang.annotation.*;
  * @author miao
  * @date 2022/02/08
  */
-@Target(ElementType.METHOD)
+@Target({ElementType.METHOD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface DeleteRedis {

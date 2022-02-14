@@ -13,16 +13,16 @@ import java.util.Date;
 @Data
 public class PayAsyncVo {
 
-    private String gmtCreate;
+    private String gmt_create;
     private String charset;
-    private String gmtPayment;
-    private Date notifyTime;
+    private String gmt_payment;
+    private Date notify_time;
     private String subject;
     private String sign;
     /**
      * 支付者的id
      */
-    private String buyerId;
+    private String buyer_id;
     /**
      * 订单的信息
      */
@@ -30,54 +30,54 @@ public class PayAsyncVo {
     /**
      * 支付金额
      */
-    private String invoiceAmount;
+    private String invoice_amount;
     private String version;
     /**
      * 通知id
      */
-    private String notifyId;
-    private String fundBillList;
+    private String notify_id;
+    private String fund_bill_list;
     /**
      * 通知类型； trade_status_sync
      */
-    private String notifyType;
+    private String notify_type;
     /**
      * 订单号
      */
-    private String outTradeNo;
+    private String out_trade_no;
     /**
      * 支付的总额
      */
-    private String totalAmount;
+    private String total_amount;
     /**
      * 交易状态  TRADE_SUCCESS
      */
-    private String tradeStatus;
+    private String trade_status;
     /**
      * 流水号
      */
-    private String tradeNo;
-    private String authAppId;
+    private String trade_no;
+    private String auth_app_id;
     /**
      * 商家收到的款
      */
-    private String receiptAmount;
-    private String pointAmount;
+    private String receipt_amount;
+    private String point_amount;
     /**
      * 应用id
      */
-    private String appId;
+    private String app_id;
     /**
      * 最终支付的金额
      */
-    private String buyerPayAmount;
+    private String buyer_pay_amount;
     /**
      * 签名类型
      */
-    private String signType;
+    private String sign_type;
     /**
      * 商家的id
      */
-    private String sellerId;
+    private String seller_id;
 
 }

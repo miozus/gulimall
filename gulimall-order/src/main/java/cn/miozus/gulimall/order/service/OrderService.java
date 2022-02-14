@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import cn.miozus.common.utils.PageUtils;
 import cn.miozus.gulimall.order.entity.OrderEntity;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -81,5 +82,14 @@ public interface OrderService extends IService<OrderEntity> {
      * @return
      */
     String handlePayResult(PayAsyncVo vo);
-}
+
+    /**
+     * 获取订单支付时缓存
+     *
+     * @param uid uid
+     * @return {@link List}<{@link OrderItemVo}>
+     */
+    List<OrderItemVo> fetchOrderItemVosCache(Long uid) ;
+
+    }
 

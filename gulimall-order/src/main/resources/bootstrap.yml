@@ -29,5 +29,8 @@ spring:
           - data-id: pay.yml
             group: pro
             refresh: true
+          - data-id: cache.yml
+            group: pro
+            refresh: true
         namespace: a7a755f8-46e4-4c3a-b688-f2c4f4c7deff
         server-addr: 39.108.228.2:8848

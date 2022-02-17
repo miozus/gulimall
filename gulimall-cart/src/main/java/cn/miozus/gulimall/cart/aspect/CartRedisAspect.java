@@ -10,7 +10,6 @@ import cn.miozus.gulimall.cart.to.UserInfoTo;
 import cn.miozus.gulimall.cart.vo.CartItem;
 import com.alibaba.cloud.commons.lang.StringUtils;
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.TypeReference;
 import com.alibaba.nacos.common.utils.CollectionUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
@@ -23,7 +22,6 @@ import org.springframework.data.redis.core.BoundHashOperations;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -141,24 +139,9 @@ public class CartRedisAspect {
             return;
         }
         String clazz = retVal.getClass().getSimpleName();
-        switch (clazz) {
-            case "Boolean": {
-                Long uid = CartInterceptor.threadLocal.get().getUserId();
-                String valueKey = "orderSubmitted::uid" + uid;
-                String cartItems = redisTemplate.opsForValue().get(valueKey);
-                if (StringUtils.isNotEmpty(cartItems)) {
-                    JSON.parseObject(cartItems, new TypeReference<ArrayList<CartItem>>() {
-                    }).forEach(item -> ops.delete(item.getSkuId()));
-                    redisTemplate.delete(valueKey);
-                }
-                return;
-            }
-            case "ArrayList": {
-                String tempCartKey = getTempCartKey();
-                redisTemplate.delete(tempCartKey);
-                return;
-            }
-            default:
+        if ("ArrayList".equals(clazz)) {
+            String tempCartKey = getTempCartKey();
+            redisTemplate.delete(tempCartKey);
         }
     }
 

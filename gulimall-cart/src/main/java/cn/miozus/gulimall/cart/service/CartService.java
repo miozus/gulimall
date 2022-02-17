@@ -94,11 +94,4 @@ public interface CartService {
      * @return {@link List}<{@link CartItem}>
      */
     List<CartItem> fetchCheckedOrderCartItems(Long userId) ;
-
-    /**
-     * 删除购物车缓存（已付款）
-     *
-     * @return {@link Boolean}
-     */
-    Boolean deleteOrderCartItems();
 }

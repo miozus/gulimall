@@ -212,13 +212,6 @@ public class CartServiceImpl implements CartService {
                 }).filter(CartItem::getIsChecked).collect(Collectors.toList());
     }
 
-    @Override
-    @DeleteRedis("删除已付款购物车商品")
-    //@CacheEvict(value = "orderSubmitted", key = "'uid'+#uid")
-    public Boolean  deleteOrderCartItems() {
-        return false;
-    }
-
     /**
      * 合并两个购物车单品：离线+在线（同类合并和更新数量）
      * 离线购物车 =

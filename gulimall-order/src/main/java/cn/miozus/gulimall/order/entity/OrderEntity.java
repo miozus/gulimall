@@ -192,7 +192,9 @@ public class OrderEntity implements Serializable {
 	 * 修改时间
 	 */
 	private Date modifyTime;
-
+	/**
+	 * 购物车清单（用于切面）
+	 */
 	@TableField(exist=false)
 	private List<OrderItemEntity> orderItems;
 

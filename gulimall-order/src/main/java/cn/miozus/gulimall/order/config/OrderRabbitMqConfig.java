@@ -28,7 +28,7 @@ public class OrderRabbitMqConfig {
 
     public static final String EXCHANGE = "order-event-exchange";
     public static final String DELAY_QUEUE = "order.delay.queue";
-    public static final int DELAY_QUEUE_TTL = (int) TimeUnit.MINUTES.toMillis(1L);
+    public static final int DELAY_QUEUE_TTL = (int) TimeUnit.MINUTES.toMillis(15L);
     public static final String DELAY_QUEUE_ROUTING_KEY = "order.create.order";
     public static final String RELEASE_ORDER_QUEUE = "order.release.order.queue";
     public static final String RELEASE_ORDER_ROUTING_KEY = "order.release.order";

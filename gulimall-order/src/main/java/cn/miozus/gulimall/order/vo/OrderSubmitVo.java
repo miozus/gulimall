@@ -21,7 +21,5 @@ public class OrderSubmitVo {
     private BigDecimal payPrice;
     /** 备注 */
     private String note;
-    /** 登录用户序号 */
-    private Long uid;
 
 }

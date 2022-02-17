@@ -1,11 +1,11 @@
 package cn.miozus.gulimall.order.service;
 
 import cn.miozus.common.exception.NoStockException;
+import cn.miozus.common.utils.PageUtils;
+import cn.miozus.gulimall.order.entity.OrderEntity;
 import cn.miozus.gulimall.order.to.OrderCreateTo;
 import cn.miozus.gulimall.order.vo.*;
 import com.baomidou.mybatisplus.extension.service.IService;
-import cn.miozus.common.utils.PageUtils;
-import cn.miozus.gulimall.order.entity.OrderEntity;
 
 import java.util.List;
 import java.util.Map;
@@ -84,12 +84,11 @@ public interface OrderService extends IService<OrderEntity> {
     String handlePayResult(PayAsyncVo vo);
 
     /**
-     * 获取订单支付时缓存
+     * 删除购物车订单项目
      *
-     * @param uid uid
-     * @return {@link List}<{@link OrderItemVo}>
+     * @param skuIds sku id
+     * @return {@link Boolean}
      */
-    List<OrderItemVo> fetchOrderItemVosCache(Long uid) ;
-
-    }
+    Boolean deleteOrderCartItemsRedis(List<Long> skuIds);
+}
 

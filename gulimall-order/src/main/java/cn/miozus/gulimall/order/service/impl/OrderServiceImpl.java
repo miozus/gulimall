@@ -1,5 +1,6 @@
 package cn.miozus.gulimall.order.service.impl;
 
+import cn.miozus.common.annotation.DeleteRedis;
 import cn.miozus.common.constant.OrderConstant;
 import cn.miozus.common.enume.OrderStatusEnum;
 import cn.miozus.common.exception.NoStockException;
@@ -36,7 +37,6 @@ import org.apache.tomcat.util.buf.StringUtils;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.stereotype.Service;
@@ -118,7 +118,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
         CompletableFuture<Void> orderItemFuture = CompletableFuture.runAsync(() -> {
             RequestContextHolder.setRequestAttributes(feignRequestAttributes);
-            List<OrderItemVo> orderItems = orderService.fetchOrderItemVosCache(uid);
+            List<OrderItemVo> orderItems = cartFeignService.fetchOrderCartItems();
             confirmVo.setItems(orderItems);
         }, executor).thenRunAsync(() -> {
             updateStocksWareFeignService(confirmVo);
@@ -127,16 +127,17 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         Integer integration = loginUser.getIntegration();
         confirmVo.setIntegration(integration);
 
-        String token = pushRedisToken(uid);
+        String token = pushTokenRedis(uid);
         confirmVo.setOrderToken(token);
 
         CompletableFuture.allOf(addressFuture, orderItemFuture).get();
+
         return confirmVo;
     }
 
-    @CachePut(value = "orderSubmitted", key = "'uid'+#uid")
-    public List<OrderItemVo> fetchOrderItemVosCache(Long uid) {
-        return cartFeignService.fetchOrderCartItems();
+    private void deleteCartItemRedisCache(List<OrderItemEntity> confirmVo) {
+        List<Long> skuIds = confirmVo.stream().map(OrderItemEntity::getSkuId).collect(Collectors.toList());
+        orderService.deleteOrderCartItemsRedis(skuIds);
     }
 
     /**
@@ -154,8 +155,9 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
+    @DeleteRedis("删除提交付款的购物车商品")
     public OrderSubmitRespVo submitOrder(OrderSubmitVo orderSubmitVo) throws NoStockException {
-        backupOrderSubmitThreadLocal(orderSubmitVo);
+        orderSubmitVoThreadLocal.set(orderSubmitVo);
 
         OrderSubmitRespVo response = new OrderSubmitRespVo();
         response.setCode(0);
@@ -174,7 +176,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
             return response;
         }
 
-        saveOrder(orderTo);
+        saveOrderAndOrderItems(orderTo);
 
         R r = lockStockWareFeignService(orderTo);
         if (r.getCode() != 0) {
@@ -187,12 +189,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         return response;
     }
 
-    private void backupOrderSubmitThreadLocal(OrderSubmitVo orderSubmitVo) {
-        MemberRespVo memberRespVo = LoginUserInterceptor.threadLocal.get();
-        Long uid = memberRespVo.getId();
-        orderSubmitVo.setUid(uid);
-        orderSubmitVoThreadLocal.set(orderSubmitVo);
-    }
 
     /**
      * 推送mq延迟队列
@@ -233,7 +229,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
             return itemVo;
         }).collect(Collectors.toList());
         lockVo.setOrderItems(itemVos);
-        log.debug("lockVo {} ", lockVo);
         return wareFeignService.lockOrderStock(lockVo);
     }
 
@@ -243,7 +238,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
      *
      * @param order 订单
      */
-    private void saveOrder(OrderCreateTo order) {
+    private void saveOrderAndOrderItems(OrderCreateTo order) {
         OrderEntity orderEntity = order.getOrder();
         save(orderEntity);
         List<OrderItemEntity> orderItems = order.getOrderItems();
@@ -254,6 +249,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
     /**
      * 创建订单总流程
      * IdWorker:生成订单流水号
+     * 注意两次出现 orderItems 属性
      *
      * @return {@link OrderCreateTo}
      */
@@ -268,6 +264,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         calculateAggregatePrice(order, orderItems);
         appendOrderStatusInfo(order);
 
+        order.setOrderItems(orderItems);
         to.setOrder(order);
         to.setOrderItems(orderItems);
         return to;
@@ -289,17 +286,21 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
      * <p>
      * 第二次解锁库存，推送订单给解锁库存，排除网络故障时间差影响。
      *
-     * @param to 30 分钟后收到的消息携带的实体,To 为了传输规范，新建套壳踢皮球
+     * @param to 支付限时 30 分钟届满后，收到的消息携带的实体,To 为了传输规范，新建套壳踢皮球
      */
     @Override
     public void closeOrder(OrderEntity to) {
         OrderEntity fresh = this.getById(to.getId());
+        if (Objects.isNull(fresh)) {
+//            throw GulimallBoundException(to.getId() + "号订单不存在，可能事务未提交");
+            return;
+        }
         Integer orderStatus = fresh.getStatus();
         if (orderStatus != OrderStatusEnum.CREATE_NEW.getCode()) {
             return;
         }
         updateOrderStatusCanceled(fresh);
-        pushMqReleaseOtherQueue(fresh);
+        pushReleaseOtherQueueMq(fresh);
     }
 
     /**
@@ -341,7 +342,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
     public PageUtils queryPageWithItems(Map<String, Object> params) {
         MemberRespVo loginUser = LoginUserInterceptor.threadLocal.get();
         Long uid = loginUser.getId();
-        deleteRedisCartItemPayed();
         IPage<OrderEntity> page = this.page(
                 new Query<OrderEntity>().getPage(params),
                 new QueryWrapper<OrderEntity>().eq("member_id", uid).orderByDesc("id")
@@ -368,18 +368,23 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
      */
     @Override
     public String handlePayResult(PayAsyncVo vo) {
-        String tradeStatus = vo.getTrade_status();
-
         savePaymentInfoEntity(vo);
 
+        String tradeStatus = vo.getTrade_status();
         if ("TRADE_SUCCESS".equals(tradeStatus) || "TRADE_FINISHED".equals(tradeStatus)) {
             updateOrderStatusPayed(vo);
         }
         return "success";
     }
 
-    private void deleteRedisCartItemPayed() {
-        cartFeignService.deleteOrderCartItems();
+    /**
+     * 删除订单购物车商品
+     * 因为跳转外链后，无法获取登录信息，所以在此删除，支付成败不管了
+     */
+    @Override
+    @DeleteRedis("删除提交付款的购物车商品")
+    public Boolean deleteOrderCartItemsRedis(List<Long> skuIds) {
+        return false;
     }
 
     private void updateOrderStatusPayed(PayAsyncVo vo) {
@@ -398,7 +403,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         paymentInfoService.save(info);
     }
 
-    private void pushMqReleaseOtherQueue(OrderEntity fresh) {
+    private void pushReleaseOtherQueueMq(OrderEntity fresh) {
         OrderTo orderTo = new OrderTo();
         BeanUtils.copyProperties(fresh, orderTo);
         rabbitTemplate.convertAndSend(OrderRabbitMqConfig.EXCHANGE,
@@ -589,7 +594,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         return order;
     }
 
-    private String pushRedisToken(Long uid) {
+    private String pushTokenRedis(Long uid) {
         String tokenKey = OrderConstant.ORDER_USER_TOKEN_PREFIX + uid;
         String token = UUID.randomUUID().toString().replace("-", "");
         redisTemplate.opsForValue().set(tokenKey, token, 30, TimeUnit.MINUTES);

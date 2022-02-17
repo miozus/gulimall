@@ -22,7 +22,7 @@ public class StockRabbitMqConfig {
     public static final String EXCHANGE = "stock-event-exchange";
     public static final String DELAY_QUEUE = "stock.delay.queue";
     public static final String DELAY_QUEUE_ROUTING_KEY = "stock.lock";
-    public static final int DELAY_QUEUE_TTL = (int) TimeUnit.MINUTES.toMillis(2L);
+    public static final int DELAY_QUEUE_TTL = (int) TimeUnit.MINUTES.toMillis(16L);
     public static final String RELEASE_ORDER_QUEUE = "stock.release.stock.queue";
     public static final String RELEASE_ORDER_ROUTING_KEY = "stock.release";
 

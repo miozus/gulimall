@@ -1,8 +1,6 @@
 package cn.miozus.gulimall.order.listener;
 
-import cn.miozus.common.vo.MemberRespVo;
 import cn.miozus.gulimall.order.config.AlipayTemplate;
-import cn.miozus.gulimall.order.interceptor.LoginUserInterceptor;
 import cn.miozus.gulimall.order.service.OrderService;
 import cn.miozus.gulimall.order.vo.PayAsyncVo;
 import com.alipay.api.AlipayApiException;
@@ -35,15 +33,12 @@ public class OrderNotifyListener {
     @PostMapping("/notify/pay")
     public String handlerAliPay(HttpServletRequest request, PayAsyncVo vo) throws AlipayApiException, UnsupportedEncodingException {
         // 校验参数
-        // TODO 校验签名
+        // 校验签名
         Map<String, String> params = getParams(request);
-        params.entrySet().stream().map(entry -> entry.getKey() + "=" + entry.getValue()).forEach(System.out::println);
         boolean signVerified = AlipaySignature.verifyV1(params, alipayTemplate.getAlipayPublicKey(),
                 alipayTemplate.getCharset(), alipayTemplate.getSignType());
-        // TODO 更新订单状态
+        // 更新订单状态
         if (signVerified) {
-            MemberRespVo memberRespVo = LoginUserInterceptor.threadLocal.get();
-            log.info("memberRespVo {} ", memberRespVo);
             orderService.handlePayResult(vo);
             log.info("验签成功");
             return "success";

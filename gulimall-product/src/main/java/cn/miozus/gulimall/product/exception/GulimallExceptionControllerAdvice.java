@@ -1,6 +1,6 @@
 package cn.miozus.gulimall.product.exception;
 
-import cn.miozus.common.exception.BizCodeEnum;
+import cn.miozus.common.enume.BizCodeEnum;
 import cn.miozus.common.utils.R;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindingResult;
@@ -28,7 +28,7 @@ public class GulimallExceptionControllerAdvice {
         bindingResult.getFieldErrors().forEach((filedError) -> {
             errorMap.put(filedError.getField(), filedError.getDefaultMessage());
         });
-        return R.error(BizCodeEnum.VALID_EXCEPTION.getCode(), BizCodeEnum.VALID_EXCEPTION.getMsg()).put("data", errorMap);
+        return R.error(BizCodeEnum.VALID_EXCEPTION.value(), BizCodeEnum.VALID_EXCEPTION.getMsg()).put("data", errorMap);
     }
 
 
@@ -41,6 +41,6 @@ public class GulimallExceptionControllerAdvice {
     public R handleException(Throwable throwable) {
         log.error("错误：{}", throwable);
 
-        return R.error(BizCodeEnum.UNKNOWN_EXCEPTION.getCode(), BizCodeEnum.UNKNOWN_EXCEPTION.getMsg());
+        return R.error(BizCodeEnum.UNKNOWN_EXCEPTION.value(), BizCodeEnum.UNKNOWN_EXCEPTION.getMsg());
     }
 }

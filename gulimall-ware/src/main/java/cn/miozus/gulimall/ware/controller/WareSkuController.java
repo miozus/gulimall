@@ -1,23 +1,20 @@
 package cn.miozus.gulimall.ware.controller;
 
-import cn.miozus.common.exception.BizCodeEnum;
+import cn.miozus.common.exception.GuliMallBindException;
 import cn.miozus.common.utils.PageUtils;
 import cn.miozus.common.utils.R;
 import cn.miozus.gulimall.ware.entity.WareSkuEntity;
-import cn.miozus.common.exception.NoStockException;
 import cn.miozus.gulimall.ware.service.WareSkuService;
 import cn.miozus.gulimall.ware.vo.SkuHasStockVo;
 import cn.miozus.gulimall.ware.vo.WareSkuLockVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-
 
 
 /**
@@ -35,25 +32,20 @@ public class WareSkuController {
     private WareSkuService wareSkuService;
 
     @PostMapping("/lock")
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public R lockOrderStock(@RequestBody WareSkuLockVo wareSkuLockVo) {
-
         try {
             boolean lock = wareSkuService.lockOrderStock(wareSkuLockVo);
             log.debug("📦 lock {} ", lock);
             return R.ok().setData(lock);
-        } catch (NoStockException e) {
-            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+        } catch (GuliMallBindException e) {
             e.printStackTrace();
-            return R.error(
-                    BizCodeEnum.NO_STOCK_EXCEPTION.getCode(),
-                    BizCodeEnum.NO_STOCK_EXCEPTION.getMsg()
-            );
+            return R.error(e.getBizCode(), e.getMessage());
         }
     }
 
     @PostMapping("/hasStock")
-    public R querySkuHasStock(@RequestBody List<Long> skuIds){
+    public R querySkuHasStock(@RequestBody List<Long> skuIds) {
         List<SkuHasStockVo> vos = wareSkuService.querySkuHasStock(skuIds);
 
         return R.ok().setData(vos);
@@ -63,7 +55,7 @@ public class WareSkuController {
      * 列表
      */
     @RequestMapping("/list")
-    public R list(@RequestParam Map<String, Object> params){
+    public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = wareSkuService.queryWareSkuPage(params);
 
         return R.ok().put("page", page);
@@ -74,8 +66,8 @@ public class WareSkuController {
      * 信息
      */
     @RequestMapping("/info/{id}")
-    public R info(@PathVariable("id") Long id){
-		WareSkuEntity wareSku = wareSkuService.getById(id);
+    public R info(@PathVariable("id") Long id) {
+        WareSkuEntity wareSku = wareSkuService.getById(id);
 
         return R.ok().put("wareSku", wareSku);
     }
@@ -84,8 +76,8 @@ public class WareSkuController {
      * 保存
      */
     @RequestMapping("/save")
-    public R save(@RequestBody WareSkuEntity wareSku){
-		wareSkuService.save(wareSku);
+    public R save(@RequestBody WareSkuEntity wareSku) {
+        wareSkuService.save(wareSku);
 
         return R.ok();
     }
@@ -94,8 +86,8 @@ public class WareSkuController {
      * 修改
      */
     @RequestMapping("/update")
-    public R update(@RequestBody WareSkuEntity wareSku){
-		wareSkuService.updateById(wareSku);
+    public R update(@RequestBody WareSkuEntity wareSku) {
+        wareSkuService.updateById(wareSku);
 
         return R.ok();
     }
@@ -104,8 +96,8 @@ public class WareSkuController {
      * 删除
      */
     @RequestMapping("/delete")
-    public R delete(@RequestBody Long[] ids){
-		wareSkuService.removeByIds(Arrays.asList(ids));
+    public R delete(@RequestBody Long[] ids) {
+        wareSkuService.removeByIds(Arrays.asList(ids));
 
         return R.ok();
     }

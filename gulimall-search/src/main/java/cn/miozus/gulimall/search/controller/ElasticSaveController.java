@@ -1,7 +1,7 @@
 package cn.miozus.gulimall.search.controller;
 
 
-import cn.miozus.common.exception.BizCodeEnum;
+import cn.miozus.common.enume.BizCodeEnum;
 import cn.miozus.common.to.es.SkuEsModel;
 import cn.miozus.common.utils.R;
 import cn.miozus.gulimall.search.service.ProductSaveService;
@@ -45,14 +45,14 @@ public class ElasticSaveController {
             log.error("ElasticSaveController 商品上架错误 {}", e);
             // 错误码和错误消息，统一放到公共服务中管理；可能连不上
             return R.error(
-                    BizCodeEnum.PUBLISH_EXCEPTION.getCode(),
+                    BizCodeEnum.PUBLISH_EXCEPTION.value(),
                     BizCodeEnum.PUBLISH_EXCEPTION.getMsg()
             );
         }
         if (hasFailure) {
             // 错误码和错误消息，统一放到公共服务中管理；可能连不上
             return R.error(
-                    BizCodeEnum.PUBLISH_EXCEPTION.getCode(),
+                    BizCodeEnum.PUBLISH_EXCEPTION.value(),
                     BizCodeEnum.PUBLISH_EXCEPTION.getMsg()
             );
         } else {

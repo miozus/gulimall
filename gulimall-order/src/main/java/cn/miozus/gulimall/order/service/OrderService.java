@@ -1,6 +1,6 @@
 package cn.miozus.gulimall.order.service;
 
-import cn.miozus.common.exception.NoStockException;
+import cn.miozus.common.exception.GuliMallBindException;
 import cn.miozus.common.utils.PageUtils;
 import cn.miozus.gulimall.order.entity.OrderEntity;
 import cn.miozus.gulimall.order.to.OrderCreateTo;
@@ -33,9 +33,9 @@ public interface OrderService extends IService<OrderEntity> {
      *
      * @param orderSubmitVo 订单提交签证官
      * @return {@link OrderSubmitRespVo}
-     * @throws NoStockException 没有库存异常
+     * @throws GuliMallBindException 谷粒商场绑定异常
      */
-    OrderSubmitRespVo submitOrder(OrderSubmitVo orderSubmitVo) throws NoStockException;
+    OrderSubmitRespVo submitOrder(OrderSubmitVo orderSubmitVo) throws GuliMallBindException;
 
     /**
      * 创建订单

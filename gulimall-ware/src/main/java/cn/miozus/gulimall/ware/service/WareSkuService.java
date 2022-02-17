@@ -1,6 +1,6 @@
 package cn.miozus.gulimall.ware.service;
 
-import cn.miozus.common.exception.NoStockException;
+import cn.miozus.common.exception.GuliMallBindException;
 import cn.miozus.common.to.mq.OrderTo;
 import cn.miozus.common.to.mq.StockLockedUndoLogTo;
 import cn.miozus.common.utils.PageUtils;
@@ -34,9 +34,9 @@ public interface WareSkuService extends IService<WareSkuEntity> {
      *
      * @param wareSkuLockVo 库存 sku 锁定数据
      * @return boolean
-     * @throws NoStockException 库存不足异常
+     * @throws GuliMallBindException 谷粒商城异常
      */
-    boolean lockOrderStock(WareSkuLockVo wareSkuLockVo) throws NoStockException;
+    boolean lockOrderStock(WareSkuLockVo wareSkuLockVo) throws GuliMallBindException;
 
     /**
      * 解锁库存：只有正常关闭的订单，会解锁

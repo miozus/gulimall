@@ -1,6 +1,6 @@
 package cn.miozus.gulimall.member.controller;
 
-import cn.miozus.common.exception.BizCodeEnum;
+import cn.miozus.common.enume.BizCodeEnum;
 import cn.miozus.common.utils.PageUtils;
 import cn.miozus.common.utils.R;
 import cn.miozus.gulimall.member.entity.MemberEntity;
@@ -101,10 +101,10 @@ public class MemberController {
         try {
             memberService.register(vo);
         } catch (UsernameAlreadyExistsException e) {
-            return R.error(BizCodeEnum.USERNAME_ALREADY_EXISTS_EXCEPTION.getCode(),
+            return R.error(BizCodeEnum.USERNAME_ALREADY_EXISTS_EXCEPTION.value(),
                     BizCodeEnum.USERNAME_ALREADY_EXISTS_EXCEPTION.getMsg());
         } catch (PhoneNumberAlreadyExistsException e) {
-            return R.error(BizCodeEnum.PHONE_ALREADY_EXISTS_EXCEPTION.getCode(),
+            return R.error(BizCodeEnum.PHONE_ALREADY_EXISTS_EXCEPTION.value(),
                     BizCodeEnum.PHONE_ALREADY_EXISTS_EXCEPTION.getMsg());
         }
         return R.ok();
@@ -114,7 +114,7 @@ public class MemberController {
     public R login(@RequestBody MemberLoginVo vo) {
         MemberEntity member = memberService.login(vo);
         if (member == null) {
-            return R.error(BizCodeEnum.USERNAME_OR_PASSWORD_INVALID_EXCEPTION.getCode(),
+            return R.error(BizCodeEnum.USERNAME_OR_PASSWORD_INVALID_EXCEPTION.value(),
                     BizCodeEnum.USERNAME_OR_PASSWORD_INVALID_EXCEPTION.getMsg());
         }
         return R.ok().setData(member);
@@ -125,7 +125,7 @@ public class MemberController {
     public R oauthLogin(@RequestBody SocialUser socialUser) {
         MemberEntity member = memberService.login(socialUser);
         if (member == null) {
-            return R.error(BizCodeEnum.USERNAME_OR_PASSWORD_INVALID_EXCEPTION.getCode(),
+            return R.error(BizCodeEnum.USERNAME_OR_PASSWORD_INVALID_EXCEPTION.value(),
                     BizCodeEnum.USERNAME_OR_PASSWORD_INVALID_EXCEPTION.getMsg());
         }
         return R.ok().setData(member);

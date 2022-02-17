@@ -3,7 +3,7 @@ package cn.miozus.common.to.mq;
 import lombok.Data;
 
 /**
- * 制品订单任务取消
+ * 订单任务取消
  * task: 库存日志：锁库存成功不回滚，但全局订单失败，需要手动回滚，附加更多阅读信息方便排查
  *
  * @author miao

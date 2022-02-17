@@ -1,8 +1,8 @@
 package cn.miozus.gulimall.ware.service.impl;
 
+import cn.miozus.common.annotation.PostRabbitMq;
 import cn.miozus.common.constant.WareConstant;
 import cn.miozus.common.enume.OrderStatusEnum;
-import cn.miozus.common.exception.FeignDeliverException;
 import cn.miozus.common.exception.GuliMallBindException;
 import cn.miozus.common.to.mq.OrderTo;
 import cn.miozus.common.to.mq.StockDetailTo;
@@ -10,7 +10,6 @@ import cn.miozus.common.to.mq.StockLockedUndoLogTo;
 import cn.miozus.common.utils.PageUtils;
 import cn.miozus.common.utils.Query;
 import cn.miozus.common.utils.R;
-import cn.miozus.gulimall.ware.config.StockRabbitMqConfig;
 import cn.miozus.gulimall.ware.dao.WareSkuDao;
 import cn.miozus.gulimall.ware.entity.WareOrderTaskDetailEntity;
 import cn.miozus.gulimall.ware.entity.WareOrderTaskEntity;
@@ -27,7 +26,6 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,9 +53,9 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
     @Autowired
     WareOrderTaskService wareOrderTaskService;
     @Autowired
-    RabbitTemplate rabbitTemplate;
-    @Autowired
     OrderFeignService orderFeignService;
+    @Autowired
+    private WareSkuService wareSkuService;
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -175,7 +173,7 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
      * * 无：（自动到时）关闭/方法异常，需要回滚，并签收消息
      * * 其他：网络调用故障，需要回滚解锁，拒收消息
      *
-     * @param to 来
+     * @param to 快照传输数据
      */
     @Override
     public void unlockOrderStock(StockLockedUndoLogTo to) throws RuntimeException {
@@ -190,7 +188,7 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
         String orderSn = stockTask.getOrderSn();
         R r = orderFeignService.queryOrderBySn(orderSn);
         if (r.getCode() != 0) {
-            throw new FeignDeliverException();
+            throw new GuliMallBindException("远程查询订单失败，可能网络故障");
         }
         OrderVo data = r.getData(new TypeReference<OrderVo>() {
         });
@@ -249,13 +247,13 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
     public boolean lockOrderStock(WareSkuLockVo wareSkuLockVo) throws GuliMallBindException {
         boolean stockLocked = false;
         List<SkuWareHasStock> skuWareHasStocks = queryWareIdsBySkuId(wareSkuLockVo);
-        WareOrderTaskEntity stockTask = buildStockUndoLogTask(wareSkuLockVo);
+        WareOrderTaskEntity stockTask = buildStockLockedUndoLogTask(wareSkuLockVo);
 
         for (SkuWareHasStock stock : skuWareHasStocks) {
             Long skuId = stock.getSkuId();
             List<Long> wareIds = stock.getWareIds();
             if (CollectionUtils.isEmpty(wareIds)) {
-                throw new GuliMallBindException(skuId + "号商品库存不足，请重新下单");
+                throw new GuliMallBindException(skuId + " 号（skuId）商品库存不足，请重新下单");
             }
             Integer skuNum = stock.getSkuNum();
             String skuName = stock.getSkuName();
@@ -265,7 +263,7 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
                     // 锁定成功，保存库存最新快照
                     WareOrderTaskDetailEntity stockDetail = saveStockLockedSnapshot(stockTask, skuId, skuName, skuNum, wareId);
                     // 发送锁定库存消息至延时队列
-                    pushStockLockedMq(stockTask, stockDetail);
+                    wareSkuService.buildStockLockedUndoLogTo(stockTask, stockDetail);
                     stockLocked = true;
                     break;
                 }
@@ -273,7 +271,7 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
             }
             // 全局失败则回滚
             if (!stockLocked) {
-                throw new GuliMallBindException(skuId + "号商品库存不足，请重新下单");
+                throw new GuliMallBindException(skuId + " 号（skuId）商品库存不足，请重新下单");
             }
 
         }
@@ -292,7 +290,7 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
         return stockDetail;
     }
 
-    private WareOrderTaskEntity buildStockUndoLogTask(WareSkuLockVo wareSkuLockVo) {
+    private WareOrderTaskEntity buildStockLockedUndoLogTask(WareSkuLockVo wareSkuLockVo) {
         WareOrderTaskEntity task = new WareOrderTaskEntity();
         task.setOrderSn(wareSkuLockVo.getOrderSn());
         task.setCreateTime(new Date());
@@ -300,15 +298,15 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
         return task;
     }
 
-    private void pushStockLockedMq(WareOrderTaskEntity task, WareOrderTaskDetailEntity stockDetail) {
+    @Override
+    @PostRabbitMq("库存锁定快照")
+    public StockLockedUndoLogTo buildStockLockedUndoLogTo(WareOrderTaskEntity task, WareOrderTaskDetailEntity stockDetail) {
         StockLockedUndoLogTo undoLogTo = new StockLockedUndoLogTo();
         undoLogTo.setOrderTaskId(task.getId());
         StockDetailTo stockDetailTo = new StockDetailTo();
         BeanUtils.copyProperties(stockDetail, stockDetailTo);
         undoLogTo.setStockDetailSnapshot(stockDetailTo);
-        rabbitTemplate.convertAndSend(StockRabbitMqConfig.EXCHANGE,
-                StockRabbitMqConfig.DELAY_QUEUE_ROUTING_KEY,
-                undoLogTo);
+        return undoLogTo;
     }
 
     private List<SkuWareHasStock> queryWareIdsBySkuId(WareSkuLockVo wareSkuLockVo) {

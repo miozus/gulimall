@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit;
  */
 @Slf4j
 @Configuration
-public class OrderRabbitMqConfig {
+public class RabbitMqOrderConfig {
 
     @Autowired
     RabbitTemplate rabbitTemplate;
@@ -33,7 +33,7 @@ public class OrderRabbitMqConfig {
     public static final String RELEASE_ORDER_QUEUE = "order.release.order.queue";
     public static final String RELEASE_ORDER_ROUTING_KEY = "order.release.order";
     public static final String RELEASE_STOCK_QUEUE = "stock.release.stock.queue";
-    public static final String RELEASE_OTHER_ROUTING_KEY = "order.release.other";
+    public static final String RELEASE_OTHER_QUEUE_ROUTING_KEY = "order.release.other";
     private static final String RELEASE_OTHER_THEME_ROUTING_KEY = "order.release.other.#";
 
 
@@ -138,7 +138,7 @@ public class OrderRabbitMqConfig {
              */
             @Override
             public void confirm(CorrelationData correlationData, boolean ack, String cause) {
-                log.info("📨 已发送, params: {} ", "correlationData:" + correlationData + "," + "ack:" + ack + ","
+                log.info("📨 消息已发送, params: {} ", "correlationData:" + correlationData + "," + "ack:" + ack + ","
                         + "cause:" + cause);
             }
         });
@@ -166,7 +166,7 @@ public class OrderRabbitMqConfig {
              */
             @Override
             public void returnedMessage(Message message, int replyCode, String replyText, String exchange, String routingKey) {
-                log.info("❌ 投递失败, params: {} ", "message:" + message + "," + "replyCode:"
+                log.info("❌ 消息投递失败, params: {} ", "message:" + message + "," + "replyCode:"
                         + replyCode + "," + "replyText:" + replyText + "," + "exchange:" + exchange + ","
                         + "routingKey:" + routingKey);
             }

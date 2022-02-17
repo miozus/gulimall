@@ -1,9 +1,9 @@
 package cn.miozus.gulimall.order.web;
 
 import cn.miozus.common.exception.GuliMallBindException;
+import cn.miozus.gulimall.order.entity.OrderEntity;
 import cn.miozus.gulimall.order.service.OrderService;
 import cn.miozus.gulimall.order.vo.OrderConfirmVo;
-import cn.miozus.gulimall.order.vo.OrderSubmitRespVo;
 import cn.miozus.gulimall.order.vo.OrderSubmitVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,34 +42,17 @@ public class OrderWebController {
 
     @PostMapping("/submit")
     public String submitOrder(OrderSubmitVo orderSubmitVo, Model model, RedirectAttributes redirectAttributes) {
-        OrderSubmitRespVo respVo = null;
-        String msg = "下单失败，";
-        Integer code = null;
         try {
-            respVo = orderService.submitOrder(orderSubmitVo);
-            code = respVo.getCode();
-            if (code != 0) {
-                switch (code) {
-                    case 1:
-                        msg += "防重令牌校验失败，请重新提交";
-                        break;
-                    case 2:
-                        msg += "价格发生变化，超过误差阈值";
-                        break;
-                    default:
-                }
-                redirectAttributes.addFlashAttribute("msg", msg);
-                return "redirect:http://order.gulimall.com/toTrade";
-            }
-            msg = "订单提交成功";
+            OrderEntity resp = orderService.submitOrder(orderSubmitVo);
+            log.info("📤 订单提交成功:" + resp.getOrderSn());
+            model.addAttribute("orderSubmitResp", resp);
+            return "pay";
         } catch (GuliMallBindException e) {
-            redirectAttributes.addFlashAttribute("msg", "库存锁定失败，"+e.getMessage());
+            log.info("🐞 {} : {}", e.getBizCode(), e.getMessage());
+            redirectAttributes.addFlashAttribute("msg", "下单失败，" + e.getMessage());
             return "redirect:http://order.gulimall.com/toTrade";
         }
 
-        log.info("📤 OrderBizCode {} : {} ", code, msg);
-        model.addAttribute("orderSubmitResp", respVo);
-        return "pay";
     }
 
 

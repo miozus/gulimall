@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,7 +30,7 @@ public class OrderNotifyListener {
     AlipayTemplate alipayTemplate;
 
     @PostMapping("/notify/pay")
-    public String handlerAliPay(HttpServletRequest request, PayAsyncVo vo) throws AlipayApiException, UnsupportedEncodingException {
+    public String handlerAliPay(HttpServletRequest request, PayAsyncVo vo) throws AlipayApiException {
         // 校验参数
         // 校验签名
         Map<String, String> params = getParams(request);
@@ -40,7 +39,7 @@ public class OrderNotifyListener {
         // 更新订单状态
         if (signVerified) {
             orderService.handlePayResult(vo);
-            log.info("验签成功");
+            log.info("💳 支付宝验签成功");
             return "success";
         } else {
             log.info("支付异步通知验签失败");

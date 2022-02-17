@@ -4,6 +4,8 @@ import cn.miozus.common.exception.GuliMallBindException;
 import cn.miozus.common.to.mq.OrderTo;
 import cn.miozus.common.to.mq.StockLockedUndoLogTo;
 import cn.miozus.common.utils.PageUtils;
+import cn.miozus.gulimall.ware.entity.WareOrderTaskDetailEntity;
+import cn.miozus.gulimall.ware.entity.WareOrderTaskEntity;
 import cn.miozus.gulimall.ware.entity.WareSkuEntity;
 import cn.miozus.gulimall.ware.vo.SkuHasStockVo;
 import cn.miozus.gulimall.ware.vo.WareSkuLockVo;
@@ -52,5 +54,14 @@ public interface WareSkuService extends IService<WareSkuEntity> {
      * @param to 30分钟后传过来的数据
      */
     void unlockOrderStock(OrderTo to);
+
+    /**
+     * 构建库存锁定回滚日志
+     *
+     * @param task        库存任务
+     * @param stockDetail 库存细节
+     * @return {@link StockLockedUndoLogTo}
+     */
+    StockLockedUndoLogTo buildStockLockedUndoLogTo(WareOrderTaskEntity task, WareOrderTaskDetailEntity stockDetail);
 }
 

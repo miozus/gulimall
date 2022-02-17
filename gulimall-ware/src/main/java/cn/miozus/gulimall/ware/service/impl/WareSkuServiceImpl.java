@@ -3,7 +3,7 @@ package cn.miozus.gulimall.ware.service.impl;
 import cn.miozus.common.constant.WareConstant;
 import cn.miozus.common.enume.OrderStatusEnum;
 import cn.miozus.common.exception.FeignDeliverException;
-import cn.miozus.common.exception.NoStockException;
+import cn.miozus.common.exception.GuliMallBindException;
 import cn.miozus.common.to.mq.OrderTo;
 import cn.miozus.common.to.mq.StockDetailTo;
 import cn.miozus.common.to.mq.StockLockedUndoLogTo;
@@ -245,8 +245,8 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
      * @return {@link List}<{@link LockStockResult}>
      */
     @Override
-    @Transactional(rollbackFor = NoStockException.class)
-    public boolean lockOrderStock(WareSkuLockVo wareSkuLockVo) throws NoStockException {
+    @Transactional(rollbackFor = Exception.class)
+    public boolean lockOrderStock(WareSkuLockVo wareSkuLockVo) throws GuliMallBindException {
         boolean stockLocked = false;
         List<SkuWareHasStock> skuWareHasStocks = queryWareIdsBySkuId(wareSkuLockVo);
         WareOrderTaskEntity stockTask = buildStockUndoLogTask(wareSkuLockVo);
@@ -255,7 +255,7 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
             Long skuId = stock.getSkuId();
             List<Long> wareIds = stock.getWareIds();
             if (CollectionUtils.isEmpty(wareIds)) {
-                throw new NoStockException(skuId);
+                throw new GuliMallBindException(skuId + "号商品库存不足，请重新下单");
             }
             Integer skuNum = stock.getSkuNum();
             String skuName = stock.getSkuName();
@@ -273,7 +273,7 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
             }
             // 全局失败则回滚
             if (!stockLocked) {
-                throw new NoStockException(skuId);
+                throw new GuliMallBindException(skuId + "号商品库存不足，请重新下单");
             }
 
         }

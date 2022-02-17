@@ -1,6 +1,6 @@
 package cn.miozus.gulimall.order.web;
 
-import cn.miozus.common.exception.NoStockException;
+import cn.miozus.common.exception.GuliMallBindException;
 import cn.miozus.gulimall.order.service.OrderService;
 import cn.miozus.gulimall.order.vo.OrderConfirmVo;
 import cn.miozus.gulimall.order.vo.OrderSubmitRespVo;
@@ -62,11 +62,11 @@ public class OrderWebController {
                 return "redirect:http://order.gulimall.com/toTrade";
             }
             msg = "订单提交成功";
-        } catch (NoStockException e) {
-            msg = "库存锁定失败，因为商品库存不足";
-            redirectAttributes.addFlashAttribute("msg", msg);
+        } catch (GuliMallBindException e) {
+            redirectAttributes.addFlashAttribute("msg", "库存锁定失败，"+e.getMessage());
             return "redirect:http://order.gulimall.com/toTrade";
         }
+
         log.info("📤 OrderBizCode {} : {} ", code, msg);
         model.addAttribute("orderSubmitResp", respVo);
         return "pay";

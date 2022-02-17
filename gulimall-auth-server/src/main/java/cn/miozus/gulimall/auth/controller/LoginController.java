@@ -6,7 +6,7 @@ import cn.miozus.gulimall.auth.feign.PluginsFeignService;
 import cn.miozus.gulimall.auth.vo.UserLoginVo;
 import cn.miozus.gulimall.auth.vo.UserRegisterVo;
 import cn.miozus.common.constant.AuthServerConstant;
-import cn.miozus.common.exception.BizCodeEnum;
+import cn.miozus.common.enume.BizCodeEnum;
 import cn.miozus.common.utils.R;
 import cn.miozus.common.vo.MemberRespVo;
 import com.alibaba.cloud.commons.lang.StringUtils;
@@ -72,7 +72,7 @@ public class LoginController {
             long redisTimeStamp = Long.parseLong(redisCode.split("_")[1]);
             long duration = System.currentTimeMillis() - redisTimeStamp;
             if (duration < codeAliveTime) {
-                return R.error(BizCodeEnum.SMS_CODE_EXCEPTION.getCode(), BizCodeEnum.SMS_CODE_EXCEPTION.getMsg());
+                return R.error(BizCodeEnum.SMS_CODE_EXCEPTION.value(), BizCodeEnum.SMS_CODE_EXCEPTION.getMsg());
             }
         }
         String code = UUID.randomUUID().toString().substring(0, 5) + "_" + System.currentTimeMillis();

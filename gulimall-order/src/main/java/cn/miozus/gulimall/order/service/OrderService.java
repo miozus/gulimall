@@ -32,10 +32,10 @@ public interface OrderService extends IService<OrderEntity> {
      * 提交订单
      *
      * @param orderSubmitVo 订单提交签证官
-     * @return {@link OrderSubmitRespVo}
+     * @return {@link OrderEntity}
      * @throws GuliMallBindException 谷粒商场绑定异常
      */
-    OrderSubmitRespVo submitOrder(OrderSubmitVo orderSubmitVo) throws GuliMallBindException;
+    OrderEntity submitOrder(OrderSubmitVo orderSubmitVo) throws GuliMallBindException;
 
     /**
      * 创建订单

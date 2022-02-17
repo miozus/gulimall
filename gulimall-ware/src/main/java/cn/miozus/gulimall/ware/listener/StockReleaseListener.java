@@ -2,7 +2,7 @@ package cn.miozus.gulimall.ware.listener;
 
 import cn.miozus.common.to.mq.OrderTo;
 import cn.miozus.common.to.mq.StockLockedUndoLogTo;
-import cn.miozus.gulimall.ware.config.StockRabbitMqConfig;
+import cn.miozus.gulimall.ware.config.RabbitMqStockConfig;
 import cn.miozus.gulimall.ware.service.WareSkuService;
 import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +22,7 @@ import java.io.IOException;
  */
 @Slf4j
 @Service
-@RabbitListener(queues = StockRabbitMqConfig.RELEASE_ORDER_QUEUE)
+@RabbitListener(queues = RabbitMqStockConfig.RELEASE_ORDER_QUEUE)
 public class StockReleaseListener {
 
     @Autowired
@@ -31,8 +31,7 @@ public class StockReleaseListener {
     @RabbitHandler
     public void handleStockReleaseListener(StockLockedUndoLogTo to, Message message, Channel channel) throws IOException {
         long deliveryTag = message.getMessageProperties().getDeliveryTag();
-
-        log.info("************************听到库存解锁的消息********************************");
+        log.info("********************** 听到库存解锁的消息: 事务回滚的主动解锁 *******************************");
         try {
             wareSkuService.unlockOrderStock(to);
             channel.basicAck(deliveryTag, false);
@@ -43,10 +42,9 @@ public class StockReleaseListener {
     }
 
     @RabbitHandler
-    public void handleStockReleaseByOrderCloseListener(OrderTo to, Message message, Channel channel) throws IOException {
+    public void handleStockReleaseAfterCancelOrderListener(OrderTo to, Message message, Channel channel) throws IOException {
         long deliveryTag = message.getMessageProperties().getDeliveryTag();
-
-        log.info("**********************听到库存解锁的消息：订单取消的二次确认******************************");
+        log.info("********************* 听到库存解锁的消息：订单取消的被动解锁（二次确认）******************************");
         try {
             wareSkuService.unlockOrderStock(to);
             channel.basicAck(deliveryTag, false);

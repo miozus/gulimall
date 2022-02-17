@@ -17,14 +17,14 @@ import java.util.concurrent.TimeUnit;
  */
 @Configuration
 @Slf4j
-public class StockRabbitMqConfig {
+public class RabbitMqStockConfig {
 
     public static final String EXCHANGE = "stock-event-exchange";
     public static final String DELAY_QUEUE = "stock.delay.queue";
     public static final String DELAY_QUEUE_ROUTING_KEY = "stock.lock";
     public static final int DELAY_QUEUE_TTL = (int) TimeUnit.MINUTES.toMillis(16L);
     public static final String RELEASE_ORDER_QUEUE = "stock.release.stock.queue";
-    public static final String RELEASE_ORDER_ROUTING_KEY = "stock.release";
+    public static final String RELEASE_ORDER_QUEUE_ROUTING_KEY = "stock.release";
 
 
     /**
@@ -51,7 +51,7 @@ public class StockRabbitMqConfig {
     Queue delayQueue() {
         return QueueBuilder.durable(DELAY_QUEUE)
                 .deadLetterExchange(EXCHANGE)
-                .deadLetterRoutingKey(RELEASE_ORDER_ROUTING_KEY)
+                .deadLetterRoutingKey(RELEASE_ORDER_QUEUE_ROUTING_KEY)
                 .ttl(DELAY_QUEUE_TTL)
                 .build();
     }
@@ -68,7 +68,7 @@ public class StockRabbitMqConfig {
 
     @Bean
     Binding releaseBinding(Queue releaseQueue, TopicExchange exchange) {
-        return BindingBuilder.bind(releaseQueue).to(exchange).with(RELEASE_ORDER_ROUTING_KEY);
+        return BindingBuilder.bind(releaseQueue).to(exchange).with(RELEASE_ORDER_QUEUE_ROUTING_KEY);
     }
 
     /**

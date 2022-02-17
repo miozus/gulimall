@@ -15,26 +15,26 @@
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <lombok.version>1.18.20</lombok.version>
+        <lombok.version>1.18.22</lombok.version>
         <mysql.version>8.0.26</mysql.version>
         <mybatis.plus.boot.version>3.3.1</mybatis.plus.boot.version>
         <servlet.api.version>2.5</servlet.api.version>
         <commons.lang.version>2.6</commons.lang.version>
-        <httpcore.version>4.4.13</httpcore.version>
-        <fastjson.version>1.2.78</fastjson.version>
+        <httpcore.version>4.4.15</httpcore.version>
+        <fastjson.version>1.2.79</fastjson.version>
         <validation.api.version>2.0.1.Final</validation.api.version>
         <hutool.all.version>5.7.20</hutool.all.version>
     </properties>
 
 
     <dependencies>
-        <!--    无依赖工具箱    -->
+        <!-- 无依赖低入侵的工具箱 -->
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
             <version>${hutool.all.version}</version>
         </dependency>
-        <!--    MyBatis-Plus    -->
+        <!-- MyBatis-Plus -->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
@@ -85,22 +85,21 @@
             <artifactId>validation-api</artifactId>
             <version>${validation.api.version}</version>
         </dependency>
+        <!-- 修复版本过低，Maven 找不到 lombok 依赖 -->
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>7.0.1.Final</version>
+        </dependency>
         <!-- 注册中心 -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
-
         <!--  配置中心 -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-        </dependency>
-        <!-- 修复版本过低，Maven 找不到 lombok 依赖 -->
-        <dependency>
-            <groupId>org.hibernate.validator</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>7.0.0.Final</version>
         </dependency>
         <!-- 捕获全局异常 -->
         <dependency>
@@ -108,6 +107,8 @@
             <artifactId>spring-web</artifactId>
             <version>5.2.8.RELEASE</version>
         </dependency>
+
+
     </dependencies>
 
     <dependencyManagement>

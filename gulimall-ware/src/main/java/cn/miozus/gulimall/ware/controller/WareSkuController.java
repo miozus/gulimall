@@ -9,7 +9,6 @@ import cn.miozus.gulimall.ware.vo.SkuHasStockVo;
 import cn.miozus.gulimall.ware.vo.WareSkuLockVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -28,18 +27,17 @@ import java.util.Map;
 @RequestMapping("ware/waresku")
 @Slf4j
 public class WareSkuController {
+
     @Autowired
     private WareSkuService wareSkuService;
 
     @PostMapping("/lock")
-    @Transactional(rollbackFor = Exception.class)
     public R lockOrderStock(@RequestBody WareSkuLockVo wareSkuLockVo) {
         try {
             boolean lock = wareSkuService.lockOrderStock(wareSkuLockVo);
-            log.debug("📦 lock {} ", lock);
+            log.debug("📦 lock {} : OrderSn ", lock, wareSkuLockVo.getOrderSn());
             return R.ok().setData(lock);
         } catch (GuliMallBindException e) {
-            e.printStackTrace();
             return R.error(e.getBizCode(), e.getMessage());
         }
     }

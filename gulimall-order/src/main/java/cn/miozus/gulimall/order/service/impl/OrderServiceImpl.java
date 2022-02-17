@@ -1,16 +1,17 @@
 package cn.miozus.gulimall.order.service.impl;
 
 import cn.miozus.common.annotation.DeleteRedis;
+import cn.miozus.common.annotation.Idempotent;
+import cn.miozus.common.annotation.PostRabbitMq;
+import cn.miozus.common.annotation.PutRedis;
 import cn.miozus.common.constant.OrderConstant;
 import cn.miozus.common.enume.OrderStatusEnum;
 import cn.miozus.common.exception.GuliMallBindException;
 import cn.miozus.common.to.SkuHasStockVo;
-import cn.miozus.common.to.mq.OrderTo;
 import cn.miozus.common.utils.PageUtils;
 import cn.miozus.common.utils.Query;
 import cn.miozus.common.utils.R;
 import cn.miozus.common.vo.MemberRespVo;
-import cn.miozus.gulimall.order.config.OrderRabbitMqConfig;
 import cn.miozus.gulimall.order.dao.OrderDao;
 import cn.miozus.gulimall.order.entity.OrderEntity;
 import cn.miozus.gulimall.order.entity.OrderItemEntity;
@@ -34,11 +35,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.buf.StringUtils;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.request.RequestAttributes;
@@ -49,7 +46,6 @@ import java.math.RoundingMode;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 
@@ -74,13 +70,9 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
     @Autowired
     WareFeignService wareFeignService;
     @Autowired
-    RedisTemplate<String, String> redisTemplate;
-    @Autowired
     ProductFeignService productFeignService;
     @Autowired
     OrderItemService orderItemService;
-    @Autowired
-    RabbitTemplate rabbitTemplate;
     @Autowired
     PaymentInfoService paymentInfoService;
 
@@ -102,6 +94,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
      */
     @SneakyThrows
     @Override
+    @PutRedis("提交令牌")
     public OrderConfirmVo confirmOrder() {
         OrderConfirmVo confirmVo = new OrderConfirmVo();
         MemberRespVo loginUser = LoginUserInterceptor.threadLocal.get();
@@ -123,71 +116,47 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         Integer integration = loginUser.getIntegration();
         confirmVo.setIntegration(integration);
 
-        String token = pushTokenRedis(uid);
-        confirmVo.setOrderToken(token);
-
         CompletableFuture.allOf(addressFuture, orderItemFuture).get();
-
         return confirmVo;
     }
 
     /**
      * 提交订单总流程（自定义错误码）
-     * 0 默认成功
      * <p>
-     * 验令牌：1 失败：脚本0失败1成功
+     *
+     * 验令牌
      * 创建订单
-     * 验价：2 失败：零头误差大于等于 0.01
+     * 验价：前后端价格误差绝对值需小于等于 0.01
      * 保存订单
-     * 远程锁库存: 3 调用失败抛出异常
+     * 远程锁库存
      *
      * @param orderSubmitVo 订单提交签证官
-     * @return {@link OrderSubmitRespVo}
+     * @return {@link OrderEntity}
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
+    @Idempotent("令牌校验")
+    @PostRabbitMq("提交订单")
     @DeleteRedis("删除提交付款的购物车商品")
-    public OrderSubmitRespVo submitOrder(OrderSubmitVo orderSubmitVo) {
+    public OrderEntity submitOrder(OrderSubmitVo orderSubmitVo) {
         orderSubmitVoThreadLocal.set(orderSubmitVo);
-
-        OrderSubmitRespVo response = new OrderSubmitRespVo();
-        response.setCode(0);
-
-        Long execute = checkAndDeleteRedisToken(orderSubmitVo);
-        if (execute == 0L) {
-            response.setCode(1);
-            return response;
-        }
-
         OrderCreateTo orderTo = createOrder();
 
-        double subtract = checkPriceSubtractAccuracy(orderTo, orderSubmitVo);
-        if (Math.abs(subtract) >= OrderConstant.FRONT_BACK_PRICE_FLOAT_THRESHOLD) {
-            response.setCode(2);
-            return response;
+        boolean isOverThreshold = comparePriceSubtractAccuracy(orderTo, orderSubmitVo);
+        if (isOverThreshold) {
+            throw new GuliMallBindException("价格发生变化，超过误差阈值");
         }
 
         saveOrderAndOrderItems(orderTo);
 
-        R r = lockStockWareFeignService(orderTo);
+        R r = callLockOrderStockFeignMethod(orderTo);
         if (r.getCode() != 0) {
             throw new GuliMallBindException(r.getMsg());
         }
 
-        response.setOrder(orderTo.getOrder());
-        pushMqDelayQueue(orderTo.getOrder());
-        return response;
+        return orderTo.getOrder();
     }
 
-
-    /**
-     * 推送mq延迟队列
-     *
-     * @param order 订单
-     */
-    private void pushMqDelayQueue(OrderEntity order) {
-        rabbitTemplate.convertAndSend(OrderRabbitMqConfig.EXCHANGE, OrderRabbitMqConfig.DELAY_QUEUE_ROUTING_KEY, order);
-    }
 
     /**
      * 验价：前端提交的静态数据 vs 数据库查询计算的数据
@@ -196,10 +165,11 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
      * @param orderSubmitVo 订单提交签证官
      * @return double
      */
-    private double checkPriceSubtractAccuracy(OrderCreateTo order, OrderSubmitVo orderSubmitVo) {
+    private boolean comparePriceSubtractAccuracy(OrderCreateTo order, OrderSubmitVo orderSubmitVo) {
         BigDecimal payAmount = order.getOrder().getPayAmount();
         BigDecimal payPrice = orderSubmitVo.getPayPrice();
-        return payAmount.subtract(payPrice).doubleValue();
+        double subtract = payAmount.subtract(payPrice).doubleValue();
+        return Math.abs(subtract) > OrderConstant.FRONT_BACK_PRICE_FLOAT_THRESHOLD;
     }
 
     /**
@@ -208,7 +178,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
      * @param order 订单
      * @return {@link R}
      */
-    private R lockStockWareFeignService(OrderCreateTo order) {
+    private R callLockOrderStockFeignMethod(OrderCreateTo order) {
         WareSkuLockVo lockVo = new WareSkuLockVo();
         lockVo.setOrderSn(order.getOrder().getOrderSn());
         List<OrderItemVo> itemVos = order.getOrderItems().stream().map(item -> {
@@ -279,17 +249,17 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
      * @param to 支付限时 30 分钟届满后，收到的消息携带的实体,To 为了传输规范，新建套壳踢皮球
      */
     @Override
+    @PostRabbitMq("关闭订单")
     public void closeOrder(OrderEntity to) {
         OrderEntity fresh = this.getById(to.getId());
         if (Objects.isNull(fresh)) {
-            throw new GuliMallBindException(to.getId() + "号订单不存在，可能事务未提交");
+            throw new GuliMallBindException(to.getId() + "号订单不存在，可能网络故障导致事务未提交");
         }
         Integer orderStatus = fresh.getStatus();
         if (orderStatus != OrderStatusEnum.CREATE_NEW.getCode()) {
             return;
         }
         updateOrderStatusCanceled(fresh);
-        pushReleaseOtherQueueMq(fresh);
     }
 
     /**
@@ -321,7 +291,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
      * <p>
      * 本质是表单列表集合的装饰器：表名 + 装饰器
      * getRecords: 分页封装的结果，每条记录
-     *
+     * <p>
      * 一次性：只有付款成功成功时调用，如果 orderSubmit: 存在即是锁
      *
      * @param params 模板参数
@@ -392,13 +362,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         paymentInfoService.save(info);
     }
 
-    private void pushReleaseOtherQueueMq(OrderEntity fresh) {
-        OrderTo orderTo = new OrderTo();
-        BeanUtils.copyProperties(fresh, orderTo);
-        rabbitTemplate.convertAndSend(OrderRabbitMqConfig.EXCHANGE,
-                OrderRabbitMqConfig.RELEASE_OTHER_ROUTING_KEY, orderTo);
-    }
-
     private void updateOrderStatusCanceled(OrderEntity fresh) {
         OrderEntity update = new OrderEntity();
         update.setId(fresh.getId());
@@ -450,27 +413,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         order.setIntegrationAmount(integrationAmount);
         order.setIntegration(giftIntegration);
         order.setGrowth(giftGrowth);
-    }
-
-    /**
-     * 校验并删除缓存令牌
-     * ⚛️ 必须使用脚本锁定原子操作
-     *
-     * @param orderSubmitVo 订单提交签证官
-     * @return {@link Long}
-     */
-    private Long checkAndDeleteRedisToken(OrderSubmitVo orderSubmitVo) {
-        MemberRespVo loginUser = LoginUserInterceptor.threadLocal.get();
-        Long uid = loginUser.getId();
-        String tokenKey = OrderConstant.ORDER_USER_TOKEN_PREFIX + uid;
-        String token = orderSubmitVo.getOrderToken();
-        String deleteKeyIfExistsLuaScript = "if redis.call('get',KEYS[1]) == ARGV[1] then " +
-                "return redis.call('del',KEYS[1]); " +
-                "else " +
-                "return 0; " +
-                "end; ";
-        DefaultRedisScript<Long> action = new DefaultRedisScript<>(deleteKeyIfExistsLuaScript, Long.class);
-        return redisTemplate.execute(action, Collections.singletonList(tokenKey), token);
     }
 
     /**
@@ -581,13 +523,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         order.setConfirmStatus(0);
         order.setAutoConfirmDay(7);
         return order;
-    }
-
-    private String pushTokenRedis(Long uid) {
-        String tokenKey = OrderConstant.ORDER_USER_TOKEN_PREFIX + uid;
-        String token = UUID.randomUUID().toString().replace("-", "");
-        redisTemplate.opsForValue().set(tokenKey, token, 30, TimeUnit.MINUTES);
-        return token;
     }
 
     private void updateStocksWareFeignService(OrderConfirmVo confirmVo) {

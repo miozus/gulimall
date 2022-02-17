@@ -1,6 +1,6 @@
 package cn.miozus.gulimall.order.listener;
 
-import cn.miozus.gulimall.order.config.OrderRabbitMqConfig;
+import cn.miozus.gulimall.order.config.RabbitMqOrderConfig;
 import cn.miozus.gulimall.order.entity.OrderEntity;
 import cn.miozus.gulimall.order.service.OrderService;
 import com.rabbitmq.client.Channel;
@@ -22,7 +22,7 @@ import java.io.IOException;
  */
 @Slf4j
 @Service
-@RabbitListener(queues = OrderRabbitMqConfig.RELEASE_ORDER_QUEUE)
+@RabbitListener(queues = RabbitMqOrderConfig.RELEASE_ORDER_QUEUE)
 public class OrderCloseListener {
 
     @Autowired

@@ -52,7 +52,6 @@ public class OrderWebController {
             redirectAttributes.addFlashAttribute("msg", "下单失败，" + e.getMessage());
             return "redirect:http://order.gulimall.com/toTrade";
         }
-
     }
 
 

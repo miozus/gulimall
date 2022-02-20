@@ -20,3 +20,21 @@ buildNumber.properties
 **/mvnw.cmd
 **/target/
 **/.gitignore
+
+# Windows:
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Python:
+*.py[cod]
+*.so
+*.egg
+*.egg-info
+dist
+build
+
+# VSCode
+__pycache__
+.vscode
+# Python:

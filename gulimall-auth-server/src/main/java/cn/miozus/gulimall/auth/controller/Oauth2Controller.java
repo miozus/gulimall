@@ -36,19 +36,25 @@ public class Oauth2Controller {
     @GetMapping("/oauth2/gitee/redirect")
     public String gitee(@RequestParam("code") String code, RedirectAttributes redirectAttributes, HttpSession session) {
         SocialUser socialUser = giteeApi.fetchToken(code);
-        R r = memberFeignService.oauthLogin(socialUser);
-        if (r.getCode() != 0) {
-            Map<String, String> errors = new HashMap<>(1);
-            errors.put("msg", r.getData("msg", new TypeReference<String>() {
-            }));
-            redirectAttributes.addFlashAttribute("errors", errors);
-            return "redirect:http://auth.gulimall.com/login.html";
+        R r = null;
+        try {
+            r = memberFeignService.oauthLogin(socialUser);
+            if (!r.isEmpty()) {
+                MemberRespVo data = r.getData("data", new TypeReference<MemberRespVo>() {
+                });
+                session.setAttribute(AuthServerConstant.LOGIN_USER, data);
+                log.info("登陆成功 data {}", data);
+                return "redirect:http://gulimall.com";
+            }
+        } catch (Exception e) {
+            r = R.error("远程调用失败：可能网络延迟高");
+            e.printStackTrace();
         }
-        MemberRespVo data = r.getData("data", new TypeReference<MemberRespVo>() {
-        });
-        session.setAttribute(AuthServerConstant.LOGIN_USER, data);
-        log.info("登陆成功 data {}", data);
-        return "redirect:http://gulimall.com";
+        Map<String, String> errors = new HashMap<>(1);
+        errors.put("msg", r.getData("msg", new TypeReference<String>() {
+        }));
+        redirectAttributes.addFlashAttribute("errors", errors);
+        return "redirect:http://auth.gulimall.com/login.html";
     }
 
 }

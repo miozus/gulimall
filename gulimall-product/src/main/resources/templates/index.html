@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>谷粒商城</title>
     <link rel="stylesheet" href="/static/index/css/swiper-3.4.2.min.css">
     <link rel="stylesheet" href="/static/index/css/GL.css">
     <script src="/static/index/js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
@@ -96,10 +96,10 @@
             <ul>
                 <li>
                     <a th:if="${session.loginUser != null}">你好，[[${session.loginUser.nickname}]]</a>
-                    <a th:unless="${session.loginUser != null}" href="http://auth.gulimall.com/login.html" >你好，请登录</a>
+                    <a th:unless="${session.loginUser != null}" href="http://auth.gulimall.com/login.html">你好，请登录</a>
                 </li>
                 <li th:if="${session.loginUser == null}">
-                    <a  href="http://auth.gulimall.com/register.html" class="li_2">免费注册</a>
+                    <a href="http://auth.gulimall.com/register.html" class="li_2">免费注册</a>
                 </li>
                 <span>|</span>
                 <li>
@@ -239,10 +239,19 @@
                             <a href="/static/#"><img class="" src="/static/index/img/touxiang.png"></a>
                         </div>
                         <div class="user_info_show">
-                            <p class="">Hi, 欢迎来到!</p>
+                            <p th:if="${session.loginUser != null}">Hi，[[${session.loginUser.nickname}]]</p>
+                            <p th:unless="${session.loginUser != null}" href="http://auth.gulimall.com/logpn.html">
+                                欢迎!</p>
                             <p>
-                                <a href="/static/#" class="">登录</a>
-                                <a href="/static/#" class="">注册</a>
+
+                            <li>
+                                <a th:if="${session.loginUser != null}">你好，[[${session.loginUser.nickname}]]</a>
+                                <a th:unless="${session.loginUser != null}">你好，请登录</a>
+                            </li>
+
+                            <a th:if="${session.loginUser == null}" href="http://auth.gulimall.com/login.html" class="">登录</a>
+                            <a th:if="${session.loginUser == null}" href="http://auth.gulimall.com/register.html"
+                               class="li_2">免费注册</a>
                             </p>
                         </div>
                     </div>

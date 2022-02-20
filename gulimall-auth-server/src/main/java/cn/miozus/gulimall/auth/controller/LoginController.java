@@ -1,14 +1,14 @@
 package cn.miozus.gulimall.auth.controller;
 
 
-import cn.miozus.gulimall.auth.feign.MemberFeignService;
-import cn.miozus.gulimall.auth.feign.PluginsFeignService;
-import cn.miozus.gulimall.auth.vo.UserLoginVo;
-import cn.miozus.gulimall.auth.vo.UserRegisterVo;
 import cn.miozus.common.constant.AuthServerConstant;
 import cn.miozus.common.enume.BizCodeEnum;
 import cn.miozus.common.utils.R;
 import cn.miozus.common.vo.MemberRespVo;
+import cn.miozus.gulimall.auth.feign.MemberFeignService;
+import cn.miozus.gulimall.auth.feign.PluginsFeignService;
+import cn.miozus.gulimall.auth.vo.UserLoginVo;
+import cn.miozus.gulimall.auth.vo.UserRegisterVo;
 import com.alibaba.cloud.commons.lang.StringUtils;
 import com.alibaba.fastjson.TypeReference;
 import lombok.extern.slf4j.Slf4j;
@@ -95,9 +95,14 @@ public class LoginController {
     @PostMapping("/register")
     public String register(@Valid UserRegisterVo vo, BindingResult result, RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
-            Map<String, String> errors = result.getFieldErrors().stream().collect(
-                    Collectors.toMap(FieldError::getField, FieldError::getDefaultMessage)
-            );
+            Map<String, String> errors = null;
+            try {
+                errors = result.getFieldErrors().stream().collect(
+                        Collectors.toMap(FieldError::getField, FieldError::getDefaultMessage)
+                );
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             redirectAttributes.addFlashAttribute("errors", errors);
             return "redirect:http://auth.gulimall.com/register.html";
         }
@@ -112,24 +117,29 @@ public class LoginController {
      *
      * @param vo                 视图模型，提交的KV（而非JSON，不用RequestBody）
      * @param redirectAttributes 重定向属性
-     * @param session
+     * @param session 会话
      * @return {@link String}
      */
     @PostMapping("/login")
     public String login(UserLoginVo vo, RedirectAttributes redirectAttributes, HttpSession session) {
-        R r = memberFeignService.login(vo);
-        if (r.getCode() != 0) {
-            Map<String, String> errors = new HashMap<>(1);
-            errors.put("msg", r.getData("msg", new TypeReference<String>() {
-            }));
-            redirectAttributes.addFlashAttribute("errors", errors);
-            return "redirect:http://auth.gulimall.com/login.html";
+        R r;
+        try {
+            r = memberFeignService.login(vo);
+            MemberRespVo data = r.getData("data", new TypeReference<MemberRespVo>() {
+            });
+            session.setAttribute(AuthServerConstant.LOGIN_USER, data);
+            log.info("登陆成功： data {}", data);
+            return "redirect:http://gulimall.com";
+        } catch (Exception e) {
+            e.printStackTrace();
+            r = R.error("远程调用失败");
         }
-        MemberRespVo data = r.getData("data", new TypeReference<MemberRespVo>() {
-        });
-        session.setAttribute(AuthServerConstant.LOGIN_USER, data);
-        log.info("登陆成功： data {}", data);
-        return "redirect:http://gulimall.com";
+        Map<String, String> errors = new HashMap<>(1);
+        errors.put("msg", r.getData("msg", new TypeReference<String>() {
+        }));
+        redirectAttributes.addFlashAttribute("errors", errors);
+        return "redirect:http://auth.gulimall.com/login.html";
+
     }
 
     @GetMapping("/login.html")

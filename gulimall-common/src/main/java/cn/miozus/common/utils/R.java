@@ -8,6 +8,7 @@
 
 package cn.miozus.common.utils;
 
+import cn.miozus.common.enume.BizCodeEnum;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import org.apache.http.HttpStatus;
@@ -42,6 +43,13 @@ public class R extends HashMap<String, Object> {
         return error(HttpStatus.SC_INTERNAL_SERVER_ERROR, msg);
     }
 
+    public static R error(BizCodeEnum e) {
+        R r = new R();
+        r.put("code", e.value());
+        r.put("msg", e.getMsg());
+        return r;
+    }
+
     public static R error(int code, String msg) {
         R r = new R();
         r.put("code", code);
@@ -65,6 +73,7 @@ public class R extends HashMap<String, Object> {
         return new R();
     }
 
+
     @Override
     public R put(String key, Object value) {
         super.put(key, value);
@@ -74,11 +83,12 @@ public class R extends HashMap<String, Object> {
     /**
      * 获取代码
      * 因为经常用获取状态, 以下自定义 *
+     *
      * @return {@link Integer}
      */
     public Integer getCode() {
-         return (Integer) this.get("code");
-     }
+        return (Integer) this.get("code");
+    }
 
     /**
      * 获取成功提示
@@ -95,7 +105,7 @@ public class R extends HashMap<String, Object> {
      * @return {@link Boolean}
      */
     public Boolean isOk() {
-        return  "success".equalsIgnoreCase((String) this.get("msg"));
+        return "success".equalsIgnoreCase((String) this.get("msg"));
     }
 
     /**
@@ -104,30 +114,29 @@ public class R extends HashMap<String, Object> {
      * @param data 数据
      * @return {@link R}
      */
-    public R setData(Object data){
-         this.put("data",  data);
-         return this;
+    public R setData(Object data) {
+        this.put("data", data);
+        return this;
     }
 
     /**
      * 获取数据
      * alibaba-fastjson 设置要转换的类型
      * R<HashMap<"data",Object> > Object > JSON.String > JSON > ReferenceType
+     *
      * @param typeReference 引用类型
      * @return {@link T}
      */
     public <T> T getData(TypeReference<T> typeReference) {
         Object data = this.get("data");
         String s = JSON.toJSONString(data);
-        T t = JSON.parseObject(s, typeReference);
-        return t;
+        return JSON.parseObject(s, typeReference);
     }
 
     public <T> T getData(String key, TypeReference<T> typeReference) {
         Object data = this.get(key);
         String s = JSON.toJSONString(data);
-        T t = JSON.parseObject(s, typeReference);
-        return t;
+        return JSON.parseObject(s, typeReference);
     }
 }
 

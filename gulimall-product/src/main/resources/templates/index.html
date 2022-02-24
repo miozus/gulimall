@@ -244,11 +244,6 @@
                                 欢迎!</p>
                             <p>
 
-                            <li>
-                                <a th:if="${session.loginUser != null}">你好，[[${session.loginUser.nickname}]]</a>
-                                <a th:unless="${session.loginUser != null}">你好，请登录</a>
-                            </li>
-
                             <a th:if="${session.loginUser == null}" href="http://auth.gulimall.com/login.html" class="">登录</a>
                             <a th:if="${session.loginUser == null}" href="http://auth.gulimall.com/register.html"
                                class="li_2">免费注册</a>

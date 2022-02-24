@@ -28,13 +28,13 @@ import cn.miozus.gulimall.order.to.OrderCreateTo;
 import cn.miozus.gulimall.order.vo.*;
 import com.alibaba.fastjson.TypeReference;
 import com.alibaba.nacos.common.utils.CollectionUtils;
+import com.alibaba.nacos.common.utils.StringUtils;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.tomcat.util.buf.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -123,7 +123,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
     /**
      * 提交订单总流程（自定义错误码）
      * <p>
-     *
+     * <p>
      * 验令牌
      * 创建订单
      * 验价：前后端价格误差绝对值需小于等于 0.01
@@ -456,7 +456,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         entity.setCategoryId(spuInfo.getCatalogId());
         entity.setSpuBrand(spuInfo.getBrandId().toString());
 
-        String skuAttrsVals = StringUtils.join(item.getSkuAttrs(), ';');
+        String skuAttrsVals = StringUtils.join(item.getSkuAttrs(), ";");
         entity.setSkuId(skuId);
         entity.setSkuAttrsVals(skuAttrsVals);
         entity.setSkuName(item.getTitle());
@@ -505,6 +505,9 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         OrderSubmitVo orderSubmitVo = orderSubmitVoThreadLocal.get();
         String addrId = orderSubmitVo.getAddrId();
 
+        if (StringUtils.isEmpty(addrId)) {
+            throw new GuliMallBindException(memberId + " 请选择默认的收件人地址");
+        }
         R r = wareFeignService.queryFare(Long.valueOf(addrId));
         FareVo fareVo = r.getData("fareVo", new TypeReference<FareVo>() {
         });

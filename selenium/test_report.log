@@ -1,0 +1,3534 @@
+test_add_cart (__main__.MallTest) ... ok
+test_go_pay (__main__.MallTest) ... skipped 'todo'
+test_oauth_login (__main__.MallTest) ... skipped 'ok'
+test_order_confim (__main__.MallTest) ... skipped 'todo'
+test_order_pay (__main__.MallTest) ... skipped 'todo'
+test_regist (__main__.MallTest)
+验证码临时生成在 Redis ... skipped '一次性'
+test_sign_login (__main__.MallTest) ... skipped 'ok'
+
+----------------------------------------------------------------------
+Ran 7 tests in 381.952s
+
+OK (skipped=6)
+test_add_cart (__main__.MallTest) ... ok
+test_go_pay (__main__.MallTest) ... skipped 'todo'
+test_oauth_login (__main__.MallTest) ... skipped 'ok'
+test_order_confim (__main__.MallTest) ... skipped 'todo'
+test_order_pay (__main__.MallTest) ... skipped 'todo'
+test_regist (__main__.MallTest)
+验证码临时生成在 Redis ... skipped '一次性'
+test_sign_login (__main__.MallTest) ... skipped 'ok'
+
+----------------------------------------------------------------------
+Ran 7 tests in 7.679s
+
+OK (skipped=6)
+test_add_cart (__main__.MallTest) ... skipped 'todo'
+test_add_cart_login (__main__.MallTest) ... ERROR
+test_go_pay (__main__.MallTest) ... skipped 'todo'
+test_oauth_login (__main__.MallTest) ... skipped 'ok'
+test_order_confim (__main__.MallTest) ... skipped 'todo'
+test_order_pay (__main__.MallTest) ... skipped 'todo'
+test_regist (__main__.MallTest)
+验证码临时生成在 Redis ... skipped '一次性'
+test_sign_login (__main__.MallTest) ... skipped 'ok'
+
+======================================================================
+ERROR: test_add_cart_login (__main__.MallTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\gulimall.py", line 50, in test_add_cart_login
+    self.assertFalse(p.isloggin())
+AttributeError: 'ItemPage' object has no attribute 'isloggin'
+
+----------------------------------------------------------------------
+Ran 8 tests in 5.589s
+
+FAILED (errors=1, skipped=7)
+test_add_cart (__main__.MallTest) ... skipped 'todo'
+test_add_cart_login (__main__.MallTest) ... ok
+test_go_pay (__main__.MallTest) ... skipped 'todo'
+test_oauth_login (__main__.MallTest) ... skipped 'ok'
+test_order_confim (__main__.MallTest) ... skipped 'todo'
+test_order_pay (__main__.MallTest) ... skipped 'todo'
+test_regist (__main__.MallTest)
+验证码临时生成在 Redis ... skipped '一次性'
+test_sign_login (__main__.MallTest) ... skipped 'ok'
+
+----------------------------------------------------------------------
+Ran 8 tests in 8.561s
+
+OK (skipped=7)
+test_add_cart (__main__.MallTest) ... skipped 'ok'
+test_add_cart_login (__main__.MallTest) ... skipped 'ok'
+test_go_pay (__main__.MallTest) ... FAIL
+test_oauth_login (__main__.MallTest) ... skipped 'ok'
+test_order_confim (__main__.MallTest) ... skipped 'todo'
+test_order_pay (__main__.MallTest) ... skipped 'todo'
+test_regist (__main__.MallTest)
+验证码临时生成在 Redis ... skipped '一次性'
+test_sign_login (__main__.MallTest) ... skipped 'ok'
+
+======================================================================
+FAIL: test_go_pay (__main__.MallTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\gulimall.py", line 58, in test_go_pay
+    self.assertEqual(self.driver.title, '订单确认')
+AssertionError: '购物车' != '订单确认'
+- 购物车
++ 订单确认
+
+
+----------------------------------------------------------------------
+Ran 8 tests in 3.885s
+
+FAILED (failures=1, skipped=7)
+test_add_cart (__main__.MallTest) ... skipped 'ok'
+test_add_cart_login (__main__.MallTest) ... skipped 'ok'
+test_go_pay (__main__.MallTest) ... ok
+test_oauth_login (__main__.MallTest) ... skipped 'ok'
+test_order_confim (__main__.MallTest) ... skipped 'todo'
+test_order_pay (__main__.MallTest) ... skipped 'todo'
+test_regist (__main__.MallTest)
+验证码临时生成在 Redis ... skipped '一次性'
+test_sign_login (__main__.MallTest) ... skipped 'ok'
+
+----------------------------------------------------------------------
+Ran 8 tests in 7.024s
+
+OK (skipped=7)
+test_add_cart (__main__.MallTest) ... skipped 'ok'
+test_add_cart_login (__main__.MallTest) ... skipped 'ok'
+test_go_pay (__main__.MallTest) ... skipped 'ok'
+test_oauth_login (__main__.MallTest) ... skipped 'ok'
+test_order_confim (__main__.MallTest) ... skipped 'todo'
+test_order_pay (__main__.MallTest) ... skipped 'todo'
+test_regist (__main__.MallTest)
+验证码临时生成在 Redis ... skipped '一次性'
+test_sign_login (__main__.MallTest) ... skipped 'ok'
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.000s
+
+OK (skipped=8)
+test_add_cart (__main__.MallTest) ... skipped 'ok'
+test_add_cart_login (__main__.MallTest) ... skipped 'ok'
+test_go_pay (__main__.MallTest) ... skipped 'ok'
+test_oauth_login (__main__.MallTest) ... skipped 'ok'
+test_order_confim (__main__.MallTest) ... ERROR
+test_order_pay (__main__.MallTest) ... skipped 'todo'
+test_regist (__main__.MallTest)
+验证码临时生成在 Redis ... skipped '一次性'
+test_sign_login (__main__.MallTest) ... skipped 'ok'
+
+======================================================================
+ERROR: test_order_confim (__main__.MallTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\gulimall.py", line 64, in test_order_confim
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\aspect\chrome.py", line 76, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 10, in submit
+    self.wait(self.submit_button).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 8 tests in 11.266s
+
+FAILED (errors=1, skipped=7)
+test_add_cart (__main__.MallTest) ... skipped 'ok'
+test_add_cart_login (__main__.MallTest) ... skipped 'ok'
+test_go_pay (__main__.MallTest) ... skipped 'ok'
+test_oauth_login (__main__.MallTest) ... skipped 'ok'
+test_order_confim (__main__.MallTest) ... skipped 'todo'
+test_order_pay (__main__.MallTest) ... skipped 'todo'
+test_regist (__main__.MallTest)
+验证码临时生成在 Redis ... skipped '一次性'
+test_sign_login (__main__.MallTest) ... ERROR
+
+======================================================================
+ERROR: test_sign_login (__main__.MallTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\gulimall.py", line 31, in test_sign_login
+    p.sign_login(user['username'], user['password'])
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\aspect\chrome.py", line 76, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\login.py", line 21, in sign_login
+    self.wait(self.home_page_locator, 20)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 8 tests in 22.470s
+
+FAILED (errors=1, skipped=7)
+test_add_cart (__main__.MallTest) ... skipped 'ok'
+test_add_cart_login (__main__.MallTest) ... skipped 'ok'
+test_go_pay (__main__.MallTest) ... skipped 'ok'
+test_oauth_login (__main__.MallTest) ... skipped 'ok'
+test_order_confim (__main__.MallTest) ... skipped 'todo'
+test_order_pay (__main__.MallTest) ... skipped 'todo'
+test_regist (__main__.MallTest) ... skipped '一次性'
+test_sign_login (__main__.MallTest) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 3.977s
+
+OK (skipped=7)
+test_add_cart (__main__.MallTest) ... skipped '离线购物车'
+test_add_cart_login (__main__.MallTest) ... skipped '在线购物车'
+test_go_pay (__main__.MallTest) ... skipped '订单确认'
+test_index (__main__.MallTest) ... ERROR
+test_oauth_login (__main__.MallTest) ... skipped '授权登录'
+test_order_confim (__main__.MallTest) ... skipped '跳转支付'
+test_order_pay (__main__.MallTest) ... skipped 'todo'
+test_regist (__main__.MallTest) ... skipped '注册账号'
+test_sign_login (__main__.MallTest) ... skipped '账号登录'
+
+======================================================================
+ERROR: test_index (__main__.MallTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\gulimall.py", line 17, in setUp
+    self.driver.add_cookie({'name':'GULISESSION','value':'ZjJkZGUzZDUtOTdkNC00ZDMwLTk0MjItYTg2MjlkMzNkZjcx'})
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 1130, in add_cookie
+    self.execute(Command.ADD_COOKIE, {'cookie': cookie_dict})
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.InvalidCookieDomainException: Message: invalid cookie domain
+  (Session info: chrome=98.0.4758.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833960+1063264]
+	Ordinal0 [0x008961F8+1466872]
+	Ordinal0 [0x0087854C+1344844]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.004s
+
+FAILED (errors=1, skipped=8)
+test_add_cart (__main__.MallTest) ... skipped '离线购物车'
+test_add_cart_login (__main__.MallTest) ... skipped '在线购物车'
+test_go_pay (__main__.MallTest) ... skipped '订单确认'
+test_index (__main__.MallTest) ... ERROR
+test_oauth_login (__main__.MallTest) ... skipped '授权登录'
+test_order_confim (__main__.MallTest) ... skipped '跳转支付'
+test_order_pay (__main__.MallTest) ... skipped 'todo'
+test_regist (__main__.MallTest) ... skipped '注册账号'
+test_sign_login (__main__.MallTest) ... skipped '账号登录'
+
+======================================================================
+ERROR: test_index (__main__.MallTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\gulimall.py", line 17, in setUp
+    self.driver.add_cookie(user['cookie'])
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 1130, in add_cookie
+    self.execute(Command.ADD_COOKIE, {'cookie': cookie_dict})
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.InvalidCookieDomainException: Message: invalid cookie domain
+  (Session info: chrome=98.0.4758.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833960+1063264]
+	Ordinal0 [0x008961F8+1466872]
+	Ordinal0 [0x0087854C+1344844]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.004s
+
+FAILED (errors=1, skipped=8)
+test_add_cart (__main__.MallTest) ... skipped '离线购物车'
+test_add_cart_login (__main__.MallTest) ... skipped '在线购物车'
+test_go_pay (__main__.MallTest) ... skipped '订单确认'
+test_index (__main__.MallTest) ... ERROR
+test_oauth_login (__main__.MallTest) ... skipped '授权登录'
+test_order_confim (__main__.MallTest) ... skipped '跳转支付'
+test_order_pay (__main__.MallTest) ... skipped 'todo'
+test_regist (__main__.MallTest) ... skipped '注册账号'
+test_sign_login (__main__.MallTest) ... ERROR
+
+======================================================================
+ERROR: test_index (__main__.MallTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\gulimall.py", line 23, in test_index
+    p.home()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\aspect\chrome.py", line 76, in wrapper
+    return func(*args, **kwargs)
+TypeError: home() takes 0 positional arguments but 1 was given
+
+======================================================================
+ERROR: test_sign_login (__main__.MallTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\gulimall.py", line 37, in test_sign_login
+    p.sign_login(user['username'], user['password'])
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\aspect\chrome.py", line 76, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\login.py", line 21, in sign_login
+    self.wait(self.home_page_locator, 15)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 9 tests in 18.014s
+
+FAILED (errors=2, skipped=7)
+test_add_cart (__main__.MallTest) ... skipped '离线购物车'
+test_add_cart_login (__main__.MallTest) ... skipped '在线购物车'
+test_go_pay (__main__.MallTest) ... skipped '订单确认'
+test_index (__main__.MallTest) ... ERROR
+test_oauth_login (__main__.MallTest) ... skipped '授权登录'
+test_order_confim (__main__.MallTest) ... skipped '跳转支付'
+test_order_pay (__main__.MallTest) ... skipped 'todo'
+test_regist (__main__.MallTest) ... skipped '注册账号'
+test_sign_login (__main__.MallTest) ... ok
+
+======================================================================
+ERROR: test_index (__main__.MallTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\gulimall.py", line 23, in test_index
+    p.home()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\aspect\chrome.py", line 76, in wrapper
+    return func(*args, **kwargs)
+TypeError: home() takes 0 positional arguments but 1 was given
+
+----------------------------------------------------------------------
+Ran 9 tests in 2.163s
+
+FAILED (errors=1, skipped=7)
+test_add_cart (__main__.MallTest) ... skipped '离线购物车'
+test_add_cart_login (__main__.MallTest) ... skipped '在线购物车'
+test_go_pay (__main__.MallTest) ... skipped '订单确认'
+test_index (__main__.MallTest) ... ERROR
+test_oauth_login (__main__.MallTest) ... skipped '授权登录'
+test_order_confim (__main__.MallTest) ... skipped '跳转支付'
+test_order_pay (__main__.MallTest) ... skipped 'todo'
+test_regist (__main__.MallTest) ... skipped '注册账号'
+test_sign_login (__main__.MallTest) ... ERROR
+
+======================================================================
+ERROR: test_index (__main__.MallTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\gulimall.py", line 17, in setUp
+    self.driver.add_cookie(user['cookie'])
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 1130, in add_cookie
+    self.execute(Command.ADD_COOKIE, {'cookie': cookie_dict})
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.InvalidCookieDomainException: Message: invalid cookie domain
+  (Session info: chrome=98.0.4758.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833960+1063264]
+	Ordinal0 [0x008961F8+1466872]
+	Ordinal0 [0x0087854C+1344844]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+======================================================================
+ERROR: test_sign_login (__main__.MallTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\gulimall.py", line 17, in setUp
+    self.driver.add_cookie(user['cookie'])
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 1130, in add_cookie
+    self.execute(Command.ADD_COOKIE, {'cookie': cookie_dict})
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.InvalidCookieDomainException: Message: invalid cookie domain
+  (Session info: chrome=98.0.4758.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833960+1063264]
+	Ordinal0 [0x008961F8+1466872]
+	Ordinal0 [0x0087854C+1344844]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.005s
+
+FAILED (errors=2, skipped=7)
+test_add_cart (__main__.MallTest) ... skipped '离线购物车'
+test_add_cart_login (__main__.MallTest) ... skipped '在线购物车'
+test_go_pay (__main__.MallTest) ... skipped '订单确认'
+test_index (__main__.MallTest) ... ERROR
+test_oauth_login (__main__.MallTest) ... skipped '授权登录'
+test_order_confim (__main__.MallTest) ... skipped '跳转支付'
+test_order_pay (__main__.MallTest) ... skipped 'todo'
+test_regist (__main__.MallTest) ... skipped '注册账号'
+test_sign_login (__main__.MallTest) ... ok
+
+======================================================================
+ERROR: test_index (__main__.MallTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\gulimall.py", line 24, in test_index
+    p.home()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\aspect\chrome.py", line 76, in wrapper
+    return func(*args, **kwargs)
+TypeError: home() takes 0 positional arguments but 1 was given
+
+----------------------------------------------------------------------
+Ran 9 tests in 2.032s
+
+FAILED (errors=1, skipped=7)
+test_add_cart (__main__.MallTest) ... skipped '离线购物车'
+test_add_cart_login (__main__.MallTest) ... skipped '在线购物车'
+test_go_pay (__main__.MallTest) ... skipped '订单确认'
+test_index (__main__.MallTest) ... ERROR
+test_oauth_login (__main__.MallTest) ... skipped '授权登录'
+test_order_confim (__main__.MallTest) ... skipped '跳转支付'
+test_order_pay (__main__.MallTest) ... skipped 'todo'
+test_regist (__main__.MallTest) ... skipped '注册账号'
+test_sign_login (__main__.MallTest) ... skipped '账号登录'
+
+======================================================================
+ERROR: test_index (__main__.MallTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\gulimall.py", line 17, in setUp
+    self.driver.add_cookie(user['cookies'])
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 1128, in add_cookie
+    self.execute(Command.ADD_COOKIE, {'cookie': cookie_dict})
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.InvalidCookieDomainException: Message: invalid cookie domain
+  (Session info: chrome=98.0.4758.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833960+1063264]
+	Ordinal0 [0x008961F8+1466872]
+	Ordinal0 [0x0087854C+1344844]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.003s
+
+FAILED (errors=1, skipped=8)
+test_add_cart (__main__.MallTest) ... skipped '离线购物车'
+test_add_cart_login (__main__.MallTest) ... skipped '在线购物车'
+test_go_pay (__main__.MallTest) ... skipped '订单确认'
+test_index (__main__.MallTest) ... ERROR
+test_oauth_login (__main__.MallTest) ... skipped '授权登录'
+test_order_confim (__main__.MallTest) ... skipped '跳转支付'
+test_order_pay (__main__.MallTest) ... skipped 'todo'
+test_regist (__main__.MallTest) ... skipped '注册账号'
+test_sign_login (__main__.MallTest) ... skipped '账号登录'
+
+======================================================================
+ERROR: test_index (__main__.MallTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\gulimall.py", line 22, in test_index
+    p.home()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\aspect\chrome.py", line 76, in wrapper
+    return func(*args, **kwargs)
+TypeError: home() takes 0 positional arguments but 1 was given
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.257s
+
+FAILED (errors=1, skipped=8)
+test_add_cart (__main__.MallTest) ... skipped '离线购物车'
+test_add_cart_login (__main__.MallTest) ... skipped '在线购物车'
+test_go_pay (__main__.MallTest) ... skipped '订单确认'
+test_index (__main__.MallTest) ... ERROR
+test_oauth_login (__main__.MallTest) ... skipped '授权登录'
+test_order_confim (__main__.MallTest) ... skipped '跳转支付'
+test_order_pay (__main__.MallTest) ... skipped 'todo'
+test_regist (__main__.MallTest) ... skipped '注册账号'
+test_sign_login (__main__.MallTest) ... skipped '账号登录'
+
+======================================================================
+ERROR: test_index (__main__.MallTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\gulimall.py", line 23, in test_index
+    p.home()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\aspect\chrome.py", line 76, in wrapper
+    return func(*args, **kwargs)
+TypeError: home() takes 0 positional arguments but 1 was given
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.245s
+
+FAILED (errors=1, skipped=8)
+test_add_cart (__main__.MallTest) ... skipped '离线购物车'
+test_add_cart_login (__main__.MallTest) ... skipped '在线购物车'
+test_go_pay (__main__.MallTest) ... skipped '订单确认'
+test_index (__main__.MallTest) ... ERROR
+test_oauth_login (__main__.MallTest) ... skipped '授权登录'
+test_order_confim (__main__.MallTest) ... skipped '跳转支付'
+test_order_pay (__main__.MallTest) ... skipped 'todo'
+test_regist (__main__.MallTest) ... skipped '注册账号'
+test_sign_login (__main__.MallTest) ... skipped '账号登录'
+
+======================================================================
+ERROR: test_index (__main__.MallTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\gulimall.py", line 23, in test_index
+    p.home()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\aspect\chrome.py", line 76, in wrapper
+    return func(*args, **kwargs)
+TypeError: home() takes 0 positional arguments but 1 was given
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.254s
+
+FAILED (errors=1, skipped=8)
+test_add_cart (__main__.MallTest) ... skipped '离线购物车'
+test_add_cart_login (__main__.MallTest) ... skipped '在线购物车'
+test_go_pay (__main__.MallTest) ... skipped '订单确认'
+test_index (__main__.MallTest) ... ERROR
+test_oauth_login (__main__.MallTest) ... skipped '授权登录'
+test_order_confim (__main__.MallTest) ... skipped '跳转支付'
+test_order_pay (__main__.MallTest) ... skipped 'todo'
+test_regist (__main__.MallTest) ... skipped '注册账号'
+test_sign_login (__main__.MallTest) ... skipped '账号登录'
+
+======================================================================
+ERROR: test_index (__main__.MallTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\gulimall.py", line 23, in test_index
+    p.home()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\aspect\chrome.py", line 76, in wrapper
+    return func(*args, **kwargs)
+TypeError: home() takes 0 positional arguments but 1 was given
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.271s
+
+FAILED (errors=1, skipped=8)
+test_add_cart (__main__.MallTest) ... skipped '离线购物车'
+test_add_cart_login (__main__.MallTest) ... skipped '在线购物车'
+test_go_pay (__main__.MallTest) ... skipped '订单确认'
+test_index (__main__.MallTest) ... ok
+test_oauth_login (__main__.MallTest) ... skipped '授权登录'
+test_order_confim (__main__.MallTest) ... skipped '跳转支付'
+test_order_pay (__main__.MallTest) ... skipped 'todo'
+test_regist (__main__.MallTest) ... skipped '注册账号'
+test_sign_login (__main__.MallTest) ... skipped '账号登录'
+
+----------------------------------------------------------------------
+Ran 9 tests in 1.597s
+
+OK (skipped=8)
+test_add_cart (__main__.MallTest) ... skipped '离线购物车'
+test_add_cart_login (__main__.MallTest) ... skipped '在线购物车'
+test_go_pay (__main__.MallTest) ... skipped '订单确认'
+test_index (__main__.MallTest) ... ERROR
+test_oauth_login (__main__.MallTest) ... skipped '授权登录'
+test_order_confim (__main__.MallTest) ... skipped '跳转支付'
+test_order_pay (__main__.MallTest) ... skipped 'todo'
+test_regist (__main__.MallTest) ... skipped '注册账号'
+test_sign_login (__main__.MallTest) ... skipped '账号登录'
+
+======================================================================
+ERROR: test_index (__main__.MallTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\gulimall.py", line 21, in test_index
+    log.info("before: " + self.driver.get_cookies())
+TypeError: can only concatenate str (not "list") to str
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.004s
+
+FAILED (errors=1, skipped=8)
+test_add_cart (__main__.MallTest) ... skipped '离线购物车'
+test_add_cart_login (__main__.MallTest) ... skipped '在线购物车'
+test_go_pay (__main__.MallTest) ... skipped '订单确认'
+test_index (__main__.MallTest) ... ok
+test_oauth_login (__main__.MallTest) ... skipped '授权登录'
+test_order_confim (__main__.MallTest) ... skipped '跳转支付'
+test_order_pay (__main__.MallTest) ... skipped 'todo'
+test_regist (__main__.MallTest) ... skipped '注册账号'
+test_sign_login (__main__.MallTest) ... skipped '账号登录'
+
+----------------------------------------------------------------------
+Ran 9 tests in 1.387s
+
+OK (skipped=8)
+test_add_cart (__main__.MallTest) ... skipped '离线购物车'
+test_add_cart_login (__main__.MallTest) ... skipped '在线购物车'
+test_go_pay (__main__.MallTest) ... skipped '订单确认'
+test_index (__main__.MallTest) ... ok
+test_oauth_login (__main__.MallTest) ... skipped '授权登录'
+test_order_confim (__main__.MallTest) ... skipped '跳转支付'
+test_order_pay (__main__.MallTest) ... skipped 'todo'
+test_regist (__main__.MallTest) ... skipped '注册账号'
+test_sign_login (__main__.MallTest) ... skipped '账号登录'
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.944s
+
+OK (skipped=8)
+test_add_cart (__main__.MallTest) ... skipped '离线购物车'
+test_add_cart_login (__main__.MallTest) ... skipped '在线购物车'
+test_go_pay (__main__.MallTest) ... skipped '订单确认'
+test_index (__main__.MallTest) ... FAIL
+test_oauth_login (__main__.MallTest) ... skipped '授权登录'
+test_order_confim (__main__.MallTest) ... skipped '跳转支付'
+test_order_pay (__main__.MallTest) ... skipped 'todo'
+test_regist (__main__.MallTest) ... skipped '注册账号'
+test_sign_login (__main__.MallTest) ... skipped '账号登录'
+
+======================================================================
+FAIL: test_index (__main__.MallTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\gulimall.py", line 21, in test_index
+    self.assertEqual(self.driver.title, '谷粒商城')
+AssertionError: '新标签页' != '谷粒商城'
+- 新标签页
++ 谷粒商城
+
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.003s
+
+FAILED (failures=1, skipped=8)
+test_add_cart (__main__.MallTest) ... skipped '离线购物车'
+test_add_cart_login (__main__.MallTest) ... skipped '在线购物车'
+test_go_pay (__main__.MallTest) ... skipped '订单确认'
+test_index (__main__.MallTest) ... ok
+test_oauth_login (__main__.MallTest) ... skipped '授权登录'
+test_order_confim (__main__.MallTest) ... skipped '跳转支付'
+test_order_pay (__main__.MallTest) ... skipped 'todo'
+test_regist (__main__.MallTest) ... skipped '注册账号'
+test_sign_login (__main__.MallTest) ... skipped '账号登录'
+
+----------------------------------------------------------------------
+Ran 9 tests in 1.130s
+
+OK (skipped=8)
+test_add_cart (__main__.GuliMallTest) ... ERROR
+test_add_cart_login (__main__.GuliMallTest) ... ERROR
+test_go_pay (__main__.GuliMallTest) ... ERROR
+test_index (__main__.GuliMallTest) ... ERROR
+test_oauth_login (__main__.GuliMallTest) ... test_add_cart (__main__.GuliMallTest) ... ok
+test_add_cart_login (__main__.GuliMallTest) ... ERROR
+test_go_pay (__main__.GuliMallTest) ... test_add_cart (__main__.GuliMallTest) ... ok
+test_add_cart_login (__main__.GuliMallTest) ... ERROR
+test_go_pay (__main__.GuliMallTest) ... ok
+test_index (__main__.GuliMallTest) ... ok
+test_oauth_login (__main__.GuliMallTest) ... ERROR
+test_order_confim (__main__.GuliMallTest) ... ERROR
+test_order_pay (__main__.GuliMallTest) ... skipped 'todo'
+test_regist (__main__.GuliMallTest) ... ERROR
+test_sign_login (__main__.GuliMallTest) ... ok
+
+======================================================================
+ERROR: test_add_cart_login (__main__.GuliMallTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\gulimall.py", line 57, in test_add_cart_login
+    p.login_if_absent()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 54, in wrapper
+    retVal = func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\cart.py", line 35, in login_if_absent
+    p.sign_login("administrator", "administrator")
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 33, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\login.py", line 21, in sign_login
+    self.wait(self.home_page_locator, 15)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+======================================================================
+ERROR: test_oauth_login (__main__.GuliMallTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\gulimall.py", line 44, in test_oauth_login
+    p.oauth_login()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 33, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\login.py", line 27, in oauth_login
+    self.wait(self.gitee_link).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+======================================================================
+ERROR: test_order_confim (__main__.GuliMallTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\gulimall.py", line 71, in test_order_confim
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 33, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 10, in submit
+    self.wait(self.submit_button).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+======================================================================
+ERROR: test_regist (__main__.GuliMallTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\gulimall.py", line 29, in test_regist
+    p.reigst(user['username'], user['password'], user['phone'])
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 33, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\regist.py", line 27, in reigst
+    self.find(self.agreement_checkbox).click()
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webelement.py", line 81, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webelement.py", line 710, in _execute
+    return self._parent.execute(command, params)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: element not interactable
+  (Session info: chrome=98.0.4758.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833960+1063264]
+	Ordinal0 [0x00860E4E+1248846]
+	Ordinal0 [0x00856B53+1207123]
+	Ordinal0 [0x0087854C+1344844]
+	Ordinal0 [0x00856524+1205540]
+	Ordinal0 [0x008786A4+1345188]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 9 tests in 63.195s
+
+FAILED (errors=4, skipped=1)
+test_add_cart (__main__.AuthorizeTest) ... skipped '离线购物车'
+test_index (__main__.AuthorizeTest) ... ERROR
+test_oauth_login (__main__.AuthorizeTest) ... ERROR
+test_regist (__main__.AuthorizeTest) ... skipped '注册账号'
+test_sign_login (__main__.AuthorizeTest) ... skipped '账号登录'
+
+======================================================================
+ERROR: test_index (__main__.AuthorizeTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 21, in test_index
+    p.open()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 25, in wrapper
+    driver.get(url)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 436, in get
+    self.execute(Command.GET, {'url': url})
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 422, in execute
+    response = self.command_executor.execute(driver_command, params)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\remote_connection.py", line 419, in execute
+    data = utils.dump_json(params)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\utils.py", line 23, in dump_json
+    return json.dumps(json_struct)
+  File "E:\miniconda3\envs\autotest\lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+  File "E:\miniconda3\envs\autotest\lib\json\encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "E:\miniconda3\envs\autotest\lib\json\encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "E:\miniconda3\envs\autotest\lib\json\encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type Api is not JSON serializable
+
+======================================================================
+ERROR: test_oauth_login (__main__.AuthorizeTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 42, in test_oauth_login
+    p.oauth_login()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 25, in wrapper
+    driver.get(url)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 436, in get
+    self.execute(Command.GET, {'url': url})
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 422, in execute
+    response = self.command_executor.execute(driver_command, params)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\remote_connection.py", line 419, in execute
+    data = utils.dump_json(params)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\utils.py", line 23, in dump_json
+    return json.dumps(json_struct)
+  File "E:\miniconda3\envs\autotest\lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+  File "E:\miniconda3\envs\autotest\lib\json\encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "E:\miniconda3\envs\autotest\lib\json\encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "E:\miniconda3\envs\autotest\lib\json\encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type Api is not JSON serializable
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.008s
+
+FAILED (errors=2, skipped=3)
+test_add_cart (__main__.AuthorizeTest) ... skipped '离线购物车'
+test_index (__main__.AuthorizeTest) ... FAIL
+test_oauth_login (__main__.AuthorizeTest) ... ERROR
+test_regist (__main__.AuthorizeTest) ... skipped '注册账号'
+test_sign_login (__main__.AuthorizeTest) ... skipped '账号登录'
+
+======================================================================
+ERROR: test_oauth_login (__main__.AuthorizeTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 42, in test_oauth_login
+    p.oauth_login()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 28, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\login.py", line 27, in oauth_login
+    self.wait(self.gitee_link).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+======================================================================
+FAIL: test_index (__main__.AuthorizeTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 22, in test_index
+    self.assertEqual(self.driver.title, '谷粒商城')
+AssertionError: 'Error' != '谷粒商城'
+- Error
++ 谷粒商城
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 14.443s
+
+FAILED (failures=1, errors=1, skipped=3)
+test_add_cart (__main__.AuthorizeTest) ... skipped '离线购物车'
+test_index (__main__.AuthorizeTest) ... ok
+test_oauth_login (__main__.AuthorizeTest) ... ok
+test_regist (__main__.AuthorizeTest) ... skipped '注册账号'
+test_sign_login (__main__.AuthorizeTest) ... skipped '账号登录'
+
+----------------------------------------------------------------------
+Ran 5 tests in 8.421s
+
+OK (skipped=3)
+test_add_cart (__main__.AuthorizeTest) ... ok
+test_index (__main__.AuthorizeTest) ... ok
+test_oauth_login (__main__.AuthorizeTest) ... ERROR
+test_regist (__main__.AuthorizeTest) ... skipped '注册账号'
+test_sign_login (__main__.AuthorizeTest) ... skipped '账号登录'
+
+======================================================================
+ERROR: test_oauth_login (__main__.AuthorizeTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 42, in test_oauth_login
+    p.oauth_login()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 29, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\login.py", line 29, in oauth_login
+    self.wait(self.home_page_locator, 15)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 27.304s
+
+FAILED (errors=1, skipped=2)
+test_add_cart (__main__.AuthorizeTest) ... ok
+test_index (__main__.AuthorizeTest) ... ok
+test_oauth_login (__main__.AuthorizeTest) ... ERROR
+test_regist (__main__.AuthorizeTest) ... skipped '注册账号'
+test_sign_login (__main__.AuthorizeTest) ... skipped '账号登录'
+
+======================================================================
+ERROR: test_oauth_login (__main__.AuthorizeTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 42, in test_oauth_login
+    p.oauth_login()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 29, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\login.py", line 29, in oauth_login
+    self.wait(self.home_page_locator, 15)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 27.732s
+
+FAILED (errors=1, skipped=2)
+test_add_cart_login (__main__.OrderTest) ... ok
+test_go_pay (__main__.OrderTest) ... ok
+test_index (__main__.OrderTest) ... ok
+test_order_confim (__main__.OrderTest) ... ERROR
+test_order_pay (__main__.OrderTest) ... skipped 'todo'
+
+======================================================================
+ERROR: test_order_confim (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 42, in test_order_confim
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 50, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 10, in submit
+    self.wait(self.submit_button).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 24.225s
+
+FAILED (errors=1, skipped=1)
+test_add_cart_login (__main__.OrderTest) ... ok
+test_go_pay (__main__.OrderTest) ... ok
+test_index (__main__.OrderTest) ... ok
+test_order_confirm (__main__.OrderTest) ... ERROR
+test_order_pay (__main__.OrderTest) ... skipped 'todo'
+
+======================================================================
+ERROR: test_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 42, in test_order_confirm
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 50, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 10, in submit
+    self.wait(self.submit_button).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 24.462s
+
+FAILED (errors=1, skipped=1)
+test_add_cart_login (__main__.OrderTest) ... skipped '在线购物车'
+test_go_pay (__main__.OrderTest) ... skipped '订单确认'
+test_index (__main__.OrderTest) ... skipped '首页'
+test_order_confirm (__main__.OrderTest) ... ERROR
+test_order_pay (__main__.OrderTest) ... skipped 'todo'
+
+======================================================================
+ERROR: test_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 42, in test_order_confirm
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 51, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 10, in submit
+    self.wait(self.submit_button).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 12.037s
+
+FAILED (errors=1, skipped=4)
+test_add_cart_login (__main__.OrderTest) ... skipped '在线购物车'
+test_go_pay (__main__.OrderTest) ... skipped '订单确认'
+test_index (__main__.OrderTest) ... skipped '首页'
+test_order_confirm (__main__.OrderTest) ... ERROR
+test_order_pay (__main__.OrderTest) ... skipped 'todo'
+
+======================================================================
+ERROR: test_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 42, in test_order_confirm
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 51, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 10, in submit
+    self.wait(self.submit_button).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 12.202s
+
+FAILED (errors=1, skipped=4)
+test_add_cart_login (__main__.OrderTest) ... skipped '在线购物车'
+test_go_pay (__main__.OrderTest) ... skipped '订单确认'
+test_index (__main__.OrderTest) ... skipped '首页'
+test_order_confirm (__main__.OrderTest) ... ERROR
+test_order_pay (__main__.OrderTest) ... skipped 'todo'
+
+======================================================================
+ERROR: test_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 42, in test_order_confirm
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 51, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 10, in submit
+    self.wait(self.submit_button).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 11.867s
+
+FAILED (errors=1, skipped=4)
+test_add_cart_login (__main__.OrderTest) ... skipped '在线购物车'
+test_go_pay (__main__.OrderTest) ... skipped '订单确认'
+test_index (__main__.OrderTest) ... skipped '首页'
+test_order_confirm (__main__.OrderTest) ... ERROR
+test_order_pay (__main__.OrderTest) ... skipped 'todo'
+
+======================================================================
+ERROR: test_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 42, in test_order_confirm
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 51, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 10, in submit
+    self.wait(self.submit_button).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 12.438s
+
+FAILED (errors=1, skipped=4)
+test_add_cart_login (__main__.OrderTest) ... skipped '在线购物车'
+test_go_pay (__main__.OrderTest) ... skipped '订单确认'
+test_index (__main__.OrderTest) ... skipped '首页'
+test_order_confirm (__main__.OrderTest) ... ERROR
+test_order_pay (__main__.OrderTest) ... skipped 'todo'
+
+======================================================================
+ERROR: test_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 42, in test_order_confirm
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 51, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 10, in submit
+    self.wait(self.submit_button).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 12.166s
+
+FAILED (errors=1, skipped=4)
+test_add_cart_login (__main__.OrderTest) ... skipped '在线购物车'
+test_go_pay (__main__.OrderTest) ... skipped '订单确认'
+test_index (__main__.OrderTest) ... skipped '首页'
+test_order_confirm (__main__.OrderTest) ... ERROR
+test_order_pay (__main__.OrderTest) ... skipped 'todo'
+
+======================================================================
+ERROR: test_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 42, in test_order_confirm
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 52, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 10, in submit
+    self.wait(self.submit_button).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 11.577s
+
+FAILED (errors=1, skipped=4)
+test_add_cart_login (__main__.OrderTest) ... skipped '在线购物车'
+test_go_pay (__main__.OrderTest) ... skipped '订单确认'
+test_index (__main__.OrderTest) ... skipped '首页'
+test_order_confirm (__main__.OrderTest) ... ERROR
+test_order_pay (__main__.OrderTest) ... skipped 'todo'
+
+======================================================================
+ERROR: test_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 42, in test_order_confirm
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 53, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 10, in submit
+    self.wait(self.submit_button).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 11.490s
+
+FAILED (errors=1, skipped=4)
+test_add_cart_login (__main__.OrderTest) ... skipped '在线购物车'
+test_go_pay (__main__.OrderTest) ... skipped '订单确认'
+test_index (__main__.OrderTest) ... skipped '首页'
+test_order_confirm (__main__.OrderTest) ... ERROR
+test_order_pay (__main__.OrderTest) ... skipped 'todo'
+
+======================================================================
+ERROR: test_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 42, in test_order_confirm
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 54, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 10, in submit
+    self.wait(self.submit_button).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 11.417s
+
+FAILED (errors=1, skipped=4)
+test_add_cart_login (__main__.OrderTest) ... skipped '在线购物车'
+test_go_pay (__main__.OrderTest) ... skipped '订单确认'
+test_index (__main__.OrderTest) ... skipped '首页'
+test_order_confirm (__main__.OrderTest) ... ERROR
+test_order_pay (__main__.OrderTest) ... skipped 'todo'
+
+======================================================================
+ERROR: test_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 42, in test_order_confirm
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 54, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 10, in submit
+    self.wait(self.submit_button).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 11.768s
+
+FAILED (errors=1, skipped=4)
+test_add_cart_login (__main__.OrderTest) ... skipped '在线购物车'
+test_go_pay (__main__.OrderTest) ... skipped '订单确认'
+test_index (__main__.OrderTest) ... skipped '首页'
+test_order_confirm (__main__.OrderTest) ... ERROR
+test_order_pay (__main__.OrderTest) ... skipped 'todo'
+
+======================================================================
+ERROR: test_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 42, in test_order_confirm
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 54, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 10, in submit
+    self.wait(self.submit_button).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 70.637s
+
+FAILED (errors=1, skipped=4)
+test_add_cart (__main__.AuthorizeTest) ... ERROR
+test_index (__main__.AuthorizeTest) ... ok
+test_oauth_login (__main__.AuthorizeTest) ... skipped '授权登录'
+test_regist (__main__.AuthorizeTest) ... skipped '注册账号'
+test_sign_login (__main__.AuthorizeTest) ... ERROR
+
+======================================================================
+ERROR: test_add_cart (__main__.AuthorizeTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 49, in test_add_cart
+    p.add_item()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 29, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\cart.py", line 27, in add_item
+    self.wait(self.add_cart_button).click()
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webelement.py", line 81, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webelement.py", line 710, in _execute
+    return self._parent.execute(command, params)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <a href="#" id="addToCart" skuid="15">...</a> is not clickable at point (626, 648). Other element would receive the click: <img class="img1" alt="" src="https://gulimall-miozus.oss-cn-chengdu.aliyuncs.com/2021-09-19//4063aa3e-6afc-489f-8ea4-2de7711a68a8_28f296629cca865e.jpg" style="left: -113.182px; top: -190.909px;">
+  (Session info: chrome=98.0.4758.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0086636F+1270639]
+	Ordinal0 [0x008645B7+1263031]
+	Ordinal0 [0x0086220B+1253899]
+	Ordinal0 [0x00860FF9+1249273]
+	Ordinal0 [0x00856B53+1207123]
+	Ordinal0 [0x0087854C+1344844]
+	Ordinal0 [0x00856524+1205540]
+	Ordinal0 [0x008786A4+1345188]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+======================================================================
+ERROR: test_sign_login (__main__.AuthorizeTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 35, in test_sign_login
+    p.sign_login(user['username'], user['password'])
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 29, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\login.py", line 21, in sign_login
+    self.wait(self.home_page_locator, 15)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 20.433s
+
+FAILED (errors=2, skipped=2)
+test_add_cart (__main__.AuthorizeTest) ... ok
+test_index (__main__.AuthorizeTest) ... skipped '首页'
+test_oauth_login (__main__.AuthorizeTest) ... skipped '授权登录'
+test_regist (__main__.AuthorizeTest) ... skipped '注册账号'
+test_sign_login (__main__.AuthorizeTest) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 15.625s
+
+OK (skipped=3)
+test_add_cart_login (__main__.OrderTest) ... skipped '在线购物车'
+test_go_pay (__main__.OrderTest) ... skipped '订单确认'
+test_index (__main__.OrderTest) ... skipped '首页'
+test_order_confirm (__main__.OrderTest) ... ERROR
+test_order_pay (__main__.OrderTest) ... skipped 'todo'
+
+======================================================================
+ERROR: test_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 42, in test_order_confirm
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 55, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 10, in submit
+    self.wait(self.submit_button).click()
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webelement.py", line 81, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webelement.py", line 710, in _execute
+    return self._parent.execute(command, params)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: element not interactable
+  (Session info: chrome=98.0.4758.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833960+1063264]
+	Ordinal0 [0x00860E4E+1248846]
+	Ordinal0 [0x00856B53+1207123]
+	Ordinal0 [0x0087854C+1344844]
+	Ordinal0 [0x00856524+1205540]
+	Ordinal0 [0x008786A4+1345188]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 6.514s
+
+FAILED (errors=1, skipped=4)
+test_add_cart_login (__main__.OrderTest) ... skipped '在线购物车'
+test_go_pay (__main__.OrderTest) ... skipped '订单确认'
+test_index (__main__.OrderTest) ... skipped '首页'
+test_order_confirm (__main__.OrderTest) ... ERROR
+test_order_pay (__main__.OrderTest) ... skipped 'todo'
+
+======================================================================
+ERROR: test_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 42, in test_order_confirm
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 55, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 10, in submit
+    self.wait(self.submit_button).click()
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webelement.py", line 81, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webelement.py", line 710, in _execute
+    return self._parent.execute(command, params)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: element not interactable
+  (Session info: chrome=98.0.4758.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833960+1063264]
+	Ordinal0 [0x00860E4E+1248846]
+	Ordinal0 [0x00856B53+1207123]
+	Ordinal0 [0x0087854C+1344844]
+	Ordinal0 [0x00856524+1205540]
+	Ordinal0 [0x008786A4+1345188]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 3.087s
+
+FAILED (errors=1, skipped=4)
+test_add_cart_login (__main__.OrderTest) ... skipped '在线购物车'
+test_go_pay (__main__.OrderTest) ... skipped '订单确认'
+test_index (__main__.OrderTest) ... skipped '首页'
+test_order_confirm (__main__.OrderTest) ... ERROR
+test_order_pay (__main__.OrderTest) ... skipped 'todo'
+
+======================================================================
+ERROR: test_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 42, in test_order_confirm
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 56, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 10, in submit
+    self.wait(self.submit_button).click()
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webelement.py", line 81, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webelement.py", line 710, in _execute
+    return self._parent.execute(command, params)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: element not interactable
+  (Session info: chrome=98.0.4758.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833960+1063264]
+	Ordinal0 [0x00860E4E+1248846]
+	Ordinal0 [0x00856B53+1207123]
+	Ordinal0 [0x0087854C+1344844]
+	Ordinal0 [0x00856524+1205540]
+	Ordinal0 [0x008786A4+1345188]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 2.666s
+
+FAILED (errors=1, skipped=4)
+test_add_cart_login (__main__.OrderTest) ... skipped '在线购物车'
+test_go_pay (__main__.OrderTest) ... skipped '订单确认'
+test_index (__main__.OrderTest) ... skipped '首页'
+test_order_confirm (__main__.OrderTest) ... ERROR
+test_order_pay (__main__.OrderTest) ... skipped 'todo'
+
+======================================================================
+ERROR: test_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 42, in test_order_confirm
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 56, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 10, in submit
+    self.wait(self.submit_button).click()
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webelement.py", line 81, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webelement.py", line 710, in _execute
+    return self._parent.execute(command, params)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: element not interactable
+  (Session info: chrome=98.0.4758.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833960+1063264]
+	Ordinal0 [0x00860E4E+1248846]
+	Ordinal0 [0x00856B53+1207123]
+	Ordinal0 [0x0087854C+1344844]
+	Ordinal0 [0x00856524+1205540]
+	Ordinal0 [0x008786A4+1345188]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 2.511s
+
+FAILED (errors=1, skipped=4)
+test_add_cart_login (__main__.OrderTest) ... skipped '在线购物车'
+test_go_pay (__main__.OrderTest) ... skipped '订单确认'
+test_index (__main__.OrderTest) ... skipped '首页'
+test_order_confirm (__main__.OrderTest) ... ERROR
+test_order_pay (__main__.OrderTest) ... skipped 'todo'
+
+======================================================================
+ERROR: test_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 42, in test_order_confirm
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 56, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 10, in submit
+    self.wait(self.submit_button).click()
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webelement.py", line 81, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webelement.py", line 710, in _execute
+    return self._parent.execute(command, params)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: element not interactable
+  (Session info: chrome=98.0.4758.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833960+1063264]
+	Ordinal0 [0x00860E4E+1248846]
+	Ordinal0 [0x00856B53+1207123]
+	Ordinal0 [0x0087854C+1344844]
+	Ordinal0 [0x00856524+1205540]
+	Ordinal0 [0x008786A4+1345188]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 2.187s
+
+FAILED (errors=1, skipped=4)
+test_add_cart_login (__main__.OrderTest) ... skipped '在线购物车'
+test_go_pay (__main__.OrderTest) ... skipped '订单确认'
+test_index (__main__.OrderTest) ... skipped '首页'
+test_order_confirm (__main__.OrderTest) ... ERROR
+test_order_pay (__main__.OrderTest) ... skipped 'todo'
+
+======================================================================
+ERROR: test_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 42, in test_order_confirm
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 56, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 10, in submit
+    self.wait(self.submit_button).click()
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webelement.py", line 81, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webelement.py", line 710, in _execute
+    return self._parent.execute(command, params)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: element not interactable
+  (Session info: chrome=98.0.4758.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833960+1063264]
+	Ordinal0 [0x00860E4E+1248846]
+	Ordinal0 [0x00856B53+1207123]
+	Ordinal0 [0x0087854C+1344844]
+	Ordinal0 [0x00856524+1205540]
+	Ordinal0 [0x008786A4+1345188]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 2.563s
+
+FAILED (errors=1, skipped=4)
+test_add_cart_login (__main__.OrderTest) ... skipped '在线购物车'
+test_go_pay (__main__.OrderTest) ... skipped '订单确认'
+test_index (__main__.OrderTest) ... skipped '首页'
+test_order_confirm (__main__.OrderTest) ... ERROR
+test_order_pay (__main__.OrderTest) ... skipped 'todo'
+
+======================================================================
+ERROR: test_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 42, in test_order_confirm
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 56, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 10, in submit
+    self.wait(self.submit_button).click()
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webelement.py", line 81, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webelement.py", line 710, in _execute
+    return self._parent.execute(command, params)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: element not interactable
+  (Session info: chrome=98.0.4758.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833960+1063264]
+	Ordinal0 [0x00860E4E+1248846]
+	Ordinal0 [0x00856B53+1207123]
+	Ordinal0 [0x0087854C+1344844]
+	Ordinal0 [0x00856524+1205540]
+	Ordinal0 [0x008786A4+1345188]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 3.889s
+
+FAILED (errors=1, skipped=4)
+test_add_cart_login (__main__.OrderTest) ... skipped '在线购物车'
+test_go_pay (__main__.OrderTest) ... skipped '订单确认'
+test_index (__main__.OrderTest) ... skipped '首页'
+test_order_confirm (__main__.OrderTest) ... ERROR
+test_order_pay (__main__.OrderTest) ... skipped 'todo'
+
+======================================================================
+ERROR: test_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 42, in test_order_confirm
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 56, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 10, in submit
+    self.wait(self.submit_button).click()
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webelement.py", line 81, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webelement.py", line 710, in _execute
+    return self._parent.execute(command, params)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: element not interactable
+  (Session info: chrome=98.0.4758.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833960+1063264]
+	Ordinal0 [0x00860E4E+1248846]
+	Ordinal0 [0x00856B53+1207123]
+	Ordinal0 [0x0087854C+1344844]
+	Ordinal0 [0x00856524+1205540]
+	Ordinal0 [0x008786A4+1345188]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 4.415s
+
+FAILED (errors=1, skipped=4)
+test_add_cart_login (__main__.OrderTest) ... skipped '在线购物车'
+test_go_pay (__main__.OrderTest) ... skipped '订单确认'
+test_index (__main__.OrderTest) ... skipped '首页'
+test_order_confirm (__main__.OrderTest) ... FAIL
+test_order_pay (__main__.OrderTest) ... skipped 'todo'
+
+======================================================================
+FAIL: test_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 43, in test_order_confirm
+    self.assertEqual(self.driver.title, '结算页')
+AssertionError: '订单确认' != '结算页'
+- 订单确认
++ 结算页
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 6.119s
+
+FAILED (failures=1, skipped=4)
+test_add_cart_login (__main__.OrderTest) ... skipped '在线购物车'
+test_go_pay (__main__.OrderTest) ... skipped '订单确认'
+test_index (__main__.OrderTest) ... skipped '首页'
+test_order_confirm (__main__.OrderTest) ... ERROR
+test_order_pay (__main__.OrderTest) ... skipped 'todo'
+
+======================================================================
+ERROR: test_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 42, in test_order_confirm
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 56, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 10, in submit
+    self.wait(self.submit_button).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 17.921s
+
+FAILED (errors=1, skipped=4)
+test_add_cart_login (__main__.OrderTest) ... skipped '在线购物车'
+test_go_pay (__main__.OrderTest) ... skipped '订单确认'
+test_index (__main__.OrderTest) ... skipped '首页'
+test_order_confirm (__main__.OrderTest) ... FAIL
+test_order_pay (__main__.OrderTest) ... skipped 'todo'
+
+======================================================================
+FAIL: test_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 43, in test_order_confirm
+    self.assertEqual(self.driver.title, '结算页')
+AssertionError: '订单确认' != '结算页'
+- 订单确认
++ 结算页
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 8.998s
+
+FAILED (failures=1, skipped=4)
+test_add_cart_login (__main__.OrderTest) ... skipped '在线购物车'
+test_go_pay (__main__.OrderTest) ... skipped '订单确认'
+test_index (__main__.OrderTest) ... skipped '首页'
+test_order_confirm (__main__.OrderTest) ... FAIL
+test_order_pay (__main__.OrderTest) ... skipped 'todo'
+
+======================================================================
+FAIL: test_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 43, in test_order_confirm
+    self.assertEqual(self.driver.title, '结算页')
+AssertionError: '订单确认' != '结算页'
+- 订单确认
++ 结算页
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 5.577s
+
+FAILED (failures=1, skipped=4)
+test_add_cart_online (__main__.OrderTest) ... skipped '在线购物车'
+test_go_pay (__main__.OrderTest) ... FAIL
+test_index (__main__.OrderTest) ... skipped '首页'
+test_order_confirm (__main__.OrderTest) ... skipped '订单确认'
+test_order_pay (__main__.OrderTest) ... skipped 'todo'
+
+======================================================================
+FAIL: test_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 47, in test_go_pay
+    self.assertEqual(self.driver.title, '结算页')
+AssertionError: '订单确认' != '结算页'
+- 订单确认
++ 结算页
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 12.999s
+
+FAILED (failures=1, skipped=4)
+test_add_cart_online (__main__.OrderTest) ... skipped '在线购物车'
+test_go_pay (__main__.OrderTest) ... FAIL
+test_index (__main__.OrderTest) ... skipped '首页'
+test_order_confirm (__main__.OrderTest) ... skipped '订单确认'
+test_order_pay (__main__.OrderTest) ... skipped 'todo'
+
+======================================================================
+FAIL: test_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 47, in test_go_pay
+    self.assertEqual(self.driver.title, '结算页')
+AssertionError: '订单确认' != '结算页'
+- 订单确认
++ 结算页
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 8.490s
+
+FAILED (failures=1, skipped=4)
+test_add_cart_online (__main__.OrderTest) ... skipped '在线购物车'
+test_go_pay (__main__.OrderTest) ... FAIL
+test_index (__main__.OrderTest) ... skipped '首页'
+test_order_confirm (__main__.OrderTest) ... skipped '订单确认'
+test_order_pay (__main__.OrderTest) ... skipped 'todo'
+
+======================================================================
+FAIL: test_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 47, in test_go_pay
+    self.assertEqual(self.driver.title, '结算页')
+AssertionError: '订单确认' != '结算页'
+- 订单确认
++ 结算页
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 7.153s
+
+FAILED (failures=1, skipped=4)
+test_add_cart (__main__.AuthorizeTest) ... ok
+test_index (__main__.AuthorizeTest) ... skipped '首页'
+test_oauth_login (__main__.AuthorizeTest) ... skipped '授权登录'
+test_regist (__main__.AuthorizeTest) ... skipped '注册账号'
+test_sign_login (__main__.AuthorizeTest) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 9.043s
+
+OK (skipped=3)
+test_add_cart (__main__.AuthorizeTest) ... ok
+test_index (__main__.AuthorizeTest) ... skipped '首页'
+test_oauth_login (__main__.AuthorizeTest) ... skipped '授权登录'
+test_regist (__main__.AuthorizeTest) ... FAIL
+test_sign_login (__main__.AuthorizeTest) ... skipped '账号登录'
+
+======================================================================
+FAIL: test_regist (__main__.AuthorizeTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 30, in test_regist
+    self.assertEqual(self.driver.title, '用户登录')
+AssertionError: 'gulimall注册页面' != '用户登录'
+- gulimall注册页面
++ 用户登录
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 5.469s
+
+FAILED (failures=1, skipped=3)
+test_add_cart (__main__.AuthorizeTest) ... ok
+test_index (__main__.AuthorizeTest) ... skipped '首页'
+test_oauth_login (__main__.AuthorizeTest) ... skipped '授权登录'
+test_regist (__main__.AuthorizeTest) ... FAIL
+test_sign_login (__main__.AuthorizeTest) ... skipped '账号登录'
+
+======================================================================
+FAIL: test_regist (__main__.AuthorizeTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 30, in test_regist
+    self.assertEqual(self.driver.title, '用户登录')
+AssertionError: 'gulimall注册页面' != '用户登录'
+- gulimall注册页面
++ 用户登录
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 4.813s
+
+FAILED (failures=1, skipped=3)
+test_add_cart (__main__.AuthorizeTest) ... ok
+test_index (__main__.AuthorizeTest) ... skipped '首页'
+test_oauth_login (__main__.AuthorizeTest) ... skipped '授权登录'
+test_regist (__main__.AuthorizeTest) ... FAIL
+test_sign_login (__main__.AuthorizeTest) ... skipped '账号登录'
+
+======================================================================
+FAIL: test_regist (__main__.AuthorizeTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 30, in test_regist
+    self.assertEqual(self.driver.title, '用户登录')
+AssertionError: 'Error' != '用户登录'
+- Error
++ 用户登录
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 63.996s
+
+FAILED (failures=1, skipped=3)
+test_add_cart (__main__.AuthorizeTest) ... ok
+test_index (__main__.AuthorizeTest) ... skipped '首页'
+test_oauth_login (__main__.AuthorizeTest) ... skipped '授权登录'
+test_regist (__main__.AuthorizeTest) ... ERROR
+test_sign_login (__main__.AuthorizeTest) ... skipped '账号登录'
+
+======================================================================
+ERROR: test_regist (__main__.AuthorizeTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 27, in test_regist
+    p.reigst(user['username'], user['password'], user['phone'])
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 29, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\regist.py", line 22, in reigst
+    self.wait(self.notify_close_button).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 13.243s
+
+FAILED (errors=1, skipped=3)
+test_00_index (__main__.AuthorizeTest) ... skipped '首页'
+test_01_regist (__main__.AuthorizeTest) ... FAIL
+test_02_sign_login (__main__.AuthorizeTest) ... skipped '账号登录'
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped '授权登录'
+test_04_add_cart (__main__.AuthorizeTest) ... ok
+
+======================================================================
+FAIL: test_01_regist (__main__.AuthorizeTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 30, in test_01_regist
+    self.assertEqual(self.driver.title, '用户登录')
+AssertionError: 'Error' != '用户登录'
+- Error
++ 用户登录
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 107.348s
+
+FAILED (failures=1, skipped=3)
+test_00_index (__main__.AuthorizeTest) ... skipped '首页'
+test_01_regist (__main__.AuthorizeTest) ... ERROR
+test_02_sign_login (__main__.AuthorizeTest) ... skipped '账号登录'
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped '授权登录'
+test_04_add_cart (__main__.AuthorizeTest) ... ok
+
+======================================================================
+ERROR: test_01_regist (__main__.AuthorizeTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 27, in test_01_regist
+    p.reigst(user['username'], user['password'], user['phone'])
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 29, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\regist.py", line 22, in reigst
+    self.wait(self.notify_close_button).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 13.130s
+
+FAILED (errors=1, skipped=3)
+test_00_index (__main__.AuthorizeTest) ... skipped '首页'
+test_01_regist (__main__.AuthorizeTest) ... ERROR
+test_02_sign_login (__main__.AuthorizeTest) ... skipped '账号登录'
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped '授权登录'
+test_04_add_cart (__main__.AuthorizeTest) ... ok
+
+======================================================================
+ERROR: test_01_regist (__main__.AuthorizeTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 27, in test_01_regist
+    p.reigst(user['username'], user['password'], user['phone'])
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 29, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\regist.py", line 22, in reigst
+    self.wait(self.notify_close_button).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 12.593s
+
+FAILED (errors=1, skipped=3)
+test_00_index (__main__.AuthorizeTest) ... skipped '首页'
+test_01_regist (__main__.AuthorizeTest) ... FAIL
+test_02_sign_login (__main__.AuthorizeTest) ... skipped '账号登录'
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped '授权登录'
+test_04_add_cart (__main__.AuthorizeTest) ... ok
+
+======================================================================
+FAIL: test_01_regist (__main__.AuthorizeTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 30, in test_01_regist
+    self.assertEqual(self.driver.title, '用户登录')
+AssertionError: 'Error' != '用户登录'
+- Error
++ 用户登录
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 63.651s
+
+FAILED (failures=1, skipped=3)
+test_00_index (__main__.AuthorizeTest) ... skipped '首页'
+test_01_regist (__main__.AuthorizeTest) ... ERROR
+test_02_sign_login (__main__.AuthorizeTest) ... skipped '账号登录'
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped '授权登录'
+test_04_add_cart (__main__.AuthorizeTest) ... ok
+
+======================================================================
+ERROR: test_01_regist (__main__.AuthorizeTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 27, in test_01_regist
+    p.reigst(user['username'], user['password'], user['phone'])
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 29, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\regist.py", line 22, in reigst
+    self.wait(self.notify_close_button).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 12.792s
+
+FAILED (errors=1, skipped=3)
+test_00_index (__main__.AuthorizeTest) ... ok
+test_01_regist (__main__.AuthorizeTest) ... FAIL
+test_02_sign_login (__main__.AuthorizeTest) ... skipped '账号登录'
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped '授权登录'
+test_04_add_cart (__main__.AuthorizeTest) ... ok
+
+======================================================================
+FAIL: test_01_regist (__main__.AuthorizeTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 30, in test_01_regist
+    self.assertEqual(self.driver.title, '用户登录')
+AssertionError: 'gulimall注册页面' != '用户登录'
+- gulimall注册页面
++ 用户登录
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 25.477s
+
+FAILED (failures=1, skipped=2)
+test_00_index (__main__.AuthorizeTest) ... ok
+test_01_regist (__main__.AuthorizeTest) ... FAIL
+test_02_sign_login (__main__.AuthorizeTest) ... skipped '账号登录'
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped '授权登录'
+test_04_add_cart (__main__.AuthorizeTest) ... skipped '离线购物车'
+
+======================================================================
+FAIL: test_01_regist (__main__.AuthorizeTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 30, in test_01_regist
+    self.assertEqual(self.driver.title, '用户登录')
+AssertionError: 'gulimall注册页面' != '用户登录'
+- gulimall注册页面
++ 用户登录
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 32.924s
+
+FAILED (failures=1, skipped=3)
+test_00_index (__main__.AuthorizeTest) ... ok
+test_01_regist (__main__.AuthorizeTest) ... FAIL
+test_02_sign_login (__main__.AuthorizeTest) ... skipped '账号登录'
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped '授权登录'
+test_04_add_cart (__main__.AuthorizeTest) ... skipped '离线购物车'
+
+======================================================================
+FAIL: test_01_regist (__main__.AuthorizeTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 30, in test_01_regist
+    self.assertEqual(self.driver.title, '用户登录')
+AssertionError: 'gulimall注册页面' != '用户登录'
+- gulimall注册页面
++ 用户登录
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 24.108s
+
+FAILED (failures=1, skipped=3)
+test_00_index (__main__.AuthorizeTest) ... ok
+test_01_regist (__main__.AuthorizeTest) ... FAIL
+test_02_sign_login (__main__.AuthorizeTest) ... skipped '账号登录'
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped '授权登录'
+test_04_add_cart (__main__.AuthorizeTest) ... skipped '离线购物车'
+
+======================================================================
+FAIL: test_01_regist (__main__.AuthorizeTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 30, in test_01_regist
+    self.assertEqual(self.driver.title, '用户登录')
+AssertionError: 'gulimall注册页面' != '用户登录'
+- gulimall注册页面
++ 用户登录
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.884s
+
+FAILED (failures=1, skipped=3)
+test_00_index (__main__.AuthorizeTest) ... ok
+test_01_regist (__main__.AuthorizeTest) ... FAIL
+test_02_sign_login (__main__.AuthorizeTest) ... skipped '账号登录'
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped '授权登录'
+test_04_add_cart (__main__.AuthorizeTest) ... skipped '离线购物车'
+
+======================================================================
+FAIL: test_01_regist (__main__.AuthorizeTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 30, in test_01_regist
+    self.assertEqual(self.driver.title, '用户登录')
+AssertionError: 'gulimall注册页面' != '用户登录'
+- gulimall注册页面
++ 用户登录
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.955s
+
+FAILED (failures=1, skipped=3)
+test_00_index (__main__.AuthorizeTest) ... ok
+test_01_regist (__main__.AuthorizeTest) ... FAIL
+test_02_sign_login (__main__.AuthorizeTest) ... skipped '账号登录'
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped '授权登录'
+test_04_add_cart (__main__.AuthorizeTest) ... skipped '离线购物车'
+
+======================================================================
+FAIL: test_01_regist (__main__.AuthorizeTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 30, in test_01_regist
+    self.assertEqual(self.driver.title, '用户登录')
+AssertionError: 'gulimall注册页面' != '用户登录'
+- gulimall注册页面
++ 用户登录
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.891s
+
+FAILED (failures=1, skipped=3)
+test_00_index (__main__.AuthorizeTest) ... ok
+test_01_regist (__main__.AuthorizeTest) ... skipped '注册账号'
+test_02_sign_login (__main__.AuthorizeTest) ... ERROR
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped '授权登录'
+test_04_add_cart (__main__.AuthorizeTest) ... skipped '离线购物车'
+
+======================================================================
+ERROR: test_02_sign_login (__main__.AuthorizeTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 35, in test_02_sign_login
+    p.sign_login(user['username'], user['password'])
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 29, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\login.py", line 17, in sign_login
+    self.wait(self.account_login_link).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 10.689s
+
+FAILED (errors=1, skipped=3)
+test_00_index (__main__.AuthorizeTest) ... ok
+test_01_regist (__main__.AuthorizeTest) ... skipped '注册账号'
+test_02_sign_login (__main__.AuthorizeTest) ... ERROR
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped '授权登录'
+test_04_add_cart (__main__.AuthorizeTest) ... skipped '离线购物车'
+
+======================================================================
+ERROR: test_02_sign_login (__main__.AuthorizeTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 35, in test_02_sign_login
+    p.sign_login(user['username'], user['password'])
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 29, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\login.py", line 17, in sign_login
+    self.wait(self.account_login_link).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 10.545s
+
+FAILED (errors=1, skipped=3)
+test_00_index (__main__.AuthorizeTest) ... ok
+test_01_regist (__main__.AuthorizeTest) ... skipped '注册账号'
+test_02_sign_login (__main__.AuthorizeTest) ... ok
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped '授权登录'
+test_04_add_cart (__main__.AuthorizeTest) ... skipped '离线购物车'
+
+----------------------------------------------------------------------
+Ran 5 tests in 19.769s
+
+OK (skipped=3)
+test_00_index (__main__.AuthorizeTest) ... ok
+test_01_regist (__main__.AuthorizeTest) ... skipped '注册账号'
+test_02_sign_login (__main__.AuthorizeTest) ... FAIL
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped '授权登录'
+test_04_add_cart (__main__.AuthorizeTest) ... skipped '离线购物车'
+
+======================================================================
+FAIL: test_02_sign_login (__main__.AuthorizeTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 38, in test_02_sign_login
+    self.assertEqual(self.driver.title, '谷粒商城')
+AssertionError: 'Error' != '谷粒商城'
+- Error
++ 谷粒商城
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 66.355s
+
+FAILED (failures=1, skipped=3)
+test_00_index (__main__.AuthorizeTest) ... ok
+test_01_regist (__main__.AuthorizeTest) ... skipped '注册账号'
+test_02_sign_login (__main__.AuthorizeTest) ... FAIL
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped '授权登录'
+test_04_add_cart (__main__.AuthorizeTest) ... skipped '离线购物车'
+
+======================================================================
+FAIL: test_02_sign_login (__main__.AuthorizeTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 38, in test_02_sign_login
+    self.assertEqual(self.driver.title, '谷粒商城')
+AssertionError: 'Error' != '谷粒商城'
+- Error
++ 谷粒商城
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 76.940s
+
+FAILED (failures=1, skipped=3)
+test_00_index (__main__.AuthorizeTest) ... ok
+test_01_regist (__main__.AuthorizeTest) ... skipped '注册账号'
+test_02_sign_login (__main__.AuthorizeTest) ... FAIL
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped '授权登录'
+test_04_add_cart (__main__.AuthorizeTest) ... skipped '离线购物车'
+
+======================================================================
+FAIL: test_02_sign_login (__main__.AuthorizeTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 38, in test_02_sign_login
+    self.assertEqual(self.driver.title, '谷粒商城')
+AssertionError: 'Error' != '谷粒商城'
+- Error
++ 谷粒商城
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 60.839s
+
+FAILED (failures=1, skipped=3)
+test_00_index (__main__.AuthorizeTest) ... ok
+test_01_regist (__main__.AuthorizeTest) ... skipped '注册账号'
+test_021_sign_login (__main__.AuthorizeTest) ... ERROR
+test_02_sign_login (__main__.AuthorizeTest) ... skipped '账号登录'
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped '授权登录'
+test_04_add_cart (__main__.AuthorizeTest) ... skipped '离线购物车'
+
+======================================================================
+ERROR: test_021_sign_login (__main__.AuthorizeTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 41, in test_021_sign_login
+    p.sign_login(user['username'] + '_error', user['password'])
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 29, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\login.py", line 17, in sign_login
+    self.wait(self.account_login_link).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 78, in until
+    value = method(self._driver)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\expected_conditions.py", line 64, in _predicate
+    return driver.find_element(*locator)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 1244, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: chrome not reachable
+  (Session info: chrome=98.0.4758.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833960+1063264]
+	Ordinal0 [0x00828092+1015954]
+	Ordinal0 [0x008288C8+1018056]
+	Ordinal0 [0x0082A102+1024258]
+	Ordinal0 [0x00823DE9+998889]
+	Ordinal0 [0x00834DD0+1068496]
+	Ordinal0 [0x00887B12+1407762]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 6 tests in 19.149s
+
+FAILED (errors=1, skipped=4)
+test_00_index (__main__.AuthorizeTest) ... ok
+test_01_regist (__main__.AuthorizeTest) ... skipped '注册账号'
+test_021_sign_login_error_account (__main__.AuthorizeTest) ... ERROR
+test_02_sign_login (__main__.AuthorizeTest) ... skipped '账号登录'
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped '授权登录'
+test_04_add_cart (__main__.AuthorizeTest) ... skipped '离线购物车'
+
+======================================================================
+ERROR: test_021_sign_login_error_account (__main__.AuthorizeTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 41, in test_021_sign_login_error_account
+    p.sign_login(user['username'] + '_error', user['password'])
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 29, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\login.py", line 21, in sign_login
+    self.wait(self.home_page_locator, 10)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 6 tests in 71.199s
+
+FAILED (errors=1, skipped=4)
+test_00_index (__main__.AuthorizeTest) ... ok
+test_01_regist (__main__.AuthorizeTest) ... skipped '注册账号'
+test_021_sign_login_error_account (__main__.AuthorizeTest) ... ERROR
+test_02_sign_login (__main__.AuthorizeTest) ... skipped '账号登录'
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped '授权登录'
+test_04_add_cart (__main__.AuthorizeTest) ... skipped '离线购物车'
+
+======================================================================
+ERROR: test_021_sign_login_error_account (__main__.AuthorizeTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 41, in test_021_sign_login_error_account
+    p.sign_login(user['username'] + '_error', user['password'])
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 29, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\login.py", line 21, in sign_login
+    self.wait(self.home_page_locator, 10)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 6 tests in 12.576s
+
+FAILED (errors=1, skipped=4)
+test_00_index (__main__.AuthorizeTest) ... ok
+test_01_regist (__main__.AuthorizeTest) ... skipped '注册账号'
+test_021_sign_login_error_account (__main__.AuthorizeTest) ... ERROR
+test_02_sign_login (__main__.AuthorizeTest) ... skipped '账号登录'
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped '授权登录'
+test_04_add_cart (__main__.AuthorizeTest) ... skipped '离线购物车'
+
+======================================================================
+ERROR: test_021_sign_login_error_account (__main__.AuthorizeTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 41, in test_021_sign_login_error_account
+    p.sign_login(user['username'] + '_error', user['password'])
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 29, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\login.py", line 21, in sign_login
+    self.wait(self.home_page_locator, 10)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 6 tests in 14.114s
+
+FAILED (errors=1, skipped=4)
+test_00_index (__main__.AuthorizeTest) ... ok
+test_01_regist (__main__.AuthorizeTest) ... skipped '注册账号'
+test_021_sign_login_error_account (__main__.AuthorizeTest) ... ERROR
+test_02_sign_login (__main__.AuthorizeTest) ... skipped '账号登录'
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped '授权登录'
+test_04_add_cart (__main__.AuthorizeTest) ... skipped '离线购物车'
+
+======================================================================
+ERROR: test_021_sign_login_error_account (__main__.AuthorizeTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 41, in test_021_sign_login_error_account
+    p.sign_login(user['username'] + '_error', user['password'])
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 29, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\login.py", line 21, in sign_login
+    self.wait(self.home_page_locator, 10)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 78, in until
+    value = method(self._driver)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\expected_conditions.py", line 64, in _predicate
+    return driver.find_element(*locator)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 1244, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: chrome not reachable
+  (Session info: chrome=98.0.4758.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833960+1063264]
+	Ordinal0 [0x00828092+1015954]
+	Ordinal0 [0x008288C8+1018056]
+	Ordinal0 [0x0082A102+1024258]
+	Ordinal0 [0x00823DE9+998889]
+	Ordinal0 [0x00834DD0+1068496]
+	Ordinal0 [0x00887B12+1407762]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 6 tests in 68.008s
+
+FAILED (errors=1, skipped=4)
+test_00_index (__main__.AuthorizeTest) ... ok
+test_01_regist (__main__.AuthorizeTest) ... skipped '注册账号'
+test_021_sign_login_error_account (__main__.AuthorizeTest) ... ERROR
+test_02_sign_login (__main__.AuthorizeTest) ... skipped '账号登录'
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped '授权登录'
+test_04_add_cart (__main__.AuthorizeTest) ... skipped '离线购物车'
+
+======================================================================
+ERROR: test_021_sign_login_error_account (__main__.AuthorizeTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 41, in test_021_sign_login_error_account
+    p.sign_login(user['username'] + '_error', user['password'])
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 29, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\login.py", line 17, in sign_login
+    self.wait(self.account_login_link).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 6 tests in 10.641s
+
+FAILED (errors=1, skipped=4)

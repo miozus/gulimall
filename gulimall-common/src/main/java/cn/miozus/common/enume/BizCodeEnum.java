@@ -19,12 +19,14 @@ public enum BizCodeEnum {
     /** 微服务通用错误码 */
     UNKNOWN_EXCEPTION(10000, "系统未知异常"),
     VALID_EXCEPTION(10001, "参数校验失败"),
-    SMS_CODE_EXCEPTION(10002, "短信验证码获取频率太高，稍后再试"),
+    SMS_CODE_FREQUENTLY_EXCEPTION(10002, "短信验证码获取频率太高，稍后再试"),
+    SMS_CODE_INVALID_EXCEPTION(10003, "验证码错误"),
     PUBLISH_EXCEPTION(11000, "商品上架异常"),
     PHONE_ALREADY_EXISTS_EXCEPTION(15001,"手机号已存在"),
     USERNAME_ALREADY_EXISTS_EXCEPTION(15002,"用户名已存在"),
     USERNAME_OR_PASSWORD_INVALID_EXCEPTION(15003,"用户名或密码错误"),
-    NO_STOCK_EXCEPTION(21000,"没有库存");
+    OAUTH_NOT_BIND_EXCEPTION(15004,"授权登录未绑定用户"),
+    NO_STOCK_EXCEPTION(21000,"库存不足");
 
     private final int code;
     private final String msg;

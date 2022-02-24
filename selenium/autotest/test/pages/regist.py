@@ -1,5 +1,5 @@
-# from common.api.urls import Api
-# from common.aspect.chrome import mapping
+# from common.data.api import Api
+# from common.model.chrome import mapping
 # from common.model.pageobject import Page
 # from selenium.webdriver.common.by import By
 from common.model import *
@@ -16,12 +16,10 @@ class RegistPage(Page):
     code_input = By.NAME, 'code'
     code_send_link = By.ID, 'sendCode'
     submit_button = By.ID, 'submit_btn'
-    title = None
 
-    @mapping(Api.REGIST)
+    @mapping.get(Api.REGIST)
     def reigst(self, username, password, phone):
         self.wait(self.notify_close_button).click()
-        # self.find(self.notify_close_button).click()
         self.find(self.username_input).send_keys(username)
         self.find(self.password_input).send_keys(password)
         self.find(self.password_ensure_input).send_keys(password)
@@ -35,4 +33,3 @@ class RegistPage(Page):
 
     def submit(self):
         self.find(self.submit_button).click()
-        self.title = self.getTitle()

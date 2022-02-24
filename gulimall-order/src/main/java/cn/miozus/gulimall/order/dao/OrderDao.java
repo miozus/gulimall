@@ -18,7 +18,7 @@ public interface OrderDao extends BaseMapper<OrderEntity> {
     /**
      * 更新订单状态
      *
-     * @param outTradeNo 贸易没有
+     * @param outTradeNo 订单号
      * @param code       代码
      */
     void updateOrderStatus(@Param("outTradeNo") String outTradeNo, @Param("code") int code);

@@ -1,6 +1,7 @@
 package cn.miozus.common.annotation;
 
 import java.lang.annotation.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 同步更新缓存信息
@@ -13,8 +14,15 @@ import java.lang.annotation.*;
 @Documented
 public @interface PutRedis {
 
-    /**
-     * 更新字段的注释，默认为空，无其他作用
-     */
+    /** comment */
     String value() default "";
+
+    /** keep alive time */
+    int time() default 3;
+
+    /** minute */
+    TimeUnit unit() default TimeUnit.MINUTES;
+
+    /** 键 */
+    String key() default  "";
 }

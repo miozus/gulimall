@@ -21,7 +21,16 @@ public class GuliMallBindException extends RuntimeException {
 
 
     public GuliMallBindException(BizCodeEnum bizCode) {
+        super(bizCode.getMsg());
         this.bizCode = bizCode.value();
+    }
+
+    /**
+     * 兼容 R 类型的返回值
+     */
+    public GuliMallBindException(String message, Integer code) {
+        super(message);
+        this.bizCode = code;
     }
 
     public GuliMallBindException(String message, BizCodeEnum bizCode) {

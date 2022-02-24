@@ -1,6 +1,7 @@
 package cn.miozus.common.annotation;
 
 import java.lang.annotation.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 幂等：Redis 校验 Token
@@ -13,9 +14,15 @@ import java.lang.annotation.*;
 @Documented
 public @interface Idempotent {
 
-    /** 校验 key */
-    String key() default "";
-
-    /** 注释或留空 */
+    /** comment */
     String value() default "";
+
+    /** keep alive time */
+    int time() default 3;
+
+    /** minute */
+    TimeUnit unit() default TimeUnit.MINUTES;
+
+    /** 键 */
+    String key() default  "";
 }

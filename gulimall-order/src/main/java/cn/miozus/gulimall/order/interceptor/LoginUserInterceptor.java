@@ -63,11 +63,11 @@ public class LoginUserInterceptor implements HandlerInterceptor {
         HttpSession session = request.getSession();
         MemberRespVo loginUser = (MemberRespVo) session.getAttribute(AuthServerConstant.LOGIN_USER);
         if (Objects.isNull(loginUser)) {
-            session.setAttribute("loginMsg", "请登录再试");
+            session.setAttribute("msg", "请登录再试");
             response.sendRedirect("http://auth.gulimall.com/login.html");
             return false;
         }
-        session.setAttribute("loginMg", "");
+        session.setAttribute("msg", "");
         LoginUserInterceptor.threadLocal.set(loginUser);
         return true;
 

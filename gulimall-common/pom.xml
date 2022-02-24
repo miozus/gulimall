@@ -26,10 +26,17 @@
         <hutool.all.version>5.7.20</hutool.all.version>
         <hibernate.validator.version>7.0.1.Final</hibernate.validator.version>
         <spring.web.version>5.2.8.RELEASE</spring.web.version>
+        <spring.cloud.starter.netflix.hystrix.version>2.2.4.RELEASE</spring.cloud.starter.netflix.hystrix.version>
     </properties>
 
 
     <dependencies>
+        <!-- Feign 熔断机制 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+            <version>${spring.cloud.starter.netflix.hystrix.version}</version>
+        </dependency>
         <!-- 无依赖低入侵的工具箱 -->
         <dependency>
             <groupId>cn.hutool</groupId>

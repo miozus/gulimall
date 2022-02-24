@@ -1,6 +1,6 @@
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.select import Select
-from selenium.webdriver.support.ui import WebDriverWait  # WebDriverWait注意大小写
+from selenium.webdriver.support.ui import WebDriverWait
 
 
 class Page:
@@ -19,6 +19,10 @@ class Page:
     def select(self, locator, option):
         element = self.find(locator)
         return Select(element).select_by_visible_text(option)
-    
-    def getTitle(self):
-        return self.driver.title
+
+    def contains(self, locator):
+        try:
+            self.wait(locator, 1)
+            return True
+        except:
+            return False

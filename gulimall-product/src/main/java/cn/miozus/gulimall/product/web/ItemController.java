@@ -2,6 +2,7 @@ package cn.miozus.gulimall.product.web;
 
 import cn.miozus.gulimall.product.service.SkuInfoService;
 import cn.miozus.gulimall.product.vo.SkuItemVo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @date 2021/12/24
  */
 @Controller
+@Slf4j
 public class ItemController {
 
     @Autowired
@@ -28,8 +30,8 @@ public class ItemController {
      */
     @GetMapping("/{skuId}.html")
     public String skuItem(@PathVariable("skuId") Long skuId, Model model) {
-        System.out.println("准备查询" + skuId + "详情");
-        SkuItemVo vo =  skuInfoService.item(skuId);
+        log.info("准备查询商品详情[skuId:{}]", skuId);
+        SkuItemVo vo = skuInfoService.item(skuId);
         model.addAttribute("item", vo);
         return "item";
     }

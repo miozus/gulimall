@@ -1,0 +1,296 @@
+{
+  "id": "11ed0bce-418e-4abb-8656-faf358760021",
+  "version": "2.0",
+  "name": "register",
+  "url": "http://order.gulimall.com/toTrade",
+  "tests": [{
+    "id": "e1cfaa30-b18e-45ed-a99b-ab4ec7e41b49",
+    "name": "密码登录",
+    "commands": [{
+      "id": "c156c67b-4ed9-4839-afee-d023536e7f94",
+      "comment": "",
+      "command": "open",
+      "target": "/register.html",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5dd9d0a9-307f-45eb-88ee-866898ef08b8",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1265x1420",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "29c5aa36-92ab-40b6-bdab-d44ecd1dcb3c",
+      "comment": "",
+      "command": "click",
+      "target": "css=.ty",
+      "targets": [
+        ["css=.ty", "css:finder"],
+        ["xpath=//div[3]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'同意并继续')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7e7ed052-6d16-4268-b788-7574bb8cd81a",
+      "comment": "",
+      "command": "type",
+      "target": "name=username",
+      "targets": [
+        ["name=username", "name"],
+        ["css=.username_label > input", "css:finder"],
+        ["xpath=//input[@name='username']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "admin"
+    }, {
+      "id": "4cf92c9c-fa92-4fa9-a6fc-19d1ec1fefd0",
+      "comment": "",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=.register-box:nth-child(3) input", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//div[3]/label/input", "xpath:position"]
+      ],
+      "value": "admin"
+    }, {
+      "id": "89d9a8e8-80e3-4512-87ea-11ceb1593d3e",
+      "comment": "",
+      "command": "type",
+      "target": "css=.register-box:nth-child(4) input",
+      "targets": [
+        ["css=.register-box:nth-child(4) input", "css:finder"],
+        ["xpath=(//input[@type='password'])[2]", "xpath:attributes"],
+        ["xpath=//div[4]/label/input", "xpath:position"]
+      ],
+      "value": "admin"
+    }, {
+      "id": "6bd2649c-ca6d-43bb-8261-6e7cee0aff2b",
+      "comment": "",
+      "command": "type",
+      "target": "id=phone",
+      "targets": [
+        ["id=phone", "id"],
+        ["name=phone", "name"],
+        ["css=#phone", "css:finder"],
+        ["xpath=//input[@id='phone']", "xpath:attributes"],
+        ["xpath=//div[5]/label/input", "xpath:position"]
+      ],
+      "value": "188888888888"
+    }, {
+      "id": "50d4bd00-2b33-4766-a96e-998b1974f94b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.arguement",
+      "targets": [
+        ["css=.arguement", "css:finder"],
+        ["xpath=//div[7]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d04d7b65-92a5-4688-ada2-accb8b852c23",
+      "comment": "",
+      "command": "click",
+      "target": "id=xieyi",
+      "targets": [
+        ["id=xieyi", "id"],
+        ["css=#xieyi", "css:finder"],
+        ["xpath=//input[@id='xieyi']", "xpath:attributes"],
+        ["xpath=//div[7]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "24664254-0fe8-4523-9389-5d6c7a99d162",
+      "comment": "",
+      "command": "click",
+      "target": "id=submit_btn",
+      "targets": [
+        ["id=submit_btn", "id"],
+        ["css=#submit_btn", "css:finder"],
+        ["xpath=//button[@id='submit_btn']", "xpath:attributes"],
+        ["xpath=//div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'立 即 注 册')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f07ae90a-b7b2-4200-b50a-eb13491c6d3f",
+      "comment": "",
+      "command": "click",
+      "target": "css=.ty",
+      "targets": [
+        ["css=.ty", "css:finder"],
+        ["xpath=//div[3]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'同意并继续')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "89199b61-9c28-44ae-83fb-6ce49bee5262",
+      "comment": "",
+      "command": "click",
+      "target": "id=sendCode",
+      "targets": [
+        ["id=sendCode", "id"],
+        ["linkText=发送验证码", "linkText"],
+        ["css=#sendCode", "css:finder"],
+        ["xpath=//a[contains(text(),'发送验证码')]", "xpath:link"],
+        ["xpath=//a[@id='sendCode']", "xpath:attributes"],
+        ["xpath=//div[6]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'发送验证码')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d2522658-6dac-446e-b937-2266d3b08e3b",
+      "comment": "",
+      "command": "click",
+      "target": "name=code",
+      "targets": [
+        ["name=code", "name"],
+        ["css=.caa", "css:finder"],
+        ["xpath=//input[@name='code']", "xpath:attributes"],
+        ["xpath=//div[6]/label/input", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "cd21b8ed-7215-47f0-a1e0-4e975d556b02",
+    "name": "社交登录",
+    "commands": [{
+      "id": "9ddcec75-a0c4-48e0-bc62-621071085d1c",
+      "comment": "",
+      "command": "open",
+      "target": "http://auth.gulimall.com/login.html",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9a8341d2-acf0-4de2-b013-52487e32bc04",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Gitee",
+      "targets": [
+        ["linkText=Gitee", "linkText"],
+        ["css=.si_out li:nth-child(3) > a", "css:finder"],
+        ["xpath=//div[@id='sign']/div[5]/ul/li[3]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, 'https://gitee.com/oauth/authorize?client_id=cc93e4e226df3248c66756d77dd070ecd6b5a09c5bcaf1a19383f6244be1d083&redirect_uri=http://auth.gulimall.com/oauth2/gitee/redirect&response_type=code')]", "xpath:href"],
+        ["xpath=//div[5]/ul/li[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,' Gitee')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "1198c19f-43f1-46d3-8481-ce7fd532cf70",
+      "comment": "",
+      "command": "click",
+      "target": "name=commit",
+      "targets": [
+        ["name=commit", "name"],
+        ["css=.orange", "css:finder"],
+        ["xpath=//input[@name='commit']", "xpath:attributes"],
+        ["xpath=//input[7]", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "55ffe567-c61a-4dc4-80cc-b8dd1ca43c34",
+    "name": "加购物车",
+    "commands": [{
+      "id": "43536032-5c74-446b-8215-3149698bf07d",
+      "comment": "",
+      "command": "open",
+      "target": "http://item.gulimall.com/15.html",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d2cb8c65-45fc-4562-b82a-29f719a96799",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "854x1440",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "46ecf792-014e-4631-b1fb-b83c60bad073",
+      "comment": "",
+      "command": "click",
+      "target": "id=addToCart",
+      "targets": [
+        ["id=addToCart", "id"],
+        ["linkText=加入购物车", "linkText"],
+        ["css=#addToCart", "css:finder"],
+        ["xpath=//a[contains(text(),'加入购物车')]", "xpath:link"],
+        ["xpath=//a[@id='addToCart']", "xpath:attributes"],
+        ["xpath=(//a[contains(@href, '#')])[10]", "xpath:href"],
+        ["xpath=//div[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'加入购物车')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b9e985f2-5ed0-41b8-82d6-d932ddb6828c",
+      "comment": "",
+      "command": "click",
+      "target": "id=GotoShoppingCart",
+      "targets": [
+        ["id=GotoShoppingCart", "id"],
+        ["linkText=去购物车结算", "linkText"],
+        ["css=#GotoShoppingCart", "css:finder"],
+        ["xpath=//a[contains(text(),'去购物车结算')]", "xpath:link"],
+        ["xpath=//a[@id='GotoShoppingCart']", "xpath:attributes"],
+        ["xpath=//div[@id='result']/div/div/div[2]/div[3]/a[2]", "xpath:idRelative"],
+        ["xpath=//a[@href='http://cart.gulimall.com/cartList.html']", "xpath:href"],
+        ["xpath=//a[2]", "xpath:position"],
+        ["xpath=//a[contains(.,'去购物车结算')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "be57351c-5240-4e13-a269-6b5fae64974b",
+    "name": "订单确认",
+    "commands": [{
+      "id": "1834ecb5-0969-4957-9e90-2e59c3b17d69",
+      "comment": "",
+      "command": "open",
+      "target": "http://order.gulimall.com/toTrade",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "95eea028-9e68-439d-9416-5e484f3ed2b1",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1720x1440",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "96909bdd-1893-49e4-97a5-ac75df3537b3",
+      "comment": "",
+      "command": "click",
+      "target": "css=.tijiao",
+      "targets": [
+        ["css=.tijiao", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'提交订单')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4334e583-6cb4-4929-9722-1deeb5358f1f",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//span[contains(.,'结算页')]",
+      "targets": [
+        ["css=.top-1 > span", "css:finder"],
+        ["xpath=//span", "xpath:position"],
+        ["xpath=//span[contains(.,'结算页')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "19985544-5a16-4cf7-9ba5-09e41984f3f5",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["e1cfaa30-b18e-45ed-a99b-ab4ec7e41b49"]
+  }],
+  "urls": ["http://auth.gulimall.com/"],
+  "plugins": []
+}

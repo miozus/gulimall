@@ -5,7 +5,7 @@
   <script src="/static/order/confirm/js/jquery-3.1.1.min.js"></script>
   <link rel="stylesheet" type="text/css" href="/static/order/confirm/css/JD2.css"/>
 
-  <title></title>
+  <title>订单确认</title>
 </head>
 
 <body>
@@ -346,7 +346,7 @@
   <img src="/static/order/confirm/img/08.png" class="img2"/>
 </div>
 <!--主体部分-->
-<p class="p1">填写并核对订单信息 <span style="color:red;" th:if="${session.msg != null}">[[${session.msg}]]</span></p>
+<p class="p1">填写并核对订单信息 <span style="color:red;font-size: large" th:if="${session.msg != null}">[[${session.msg}]]</span></p>
 <div class="section">
   <!--收货人信息-->
   <div class="top-2">

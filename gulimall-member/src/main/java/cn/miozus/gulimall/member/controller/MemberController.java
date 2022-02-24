@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.Map;
+import java.util.Objects;
 
 
 /**
@@ -101,11 +102,9 @@ public class MemberController {
         try {
             memberService.register(vo);
         } catch (UsernameAlreadyExistsException e) {
-            return R.error(BizCodeEnum.USERNAME_ALREADY_EXISTS_EXCEPTION.value(),
-                    BizCodeEnum.USERNAME_ALREADY_EXISTS_EXCEPTION.getMsg());
+            return R.error(BizCodeEnum.USERNAME_ALREADY_EXISTS_EXCEPTION);
         } catch (PhoneNumberAlreadyExistsException e) {
-            return R.error(BizCodeEnum.PHONE_ALREADY_EXISTS_EXCEPTION.value(),
-                    BizCodeEnum.PHONE_ALREADY_EXISTS_EXCEPTION.getMsg());
+            return R.error(BizCodeEnum.PHONE_ALREADY_EXISTS_EXCEPTION);
         }
         return R.ok();
     }
@@ -113,9 +112,8 @@ public class MemberController {
     @PostMapping("/login")
     public R login(@RequestBody MemberLoginVo vo) {
         MemberEntity member = memberService.login(vo);
-        if (member == null) {
-            return R.error(BizCodeEnum.USERNAME_OR_PASSWORD_INVALID_EXCEPTION.value(),
-                    BizCodeEnum.USERNAME_OR_PASSWORD_INVALID_EXCEPTION.getMsg());
+        if (Objects.isNull(member)) {
+            return R.error(BizCodeEnum.USERNAME_OR_PASSWORD_INVALID_EXCEPTION);
         }
         return R.ok().setData(member);
     }
@@ -124,9 +122,8 @@ public class MemberController {
     @PostMapping("/oauth2/login")
     public R oauthLogin(@RequestBody SocialUser socialUser) {
         MemberEntity member = memberService.login(socialUser);
-        if (member == null) {
-            return R.error(BizCodeEnum.USERNAME_OR_PASSWORD_INVALID_EXCEPTION.value(),
-                    BizCodeEnum.USERNAME_OR_PASSWORD_INVALID_EXCEPTION.getMsg());
+        if (Objects.isNull(member)) {
+            return R.error(BizCodeEnum.OAUTH_NOT_BIND_EXCEPTION);
         }
         return R.ok().setData(member);
     }

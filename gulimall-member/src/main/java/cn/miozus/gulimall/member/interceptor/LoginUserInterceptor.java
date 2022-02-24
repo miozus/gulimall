@@ -3,7 +3,6 @@ package cn.miozus.gulimall.member.interceptor;
 import cn.miozus.common.constant.AuthServerConstant;
 import cn.miozus.common.vo.MemberRespVo;
 import com.alibaba.nacos.common.utils.Objects;
-import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -11,6 +10,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 /**
  * 结算清单拦截器
@@ -51,17 +51,16 @@ public class LoginUserInterceptor implements HandlerInterceptor {
      * @param response 响应
      * @return boolean
      */
-    @SneakyThrows
-    private boolean releaseLoginUserOnly(HttpServletRequest request, HttpServletResponse response) {
+    private boolean releaseLoginUserOnly(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         HttpSession session = request.getSession();
         MemberRespVo loginUser = (MemberRespVo) session.getAttribute(AuthServerConstant.LOGIN_USER);
         if (Objects.isNull(loginUser)) {
-            session.setAttribute("loginMsg", "请登录再试");
+            session.setAttribute("msg", "请登录再试");
             response.sendRedirect("http://auth.gulimall.com/login.html");
             return false;
         }
-        session.setAttribute("loginMg", "");
+        session.setAttribute("msg", "");
         LoginUserInterceptor.loginUserThreadLocal.set(loginUser);
         return true;
 

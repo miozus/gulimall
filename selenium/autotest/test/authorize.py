@@ -21,7 +21,7 @@ class AuthorizeTest(unittest.TestCase):
         p.open()
         self.assertEqual(self.driver.title, '谷粒商城')
 
-    # @unittest.skip("注册账号")
+    @unittest.skip("注册账号")
     def test_01_regist(self):
         p = RegistPage(self.driver)
         p.reigst(user['username'], user['password'], user['phone'])
@@ -29,7 +29,7 @@ class AuthorizeTest(unittest.TestCase):
         p.submit()
         self.assertEqual(self.driver.title, '用户登录')
 
-    @unittest.skip("账号登录")
+    # @unittest.skip("账号登录")
     def test_02_sign_login(self):
         p = LoginPage(self.driver)
         p.sign_login(user['username'], user['password'])
@@ -49,8 +49,9 @@ class AuthorizeTest(unittest.TestCase):
         log.info(f'Authorized Cookies: {self.driver.get_cookies()}')
         self.assertEqual(self.driver.title, '谷粒商城')
 
-    @unittest.skip("离线购物车")
+    # @unittest.skip("离线购物车")
     def test_04_add_cart(self):
+        self.driver.delete_all_cookies()
         p = CartPage(self.driver)
         p.add_item()
         self.assertEqual(self.driver.title, '购物车')

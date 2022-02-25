@@ -14,5 +14,8 @@ spring:
                     - data-id: redis.yml
                       group: pro
                       refresh: true
+                    - data-id: actuator.yml
+                      group: pro
+                      refresh: true
                 namespace: 17852841-4990-414d-86a3-7e33c665f74d
                 server-addr: 39.108.228.2:8848

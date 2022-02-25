@@ -11,5 +11,8 @@ spring:
                 - data-id: gulimall-gateway.yml
                   group: dev
                   refresh: true
+                - data-id: actuator.yml
+                  group: pro
+                  refresh: true
                 namespace: c5268780-6f6e-4748-a07f-e8a440b96296
                 server-addr: 39.108.228.2:8848

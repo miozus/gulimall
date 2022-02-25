@@ -17,5 +17,8 @@ spring:
           - data-id: rabbitmq.yml
             group: pro
             refresh: true
+          - data-id: actuator.yml
+            group: pro
+            refresh: true
         namespace: 66ba619e-cf35-40d5-b78f-72260f7de318
         server-addr: 39.108.228.2:8848

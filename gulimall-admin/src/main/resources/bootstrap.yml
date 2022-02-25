@@ -1,22 +1,15 @@
 spring:
   application:
-    name: gulimall-plugins
+    name: gulimall-admin
   cloud:
     nacos:
       config:
         extension-configs:
-          - data-id: oss.yml
-            group: pro
-            refresh: true
           - data-id: other.yml
-            group: pro
-            refresh: true
-          - data-id: sms.yml
             group: pro
             refresh: true
           - data-id: actuator.yml
             group: pro
             refresh: true
-        namespace: 9b272e13-75f8-49dd-8129-f609ae27d823
-
+        namespace: b6551d73-e51d-4bcc-a0e1-c507eab9f13a
         server-addr: 39.108.228.2:8848

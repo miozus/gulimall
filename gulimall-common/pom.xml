@@ -27,10 +27,26 @@
         <hibernate.validator.version>7.0.1.Final</hibernate.validator.version>
         <spring.web.version>5.2.8.RELEASE</spring.web.version>
         <spring.cloud.starter.netflix.hystrix.version>2.2.4.RELEASE</spring.cloud.starter.netflix.hystrix.version>
+        <spring-boot-admin-starter-client.version>2.3.0</spring-boot-admin-starter-client.version>
+        <spring-boot-starter-actuator.version>2.3.2.RELEASE</spring-boot-starter-actuator.version>
+
+
     </properties>
 
 
     <dependencies>
+        <!--微服务监控台:健康状态-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+            <version>${spring-boot-starter-actuator.version}</version>
+        </dependency>
+        <!--微服务监控台:该依赖必须要加上，否则会访问不到健康监控的接口-->
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-starter-client</artifactId>
+            <version>${spring-boot-admin-starter-client.version}</version>
+        </dependency>
         <!-- Feign 熔断机制 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>

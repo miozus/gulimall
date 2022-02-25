@@ -16,6 +16,12 @@ public class RedisTest {
 	private RedisUtils redisUtils;
 
 	@Test
+	void testMath(){
+		Math.min()
+
+	}
+
+	@Test
 	public void contextLoads() {
 		SysUserEntity user = new SysUserEntity();
 		user.setEmail("qqq@qq.com");

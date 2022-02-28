@@ -1,7 +1,7 @@
 package cn.miozus.gulimall.product.feign;
 
-import cn.miozus.common.to.es.SkuEsModel;
-import cn.miozus.common.utils.R;
+import cn.miozus.gulimall.common.to.es.SkuEsModel;
+import cn.miozus.gulimall.common.utils.R;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

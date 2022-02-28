@@ -2,10 +2,10 @@ package cn.miozus.gulimall.auth.controller;
 
 import cn.miozus.gulimall.auth.api.GiteeApi;
 import cn.miozus.gulimall.auth.feign.MemberFeignService;
-import cn.miozus.common.constant.AuthServerConstant;
-import cn.miozus.common.vo.MemberRespVo;
+import cn.miozus.gulimall.common.constant.AuthServerConstant;
+import cn.miozus.gulimall.common.vo.MemberRespVo;
 import cn.miozus.gulimall.auth.vo.SocialUser;
-import cn.miozus.common.utils.R;
+import cn.miozus.gulimall.common.utils.R;
 import com.alibaba.fastjson.TypeReference;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

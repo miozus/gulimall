@@ -1,7 +1,7 @@
 package cn.miozus.gulimall.ware.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import cn.miozus.common.utils.PageUtils;
+import cn.miozus.gulimall.common.utils.PageUtils;
 import cn.miozus.gulimall.ware.entity.UndoLogEntity;
 
 import java.util.Map;

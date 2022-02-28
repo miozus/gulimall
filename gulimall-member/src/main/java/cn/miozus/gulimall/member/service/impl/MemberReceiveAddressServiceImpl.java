@@ -1,7 +1,7 @@
 package cn.miozus.gulimall.member.service.impl;
 
-import cn.miozus.common.utils.PageUtils;
-import cn.miozus.common.utils.Query;
+import cn.miozus.gulimall.common.utils.PageUtils;
+import cn.miozus.gulimall.common.utils.Query;
 import cn.miozus.gulimall.member.dao.MemberReceiveAddressDao;
 import cn.miozus.gulimall.member.entity.MemberReceiveAddressEntity;
 import cn.miozus.gulimall.member.service.MemberReceiveAddressService;

@@ -1,7 +1,7 @@
 package cn.miozus.gulimall.ware.aspect;
 
-import cn.miozus.common.annotation.PostRabbitMq;
-import cn.miozus.common.to.mq.StockLockedUndoLogTo;
+import cn.miozus.gulimall.common.annotation.PostRabbitMq;
+import cn.miozus.gulimall.common.to.mq.StockLockedUndoLogTo;
 import cn.miozus.gulimall.ware.config.RabbitMqStockConfig;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;

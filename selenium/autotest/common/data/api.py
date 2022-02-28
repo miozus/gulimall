@@ -1,6 +1,7 @@
 from enum import Enum
 from selenium.webdriver.common.by import By
 
+
 class Api(Enum):
     HOME = 'http://gulimall.com/'
     REGIST = 'http://auth.gulimall.com/register.html'
@@ -11,9 +12,12 @@ class Api(Enum):
     CART_LIST = "http://cart.gulimall.com/cartList.html"
     ORDER_TRADE = "http://order.gulimall.com/toTrade"
     ORDER_LIST = "http://member.gulimall.com/memberOrder.html"
-    
+    PAY = "http://order.gulimall.com/submit"
+    SESSION_NAME = "GULISESSION"
+
+
 class Locator(Enum):
-    HOME = By.XPATH, '/html/body/header/div[1]/a/img'    
+    HOME = By.XPATH, '/html/body/header/div[1]/a/img'
     REGIST = By.CSS_SELECTOR, '.ty'
     LOGIN = By.CSS_SELECTOR, '.btn1:nth-child(3)'
     ITEM = By.ID, 'addToCart'
@@ -22,3 +26,4 @@ class Locator(Enum):
     CART_LIST = ""
     ORDER_TRADE = By.XPATH, "//span[contains(.,'结算页')]"
     ORDER_LIST = ""
+    PAY = By.CSS_SELECTOR, '.Jdbox_BuySuc dl dd span:last-child'

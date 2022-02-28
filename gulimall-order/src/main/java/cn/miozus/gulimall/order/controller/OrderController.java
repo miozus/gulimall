@@ -1,7 +1,7 @@
 package cn.miozus.gulimall.order.controller;
 
-import cn.miozus.common.utils.PageUtils;
-import cn.miozus.common.utils.R;
+import cn.miozus.gulimall.common.utils.PageUtils;
+import cn.miozus.gulimall.common.utils.R;
 import cn.miozus.gulimall.order.entity.OrderEntity;
 import cn.miozus.gulimall.order.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;

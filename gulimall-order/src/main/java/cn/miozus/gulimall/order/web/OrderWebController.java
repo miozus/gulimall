@@ -1,6 +1,6 @@
 package cn.miozus.gulimall.order.web;
 
-import cn.miozus.common.exception.GuliMallBindException;
+import cn.miozus.gulimall.common.exception.GuliMallBindException;
 import cn.miozus.gulimall.order.entity.OrderEntity;
 import cn.miozus.gulimall.order.service.OrderService;
 import cn.miozus.gulimall.order.vo.OrderConfirmVo;
@@ -34,14 +34,19 @@ public class OrderWebController {
 
 
     @GetMapping("/toTrade")
-    public String toTrade(Model model) {
-        OrderConfirmVo confirmVo = orderService.confirmOrder();
-        model.addAttribute("orderConfirmVo", confirmVo);
-        return "confirm";
+    public String fetchOrderConfirm(Model model, RedirectAttributes redirectAttributes) {
+        try {
+            OrderConfirmVo confirmVo = orderService.confirmOrder();
+            model.addAttribute("orderConfirmVo", confirmVo);
+            return "confirm";
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("msg", e.getMessage());
+            return "redirect:http://cart.gulimall.com/cartList.html";
+        }
     }
 
     @PostMapping("/submit")
-    public String submitOrder(OrderSubmitVo orderSubmitVo, Model model, RedirectAttributes redirectAttributes) {
+    public String submitOrderToPay(OrderSubmitVo orderSubmitVo, Model model, RedirectAttributes redirectAttributes) {
         try {
             OrderEntity resp = orderService.submitOrder(orderSubmitVo);
             log.info("📤 订单提交成功:" + resp.getOrderSn());

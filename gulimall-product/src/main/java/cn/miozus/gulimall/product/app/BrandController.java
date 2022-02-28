@@ -3,9 +3,9 @@ package cn.miozus.gulimall.product.app;
 import java.util.Arrays;
 import java.util.Map;
 
-import cn.miozus.common.valid.AddGroup;
-import cn.miozus.common.valid.UpdateGroup;
-import cn.miozus.common.valid.UpdateStatus;
+import cn.miozus.gulimall.common.valid.AddGroup;
+import cn.miozus.gulimall.common.valid.UpdateGroup;
+import cn.miozus.gulimall.common.valid.UpdateStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import cn.miozus.gulimall.product.entity.BrandEntity;
 import cn.miozus.gulimall.product.service.BrandService;
-import cn.miozus.common.utils.PageUtils;
-import cn.miozus.common.utils.R;
+import cn.miozus.gulimall.common.utils.PageUtils;
+import cn.miozus.gulimall.common.utils.R;
 
 
 

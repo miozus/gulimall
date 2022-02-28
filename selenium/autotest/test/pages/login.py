@@ -6,9 +6,10 @@ class LoginPage(Page):
     account_login_link = By.CSS_SELECTOR, '.btn1:nth-child(3)'
     account_input = By.NAME, "account"
     password_input = By.NAME, "password"
+    submit_button = By.CSS_SELECTOR, '.btn2'
+
     gitee_link = By.LINK_TEXT, 'Gitee'
     oauth_button = By.NAME, 'commit'
-    submit_button = By.CSS_SELECTOR, '.btn2'
     home_page_locator = Locator.HOME.value
 
     @mapping.get(Api.LOGIN)

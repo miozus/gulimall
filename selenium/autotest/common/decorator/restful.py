@@ -20,6 +20,7 @@ class mapping(object):
         """
         if isinstance(url, Enum):
             url = url.value
+
         def decorator(func):
             @wraps(func)
             def wrapper(*args, **kwargs):
@@ -39,19 +40,17 @@ class mapping(object):
         """
         if isinstance(url, Enum):
             url = url.value
+
         def decorator(func):
             @wraps(func)
             def wrapper(*args, **kwargs):
                 if driver.current_url != url:
                     log.info(f'[GET] {url} [{func.__name__}]')
-                    # driver.get(user['auth'])
                     driver.get(url)
-                    # log.info(f'[GET] {user["auth"]} [{func.__name__}]')
-                    # log.info(f'Authorized?: {driver.get_cookies()}')
-                    driver.add_cookie(user['cookies'][0])
-                    driver.add_cookie(user['cookies'][1])
-                    # log.info(f'Authorized.: {driver.get_cookies()}')
-                    driver.get(url)
+                    if not driver.get_cookie('GULISESSION'):
+                        driver.add_cookie(user['cookies'][0])
+                        driver.add_cookie(user['cookies'][1])
+                        driver.get(url)
                     log.info(f'Authorized: {driver.get_cookies()}')
                 return func(*args, **kwargs)
 
@@ -66,6 +65,7 @@ class mapping(object):
         """
         if isinstance(url, Enum):
             url = url.value
+
         def decorator(func):
             @wraps(func)
             def wrapper(*args, **kwargs):

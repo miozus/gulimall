@@ -1,6 +1,6 @@
 package cn.miozus.gulimall.ware.service;
 
-import cn.miozus.common.utils.PageUtils;
+import cn.miozus.gulimall.common.utils.PageUtils;
 import cn.miozus.gulimall.ware.entity.PurchaseEntity;
 import cn.miozus.gulimall.ware.vo.MergeVo;
 import cn.miozus.gulimall.ware.vo.PurchaseDoneVo;

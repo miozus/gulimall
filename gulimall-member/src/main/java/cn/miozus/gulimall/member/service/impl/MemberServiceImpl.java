@@ -1,8 +1,8 @@
 package cn.miozus.gulimall.member.service.impl;
 
-import cn.miozus.common.utils.HttpUtils;
-import cn.miozus.common.utils.PageUtils;
-import cn.miozus.common.utils.Query;
+import cn.miozus.gulimall.common.utils.HttpUtils;
+import cn.miozus.gulimall.common.utils.PageUtils;
+import cn.miozus.gulimall.common.utils.Query;
 import cn.miozus.gulimall.member.dao.MemberDao;
 import cn.miozus.gulimall.member.dao.MemberLevelDao;
 import cn.miozus.gulimall.member.entity.MemberEntity;
@@ -25,6 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -80,6 +81,7 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> impl
         entity.setUsername(username);
         entity.setMobile(phone);
         entity.setPassword(encode);
+        entity.setCreateTime(new Date());
 
         dao.insert(entity);
     }

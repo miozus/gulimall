@@ -1,8 +1,8 @@
 package cn.miozus.gulimall.auth.service.impl;
 
-import cn.miozus.common.annotation.Idempotent;
-import cn.miozus.common.constant.AuthServerConstant;
-import cn.miozus.common.utils.R;
+import cn.miozus.gulimall.common.annotation.Idempotent;
+import cn.miozus.gulimall.common.constant.AuthServerConstant;
+import cn.miozus.gulimall.common.utils.R;
 import cn.miozus.gulimall.auth.feign.MemberFeignService;
 import cn.miozus.gulimall.auth.feign.PluginsFeignService;
 import cn.miozus.gulimall.auth.service.AuthService;

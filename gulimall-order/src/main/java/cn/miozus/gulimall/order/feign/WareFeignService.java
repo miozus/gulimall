@@ -1,6 +1,6 @@
 package cn.miozus.gulimall.order.feign;
 
-import cn.miozus.common.utils.R;
+import cn.miozus.gulimall.common.utils.R;
 import cn.miozus.gulimall.order.vo.WareSkuLockVo;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;

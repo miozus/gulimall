@@ -1,15 +1,16 @@
 package cn.miozus.gulimall.ware.service.impl;
 
-import cn.miozus.common.annotation.PostRabbitMq;
-import cn.miozus.common.constant.WareConstant;
-import cn.miozus.common.enume.OrderStatusEnum;
-import cn.miozus.common.exception.GuliMallBindException;
-import cn.miozus.common.to.mq.OrderTo;
-import cn.miozus.common.to.mq.StockDetailTo;
-import cn.miozus.common.to.mq.StockLockedUndoLogTo;
-import cn.miozus.common.utils.PageUtils;
-import cn.miozus.common.utils.Query;
-import cn.miozus.common.utils.R;
+import cn.miozus.gulimall.common.annotation.PostRabbitMq;
+import cn.miozus.gulimall.common.constant.WareConstant;
+import cn.miozus.gulimall.common.enume.BizCodeEnum;
+import cn.miozus.gulimall.common.enume.OrderStatusEnum;
+import cn.miozus.gulimall.common.exception.GuliMallBindException;
+import cn.miozus.gulimall.common.to.mq.OrderTo;
+import cn.miozus.gulimall.common.to.mq.StockDetailTo;
+import cn.miozus.gulimall.common.to.mq.StockLockedUndoLogTo;
+import cn.miozus.gulimall.common.utils.PageUtils;
+import cn.miozus.gulimall.common.utils.Query;
+import cn.miozus.gulimall.common.utils.R;
 import cn.miozus.gulimall.ware.dao.WareSkuDao;
 import cn.miozus.gulimall.ware.entity.WareOrderTaskDetailEntity;
 import cn.miozus.gulimall.ware.entity.WareOrderTaskEntity;
@@ -188,7 +189,7 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
         String orderSn = stockTask.getOrderSn();
         R r = orderFeignService.queryOrderBySn(orderSn);
         if (r.getCode() != 0) {
-            throw new GuliMallBindException("远程查询订单失败，可能网络故障");
+            throw new GuliMallBindException(BizCodeEnum.FEIGN_READ_TIMEOUT_EXCEPTION);
         }
         OrderVo data = r.getData(new TypeReference<OrderVo>() {
         });

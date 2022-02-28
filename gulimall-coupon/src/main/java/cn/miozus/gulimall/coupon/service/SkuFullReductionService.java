@@ -1,8 +1,8 @@
 package cn.miozus.gulimall.coupon.service;
 
-import cn.miozus.common.to.SkuReductionTo;
+import cn.miozus.gulimall.common.to.SkuReductionTo;
 import com.baomidou.mybatisplus.extension.service.IService;
-import cn.miozus.common.utils.PageUtils;
+import cn.miozus.gulimall.common.utils.PageUtils;
 import cn.miozus.gulimall.coupon.entity.SkuFullReductionEntity;
 
 import java.util.Map;

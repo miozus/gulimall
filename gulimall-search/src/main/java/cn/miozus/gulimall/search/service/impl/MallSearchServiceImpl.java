@@ -1,7 +1,7 @@
 package cn.miozus.gulimall.search.service.impl;
 
-import cn.miozus.common.to.es.SkuEsModel;
-import cn.miozus.common.utils.R;
+import cn.miozus.gulimall.common.to.es.SkuEsModel;
+import cn.miozus.gulimall.common.utils.R;
 import cn.miozus.gulimall.search.config.ElasticsearchConfig;
 import cn.miozus.gulimall.search.constant.EsConstant;
 import cn.miozus.gulimall.search.feign.ProductFeignService;

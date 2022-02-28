@@ -3,7 +3,7 @@ package cn.miozus.gulimall.product.service;
 import cn.miozus.gulimall.product.vo.AttrRespVo;
 import cn.miozus.gulimall.product.vo.AttrVo;
 import com.baomidou.mybatisplus.extension.service.IService;
-import cn.miozus.common.utils.PageUtils;
+import cn.miozus.gulimall.common.utils.PageUtils;
 import cn.miozus.gulimall.product.entity.AttrEntity;
 
 import java.util.List;

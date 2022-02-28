@@ -26,7 +26,7 @@
         <li><a th:if="${session.loginUser != null}" style="color: red;">你好，[[${session.loginUser.nickname}]]</a></li>
         <li><a th:unless="${session.loginUser != null}" href="http://auth.gulimall.com/login.html"
         >你好，请登录</a></li>
-        <li th:if="${session.loginUser == null}"><a  href="http://auth.gulimall.com/register.html"
+        <li th:if="${session.loginUser == null}"><a href="http://auth.gulimall.com/register.html"
         >免费注册</a></li>
 
         <li class="spacer"></li>
@@ -61,6 +61,10 @@
       <a href="http://auth.gulimall.com/login.html"><input type="button" onclick="login()" value="立即登录"
                                                            class="one_load_btn"></a>
     </div>
+    <div class="one_search_load" th:if="${msg != null}">
+      <span>[[${msg}]]</span>
+    </div>
+
   </div>
 </div>
 <div class="One_BdyShop">
@@ -150,7 +154,7 @@
         </div>
         <div>
           <ol>
-            <li>优惠:<span style="color:#e64346;font-weight:bold;font-size:16px;" >
+            <li>优惠:<span style="color:#e64346;font-weight:bold;font-size:16px;">
               -￥[[${#numbers.formatDecimal(cart.reduce, 1, 2)}]]</span>
             </li>
             <li>总价:<span style="color:#e64346;font-weight:bold;font-size:16px;" class="fnt">
@@ -229,7 +233,12 @@
 <script src="/static/cart/js/index.js" charset="utf-8"></script>
 <script type="text/javascript">
     function toTrade() {
-        window.location.href = "http://order.gulimall.com/toTrade";
+        // 空购物车不让跳转
+        if ($(".checkItem").length) {
+            window.location.href = "http://order.gulimall.com/toTrade";
+        } else {
+            alert("请先勾选商品");
+        }
     }
 
     function toItem(skuId) {
@@ -794,10 +803,12 @@
 
     // 全局变量
     var skuId_delete = 0;
+
     function deleteEnsureBtn() {
         location.href = "http://cart.gulimall.com/deleteItem?skuId=" + skuId_delete;
     }
-    $(".deleteItem").click(function(){
+
+    $(".deleteItem").click(function () {
         skuId_delete = $(this).attr("skuId");
     });
 

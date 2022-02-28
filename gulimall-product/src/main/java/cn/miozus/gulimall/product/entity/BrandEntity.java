@@ -1,9 +1,9 @@
 package cn.miozus.gulimall.product.entity;
 
-import cn.miozus.common.valid.AddGroup;
-import cn.miozus.common.valid.ListValue;
-import cn.miozus.common.valid.UpdateGroup;
-import cn.miozus.common.valid.UpdateStatus;
+import cn.miozus.gulimall.common.valid.AddGroup;
+import cn.miozus.gulimall.common.valid.ListValue;
+import cn.miozus.gulimall.common.valid.UpdateGroup;
+import cn.miozus.gulimall.common.valid.UpdateStatus;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 

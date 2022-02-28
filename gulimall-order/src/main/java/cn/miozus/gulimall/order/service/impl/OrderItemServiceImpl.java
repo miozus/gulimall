@@ -1,7 +1,7 @@
 package cn.miozus.gulimall.order.service.impl;
 
-import cn.miozus.common.utils.PageUtils;
-import cn.miozus.common.utils.Query;
+import cn.miozus.gulimall.common.utils.PageUtils;
+import cn.miozus.gulimall.common.utils.Query;
 import cn.miozus.gulimall.order.dao.OrderItemDao;
 import cn.miozus.gulimall.order.entity.OrderItemEntity;
 import cn.miozus.gulimall.order.service.OrderItemService;

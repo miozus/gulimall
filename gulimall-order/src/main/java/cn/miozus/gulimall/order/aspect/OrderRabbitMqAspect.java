@@ -1,7 +1,7 @@
 package cn.miozus.gulimall.order.aspect;
 
-import cn.miozus.common.annotation.PostRabbitMq;
-import cn.miozus.common.to.mq.OrderTo;
+import cn.miozus.gulimall.common.annotation.PostRabbitMq;
+import cn.miozus.gulimall.common.to.mq.OrderTo;
 import cn.miozus.gulimall.order.config.RabbitMqOrderConfig;
 import cn.miozus.gulimall.order.entity.OrderEntity;
 import org.aspectj.lang.JoinPoint;

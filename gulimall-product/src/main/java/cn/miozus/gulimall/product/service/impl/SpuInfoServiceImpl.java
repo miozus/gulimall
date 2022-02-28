@@ -1,13 +1,13 @@
 package cn.miozus.gulimall.product.service.impl;
 
-import cn.miozus.common.constant.ProductConstant;
-import cn.miozus.common.to.SkuHasStockVo;
-import cn.miozus.common.to.SkuReductionTo;
-import cn.miozus.common.to.SpuBoundTo;
-import cn.miozus.common.to.es.SkuEsModel;
-import cn.miozus.common.utils.PageUtils;
-import cn.miozus.common.utils.Query;
-import cn.miozus.common.utils.R;
+import cn.miozus.gulimall.common.constant.ProductConstant;
+import cn.miozus.gulimall.common.to.SkuHasStockVo;
+import cn.miozus.gulimall.common.to.SkuReductionTo;
+import cn.miozus.gulimall.common.to.SpuBoundTo;
+import cn.miozus.gulimall.common.to.es.SkuEsModel;
+import cn.miozus.gulimall.common.utils.PageUtils;
+import cn.miozus.gulimall.common.utils.Query;
+import cn.miozus.gulimall.common.utils.R;
 import cn.miozus.gulimall.product.dao.SpuInfoDao;
 import cn.miozus.gulimall.product.entity.*;
 import cn.miozus.gulimall.product.feign.CouponFeignService;

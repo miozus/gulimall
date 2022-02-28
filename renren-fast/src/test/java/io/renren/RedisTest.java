@@ -17,7 +17,6 @@ public class RedisTest {
 
 	@Test
 	void testMath(){
-		Math.min()
 
 	}
 

@@ -1,9 +1,9 @@
 package cn.miozus.gulimall.auth.controller;
 
 
-import cn.miozus.common.annotation.TableInterceptor;
-import cn.miozus.common.constant.AuthServerConstant;
-import cn.miozus.common.utils.R;
+import cn.miozus.gulimall.common.annotation.TableInterceptor;
+import cn.miozus.gulimall.common.constant.AuthServerConstant;
+import cn.miozus.gulimall.common.utils.R;
 import cn.miozus.gulimall.auth.service.AuthService;
 import cn.miozus.gulimall.auth.vo.UserLoginVo;
 import cn.miozus.gulimall.auth.vo.UserRegisterVo;

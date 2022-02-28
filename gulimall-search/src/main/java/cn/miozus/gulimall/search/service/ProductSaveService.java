@@ -1,6 +1,6 @@
 package cn.miozus.gulimall.search.service;
 
-import cn.miozus.common.to.es.SkuEsModel;
+import cn.miozus.gulimall.common.to.es.SkuEsModel;
 
 import java.io.IOException;
 import java.util.List;

@@ -1,7 +1,7 @@
 package cn.miozus.gulimall.product.service.impl;
 
-import cn.miozus.common.utils.PageUtils;
-import cn.miozus.common.utils.Query;
+import cn.miozus.gulimall.common.utils.PageUtils;
+import cn.miozus.gulimall.common.utils.Query;
 import cn.miozus.gulimall.product.dao.SpuImagesDao;
 import cn.miozus.gulimall.product.entity.SpuImagesEntity;
 import cn.miozus.gulimall.product.service.SpuImagesService;

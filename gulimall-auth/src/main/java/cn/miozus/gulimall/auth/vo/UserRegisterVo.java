@@ -1,6 +1,6 @@
 package cn.miozus.gulimall.auth.vo;
 
-import cn.miozus.common.constant.RegexConstant;
+import cn.miozus.gulimall.common.constant.RegexConstant;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 

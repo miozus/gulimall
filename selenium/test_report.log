@@ -3532,3 +3532,3422 @@ Backtrace:
 Ran 6 tests in 10.641s
 
 FAILED (errors=1, skipped=4)
+test_add_cart_online (__main__.OrderTest) ... skipped '在线购物车'
+test_ali_pay (__main__.OrderTest) ... skipped 'todo'
+test_go_pay (__main__.OrderTest) ... FAIL
+test_index (__main__.OrderTest) ... skipped '首页'
+test_order_confirm (__main__.OrderTest) ... skipped '订单确认'
+
+======================================================================
+FAIL: test_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 48, in test_go_pay
+    self.assertEqual(self.driver.title, '收银台')
+AssertionError: '订单确认' != '收银台'
+- 订单确认
++ 收银台
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 9.132s
+
+FAILED (failures=1, skipped=4)
+test_add_cart_online (__main__.OrderTest) ... skipped '在线购物车'
+test_ali_pay (__main__.OrderTest) ... skipped '支付宝支付'
+test_go_pay (__main__.OrderTest) ... ERROR
+test_index (__main__.OrderTest) ... skipped '首页'
+test_order_confirm (__main__.OrderTest) ... skipped '订单确认'
+
+======================================================================
+ERROR: test_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 47, in test_go_pay
+    order_comfirm.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 56, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 12, in submit
+    self.wait(Locator.PAY, 5)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 78, in until
+    value = method(self._driver)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\expected_conditions.py", line 64, in _predicate
+    return driver.find_element(*locator)
+TypeError: selenium.webdriver.remote.webdriver.WebDriver.find_element() argument after * must be an iterable, not Locator
+
+----------------------------------------------------------------------
+Ran 5 tests in 8.562s
+
+FAILED (errors=1, skipped=4)
+test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... ok
+test_02_order_confirm (__main__.OrderTest) ... skipped '不加购_订单确认'
+test_03_go_pay (__main__.OrderTest) ... ERROR
+test_04_alipay (__main__.OrderTest) ... skipped '跳转支付宝支付'
+
+======================================================================
+ERROR: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 47, in test_03_go_pay
+    order_comfirm.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 56, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 11, in submit
+    self.wait(self.submit_button).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 23.380s
+
+FAILED (errors=1, skipped=2)
+test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '未加购_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... ok
+test_03_go_pay (__main__.OrderTest) ... ERROR
+test_04_alipay (__main__.OrderTest) ... ERROR
+
+======================================================================
+ERROR: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 42, in test_03_go_pay
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 56, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 12, in submit
+    self.wait(Locator.PAY, 10)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 78, in until
+    value = method(self._driver)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\expected_conditions.py", line 64, in _predicate
+    return driver.find_element(*locator)
+TypeError: selenium.webdriver.remote.webdriver.WebDriver.find_element() argument after * must be an iterable, not Locator
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 48, in test_04_alipay
+    p.alipay()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 16, in alipay
+    self.wait(self.alipay).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 78, in until
+    value = method(self._driver)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\expected_conditions.py", line 64, in _predicate
+    return driver.find_element(*locator)
+TypeError: selenium.webdriver.remote.webdriver.WebDriver.find_element() argument after * must be an iterable, not method
+
+----------------------------------------------------------------------
+Ran 5 tests in 66.181s
+
+FAILED (errors=2, skipped=1)
+test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... ok
+test_03_go_pay (__main__.OrderTest) ... ERROR
+test_04_alipay (__main__.OrderTest) ... ERROR
+
+======================================================================
+ERROR: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 42, in test_03_go_pay
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 56, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 12, in submit
+    self.wait(Locator.PAY, 10)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 78, in until
+    value = method(self._driver)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\expected_conditions.py", line 64, in _predicate
+    return driver.find_element(*locator)
+TypeError: selenium.webdriver.remote.webdriver.WebDriver.find_element() argument after * must be an iterable, not Locator
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 48, in test_04_alipay
+    p.alipay()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 16, in alipay
+    self.wait(self.alipay).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 78, in until
+    value = method(self._driver)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\expected_conditions.py", line 64, in _predicate
+    return driver.find_element(*locator)
+TypeError: selenium.webdriver.remote.webdriver.WebDriver.find_element() argument after * must be an iterable, not method
+
+----------------------------------------------------------------------
+Ran 5 tests in 52.612s
+
+FAILED (errors=2, skipped=1)
+test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... FAIL
+test_03_go_pay (__main__.OrderTest) ... ERROR
+test_04_alipay (__main__.OrderTest) ... ERROR
+
+======================================================================
+ERROR: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 42, in test_03_go_pay
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 56, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 11, in submit
+    self.wait(self.submit_button).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 48, in test_04_alipay
+    p.alipay()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 16, in alipay
+    self.wait(self.alipay).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 78, in until
+    value = method(self._driver)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\expected_conditions.py", line 64, in _predicate
+    return driver.find_element(*locator)
+TypeError: selenium.webdriver.remote.webdriver.WebDriver.find_element() argument after * must be an iterable, not method
+
+======================================================================
+FAIL: test_02_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 37, in test_02_order_confirm
+    self.assertEqual(self.driver.title, '订单确认')
+AssertionError: '购物车' != '订单确认'
+- 购物车
++ 订单确认
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 20.425s
+
+FAILED (failures=1, errors=2, skipped=1)
+test_00_index (__main__.OrderTest) ... FAIL
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... ERROR
+test_03_go_pay (__main__.OrderTest) ... ERROR
+test_04_alipay (__main__.OrderTest) ... ERROR
+
+======================================================================
+ERROR: test_02_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 34, in test_02_order_confirm
+    p.open_from_item_page()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 29, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\cart.py", line 17, in open_from_item_page
+    self.wait(self.my_cart_at_item_link).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+======================================================================
+ERROR: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 42, in test_03_go_pay
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 56, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 11, in submit
+    self.wait(self.submit_button).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 48, in test_04_alipay
+    p.alipay()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 16, in alipay
+    self.wait(self.alipay).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 78, in until
+    value = method(self._driver)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\expected_conditions.py", line 64, in _predicate
+    return driver.find_element(*locator)
+TypeError: selenium.webdriver.remote.webdriver.WebDriver.find_element() argument after * must be an iterable, not method
+
+======================================================================
+FAIL: test_00_index (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 22, in test_00_index
+    self.assertEqual(self.driver.title, '谷粒商城')
+AssertionError: '' != '谷粒商城'
++ 谷粒商城
+
+----------------------------------------------------------------------
+Ran 5 tests in 22.260s
+
+FAILED (failures=1, errors=3, skipped=1)
+test_00_index (__main__.OrderTest) ... FAIL
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... ERROR
+test_03_go_pay (__main__.OrderTest) ... ERROR
+test_04_alipay (__main__.OrderTest) ... ERROR
+
+======================================================================
+ERROR: test_02_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 34, in test_02_order_confirm
+    p.open_from_item_page()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 29, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\cart.py", line 17, in open_from_item_page
+    self.wait(self.my_cart_at_item_link).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+======================================================================
+ERROR: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 42, in test_03_go_pay
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 56, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 11, in submit
+    self.wait(self.submit_button).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 48, in test_04_alipay
+    p.alipay()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 16, in alipay
+    self.wait(self.alipay).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 78, in until
+    value = method(self._driver)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\expected_conditions.py", line 64, in _predicate
+    return driver.find_element(*locator)
+TypeError: selenium.webdriver.remote.webdriver.WebDriver.find_element() argument after * must be an iterable, not method
+
+======================================================================
+FAIL: test_00_index (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 22, in test_00_index
+    self.assertEqual(self.driver.title, '谷粒商城')
+AssertionError: '' != '谷粒商城'
++ 谷粒商城
+
+----------------------------------------------------------------------
+Ran 5 tests in 23.325s
+
+FAILED (failures=1, errors=3, skipped=1)
+test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... FAIL
+test_03_go_pay (__main__.OrderTest) ... ERROR
+test_04_alipay (__main__.OrderTest) ... ERROR
+
+======================================================================
+ERROR: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 42, in test_03_go_pay
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 56, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 11, in submit
+    self.wait(self.submit_button).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 48, in test_04_alipay
+    p.alipay()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 16, in alipay
+    self.wait(self.alipay).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 78, in until
+    value = method(self._driver)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\expected_conditions.py", line 64, in _predicate
+    return driver.find_element(*locator)
+TypeError: selenium.webdriver.remote.webdriver.WebDriver.find_element() argument after * must be an iterable, not method
+
+======================================================================
+FAIL: test_02_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 37, in test_02_order_confirm
+    self.assertEqual(self.driver.title, '订单确认')
+AssertionError: '购物车' != '订单确认'
+- 购物车
++ 订单确认
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 31.554s
+
+FAILED (failures=1, errors=2, skipped=1)
+test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... FAIL
+test_03_go_pay (__main__.OrderTest) ... ERROR
+test_04_alipay (__main__.OrderTest) ... ERROR
+
+======================================================================
+ERROR: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 42, in test_03_go_pay
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 56, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 11, in submit
+    self.wait(self.submit_button).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 48, in test_04_alipay
+    p.alipay()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 16, in alipay
+    self.wait(self.alipay).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 78, in until
+    value = method(self._driver)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\expected_conditions.py", line 64, in _predicate
+    return driver.find_element(*locator)
+TypeError: selenium.webdriver.remote.webdriver.WebDriver.find_element() argument after * must be an iterable, not method
+
+======================================================================
+FAIL: test_02_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 37, in test_02_order_confirm
+    self.assertEqual(self.driver.title, '订单确认')
+AssertionError: '购物车' != '订单确认'
+- 购物车
++ 订单确认
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 28.530s
+
+FAILED (failures=1, errors=2, skipped=1)
+test_00_index (__main__.OrderTest) ... ERROR
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... FAIL
+ERROR
+test_03_go_pay (__main__.OrderTest) ... ERROR
+ERROR
+test_04_alipay (__main__.OrderTest) ... ERROR
+ERROR
+
+======================================================================
+ERROR: test_00_index (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 55, in tearDown
+    log.info(self._testMethodName + " : " + self.driver.get_cookies())
+TypeError: can only concatenate str (not "list") to str
+
+======================================================================
+ERROR: test_02_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 55, in tearDown
+    log.info(self._testMethodName + " : " + self.driver.get_cookies())
+TypeError: can only concatenate str (not "list") to str
+
+======================================================================
+ERROR: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 43, in test_03_go_pay
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 56, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 11, in submit
+    self.wait(self.submit_button).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+======================================================================
+ERROR: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 55, in tearDown
+    log.info(self._testMethodName + " : " + self.driver.get_cookies())
+TypeError: can only concatenate str (not "list") to str
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 49, in test_04_alipay
+    p.alipay()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 16, in alipay
+    self.wait(self.alipay).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 78, in until
+    value = method(self._driver)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\expected_conditions.py", line 64, in _predicate
+    return driver.find_element(*locator)
+TypeError: selenium.webdriver.remote.webdriver.WebDriver.find_element() argument after * must be an iterable, not method
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 55, in tearDown
+    log.info(self._testMethodName + " : " + self.driver.get_cookies())
+TypeError: can only concatenate str (not "list") to str
+
+======================================================================
+FAIL: test_02_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 38, in test_02_order_confirm
+    self.assertEqual(self.driver.title, '订单确认')
+AssertionError: '购物车' != '订单确认'
+- 购物车
++ 订单确认
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 37.211s
+
+FAILED (failures=1, errors=6, skipped=1)
+test_00_index (__main__.OrderTest) ... ERROR
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... FAIL
+ERROR
+test_03_go_pay (__main__.OrderTest) ... ERROR
+ERROR
+test_04_alipay (__main__.OrderTest) ... ERROR
+ERROR
+
+======================================================================
+ERROR: test_00_index (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 55, in tearDown
+    log.info(self._testMethodName + " : " + self.driver.get_cookies())
+TypeError: can only concatenate str (not "list") to str
+
+======================================================================
+ERROR: test_02_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 55, in tearDown
+    log.info(self._testMethodName + " : " + self.driver.get_cookies())
+TypeError: can only concatenate str (not "list") to str
+
+======================================================================
+ERROR: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 43, in test_03_go_pay
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 53, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 12, in submit
+    self.wait(Locator.PAY, 10)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 78, in until
+    value = method(self._driver)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\expected_conditions.py", line 64, in _predicate
+    return driver.find_element(*locator)
+TypeError: selenium.webdriver.remote.webdriver.WebDriver.find_element() argument after * must be an iterable, not Locator
+
+======================================================================
+ERROR: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 55, in tearDown
+    log.info(self._testMethodName + " : " + self.driver.get_cookies())
+TypeError: can only concatenate str (not "list") to str
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 49, in test_04_alipay
+    p.alipay()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 16, in alipay
+    self.wait(self.alipay).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 78, in until
+    value = method(self._driver)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\expected_conditions.py", line 64, in _predicate
+    return driver.find_element(*locator)
+TypeError: selenium.webdriver.remote.webdriver.WebDriver.find_element() argument after * must be an iterable, not method
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 55, in tearDown
+    log.info(self._testMethodName + " : " + self.driver.get_cookies())
+TypeError: can only concatenate str (not "list") to str
+
+======================================================================
+FAIL: test_02_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 38, in test_02_order_confirm
+    self.assertEqual(self.driver.title, '订单确认')
+AssertionError: '购物车' != '订单确认'
+- 购物车
++ 订单确认
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 38.555s
+
+FAILED (failures=1, errors=6, skipped=1)
+test_00_index (__main__.OrderTest) ... ERROR
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... FAIL
+ERROR
+test_03_go_pay (__main__.OrderTest) ... ERROR
+ERROR
+test_04_alipay (__main__.OrderTest) ... ERROR
+ERROR
+
+======================================================================
+ERROR: test_00_index (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 58, in tearDown
+    log.info(self._testMethodName + " : " + self.driver.get_cookies())
+TypeError: can only concatenate str (not "list") to str
+
+======================================================================
+ERROR: test_02_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 58, in tearDown
+    log.info(self._testMethodName + " : " + self.driver.get_cookies())
+TypeError: can only concatenate str (not "list") to str
+
+======================================================================
+ERROR: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 46, in test_03_go_pay
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 55, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 12, in submit
+    self.wait(Locator.PAY, 10)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 78, in until
+    value = method(self._driver)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\expected_conditions.py", line 64, in _predicate
+    return driver.find_element(*locator)
+TypeError: selenium.webdriver.remote.webdriver.WebDriver.find_element() argument after * must be an iterable, not Locator
+
+======================================================================
+ERROR: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 58, in tearDown
+    log.info(self._testMethodName + " : " + self.driver.get_cookies())
+TypeError: can only concatenate str (not "list") to str
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 52, in test_04_alipay
+    p.alipay()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 16, in alipay
+    self.wait(self.alipay).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 78, in until
+    value = method(self._driver)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\expected_conditions.py", line 64, in _predicate
+    return driver.find_element(*locator)
+TypeError: selenium.webdriver.remote.webdriver.WebDriver.find_element() argument after * must be an iterable, not method
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 58, in tearDown
+    log.info(self._testMethodName + " : " + self.driver.get_cookies())
+TypeError: can only concatenate str (not "list") to str
+
+======================================================================
+FAIL: test_02_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 41, in test_02_order_confirm
+    self.assertEqual(self.driver.title, '订单确认')
+AssertionError: '购物车' != '订单确认'
+- 购物车
++ 订单确认
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 21.341s
+
+FAILED (failures=1, errors=6, skipped=1)
+test_00_index (__main__.OrderTest) ... ERROR
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... ERROR
+ERROR
+test_03_go_pay (__main__.OrderTest) ... ERROR
+ERROR
+test_04_alipay (__main__.OrderTest) ... ERROR
+ERROR
+
+======================================================================
+ERROR: test_00_index (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 58, in tearDown
+    log.info(self._testMethodName + " : " + self.driver.get_cookies())
+TypeError: can only concatenate str (not "list") to str
+
+======================================================================
+ERROR: test_02_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 41, in test_02_order_confirm
+    self.assertEqual(self.driver.title, '订单确认')
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 447, in title
+    resp = self.execute(Command.GET_TITLE)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 246, in check_response
+    raise exception_class(message, screen, stacktrace, alert_text)  # type: ignore[call-arg]  # mypy is not smart enough here
+selenium.common.exceptions.UnexpectedAlertPresentException: Alert Text: 0
+Message: unexpected alert open: {Alert text : 0}
+  (Session info: chrome=98.0.4758.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0088818B+1409419]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+======================================================================
+ERROR: test_02_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 58, in tearDown
+    log.info(self._testMethodName + " : " + self.driver.get_cookies())
+TypeError: can only concatenate str (not "list") to str
+
+======================================================================
+ERROR: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 46, in test_03_go_pay
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 55, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 12, in submit
+    self.wait(Locator.PAY, 10)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 78, in until
+    value = method(self._driver)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\expected_conditions.py", line 64, in _predicate
+    return driver.find_element(*locator)
+TypeError: selenium.webdriver.remote.webdriver.WebDriver.find_element() argument after * must be an iterable, not Locator
+
+======================================================================
+ERROR: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 58, in tearDown
+    log.info(self._testMethodName + " : " + self.driver.get_cookies())
+TypeError: can only concatenate str (not "list") to str
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 52, in test_04_alipay
+    p.alipay()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 16, in alipay
+    self.wait(self.alipay).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 78, in until
+    value = method(self._driver)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\expected_conditions.py", line 64, in _predicate
+    return driver.find_element(*locator)
+TypeError: selenium.webdriver.remote.webdriver.WebDriver.find_element() argument after * must be an iterable, not method
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 58, in tearDown
+    log.info(self._testMethodName + " : " + self.driver.get_cookies())
+TypeError: can only concatenate str (not "list") to str
+
+----------------------------------------------------------------------
+Ran 5 tests in 58.878s
+
+FAILED (errors=7, skipped=1)
+test_00_index (__main__.OrderTest) ... ERROR
+test_01_add_cart_online (__main__.OrderTest) ... ERROR
+test_02_order_confirm (__main__.OrderTest) ... skipped '未加购[灰]_订单确认'
+test_03_go_pay (__main__.OrderTest) ... ERROR
+ERROR
+test_04_alipay (__main__.OrderTest) ... ERROR
+ERROR
+
+======================================================================
+ERROR: test_00_index (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 58, in tearDown
+    log.info(self._testMethodName + " : " + self.driver.get_cookies())
+TypeError: can only concatenate str (not "list") to str
+
+======================================================================
+ERROR: test_01_add_cart_online (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 58, in tearDown
+    log.info(self._testMethodName + " : " + self.driver.get_cookies())
+TypeError: can only concatenate str (not "list") to str
+
+======================================================================
+ERROR: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 46, in test_03_go_pay
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 55, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 12, in submit
+    self.wait(Locator.PAY, 10)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 78, in until
+    value = method(self._driver)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\expected_conditions.py", line 64, in _predicate
+    return driver.find_element(*locator)
+TypeError: selenium.webdriver.remote.webdriver.WebDriver.find_element() argument after * must be an iterable, not Locator
+
+======================================================================
+ERROR: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 58, in tearDown
+    log.info(self._testMethodName + " : " + self.driver.get_cookies())
+TypeError: can only concatenate str (not "list") to str
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 52, in test_04_alipay
+    p.alipay()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 16, in alipay
+    self.wait(self.alipay).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 78, in until
+    value = method(self._driver)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\expected_conditions.py", line 64, in _predicate
+    return driver.find_element(*locator)
+TypeError: selenium.webdriver.remote.webdriver.WebDriver.find_element() argument after * must be an iterable, not method
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 58, in tearDown
+    log.info(self._testMethodName + " : " + self.driver.get_cookies())
+TypeError: can only concatenate str (not "list") to str
+
+----------------------------------------------------------------------
+Ran 5 tests in 22.505s
+
+FAILED (errors=6, skipped=1)
+test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... ERROR
+ERROR
+test_03_go_pay (__main__.OrderTest) ... ERROR
+ERROR
+test_04_alipay (__main__.OrderTest) ... ERROR
+ERROR
+
+======================================================================
+ERROR: test_02_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 39, in test_02_order_confirm
+    p.minus_until_one()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\cart.py", line 50, in minus_until_one
+    while self.wait(self.count_num).text != "1":
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+======================================================================
+ERROR: test_02_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 59, in tearDown
+    log.info(f"{self._testMethodName} : {''.join(self.driver.get_cookies())}")
+TypeError: sequence item 0: expected str instance, dict found
+
+======================================================================
+ERROR: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 47, in test_03_go_pay
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 55, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 11, in submit
+    self.wait(self.submit_button).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+======================================================================
+ERROR: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 59, in tearDown
+    log.info(f"{self._testMethodName} : {''.join(self.driver.get_cookies())}")
+TypeError: sequence item 0: expected str instance, dict found
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 53, in test_04_alipay
+    p.alipay()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 16, in alipay
+    self.wait(self.alipay).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 78, in until
+    value = method(self._driver)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\expected_conditions.py", line 64, in _predicate
+    return driver.find_element(*locator)
+TypeError: selenium.webdriver.remote.webdriver.WebDriver.find_element() argument after * must be an iterable, not method
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 59, in tearDown
+    log.info(f"{self._testMethodName} : {''.join(self.driver.get_cookies())}")
+TypeError: sequence item 0: expected str instance, dict found
+
+----------------------------------------------------------------------
+Ran 5 tests in 24.968s
+
+FAILED (errors=6, skipped=1)
+test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... ERROR
+test_03_go_pay (__main__.OrderTest) ... ERROR
+test_04_alipay (__main__.OrderTest) ... ERROR
+
+======================================================================
+ERROR: test_02_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 40, in test_02_order_confirm
+    p.minus_until_one()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\cart.py", line 51, in minus_until_one
+    while self.wait(self.count_num).text != "1":
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+======================================================================
+ERROR: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 48, in test_03_go_pay
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 55, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 11, in submit
+    self.wait(self.submit_button).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 54, in test_04_alipay
+    p.alipay()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 16, in alipay
+    self.wait(self.alipay).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 78, in until
+    value = method(self._driver)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\expected_conditions.py", line 64, in _predicate
+    return driver.find_element(*locator)
+TypeError: selenium.webdriver.remote.webdriver.WebDriver.find_element() argument after * must be an iterable, not method
+
+----------------------------------------------------------------------
+Ran 5 tests in 25.641s
+
+FAILED (errors=3, skipped=1)
+test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... ERROR
+test_03_go_pay (__main__.OrderTest) ... ERROR
+test_04_alipay (__main__.OrderTest) ... ERROR
+
+======================================================================
+ERROR: test_02_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 40, in test_02_order_confirm
+    p.minus_until_one()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\cart.py", line 51, in minus_until_one
+    while self.wait(self.count_num).text != "1":
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+======================================================================
+ERROR: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 48, in test_03_go_pay
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 55, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 11, in submit
+    self.wait(self.submit_button).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 54, in test_04_alipay
+    p.alipay()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 16, in alipay
+    self.wait(self.alipay_link).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 34.952s
+
+FAILED (errors=3, skipped=1)
+test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... ok
+test_03_go_pay (__main__.OrderTest) ... ERROR
+test_04_alipay (__main__.OrderTest) ... ERROR
+
+======================================================================
+ERROR: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 48, in test_03_go_pay
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 55, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 12, in submit
+    self.wait(Locator.PAY, 10)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 78, in until
+    value = method(self._driver)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\expected_conditions.py", line 64, in _predicate
+    return driver.find_element(*locator)
+TypeError: selenium.webdriver.remote.webdriver.WebDriver.find_element() argument after * must be an iterable, not Locator
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 54, in test_04_alipay
+    p.alipay()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 16, in alipay
+    self.wait(self.alipay_link).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 27.495s
+
+FAILED (errors=2, skipped=1)
+test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... FAIL
+test_02_order_confirm (__main__.OrderTest) ... skipped '未加购[灰]_订单确认'
+test_03_go_pay (__main__.OrderTest) ... ERROR
+test_04_alipay (__main__.OrderTest) ... ERROR
+
+======================================================================
+ERROR: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 48, in test_03_go_pay
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 55, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 11, in submit
+    self.wait(self.submit_button).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 54, in test_04_alipay
+    p.go_alipay()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 20, in go_alipay
+    self.wait(self.alipay_link).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+======================================================================
+FAIL: test_01_add_cart_online (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 33, in test_01_add_cart_online
+    self.assertFalse(p.online())
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 5 tests in 28.207s
+
+FAILED (failures=1, errors=2, skipped=1)
+test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... ERROR
+test_03_go_pay (__main__.OrderTest) ... test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... ok
+test_03_go_pay (__main__.OrderTest) ... ERROR
+test_04_alipay (__main__.OrderTest) ... ERROR
+
+======================================================================
+ERROR: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 49, in test_03_go_pay
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 55, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 12, in submit
+    self.wait(Locator.PAY, 10)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 78, in until
+    value = method(self._driver)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\expected_conditions.py", line 64, in _predicate
+    return driver.find_element(*locator)
+TypeError: selenium.webdriver.remote.webdriver.WebDriver.find_element() argument after * must be an iterable, not Locator
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 55, in test_04_alipay
+    p.go_alipay()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 20, in go_alipay
+    self.wait(self.alipay_link).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 20.769s
+
+FAILED (errors=2, skipped=1)
+test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... ERROR
+test_03_go_pay (__main__.OrderTest) ... ERROR
+test_04_alipay (__main__.OrderTest) ... ERROR
+
+======================================================================
+ERROR: test_02_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 41, in test_02_order_confirm
+    p.minus_until_one()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\cart.py", line 57, in minus_until_one
+    self.driver.implicity_wait(2)
+AttributeError: 'WebDriver' object has no attribute 'implicity_wait'
+
+======================================================================
+ERROR: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 49, in test_03_go_pay
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 55, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 13, in submit
+    self.wait(self.pay_page_locator, 10)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 55, in test_04_alipay
+    p.go_alipay()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 20, in go_alipay
+    self.wait(self.alipay_link).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 33.761s
+
+FAILED (errors=3, skipped=1)
+test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... ERROR
+test_03_go_pay (__main__.OrderTest) ... ERROR
+test_04_alipay (__main__.OrderTest) ... ERROR
+
+======================================================================
+ERROR: test_02_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 41, in test_02_order_confirm
+    p.minus_until_one()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\cart.py", line 57, in minus_until_one
+    self.driver.implicity_wait(2)
+AttributeError: 'WebDriver' object has no attribute 'implicity_wait'
+
+======================================================================
+ERROR: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 49, in test_03_go_pay
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 55, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 13, in submit
+    self.wait(self.pay_page_locator, 10)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 55, in test_04_alipay
+    p.go_alipay()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 20, in go_alipay
+    self.wait(self.alipay_link).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 31.484s
+
+FAILED (errors=3, skipped=1)
+test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... ERROR
+test_03_go_pay (__main__.OrderTest) ... ERROR
+test_04_alipay (__main__.OrderTest) ... ERROR
+
+======================================================================
+ERROR: test_02_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 40, in test_02_order_confirm
+    p.minus_until_one()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\cart.py", line 57, in minus_until_one
+    self.driver.implicity_wait(2)
+AttributeError: 'WebDriver' object has no attribute 'implicity_wait'
+
+======================================================================
+ERROR: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 48, in test_03_go_pay
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 55, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 15, in submit
+    self.wait(self.pay_page_locator, 10)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 54, in test_04_alipay
+    p.go_alipay()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 20, in go_alipay
+    self.wait(self.alipay_link).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 30.731s
+
+FAILED (errors=3, skipped=1)
+test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... ERROR
+test_03_go_pay (__main__.OrderTest) ... ERROR
+test_04_alipay (__main__.OrderTest) ... ERROR
+
+======================================================================
+ERROR: test_02_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 41, in test_02_order_confirm
+    p.minus_until_one()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\cart.py", line 57, in minus_until_one
+    self.driver.implicity_wait(2)
+AttributeError: 'WebDriver' object has no attribute 'implicity_wait'
+
+======================================================================
+ERROR: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 49, in test_03_go_pay
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 55, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 14, in submit
+    self.wait(self.pay_page_locator, 10)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 55, in test_04_alipay
+    p.go_alipay()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 20, in go_alipay
+    self.wait(self.alipay_link).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x009A69A3+2582947]
+	Ordinal0 [0x0093A6D1+2139857]
+	Ordinal0 [0x00833A98+1063576]
+	Ordinal0 [0x0085FF3E+1244990]
+	Ordinal0 [0x0086013B+1245499]
+	Ordinal0 [0x00889F52+1417042]
+	Ordinal0 [0x00878594+1344916]
+	Ordinal0 [0x0088834A+1409866]
+	Ordinal0 [0x00878366+1344358]
+	Ordinal0 [0x00855176+1200502]
+	Ordinal0 [0x00856066+1204326]
+	GetHandleVerifier [0x00B4BE02+1675858]
+	GetHandleVerifier [0x00C0036C+2414524]
+	GetHandleVerifier [0x00A3BB01+560977]
+	GetHandleVerifier [0x00A3A8D3+556323]
+	Ordinal0 [0x0094020E+2163214]
+	Ordinal0 [0x00945078+2183288]
+	Ordinal0 [0x009451C0+2183616]
+	Ordinal0 [0x0094EE1C+2223644]
+	BaseThreadInitThunk [0x76666739+25]
+	RtlGetFullPathName_UEx [0x77878E7F+1215]
+	RtlGetFullPathName_UEx [0x77878E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 31.503s
+
+FAILED (errors=3, skipped=1)
+test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... ERROR
+test_03_go_pay (__main__.OrderTest) ... test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... FAIL
+test_03_go_pay (__main__.OrderTest) ... ERROR
+test_04_alipay (__main__.OrderTest) ... ERROR
+
+======================================================================
+ERROR: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 49, in test_03_go_pay
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 13, in submit
+    self.wait(self.submit_button).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x006D69A3+2582947]
+	Ordinal0 [0x0066A6D1+2139857]
+	Ordinal0 [0x00563A98+1063576]
+	Ordinal0 [0x0058FF3E+1244990]
+	Ordinal0 [0x0059013B+1245499]
+	Ordinal0 [0x005B9F52+1417042]
+	Ordinal0 [0x005A8594+1344916]
+	Ordinal0 [0x005B834A+1409866]
+	Ordinal0 [0x005A8366+1344358]
+	Ordinal0 [0x00585176+1200502]
+	Ordinal0 [0x00586066+1204326]
+	GetHandleVerifier [0x0087BE02+1675858]
+	GetHandleVerifier [0x0093036C+2414524]
+	GetHandleVerifier [0x0076BB01+560977]
+	GetHandleVerifier [0x0076A8D3+556323]
+	Ordinal0 [0x0067020E+2163214]
+	Ordinal0 [0x00675078+2183288]
+	Ordinal0 [0x006751C0+2183616]
+	Ordinal0 [0x0067EE1C+2223644]
+	BaseThreadInitThunk [0x765B6739+25]
+	RtlGetFullPathName_UEx [0x77698E7F+1215]
+	RtlGetFullPathName_UEx [0x77698E4D+1165]
+
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 55, in test_04_alipay
+    p.go_alipay()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 20, in go_alipay
+    self.wait(self.alipay_link).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x006D69A3+2582947]
+	Ordinal0 [0x0066A6D1+2139857]
+	Ordinal0 [0x00563A98+1063576]
+	Ordinal0 [0x0058FF3E+1244990]
+	Ordinal0 [0x0059013B+1245499]
+	Ordinal0 [0x005B9F52+1417042]
+	Ordinal0 [0x005A8594+1344916]
+	Ordinal0 [0x005B834A+1409866]
+	Ordinal0 [0x005A8366+1344358]
+	Ordinal0 [0x00585176+1200502]
+	Ordinal0 [0x00586066+1204326]
+	GetHandleVerifier [0x0087BE02+1675858]
+	GetHandleVerifier [0x0093036C+2414524]
+	GetHandleVerifier [0x0076BB01+560977]
+	GetHandleVerifier [0x0076A8D3+556323]
+	Ordinal0 [0x0067020E+2163214]
+	Ordinal0 [0x00675078+2183288]
+	Ordinal0 [0x006751C0+2183616]
+	Ordinal0 [0x0067EE1C+2223644]
+	BaseThreadInitThunk [0x765B6739+25]
+	RtlGetFullPathName_UEx [0x77698E7F+1215]
+	RtlGetFullPathName_UEx [0x77698E4D+1165]
+
+
+======================================================================
+FAIL: test_02_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 44, in test_02_order_confirm
+    self.assertEqual(self.driver.title, '订单确认')
+AssertionError: '用户登录' != '订单确认'
+- 用户登录
++ 订单确认
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 27.649s
+
+FAILED (failures=1, errors=2, skipped=1)
+test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... ERROR
+test_03_go_pay (__main__.OrderTest) ... ERROR
+test_04_alipay (__main__.OrderTest) ... test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... ERROR
+test_03_go_pay (__main__.OrderTest) ... ERROR
+test_04_alipay (__main__.OrderTest) ... ERROR
+
+======================================================================
+ERROR: test_02_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 41, in test_02_order_confirm
+    p.minus_until_one()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\cart.py", line 57, in minus_until_one
+    self.driver.implicity_wait(2)
+AttributeError: 'WebDriver' object has no attribute 'implicity_wait'
+
+======================================================================
+ERROR: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 49, in test_03_go_pay
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 13, in submit
+    self.wait(self.submit_button).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x006D69A3+2582947]
+	Ordinal0 [0x0066A6D1+2139857]
+	Ordinal0 [0x00563A98+1063576]
+	Ordinal0 [0x0058FF3E+1244990]
+	Ordinal0 [0x0059013B+1245499]
+	Ordinal0 [0x005B9F52+1417042]
+	Ordinal0 [0x005A8594+1344916]
+	Ordinal0 [0x005B834A+1409866]
+	Ordinal0 [0x005A8366+1344358]
+	Ordinal0 [0x00585176+1200502]
+	Ordinal0 [0x00586066+1204326]
+	GetHandleVerifier [0x0087BE02+1675858]
+	GetHandleVerifier [0x0093036C+2414524]
+	GetHandleVerifier [0x0076BB01+560977]
+	GetHandleVerifier [0x0076A8D3+556323]
+	Ordinal0 [0x0067020E+2163214]
+	Ordinal0 [0x00675078+2183288]
+	Ordinal0 [0x006751C0+2183616]
+	Ordinal0 [0x0067EE1C+2223644]
+	BaseThreadInitThunk [0x765B6739+25]
+	RtlGetFullPathName_UEx [0x77698E7F+1215]
+	RtlGetFullPathName_UEx [0x77698E4D+1165]
+
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 55, in test_04_alipay
+    p.go_alipay()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 20, in go_alipay
+    self.wait(self.alipay_link).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x006D69A3+2582947]
+	Ordinal0 [0x0066A6D1+2139857]
+	Ordinal0 [0x00563A98+1063576]
+	Ordinal0 [0x0058FF3E+1244990]
+	Ordinal0 [0x0059013B+1245499]
+	Ordinal0 [0x005B9F52+1417042]
+	Ordinal0 [0x005A8594+1344916]
+	Ordinal0 [0x005B834A+1409866]
+	Ordinal0 [0x005A8366+1344358]
+	Ordinal0 [0x00585176+1200502]
+	Ordinal0 [0x00586066+1204326]
+	GetHandleVerifier [0x0087BE02+1675858]
+	GetHandleVerifier [0x0093036C+2414524]
+	GetHandleVerifier [0x0076BB01+560977]
+	GetHandleVerifier [0x0076A8D3+556323]
+	Ordinal0 [0x0067020E+2163214]
+	Ordinal0 [0x00675078+2183288]
+	Ordinal0 [0x006751C0+2183616]
+	Ordinal0 [0x0067EE1C+2223644]
+	BaseThreadInitThunk [0x765B6739+25]
+	RtlGetFullPathName_UEx [0x77698E7F+1215]
+	RtlGetFullPathName_UEx [0x77698E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 24.831s
+
+FAILED (errors=3, skipped=1)
+test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... ok
+test_03_go_pay (__main__.OrderTest) ... test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... ok
+test_03_go_pay (__main__.OrderTest) ... ERROR
+test_04_alipay (__main__.OrderTest) ... ERROR
+
+======================================================================
+ERROR: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 49, in test_03_go_pay
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 14, in submit
+    self.wait(self.pay_page_locator, 10)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x006D69A3+2582947]
+	Ordinal0 [0x0066A6D1+2139857]
+	Ordinal0 [0x00563A98+1063576]
+	Ordinal0 [0x0058FF3E+1244990]
+	Ordinal0 [0x0059013B+1245499]
+	Ordinal0 [0x005B9F52+1417042]
+	Ordinal0 [0x005A8594+1344916]
+	Ordinal0 [0x005B834A+1409866]
+	Ordinal0 [0x005A8366+1344358]
+	Ordinal0 [0x00585176+1200502]
+	Ordinal0 [0x00586066+1204326]
+	GetHandleVerifier [0x0087BE02+1675858]
+	GetHandleVerifier [0x0093036C+2414524]
+	GetHandleVerifier [0x0076BB01+560977]
+	GetHandleVerifier [0x0076A8D3+556323]
+	Ordinal0 [0x0067020E+2163214]
+	Ordinal0 [0x00675078+2183288]
+	Ordinal0 [0x006751C0+2183616]
+	Ordinal0 [0x0067EE1C+2223644]
+	BaseThreadInitThunk [0x765B6739+25]
+	RtlGetFullPathName_UEx [0x77698E7F+1215]
+	RtlGetFullPathName_UEx [0x77698E4D+1165]
+
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 55, in test_04_alipay
+    p.go_alipay()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 21, in go_alipay
+    self.wait(self.payment_span, 5)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 13, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 89, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x006D69A3+2582947]
+	Ordinal0 [0x0066A6D1+2139857]
+	Ordinal0 [0x00563A98+1063576]
+	Ordinal0 [0x0058FF3E+1244990]
+	Ordinal0 [0x0059013B+1245499]
+	Ordinal0 [0x005B9F52+1417042]
+	Ordinal0 [0x005A8594+1344916]
+	Ordinal0 [0x005B834A+1409866]
+	Ordinal0 [0x005A8366+1344358]
+	Ordinal0 [0x00585176+1200502]
+	Ordinal0 [0x00586066+1204326]
+	GetHandleVerifier [0x0087BE02+1675858]
+	GetHandleVerifier [0x0093036C+2414524]
+	GetHandleVerifier [0x0076BB01+560977]
+	GetHandleVerifier [0x0076A8D3+556323]
+	Ordinal0 [0x0067020E+2163214]
+	Ordinal0 [0x00675078+2183288]
+	Ordinal0 [0x006751C0+2183616]
+	Ordinal0 [0x0067EE1C+2223644]
+	BaseThreadInitThunk [0x765B6739+25]
+	RtlGetFullPathName_UEx [0x77698E7F+1215]
+	RtlGetFullPathName_UEx [0x77698E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 50.132s
+
+FAILED (errors=2, skipped=1)
+test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... ok
+test_03_go_pay (__main__.OrderTest) ... FAIL
+test_04_alipay (__main__.OrderTest) ... ERROR
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 55, in test_04_alipay
+    p.go_alipay()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 20, in go_alipay
+    self.wait(self.alipay_link).click()
+AttributeError: 'NoneType' object has no attribute 'click'
+
+======================================================================
+FAIL: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 50, in test_03_go_pay
+    self.assertEqual(self.driver.title, '收银台')
+AssertionError: '订单确认' != '收银台'
+- 订单确认
++ 收银台
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 48.859s
+
+FAILED (failures=1, errors=1, skipped=1)
+test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... ok
+test_03_go_pay (__main__.OrderTest) ... FAIL
+test_04_alipay (__main__.OrderTest) ... ERROR
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 55, in test_04_alipay
+    p.go_alipay()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 20, in go_alipay
+    self.wait(self.alipay_link).click()
+AttributeError: 'NoneType' object has no attribute 'click'
+
+======================================================================
+FAIL: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 50, in test_03_go_pay
+    self.assertEqual(self.driver.title, '收银台')
+AssertionError: '订单确认' != '收银台'
+- 订单确认
++ 收银台
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 87.873s
+
+FAILED (failures=1, errors=1, skipped=1)
+test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... ERROR
+test_03_go_pay (__main__.OrderTest) ... test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... ok
+test_03_go_pay (__main__.OrderTest) ... FAIL
+test_04_alipay (__main__.OrderTest) ... ERROR
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 55, in test_04_alipay
+    p.go_alipay()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 20, in go_alipay
+    self.wait(self.alipay_link).click()
+AttributeError: 'NoneType' object has no attribute 'click'
+
+======================================================================
+FAIL: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 50, in test_03_go_pay
+    self.assertEqual(self.driver.title, '收银台')
+AssertionError: '订单确认' != '收银台'
+- 订单确认
++ 收银台
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 82.556s
+
+FAILED (failures=1, errors=1, skipped=1)
+test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... ok
+test_03_go_pay (__main__.OrderTest) ... FAIL
+test_04_alipay (__main__.OrderTest) ... ERROR
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 55, in test_04_alipay
+    p.go_alipay()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 20, in go_alipay
+    self.wait(self.alipay_link).click()
+AttributeError: 'NoneType' object has no attribute 'click'
+
+======================================================================
+FAIL: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 50, in test_03_go_pay
+    self.assertEqual(self.driver.title, '收银台')
+AssertionError: '订单确认' != '收银台'
+- 订单确认
++ 收银台
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 65.093s
+
+FAILED (failures=1, errors=1, skipped=1)
+test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... ok
+test_03_go_pay (__main__.OrderTest) ... FAIL
+test_04_alipay (__main__.OrderTest) ... ERROR
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 55, in test_04_alipay
+    p.go_alipay()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 20, in go_alipay
+    self.wait(self.alipay_link).click()
+AttributeError: 'NoneType' object has no attribute 'click'
+
+======================================================================
+FAIL: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 50, in test_03_go_pay
+    self.assertEqual(self.driver.title, '收银台')
+AssertionError: '订单确认' != '收银台'
+- 订单确认
++ 收银台
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 100.180s
+
+FAILED (failures=1, errors=1, skipped=1)
+test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... ok
+test_03_go_pay (__main__.OrderTest) ... FAIL
+test_04_alipay (__main__.OrderTest) ... ERROR
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 57, in test_04_alipay
+    p.go_alipay()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 20, in go_alipay
+    self.wait(self.alipay_link).click()
+AttributeError: 'NoneType' object has no attribute 'click'
+
+======================================================================
+FAIL: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 52, in test_03_go_pay
+    self.assertEqual(self.driver.title, '收银台')
+AssertionError: '订单确认' != '收银台'
+- 订单确认
++ 收银台
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 42.819s
+
+FAILED (failures=1, errors=1, skipped=1)
+test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... ok
+test_03_go_pay (__main__.OrderTest) ... ok
+test_04_alipay (__main__.OrderTest) ... ERROR
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 59, in test_04_alipay
+    p.sign_login(user['account'], user['secret'])
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 25, in sign_login
+    self.wait(self.account_login_link).click()
+AttributeError: 'NoneType' object has no attribute 'click'
+
+----------------------------------------------------------------------
+Ran 5 tests in 45.002s
+
+FAILED (errors=1, skipped=1)
+test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... ok
+test_03_go_pay (__main__.OrderTest) ... FAIL
+test_04_alipay (__main__.OrderTest) ... ERROR
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 58, in test_04_alipay
+    p.go_alipay()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 20, in go_alipay
+    self.wait(self.alipay_link).click()
+AttributeError: 'NoneType' object has no attribute 'click'
+
+======================================================================
+FAIL: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 53, in test_03_go_pay
+    self.assertEqual(self.driver.title, '收银台')
+AssertionError: '订单确认' != '收银台'
+- 订单确认
++ 收银台
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 35.179s
+
+FAILED (failures=1, errors=1, skipped=1)
+test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... ok
+test_03_go_pay (__main__.OrderTest) ... FAIL
+test_04_alipay (__main__.OrderTest) ... ERROR
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 59, in test_04_alipay
+    p.go_alipay()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 20, in go_alipay
+    self.wait(self.alipay_link).click()
+AttributeError: 'NoneType' object has no attribute 'click'
+
+======================================================================
+FAIL: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 54, in test_03_go_pay
+    self.assertEqual(self.driver.title, '收银台')
+AssertionError: '订单确认' != '收银台'
+- 订单确认
++ 收银台
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 60.422s
+
+FAILED (failures=1, errors=1, skipped=1)
+test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... ok
+test_03_go_pay (__main__.OrderTest) ... FAIL
+test_04_alipay (__main__.OrderTest) ... ERROR
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 59, in test_04_alipay
+    p.go_alipay()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 20, in go_alipay
+    self.wait(self.alipay_link).click()
+AttributeError: 'NoneType' object has no attribute 'click'
+
+======================================================================
+FAIL: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 54, in test_03_go_pay
+    self.assertEqual(self.driver.title, '收银台')
+AssertionError: '购物车' != '收银台'
+- 购物车
++ 收银台
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 39.075s
+
+FAILED (failures=1, errors=1, skipped=1)
+test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... ok
+test_03_go_pay (__main__.OrderTest) ... ERROR
+ERROR
+test_04_alipay (__main__.OrderTest) ... ERROR
+ERROR
+
+======================================================================
+ERROR: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 53, in test_03_go_pay
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 14, in submit
+    self.wait(self.pay_page_locator, 10)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 17, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 78, in until
+    value = method(self._driver)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\expected_conditions.py", line 64, in _predicate
+    return driver.find_element(*locator)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 1244, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchWindowException: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=98.0.4758.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x006D69A3+2582947]
+	Ordinal0 [0x0066A6D1+2139857]
+	Ordinal0 [0x00563A98+1063576]
+	Ordinal0 [0x0054C440+967744]
+	Ordinal0 [0x005AAD09+1355017]
+	Ordinal0 [0x005B7AD2+1407698]
+	Ordinal0 [0x005A8366+1344358]
+	Ordinal0 [0x00585176+1200502]
+	Ordinal0 [0x00586066+1204326]
+	GetHandleVerifier [0x0087BE02+1675858]
+	GetHandleVerifier [0x0093036C+2414524]
+	GetHandleVerifier [0x0076BB01+560977]
+	GetHandleVerifier [0x0076A8D3+556323]
+	Ordinal0 [0x0067020E+2163214]
+	Ordinal0 [0x00675078+2183288]
+	Ordinal0 [0x006751C0+2183616]
+	Ordinal0 [0x0067EE1C+2223644]
+	BaseThreadInitThunk [0x765B6739+25]
+	RtlGetFullPathName_UEx [0x77698E7F+1215]
+	RtlGetFullPathName_UEx [0x77698E4D+1165]
+
+
+======================================================================
+ERROR: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 67, in tearDown
+    log.info(f"{self._testMethodName} : {json.dumps(self.driver.get_cookies())}")
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 1073, in get_cookies
+    return self.execute(Command.GET_ALL_COOKIES)['value']
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchWindowException: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=98.0.4758.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x006D69A3+2582947]
+	Ordinal0 [0x0066A6D1+2139857]
+	Ordinal0 [0x00563A98+1063576]
+	Ordinal0 [0x0054C440+967744]
+	Ordinal0 [0x005AAD09+1355017]
+	Ordinal0 [0x005B7AD2+1407698]
+	Ordinal0 [0x005A8366+1344358]
+	Ordinal0 [0x00585176+1200502]
+	Ordinal0 [0x00586066+1204326]
+	GetHandleVerifier [0x0087BE02+1675858]
+	GetHandleVerifier [0x0093036C+2414524]
+	GetHandleVerifier [0x0076BB01+560977]
+	GetHandleVerifier [0x0076A8D3+556323]
+	Ordinal0 [0x0067020E+2163214]
+	Ordinal0 [0x00675078+2183288]
+	Ordinal0 [0x006751C0+2183616]
+	Ordinal0 [0x0067EE1C+2223644]
+	BaseThreadInitThunk [0x765B6739+25]
+	RtlGetFullPathName_UEx [0x77698E7F+1215]
+	RtlGetFullPathName_UEx [0x77698E4D+1165]
+
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 59, in test_04_alipay
+    p.go_alipay()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 20, in go_alipay
+    self.wait(self.alipay_link).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 17, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 78, in until
+    value = method(self._driver)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\expected_conditions.py", line 64, in _predicate
+    return driver.find_element(*locator)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 1244, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchWindowException: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=98.0.4758.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x006D69A3+2582947]
+	Ordinal0 [0x0066A6D1+2139857]
+	Ordinal0 [0x00563A98+1063576]
+	Ordinal0 [0x0054C440+967744]
+	Ordinal0 [0x005AAD09+1355017]
+	Ordinal0 [0x005B7AD2+1407698]
+	Ordinal0 [0x005A8366+1344358]
+	Ordinal0 [0x00585176+1200502]
+	Ordinal0 [0x00586066+1204326]
+	GetHandleVerifier [0x0087BE02+1675858]
+	GetHandleVerifier [0x0093036C+2414524]
+	GetHandleVerifier [0x0076BB01+560977]
+	GetHandleVerifier [0x0076A8D3+556323]
+	Ordinal0 [0x0067020E+2163214]
+	Ordinal0 [0x00675078+2183288]
+	Ordinal0 [0x006751C0+2183616]
+	Ordinal0 [0x0067EE1C+2223644]
+	BaseThreadInitThunk [0x765B6739+25]
+	RtlGetFullPathName_UEx [0x77698E7F+1215]
+	RtlGetFullPathName_UEx [0x77698E4D+1165]
+
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 67, in tearDown
+    log.info(f"{self._testMethodName} : {json.dumps(self.driver.get_cookies())}")
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 1073, in get_cookies
+    return self.execute(Command.GET_ALL_COOKIES)['value']
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchWindowException: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=98.0.4758.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x006D69A3+2582947]
+	Ordinal0 [0x0066A6D1+2139857]
+	Ordinal0 [0x00563A98+1063576]
+	Ordinal0 [0x0054C440+967744]
+	Ordinal0 [0x005AAD09+1355017]
+	Ordinal0 [0x005B7AD2+1407698]
+	Ordinal0 [0x005A8366+1344358]
+	Ordinal0 [0x00585176+1200502]
+	Ordinal0 [0x00586066+1204326]
+	GetHandleVerifier [0x0087BE02+1675858]
+	GetHandleVerifier [0x0093036C+2414524]
+	GetHandleVerifier [0x0076BB01+560977]
+	GetHandleVerifier [0x0076A8D3+556323]
+	Ordinal0 [0x0067020E+2163214]
+	Ordinal0 [0x00675078+2183288]
+	Ordinal0 [0x006751C0+2183616]
+	Ordinal0 [0x0067EE1C+2223644]
+	BaseThreadInitThunk [0x765B6739+25]
+	RtlGetFullPathName_UEx [0x77698E7F+1215]
+	RtlGetFullPathName_UEx [0x77698E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 26.662s
+
+FAILED (errors=4, skipped=1)
+test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... ok
+test_03_go_pay (__main__.OrderTest) ... ok
+test_04_alipay (__main__.OrderTest) ... ERROR
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 61, in test_04_alipay
+    p.pay_by_input_secret(user['secret'])
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 32, in pay_by_input_secret
+    self.wait(self.secret_input).send_keys(password)
+AttributeError: 'NoneType' object has no attribute 'send_keys'
+
+----------------------------------------------------------------------
+Ran 5 tests in 48.213s
+
+FAILED (errors=1, skipped=1)
+test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... ok
+test_03_go_pay (__main__.OrderTest) ... FAIL
+test_04_alipay (__main__.OrderTest) ... ERROR
+ERROR
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 59, in test_04_alipay
+    p.go_alipay()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 20, in go_alipay
+    self.wait(self.alipay_link).click()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\model\pageobject.py", line 17, in wait
+    return WebDriverWait(self.driver, timeout).until(
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\wait.py", line 78, in until
+    value = method(self._driver)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\support\expected_conditions.py", line 64, in _predicate
+    return driver.find_element(*locator)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 1244, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: chrome not reachable
+  (Session info: chrome=98.0.4758.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x006D69A3+2582947]
+	Ordinal0 [0x0066A6D1+2139857]
+	Ordinal0 [0x00563960+1063264]
+	Ordinal0 [0x00558092+1015954]
+	Ordinal0 [0x005588C8+1018056]
+	Ordinal0 [0x0055A102+1024258]
+	Ordinal0 [0x00553DE9+998889]
+	Ordinal0 [0x00564DD0+1068496]
+	Ordinal0 [0x005B7B12+1407762]
+	Ordinal0 [0x005A8366+1344358]
+	Ordinal0 [0x00585176+1200502]
+	Ordinal0 [0x00586066+1204326]
+	GetHandleVerifier [0x0087BE02+1675858]
+	GetHandleVerifier [0x0093036C+2414524]
+	GetHandleVerifier [0x0076BB01+560977]
+	GetHandleVerifier [0x0076A8D3+556323]
+	Ordinal0 [0x0067020E+2163214]
+	Ordinal0 [0x00675078+2183288]
+	Ordinal0 [0x006751C0+2183616]
+	Ordinal0 [0x0067EE1C+2223644]
+	BaseThreadInitThunk [0x765B6739+25]
+	RtlGetFullPathName_UEx [0x77698E7F+1215]
+	RtlGetFullPathName_UEx [0x77698E4D+1165]
+
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 67, in tearDown
+    log.info(f"{self._testMethodName} : {json.dumps(self.driver.get_cookies())}")
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 1073, in get_cookies
+    return self.execute(Command.GET_ALL_COOKIES)['value']
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: chrome not reachable
+  (Session info: chrome=98.0.4758.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x006D69A3+2582947]
+	Ordinal0 [0x0066A6D1+2139857]
+	Ordinal0 [0x00563960+1063264]
+	Ordinal0 [0x00558092+1015954]
+	Ordinal0 [0x005588C8+1018056]
+	Ordinal0 [0x0055A102+1024258]
+	Ordinal0 [0x00553DE9+998889]
+	Ordinal0 [0x00564DD0+1068496]
+	Ordinal0 [0x005B7B12+1407762]
+	Ordinal0 [0x005A8366+1344358]
+	Ordinal0 [0x00585176+1200502]
+	Ordinal0 [0x00586066+1204326]
+	GetHandleVerifier [0x0087BE02+1675858]
+	GetHandleVerifier [0x0093036C+2414524]
+	GetHandleVerifier [0x0076BB01+560977]
+	GetHandleVerifier [0x0076A8D3+556323]
+	Ordinal0 [0x0067020E+2163214]
+	Ordinal0 [0x00675078+2183288]
+	Ordinal0 [0x006751C0+2183616]
+	Ordinal0 [0x0067EE1C+2223644]
+	BaseThreadInitThunk [0x765B6739+25]
+	RtlGetFullPathName_UEx [0x77698E7F+1215]
+	RtlGetFullPathName_UEx [0x77698E4D+1165]
+
+
+======================================================================
+FAIL: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 54, in test_03_go_pay
+    self.assertEqual(self.driver.title, '收银台')
+AssertionError: '订单确认' != '收银台'
+- 订单确认
++ 收银台
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 56.955s
+
+FAILED (failures=1, errors=2, skipped=1)
+test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... ok
+test_03_go_pay (__main__.OrderTest) ... FAIL
+test_04_alipay (__main__.OrderTest) ... ERROR
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 59, in test_04_alipay
+    p.go_alipay()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 22, in go_alipay
+    self.wait(self.alipay_link).click()
+AttributeError: 'NoneType' object has no attribute 'click'
+
+======================================================================
+FAIL: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 54, in test_03_go_pay
+    self.assertEqual(self.driver.title, '收银台')
+AssertionError: '订单确认' != '收银台'
+- 订单确认
++ 收银台
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 39.295s
+
+FAILED (failures=1, errors=1, skipped=1)
+test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... ok
+test_03_go_pay (__main__.OrderTest) ... ok
+test_04_alipay (__main__.OrderTest) ... ERROR
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 60, in test_04_alipay
+    p.sign_login(user['account'], user['secret'])
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 28, in sign_login
+    self.find(self.account_input).click().send_keys(username)
+AttributeError: 'NoneType' object has no attribute 'send_keys'
+
+----------------------------------------------------------------------
+Ran 5 tests in 27.358s
+
+FAILED (errors=1, skipped=1)
+test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... ok
+test_03_go_pay (__main__.OrderTest) ... FAIL
+test_04_alipay (__main__.OrderTest) ... ERROR
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 59, in test_04_alipay
+    p.go_alipay()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 22, in go_alipay
+    self.wait(self.alipay_link).click()
+AttributeError: 'NoneType' object has no attribute 'click'
+
+======================================================================
+FAIL: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 54, in test_03_go_pay
+    self.assertEqual(self.driver.title, '收银台')
+AssertionError: '订单确认' != '收银台'
+- 订单确认
++ 收银台
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 39.047s
+
+FAILED (failures=1, errors=1, skipped=1)
+test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... ERROR
+test_03_go_pay (__main__.OrderTest) ... ERROR
+test_04_alipay (__main__.OrderTest) ... ERROR
+
+======================================================================
+ERROR: test_02_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 41, in test_02_order_confirm
+    p.add_item()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 30, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\cart.py", line 31, in add_item
+    self.wait(self.cart_button).click()
+AttributeError: 'NoneType' object has no attribute 'click'
+
+======================================================================
+ERROR: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 53, in test_03_go_pay
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 13, in submit
+    self.wait(self.submit_button).click()
+AttributeError: 'NoneType' object has no attribute 'click'
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 59, in test_04_alipay
+    p.go_alipay()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 22, in go_alipay
+    self.wait(self.alipay_link).click()
+AttributeError: 'NoneType' object has no attribute 'click'
+
+----------------------------------------------------------------------
+Ran 5 tests in 40.513s
+
+FAILED (errors=3, skipped=1)
+test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... ok
+test_03_go_pay (__main__.OrderTest) ... FAIL
+test_04_alipay (__main__.OrderTest) ... ERROR
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 59, in test_04_alipay
+    p.go_alipay()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 22, in go_alipay
+    self.wait(self.alipay_link).click()
+AttributeError: 'NoneType' object has no attribute 'click'
+
+======================================================================
+FAIL: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 54, in test_03_go_pay
+    self.assertEqual(self.driver.title, '收银台')
+AssertionError: '订单确认' != '收银台'
+- 订单确认
++ 收银台
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 41.183s
+
+FAILED (failures=1, errors=1, skipped=1)
+test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... ok
+test_03_go_pay (__main__.OrderTest) ... ok
+test_04_alipay (__main__.OrderTest) ... ERROR
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 61, in test_04_alipay
+    p.pay_by_input_secret(user['secret'])
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 34, in pay_by_input_secret
+    self.wait(self.square_click_button).click()
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webelement.py", line 81, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webelement.py", line 710, in _execute
+    return self._parent.execute(command, params)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: element not interactable
+  (Session info: chrome=98.0.4758.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x006D69A3+2582947]
+	Ordinal0 [0x0066A6D1+2139857]
+	Ordinal0 [0x00563960+1063264]
+	Ordinal0 [0x00590E4E+1248846]
+	Ordinal0 [0x00586B53+1207123]
+	Ordinal0 [0x005A854C+1344844]
+	Ordinal0 [0x00586524+1205540]
+	Ordinal0 [0x005A86A4+1345188]
+	Ordinal0 [0x005B834A+1409866]
+	Ordinal0 [0x005A8366+1344358]
+	Ordinal0 [0x00585176+1200502]
+	Ordinal0 [0x00586066+1204326]
+	GetHandleVerifier [0x0087BE02+1675858]
+	GetHandleVerifier [0x0093036C+2414524]
+	GetHandleVerifier [0x0076BB01+560977]
+	GetHandleVerifier [0x0076A8D3+556323]
+	Ordinal0 [0x0067020E+2163214]
+	Ordinal0 [0x00675078+2183288]
+	Ordinal0 [0x006751C0+2183616]
+	Ordinal0 [0x0067EE1C+2223644]
+	BaseThreadInitThunk [0x765B6739+25]
+	RtlGetFullPathName_UEx [0x77698E7F+1215]
+	RtlGetFullPathName_UEx [0x77698E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 58.931s
+
+FAILED (errors=1, skipped=1)
+test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... ok
+test_03_go_pay (__main__.OrderTest) ... ok
+test_04_alipay (__main__.OrderTest) ... ERROR
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 61, in test_04_alipay
+    p.pay_by_input_secret(user['secret'])
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 35, in pay_by_input_secret
+    self.wait(self.square_click_button).click()
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webelement.py", line 81, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webelement.py", line 710, in _execute
+    return self._parent.execute(command, params)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: element not interactable
+  (Session info: chrome=98.0.4758.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x006D69A3+2582947]
+	Ordinal0 [0x0066A6D1+2139857]
+	Ordinal0 [0x00563960+1063264]
+	Ordinal0 [0x00590E4E+1248846]
+	Ordinal0 [0x00586B53+1207123]
+	Ordinal0 [0x005A854C+1344844]
+	Ordinal0 [0x00586524+1205540]
+	Ordinal0 [0x005A86A4+1345188]
+	Ordinal0 [0x005B834A+1409866]
+	Ordinal0 [0x005A8366+1344358]
+	Ordinal0 [0x00585176+1200502]
+	Ordinal0 [0x00586066+1204326]
+	GetHandleVerifier [0x0087BE02+1675858]
+	GetHandleVerifier [0x0093036C+2414524]
+	GetHandleVerifier [0x0076BB01+560977]
+	GetHandleVerifier [0x0076A8D3+556323]
+	Ordinal0 [0x0067020E+2163214]
+	Ordinal0 [0x00675078+2183288]
+	Ordinal0 [0x006751C0+2183616]
+	Ordinal0 [0x0067EE1C+2223644]
+	BaseThreadInitThunk [0x765B6739+25]
+	RtlGetFullPathName_UEx [0x77698E7F+1215]
+	RtlGetFullPathName_UEx [0x77698E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 36.942s
+
+FAILED (errors=1, skipped=1)
+test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... ok
+test_03_go_pay (__main__.OrderTest) ... ok
+test_04_alipay (__main__.OrderTest) ... ERROR
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 61, in test_04_alipay
+    p.pay_by_input_secret(user['secret'])
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 35, in pay_by_input_secret
+    self.wait(self.square_click_button).click()
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webelement.py", line 81, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webelement.py", line 710, in _execute
+    return self._parent.execute(command, params)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: element not interactable
+  (Session info: chrome=98.0.4758.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x006D69A3+2582947]
+	Ordinal0 [0x0066A6D1+2139857]
+	Ordinal0 [0x00563960+1063264]
+	Ordinal0 [0x00590E4E+1248846]
+	Ordinal0 [0x00586B53+1207123]
+	Ordinal0 [0x005A854C+1344844]
+	Ordinal0 [0x00586524+1205540]
+	Ordinal0 [0x005A86A4+1345188]
+	Ordinal0 [0x005B834A+1409866]
+	Ordinal0 [0x005A8366+1344358]
+	Ordinal0 [0x00585176+1200502]
+	Ordinal0 [0x00586066+1204326]
+	GetHandleVerifier [0x0087BE02+1675858]
+	GetHandleVerifier [0x0093036C+2414524]
+	GetHandleVerifier [0x0076BB01+560977]
+	GetHandleVerifier [0x0076A8D3+556323]
+	Ordinal0 [0x0067020E+2163214]
+	Ordinal0 [0x00675078+2183288]
+	Ordinal0 [0x006751C0+2183616]
+	Ordinal0 [0x0067EE1C+2223644]
+	BaseThreadInitThunk [0x765B6739+25]
+	RtlGetFullPathName_UEx [0x77698E7F+1215]
+	RtlGetFullPathName_UEx [0x77698E4D+1165]
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 37.022s
+
+FAILED (errors=1, skipped=1)
+test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... ok
+test_03_go_pay (__main__.OrderTest) ... ok
+test_04_alipay (__main__.OrderTest) ... ERROR
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 61, in test_04_alipay
+    p.pay_by_input_secret(user['secret'])
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 37, in pay_by_input_secret
+    self.wait(self.secret_input).send_keys(password)
+AttributeError: 'NoneType' object has no attribute 'send_keys'
+
+----------------------------------------------------------------------
+Ran 5 tests in 43.074s
+
+FAILED (errors=1, skipped=1)
+test_00_index (__main__.OrderTest) ... ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... ok
+test_03_go_pay (__main__.OrderTest) ... ok
+test_04_alipay (__main__.OrderTest) ... ERROR
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 61, in test_04_alipay
+    p.pay_by_input_secret(user['secret'])
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 38, in pay_by_input_secret
+    self.wait(self.secret_input).send_keys(password)
+AttributeError: 'NoneType' object has no attribute 'send_keys'
+
+----------------------------------------------------------------------
+Ran 5 tests in 46.258s
+
+FAILED (errors=1, skipped=1)

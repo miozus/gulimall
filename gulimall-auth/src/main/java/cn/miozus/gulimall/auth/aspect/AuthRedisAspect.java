@@ -1,9 +1,9 @@
 package cn.miozus.gulimall.auth.aspect;
 
-import cn.miozus.common.annotation.Idempotent;
-import cn.miozus.common.constant.AuthServerConstant;
-import cn.miozus.common.enume.BizCodeEnum;
-import cn.miozus.common.utils.R;
+import cn.miozus.gulimall.common.annotation.Idempotent;
+import cn.miozus.gulimall.common.constant.AuthServerConstant;
+import cn.miozus.gulimall.common.enume.BizCodeEnum;
+import cn.miozus.gulimall.common.utils.R;
 import cn.miozus.gulimall.auth.vo.UserRegisterVo;
 import com.alibaba.cloud.commons.lang.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;

@@ -1,12 +1,13 @@
 package cn.miozus.gulimall.order.aspect;
 
 
-import cn.miozus.common.annotation.DeleteRedis;
-import cn.miozus.common.annotation.Idempotent;
-import cn.miozus.common.annotation.PutRedis;
-import cn.miozus.common.constant.OrderConstant;
-import cn.miozus.common.exception.GuliMallBindException;
-import cn.miozus.common.vo.MemberRespVo;
+import cn.miozus.gulimall.common.annotation.DeleteRedis;
+import cn.miozus.gulimall.common.annotation.Idempotent;
+import cn.miozus.gulimall.common.annotation.PutRedis;
+import cn.miozus.gulimall.common.constant.OrderConstant;
+import cn.miozus.gulimall.common.enume.BizCodeEnum;
+import cn.miozus.gulimall.common.exception.GuliMallBindException;
+import cn.miozus.gulimall.common.vo.MemberRespVo;
 import cn.miozus.gulimall.order.entity.OrderEntity;
 import cn.miozus.gulimall.order.entity.OrderItemEntity;
 import cn.miozus.gulimall.order.interceptor.LoginUserInterceptor;
@@ -52,7 +53,7 @@ public class OrderRedisAspect {
         OrderSubmitVo args = (OrderSubmitVo) pjp.getArgs()[0];
         Long execute = deleteKeyIfExistTokenRedis(args);
         if (execute == 0L) {
-            throw new GuliMallBindException("令牌校验失败，请勿重复提交订单");
+            throw new GuliMallBindException(BizCodeEnum.REDIS_TOKEN_INVALID_EXCEPTION);
         }
         return pjp.proceed();
     }

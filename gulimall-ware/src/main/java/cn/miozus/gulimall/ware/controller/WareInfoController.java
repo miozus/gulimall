@@ -1,7 +1,7 @@
 package cn.miozus.gulimall.ware.controller;
 
-import cn.miozus.common.utils.PageUtils;
-import cn.miozus.common.utils.R;
+import cn.miozus.gulimall.common.utils.PageUtils;
+import cn.miozus.gulimall.common.utils.R;
 import cn.miozus.gulimall.ware.entity.WareInfoEntity;
 import cn.miozus.gulimall.ware.service.WareInfoService;
 import cn.miozus.gulimall.ware.vo.FareVo;

@@ -1,9 +1,10 @@
 package cn.miozus.gulimall.order.interceptor;
 
-import cn.miozus.common.constant.AuthServerConstant;
-import cn.miozus.common.vo.MemberRespVo;
+import cn.miozus.gulimall.common.constant.AuthServerConstant;
+import cn.miozus.gulimall.common.vo.MemberRespVo;
 import com.alibaba.nacos.common.utils.Objects;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -20,6 +21,7 @@ import javax.servlet.http.HttpSession;
  * @author miao
  * @date 2022/01/04
  */
+@Slf4j
 public class LoginUserInterceptor implements HandlerInterceptor {
 
     /**
@@ -63,11 +65,12 @@ public class LoginUserInterceptor implements HandlerInterceptor {
         HttpSession session = request.getSession();
         MemberRespVo loginUser = (MemberRespVo) session.getAttribute(AuthServerConstant.LOGIN_USER);
         if (Objects.isNull(loginUser)) {
+            log.info("订单服务-登录拦截器：可能未登录;也可能熔断导致Feign请求头丢失");
             session.setAttribute("msg", "请登录再试");
             response.sendRedirect("http://auth.gulimall.com/login.html");
             return false;
         }
-        session.setAttribute("msg", "");
+        session.removeAttribute("msg");
         LoginUserInterceptor.threadLocal.set(loginUser);
         return true;
 

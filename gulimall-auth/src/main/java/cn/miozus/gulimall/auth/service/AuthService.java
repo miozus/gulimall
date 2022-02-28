@@ -1,7 +1,7 @@
 package cn.miozus.gulimall.auth.service;
 
-import cn.miozus.common.exception.GuliMallBindException;
-import cn.miozus.common.utils.R;
+import cn.miozus.gulimall.common.exception.GuliMallBindException;
+import cn.miozus.gulimall.common.utils.R;
 import cn.miozus.gulimall.auth.vo.UserLoginVo;
 import cn.miozus.gulimall.auth.vo.UserRegisterVo;
 

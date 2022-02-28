@@ -3,7 +3,7 @@ package cn.miozus.gulimall.auth.api;
 import cn.miozus.gulimall.auth.vo.GiteeUserInfo;
 import cn.miozus.gulimall.auth.vo.GithubUserInfo;
 import cn.miozus.gulimall.auth.vo.SocialUser;
-import cn.miozus.common.utils.HttpUtils;
+import cn.miozus.gulimall.common.utils.HttpUtils;
 import com.alibaba.fastjson.JSON;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;

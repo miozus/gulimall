@@ -1,7 +1,7 @@
 package cn.miozus.gulimall.coupon.controller;
 
-import cn.miozus.common.utils.PageUtils;
-import cn.miozus.common.utils.R;
+import cn.miozus.gulimall.common.utils.PageUtils;
+import cn.miozus.gulimall.common.utils.R;
 import cn.miozus.gulimall.coupon.entity.SpuBoundsEntity;
 import cn.miozus.gulimall.coupon.service.SpuBoundsService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
 package cn.miozus.gulimall.coupon.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import cn.miozus.common.utils.PageUtils;
+import cn.miozus.gulimall.common.utils.PageUtils;
 import cn.miozus.gulimall.coupon.entity.CouponSpuCategoryRelationEntity;
 
 import java.util.Map;

@@ -1,7 +1,7 @@
 package cn.miozus.gulimall.product.service.impl;
 
-import cn.miozus.common.utils.PageUtils;
-import cn.miozus.common.utils.Query;
+import cn.miozus.gulimall.common.utils.PageUtils;
+import cn.miozus.gulimall.common.utils.Query;
 import cn.miozus.gulimall.product.dao.BrandDao;
 import cn.miozus.gulimall.product.dao.CategoryBrandRelationDao;
 import cn.miozus.gulimall.product.dao.CategoryDao;

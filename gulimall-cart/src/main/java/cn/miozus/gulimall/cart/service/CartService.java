@@ -4,6 +4,7 @@ import cn.miozus.gulimall.cart.vo.Cart;
 import cn.miozus.gulimall.cart.vo.CartItem;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 /**
  * 购物车服务
@@ -29,7 +30,7 @@ public interface CartService {
      * @param count 数
      * @return {@link CartItem}
      */
-    CartItem addToCart(Long skuId, Integer count);
+    CartItem addToCart(Long skuId, Integer count) throws ExecutionException, InterruptedException;
 
     /**
      * 单品加入购物车的镜像只读页面
@@ -48,7 +49,8 @@ public interface CartService {
 
     /**
      * 更新:是否勾选
-     *  @param skuId     sku id
+     *
+     * @param skuId     sku id
      * @param isChecked 检查
      * @return
      */
@@ -56,7 +58,8 @@ public interface CartService {
 
     /**
      * 更新：数量
-     *  @param skuId sku id
+     *
+     * @param skuId sku id
      * @param count 数
      * @return
      */
@@ -74,7 +77,7 @@ public interface CartService {
      *
      * @return {@link List}<{@link CartItem}>
      */
-    List<CartItem> fetchOrderCartItems();
+    List<CartItem> fetchCheckedOrderCartItems() throws Throwable;
 
     /**
      * 查询购物车单品并转成列表
@@ -84,7 +87,7 @@ public interface CartService {
      * @param cartKey 购物车键
      * @return {@link List}<{@link CartItem}>
      */
-    List<CartItem> collectRedisCartItems( String cartKey) ;
+    List<CartItem> collectCartItemsRedis(String cartKey);
 
     /**
      * 获取当前购物车条目（结算页）
@@ -93,5 +96,5 @@ public interface CartService {
      * @param userId 用户id
      * @return {@link List}<{@link CartItem}>
      */
-    List<CartItem> fetchCheckedOrderCartItems(Long userId) ;
+//    List<CartItem> fetchCheckedOrderCartItems(Long userId);
 }

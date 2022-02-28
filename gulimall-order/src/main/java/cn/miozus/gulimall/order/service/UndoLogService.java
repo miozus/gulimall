@@ -1,7 +1,7 @@
 package cn.miozus.gulimall.order.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import cn.miozus.common.utils.PageUtils;
+import cn.miozus.gulimall.common.utils.PageUtils;
 import cn.miozus.gulimall.order.entity.UndoLogEntity;
 
 import java.util.Map;

@@ -1,6 +1,9 @@
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.common.exceptions import TimeoutException
+from common.model.log4p import log
+import sys
 
 
 class Page:
@@ -10,8 +13,12 @@ class Page:
         self.driver = driver
 
     def wait(self, locator, timeout=10):
-        return WebDriverWait(self.driver, timeout).until(
+        try:
+            return WebDriverWait(self.driver, timeout).until(
             EC.presence_of_element_located(locator))
+        except TimeoutException:
+            log.info(f'{sys._getframe().f_code.co_name} timeout')
+
 
     def find(self, locator):
         return self.driver.find_element(*locator)

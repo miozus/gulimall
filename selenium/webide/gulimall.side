@@ -2,7 +2,7 @@
   "id": "11ed0bce-418e-4abb-8656-faf358760021",
   "version": "2.0",
   "name": "register",
-  "url": "http://order.gulimall.com/toTrade",
+  "url": "https://excashier.alipaydev.com/standard/auth.htm?payOrderId=2fe4111200834e3481ae3a41088c1842.00",
   "tests": [{
     "id": "e1cfaa30-b18e-45ed-a99b-ab4ec7e41b49",
     "name": "密码登录",
@@ -279,6 +279,130 @@
         ["css=.top-1 > span", "css:finder"],
         ["xpath=//span", "xpath:position"],
         ["xpath=//span[contains(.,'结算页')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "52bcea4d-5a0b-47d1-af84-7a0944e672ec",
+    "name": "支付宝",
+    "commands": [{
+      "id": "0a0945f5-a264-4da5-acab-c723babf7981",
+      "comment": "",
+      "command": "open",
+      "target": "https://excashier.alipaydev.com/standard/auth.htm?payOrderId=2fe4111200834e3481ae3a41088c1842.00",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4d1667fe-3011-43d7-af3b-c7c0704caadc",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1254x1440",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e56bed2c-7be3-4a4a-89d1-4cba96ea0d79",
+      "comment": "",
+      "command": "click",
+      "target": "id=J_tLoginId",
+      "targets": [
+        ["id=J_tLoginId", "id"],
+        ["name=loginId", "name"],
+        ["css=#J_tLoginId", "css:finder"],
+        ["xpath=//input[@id='J_tLoginId']", "xpath:attributes"],
+        ["xpath=//div[@id='J_commonAccountContainer']/input", "xpath:idRelative"],
+        ["xpath=//div/div[2]/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2718f66b-c83a-42db-a6ae-b5acf03e8c40",
+      "comment": "",
+      "command": "type",
+      "target": "id=J_tLoginId",
+      "targets": [
+        ["id=J_tLoginId", "id"],
+        ["name=loginId", "name"],
+        ["css=#J_tLoginId", "css:finder"],
+        ["xpath=//input[@id='J_tLoginId']", "xpath:attributes"],
+        ["xpath=//div[@id='J_commonAccountContainer']/input", "xpath:idRelative"],
+        ["xpath=//div/div[2]/div/div/input", "xpath:position"]
+      ],
+      "value": "vsdgso6117@sandbox.com"
+    }, {
+      "id": "55546727-716e-4589-95f0-977ed252fbc3",
+      "comment": "",
+      "command": "click",
+      "target": "id=payPasswd_rsainput",
+      "targets": [
+        ["id=payPasswd_rsainput", "id"],
+        ["name=payPasswd_rsainput", "name"],
+        ["css=#payPasswd_rsainput", "css:finder"],
+        ["xpath=//input[@id='payPasswd_rsainput']", "xpath:attributes"],
+        ["xpath=//span[@id='payPasswd_container']/input", "xpath:idRelative"],
+        ["xpath=//span[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4a45c93d-ed25-46f0-9ef8-e695c37b36b5",
+      "comment": "",
+      "command": "type",
+      "target": "id=payPasswd_rsainput",
+      "targets": [
+        ["id=payPasswd_rsainput", "id"],
+        ["name=payPasswd_rsainput", "name"],
+        ["css=#payPasswd_rsainput", "css:finder"],
+        ["xpath=//input[@id='payPasswd_rsainput']", "xpath:attributes"],
+        ["xpath=//span[@id='payPasswd_container']/input", "xpath:idRelative"],
+        ["xpath=//span[2]/input", "xpath:position"]
+      ],
+      "value": "111111"
+    }, {
+      "id": "7ef43b87-ab72-4f5f-952d-642d39927ff8",
+      "comment": "",
+      "command": "click",
+      "target": "css=#J_newBtn > span",
+      "targets": [
+        ["css=#J_newBtn > span", "css:finder"],
+        ["xpath=//a[@id='J_newBtn']/span", "xpath:idRelative"],
+        ["xpath=//a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'下一步')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "5aef3583-66bc-46af-b945-2e793fa21966",
+      "comment": "",
+      "command": "click",
+      "target": "css=span:nth-child(7)",
+      "targets": [
+        ["css=span:nth-child(7)", "css:finder"],
+        ["xpath=//span[@id='payPassword_container']/div/span", "xpath:idRelative"],
+        ["xpath=//span[2]/div/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a76f6ca9-08ea-4b81-aa44-606904418d20",
+      "comment": "",
+      "command": "type",
+      "target": "id=payPassword_rsainput",
+      "targets": [
+        ["id=payPassword_rsainput", "id"],
+        ["name=payPassword_rsainput", "name"],
+        ["css=#payPassword_rsainput", "css:finder"],
+        ["xpath=//input[@id='payPassword_rsainput']", "xpath:attributes"],
+        ["xpath=//span[@id='payPassword_container']/input", "xpath:idRelative"],
+        ["xpath=//span[2]/input", "xpath:position"]
+      ],
+      "value": "111111"
+    }, {
+      "id": "2837140b-2531-47eb-821e-5662503c2928",
+      "comment": "",
+      "command": "click",
+      "target": "id=J_authSubmit",
+      "targets": [
+        ["id=J_authSubmit", "id"],
+        ["css=#J_authSubmit", "css:finder"],
+        ["xpath=//input[@id='J_authSubmit']", "xpath:attributes"],
+        ["xpath=//div[@id='J-rcSubmit']/div/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div/input", "xpath:position"]
       ],
       "value": ""
     }]

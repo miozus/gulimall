@@ -2,9 +2,11 @@ package cn.miozus.gulimall.cart.aspect;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
-import cn.miozus.common.annotation.DeleteRedis;
-import cn.miozus.common.annotation.GetRedis;
-import cn.miozus.common.annotation.PutRedis;
+import cn.miozus.gulimall.common.annotation.DeleteRedis;
+import cn.miozus.gulimall.common.annotation.GetRedis;
+import cn.miozus.gulimall.common.annotation.PutRedis;
+import cn.miozus.gulimall.common.enume.BizCodeEnum;
+import cn.miozus.gulimall.common.exception.GuliMallBindException;
 import cn.miozus.gulimall.cart.interceptor.CartInterceptor;
 import cn.miozus.gulimall.cart.to.UserInfoTo;
 import cn.miozus.gulimall.cart.vo.CartItem;
@@ -53,30 +55,30 @@ public class CartRedisAspect {
      * @throws Throwable throwable
      */
     @Around(value = "@annotation(getRedis) && args(key)")
-    public Object getRedis(ProceedingJoinPoint pjp, GetRedis getRedis, Object key) throws Throwable {
+    public Object queryCartItemRedis(ProceedingJoinPoint pjp, GetRedis getRedis, Object key) throws Throwable {
         String clazz = key.getClass().getSimpleName();
         switch (clazz) {
             case "Long": {
-                return fetchRedisCartItem(key);
+                return fetchOneBySkuId(key);
             }
             case "String": {
-                return collectRedisCartItems(key);
+                return fetchListByCartKey(key);
             }
             default:
         }
         return pjp.proceed();
     }
 
-    private CartItem fetchRedisCartItem(Object key) {
+    private CartItem fetchOneBySkuId(Object key) {
         BoundHashOperations<String, Object, Object> ops = boundUserIdFirstRedisHashOps();
-        String value = (String) ops.get(key.toString());
-        if (StringUtils.isNotEmpty(value)) {
-            return JSON.parseObject(value, CartItem.class);
+        String skuId = (String) ops.get(key.toString());
+        if (StringUtils.isNotEmpty(skuId)) {
+            return JSON.parseObject(skuId, CartItem.class);
         }
         return null;
     }
 
-    private List<CartItem> collectRedisCartItems(Object key) {
+    private List<CartItem> fetchListByCartKey(Object key) {
         BoundHashOperations<String, Object, Object> ops = redisTemplate.boundHashOps(key.toString());
         List<Object> res = ops.values();
         if (CollectionUtils.isNotEmpty(res)) {
@@ -94,7 +96,7 @@ public class CartRedisAspect {
      * @param putRedis 新增或更新的注解
      */
     @AfterReturning(value = "@annotation(putRedis)", returning = "retVal")
-    public void putRedisCacheSync(JoinPoint point, Object retVal, PutRedis putRedis) {
+    public void updateCartItemAttributeRedis(JoinPoint point, Object retVal, PutRedis putRedis) {
         BoundHashOperations<String, Object, Object> ops = boundUserIdFirstRedisHashOps();
         String clazz = retVal.getClass().getSimpleName();
         CartItem cartItem = new CartItem();
@@ -124,25 +126,33 @@ public class CartRedisAspect {
     }
 
     /**
-     * 删除缓存
+     * 删除 Redis 缓存同步
      *
-     * @param point       切入点:拦截首位参数
      * @param deleteRedis 删除缓存注解
-     * @param retVal      返回值 void：按照skuId删除 ; 其他：清空离线购物车，
+     * @param pjp         进程切点
+     * @return {@link Object}
      */
-    @AfterReturning(value = "@annotation(deleteRedis)", returning = "retVal")
-    public void deleteRedisCacheSync(JoinPoint point, Object retVal, DeleteRedis deleteRedis) {
-        BoundHashOperations<String, Object, Object> ops = boundUserIdFirstRedisHashOps();
-        if (Objects.isNull(retVal)) {
-            String skuId = point.getArgs()[0].toString();
-            ops.delete(skuId);
-            return;
+    @Around(value = "@annotation(deleteRedis)")
+    public Object deleteCartItemByKeyRedis(ProceedingJoinPoint pjp, DeleteRedis deleteRedis) {
+        Object retVal = null;
+        try {
+            retVal = pjp.proceed();
+            BoundHashOperations<String, Object, Object> ops = boundUserIdFirstRedisHashOps();
+            if (Objects.isNull(retVal)) {
+                String skuId = pjp.getArgs()[0].toString();
+                ops.delete(skuId);
+            } else {
+                String clazz = retVal.getClass().getSimpleName();
+                if ("ArrayList".equals(clazz)) {
+                    String tempCartKey = getTempCartKey();
+                    redisTemplate.delete(tempCartKey);
+                }
+            }
+        } catch (Throwable e) {
+            e.printStackTrace();
+            throw new GuliMallBindException(BizCodeEnum.REDIS_CONDITION_DEPEND_PREVIEW_EXCEPTION);
         }
-        String clazz = retVal.getClass().getSimpleName();
-        if ("ArrayList".equals(clazz)) {
-            String tempCartKey = getTempCartKey();
-            redisTemplate.delete(tempCartKey);
-        }
+        return retVal;
     }
 
     private String getTempCartKey() {

@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import cn.miozus.gulimall.member.entity.MemberLoginLogEntity;
 import cn.miozus.gulimall.member.service.MemberLoginLogService;
-import cn.miozus.common.utils.PageUtils;
-import cn.miozus.common.utils.R;
+import cn.miozus.gulimall.common.utils.PageUtils;
+import cn.miozus.gulimall.common.utils.R;
 
 
 

@@ -1,8 +1,8 @@
 package cn.miozus.gulimall.ware.controller;
 
-import cn.miozus.common.exception.GuliMallBindException;
-import cn.miozus.common.utils.PageUtils;
-import cn.miozus.common.utils.R;
+import cn.miozus.gulimall.common.exception.GuliMallBindException;
+import cn.miozus.gulimall.common.utils.PageUtils;
+import cn.miozus.gulimall.common.utils.R;
 import cn.miozus.gulimall.ware.entity.WareSkuEntity;
 import cn.miozus.gulimall.ware.service.WareSkuService;
 import cn.miozus.gulimall.ware.vo.SkuHasStockVo;

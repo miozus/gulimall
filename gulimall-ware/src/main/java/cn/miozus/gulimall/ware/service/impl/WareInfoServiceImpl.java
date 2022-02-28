@@ -1,8 +1,8 @@
 package cn.miozus.gulimall.ware.service.impl;
 
-import cn.miozus.common.utils.PageUtils;
-import cn.miozus.common.utils.Query;
-import cn.miozus.common.utils.R;
+import cn.miozus.gulimall.common.utils.PageUtils;
+import cn.miozus.gulimall.common.utils.Query;
+import cn.miozus.gulimall.common.utils.R;
 import cn.miozus.gulimall.ware.dao.WareInfoDao;
 import cn.miozus.gulimall.ware.entity.WareInfoEntity;
 import cn.miozus.gulimall.ware.feign.MemberFeignService;

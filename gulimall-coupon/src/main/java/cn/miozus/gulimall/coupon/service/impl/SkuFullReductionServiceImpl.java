@@ -1,9 +1,9 @@
 package cn.miozus.gulimall.coupon.service.impl;
 
-import cn.miozus.common.to.MemberPrice;
-import cn.miozus.common.to.SkuReductionTo;
-import cn.miozus.common.utils.PageUtils;
-import cn.miozus.common.utils.Query;
+import cn.miozus.gulimall.common.to.MemberPrice;
+import cn.miozus.gulimall.common.to.SkuReductionTo;
+import cn.miozus.gulimall.common.utils.PageUtils;
+import cn.miozus.gulimall.common.utils.Query;
 import cn.miozus.gulimall.coupon.dao.SkuFullReductionDao;
 import cn.miozus.gulimall.coupon.entity.MemberPriceEntity;
 import cn.miozus.gulimall.coupon.entity.SkuFullReductionEntity;

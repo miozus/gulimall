@@ -1,9 +1,9 @@
 package cn.miozus.gulimall.auth.aspect;
 
-import cn.miozus.common.annotation.TableInterceptor;
-import cn.miozus.common.constant.AuthServerConstant;
-import cn.miozus.common.utils.R;
-import cn.miozus.common.vo.MemberRespVo;
+import cn.miozus.gulimall.common.annotation.TableInterceptor;
+import cn.miozus.gulimall.common.constant.AuthServerConstant;
+import cn.miozus.gulimall.common.utils.R;
+import cn.miozus.gulimall.common.vo.MemberRespVo;
 import cn.miozus.gulimall.auth.service.AuthService;
 import cn.miozus.gulimall.auth.vo.UserLoginVo;
 import cn.miozus.gulimall.auth.vo.UserRegisterVo;
@@ -61,6 +61,7 @@ public class AuthTableAspect {
         String remainUrl = tableInterceptor.remainUrl();
         String clazz = param.getClass().getSimpleName();
 
+        // 参数校验
         Map<String, String> errors = new HashMap<>(4);
         if (bindingResult.hasErrors()) {
             errors = bindingResult.getFieldErrors().stream().collect(Collectors.toMap(FieldError::getField, FieldError::getDefaultMessage));
@@ -68,6 +69,7 @@ public class AuthTableAspect {
             redirectAttributes.addFlashAttribute("errors", errors);
             return remainUrl;
         }
+        // 检查表单提交过程收集异常信息
         try {
             R r = doProceedingMethodStrategy(param, clazz);
             if (r.getCode() == 0) {

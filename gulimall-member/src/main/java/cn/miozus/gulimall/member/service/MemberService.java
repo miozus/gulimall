@@ -1,6 +1,6 @@
 package cn.miozus.gulimall.member.service;
 
-import cn.miozus.common.utils.PageUtils;
+import cn.miozus.gulimall.common.utils.PageUtils;
 import cn.miozus.gulimall.member.entity.MemberEntity;
 import cn.miozus.gulimall.member.exception.PhoneNumberAlreadyExistsException;
 import cn.miozus.gulimall.member.exception.UsernameAlreadyExistsException;

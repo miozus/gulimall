@@ -1,7 +1,7 @@
 package cn.miozus.gulimall.product.service.impl;
 
-import cn.miozus.common.utils.PageUtils;
-import cn.miozus.common.utils.Query;
+import cn.miozus.gulimall.common.utils.PageUtils;
+import cn.miozus.gulimall.common.utils.Query;
 import cn.miozus.gulimall.product.dao.AttrAttrgroupRelationDao;
 import cn.miozus.gulimall.product.dao.AttrDao;
 import cn.miozus.gulimall.product.dao.AttrGroupDao;

@@ -1,6 +1,6 @@
 package cn.miozus.gulimall.product.app;
 
-import cn.miozus.common.utils.R;
+import cn.miozus.gulimall.common.utils.R;
 import cn.miozus.gulimall.product.entity.CategoryEntity;
 import cn.miozus.gulimall.product.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;

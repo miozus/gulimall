@@ -1,6 +1,6 @@
 package cn.miozus.gulimall.search.vo;
 
-import cn.miozus.common.to.es.SkuEsModel;
+import cn.miozus.gulimall.common.to.es.SkuEsModel;
 import lombok.Data;
 
 import java.util.ArrayList;

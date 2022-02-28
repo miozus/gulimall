@@ -1,17 +1,18 @@
 package cn.miozus.gulimall.order.service.impl;
 
-import cn.miozus.common.annotation.DeleteRedis;
-import cn.miozus.common.annotation.Idempotent;
-import cn.miozus.common.annotation.PostRabbitMq;
-import cn.miozus.common.annotation.PutRedis;
-import cn.miozus.common.constant.OrderConstant;
-import cn.miozus.common.enume.OrderStatusEnum;
-import cn.miozus.common.exception.GuliMallBindException;
-import cn.miozus.common.to.SkuHasStockVo;
-import cn.miozus.common.utils.PageUtils;
-import cn.miozus.common.utils.Query;
-import cn.miozus.common.utils.R;
-import cn.miozus.common.vo.MemberRespVo;
+import cn.miozus.gulimall.common.annotation.DeleteRedis;
+import cn.miozus.gulimall.common.annotation.Idempotent;
+import cn.miozus.gulimall.common.annotation.PostRabbitMq;
+import cn.miozus.gulimall.common.annotation.PutRedis;
+import cn.miozus.gulimall.common.constant.OrderConstant;
+import cn.miozus.gulimall.common.enume.BizCodeEnum;
+import cn.miozus.gulimall.common.enume.OrderStatusEnum;
+import cn.miozus.gulimall.common.exception.GuliMallBindException;
+import cn.miozus.gulimall.common.to.SkuHasStockVo;
+import cn.miozus.gulimall.common.utils.PageUtils;
+import cn.miozus.gulimall.common.utils.Query;
+import cn.miozus.gulimall.common.utils.R;
+import cn.miozus.gulimall.common.vo.MemberRespVo;
 import cn.miozus.gulimall.order.dao.OrderDao;
 import cn.miozus.gulimall.order.entity.OrderEntity;
 import cn.miozus.gulimall.order.entity.OrderItemEntity;
@@ -27,7 +28,6 @@ import cn.miozus.gulimall.order.service.PaymentInfoService;
 import cn.miozus.gulimall.order.to.OrderCreateTo;
 import cn.miozus.gulimall.order.vo.*;
 import com.alibaba.fastjson.TypeReference;
-import com.alibaba.nacos.common.utils.CollectionUtils;
 import com.alibaba.nacos.common.utils.StringUtils;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -43,7 +43,10 @@ import org.springframework.web.context.request.RequestContextHolder;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.*;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.stream.Collectors;
@@ -87,7 +90,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
      * 确认订单
      * <p>
      * Feign本质是Http通信，默认过滤请求头，需要配置
-     * * 异步：RequestContextHolder 共享上下文
+     * * 异步：RequestContextHolder 共享上下文，true 开启子线程继承共享，本质threadLocal
      * * 同步：不用加
      *
      * @return {@link OrderConfirmVo}
@@ -100,16 +103,15 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         MemberRespVo loginUser = LoginUserInterceptor.threadLocal.get();
         Long uid = loginUser.getId();
         RequestAttributes feignRequestAttributes = RequestContextHolder.getRequestAttributes();
+        RequestContextHolder.setRequestAttributes(feignRequestAttributes, true);
 
         CompletableFuture<Void> addressFuture = CompletableFuture.runAsync(() -> {
-            RequestContextHolder.setRequestAttributes(feignRequestAttributes);
             List<MemberReceiveAddressVo> address = memberFeignService.queryAddressByMemberId(uid);
             confirmVo.setAddress(address);
         }, executor);
 
         CompletableFuture<Void> orderItemFuture = CompletableFuture.runAsync(() -> {
-            RequestContextHolder.setRequestAttributes(feignRequestAttributes);
-            List<OrderItemVo> orderItems = cartFeignService.fetchOrderCartItems();
+            List<OrderItemVo> orderItems = cartFeignService.fetchCheckedOrderCartItems();
             confirmVo.setItems(orderItems);
         }, executor).thenRunAsync(() -> updateStocksWareFeignService(confirmVo), executor);
 
@@ -130,7 +132,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
      * 保存订单
      * 远程锁库存
      *
-     * @param orderSubmitVo 订单提交签证官
+     * @param orderSubmitVo 订单提交信息（登陆前提交:临时用户，登录后提交：未赋值？）
      * @return {@link OrderEntity}
      */
     @Override
@@ -139,12 +141,17 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
     @PostRabbitMq("提交订单")
     @DeleteRedis("删除提交付款的购物车商品")
     public OrderEntity submitOrder(OrderSubmitVo orderSubmitVo) {
+        String addrId = orderSubmitVo.getAddrId();
+        if (StringUtils.isBlank(addrId)) {
+            throw new GuliMallBindException(BizCodeEnum.CART_ITEM_NOT_EXIST_EXCEPTION);
+        }
+
         orderSubmitVoThreadLocal.set(orderSubmitVo);
         OrderCreateTo orderTo = createOrder();
 
         boolean isOverThreshold = comparePriceSubtractAccuracy(orderTo, orderSubmitVo);
         if (isOverThreshold) {
-            throw new GuliMallBindException("价格发生变化，超过误差阈值");
+            throw new GuliMallBindException(BizCodeEnum.PRICE_SUBTRACT_ACCURACY_OVER_THRESHOLD);
         }
 
         saveOrderAndOrderItems(orderTo);
@@ -218,8 +225,8 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         OrderCreateTo to = new OrderCreateTo();
         String orderSn = IdWorker.getTimeId();
 
-        OrderEntity order = buildOrderEntity(orderSn);
         List<OrderItemEntity> orderItems = buildOrderItems(orderSn);
+        OrderEntity order = buildOrderEntity(orderSn);
 
         calculateAggregatePrice(order, orderItems);
         appendOrderStatusInfo(order);
@@ -336,16 +343,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         return "success";
     }
 
-    /**
-     * 删除订单购物车商品
-     * 因为跳转外链后，无法获取登录信息，所以在此删除，支付成败不管了
-     */
-    @Override
-    @DeleteRedis("删除提交付款的购物车商品")
-    public Boolean deleteOrderCartItemsRedis(List<Long> skuIds) {
-        return false;
-    }
-
     private void updateOrderStatusPayed(PayAsyncVo vo) {
         String outTradeNo = vo.getOut_trade_no();
         this.baseMapper.updateOrderStatus(outTradeNo, OrderStatusEnum.PAYED.getCode());
@@ -420,13 +417,10 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
      * 最后确定每个购物项的价格
      *
      * @param orderSn 订单sn
-     * @return {@link List}<{@link OrderItemEntity}>
+     * @return {@link List}<{@link OrderItemEntity}> 空购物车不让通过，前端也拦截了
      */
     private List<OrderItemEntity> buildOrderItems(String orderSn) {
-        List<OrderItemVo> orderItems = cartFeignService.fetchOrderCartItems();
-        if (CollectionUtils.isEmpty(orderItems)) {
-            return Collections.emptyList();
-        }
+        List<OrderItemVo> orderItems = cartFeignService.fetchCheckedOrderCartItems();
         return orderItems.stream().map(item -> {
             OrderItemEntity orderItemEntity = buildOrderItemSingle(item);
             orderItemEntity.setOrderSn(orderSn);
@@ -506,7 +500,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         String addrId = orderSubmitVo.getAddrId();
 
         if (StringUtils.isEmpty(addrId)) {
-            throw new GuliMallBindException(memberId + " 请选择默认的收件人地址");
+            throw new GuliMallBindException(memberId.toString(), BizCodeEnum.RECEIVER_NEEDED_EXCEPTION);
         }
         R r = wareFeignService.queryFare(Long.valueOf(addrId));
         FareVo fareVo = r.getData("fareVo", new TypeReference<FareVo>() {

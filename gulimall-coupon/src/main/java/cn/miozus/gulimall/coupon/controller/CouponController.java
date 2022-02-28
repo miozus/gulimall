@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import cn.miozus.gulimall.coupon.entity.CouponEntity;
 import cn.miozus.gulimall.coupon.service.CouponService;
-import cn.miozus.common.utils.PageUtils;
-import cn.miozus.common.utils.R;
+import cn.miozus.gulimall.common.utils.PageUtils;
+import cn.miozus.gulimall.common.utils.R;
 
 
 /**

@@ -1,8 +1,8 @@
 package cn.miozus.gulimall.ware.service.impl;
 
-import cn.miozus.common.constant.WareConstant;
-import cn.miozus.common.utils.PageUtils;
-import cn.miozus.common.utils.Query;
+import cn.miozus.gulimall.common.constant.WareConstant;
+import cn.miozus.gulimall.common.utils.PageUtils;
+import cn.miozus.gulimall.common.utils.Query;
 import cn.miozus.gulimall.ware.dao.PurchaseDao;
 import cn.miozus.gulimall.ware.entity.PurchaseDetailEntity;
 import cn.miozus.gulimall.ware.entity.PurchaseEntity;

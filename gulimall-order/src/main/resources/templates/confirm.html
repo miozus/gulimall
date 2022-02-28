@@ -293,9 +293,9 @@
               <a href="/static/order/confirm/"><img src="/static/order/confirm/img/8104b36ae6b72043ae838599d36d007d.png"
                                                     alt=""/></a>
               <a href="/static/order/confirm/"><img
-                      src="/static/order/confirm/img/c0935b2c6504a5419e6ee507a5381bbe.png"/></a>
+                  src="/static/order/confirm/img/c0935b2c6504a5419e6ee507a5381bbe.png"/></a>
               <a href="/static/order/confirm/"><img
-                      src="/static/order/confirm/img/a64b429ebf83d2459a0a73830f4ad4c4.png"/></a>
+                  src="/static/order/confirm/img/a64b429ebf83d2459a0a73830f4ad4c4.png"/></a>
             </div>
           </div>
           <div>
@@ -320,9 +320,9 @@
               <a href="/static/order/confirm/"><img src="/static/order/confirm/img/8104b36ae6b72043ae838599d36d007d.png"
                                                     alt=""/></a>
               <a href="/static/order/confirm/"><img
-                      src="/static/order/confirm/img/c0935b2c6504a5419e6ee507a5381bbe.png"/></a>
+                  src="/static/order/confirm/img/c0935b2c6504a5419e6ee507a5381bbe.png"/></a>
               <a href="/static/order/confirm/"><img
-                      src="/static/order/confirm/img/a64b429ebf83d2459a0a73830f4ad4c4.png"/></a>
+                  src="/static/order/confirm/img/a64b429ebf83d2459a0a73830f4ad4c4.png"/></a>
             </div>
           </div>
 
@@ -346,7 +346,10 @@
   <img src="/static/order/confirm/img/08.png" class="img2"/>
 </div>
 <!--主体部分-->
-<p class="p1">填写并核对订单信息 <span style="color:red;font-size: large" th:if="${session.msg != null}">[[${session.msg}]]</span></p>
+<p class="p1">填写并核对订单信息
+  <span style="color:red;font-size: large" th:if="${session.msg != null}">[[${session.msg}]]</span>
+  <span th:if="${msg!=null}" th:text="${msg}"></span>
+</p>
 <div class="section">
   <!--收货人信息-->
   <div class="top-2">
@@ -357,7 +360,7 @@
   <!--地址-->
   <div class="top-3 addr-item" th:each="addr:${orderConfirmVo.address}">
     <p th:text="${addr.name}" th:attr="addrStatus=${addr.defaultStatus},addrId=${addr.id}">家里</p><span
-          th:text="${addr.detailAddress}">齐天大圣  北京市  昌平区城区晨曦小区-16号楼 吉利大学  150****2245</span>
+      th:text="${addr.detailAddress}">齐天大圣  北京市  昌平区城区晨曦小区-16号楼 吉利大学  150****2245</span>
   </div>
   <p class="p2">更多地址︾</p>
   <div class="hh1"/>
@@ -421,7 +424,7 @@
 
     </p>
     <p class="kg" style="color:#666666;margin-top: 13px;font-size: 12px">总重量 :<span
-            style="color:#999999;font-size: 12px">0.095kg</span></p>
+        style="color:#999999;font-size: 12px">0.095kg</span></p>
   </div>
   <div class="to_right" th:each="item:${orderConfirmVo.items}">
     <h5>商家：谷粒学院自营 </h5>
@@ -433,7 +436,8 @@
       <img style="width:100px; height:100px;" th:src="${item.image}" class="yun"/>
       <div class="mi">
         <p>[[${item.title}]]<span style="color: red;"> ￥ [[${#numbers.formatDecimal(item.price, 1, 2)}]] </span>
-          <span> x[[${item.count}]] </span> <span style="color: red">[[${orderConfirmVo.stocks[item.skuId] ? '有货':'无货'}]]</span></p>
+          <span> x[[${item.count}]] </span> <span style="color: red">[[${orderConfirmVo.stocks[item.skuId] ? '有货':'无货'}]]</span>
+        </p>
         <p>[[${item.skuAttrs}]]<span>[[${item.weight}]]kg</span></p>
         <p class="tui-1"><img src="/static/order/confirm/img/i_07.png"/>支持7天无理由退货</p>
       </div>

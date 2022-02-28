@@ -27,6 +27,7 @@
     "node-sass": "^6.0.1",
     "npm": "^6.9.0",
     "pubsub-js": "^1.9.3",
+    "renren-fast-vue": "^1.2.2",
     "sass-loader": "6.0.6",
     "svg-sprite-loader": "3.7.3",
     "vue": "2.5.16",

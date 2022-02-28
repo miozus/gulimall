@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 /**
  * 购物车控制器
@@ -29,8 +30,8 @@ public class CartController {
 
     @GetMapping("/cartItems")
     @ResponseBody
-    public List<CartItem> fetchOrderCartItems() {
-        return cartService.fetchOrderCartItems();
+    public List<CartItem> fetchOrderCartItems() throws Throwable {
+        return cartService.fetchCheckedOrderCartItems();
     }
 
     /**
@@ -46,7 +47,7 @@ public class CartController {
     public String checkItem(@RequestParam("skuId") Long skuId,
                             @RequestParam("isChecked") Integer isChecked) {
         cartService.updateRedisItemCheckStatus(skuId, isChecked);
-        return "redirect:http://cart.gulimall.com/cart.html";
+        return "redirect:http://cart.gulimall.com/cartList.html";
     }
 
     /**
@@ -60,13 +61,13 @@ public class CartController {
     public String countItem(@RequestParam("skuId") Long skuId,
                             @RequestParam("count") Integer count) {
         cartService.updateRedisItemCount(skuId, count);
-        return "redirect:http://cart.gulimall.com/cart.html";
+        return "redirect:http://cart.gulimall.com/cartList.html";
     }
 
     @GetMapping("/deleteItem")
     public String deleteItem(@RequestParam("skuId") Long skuId) {
         cartService.deleteRedisItem(skuId);
-        return "redirect:http://cart.gulimall.com/cart.html";
+        return "redirect:http://cart.gulimall.com/cartList.html";
     }
 
     /**
@@ -77,7 +78,7 @@ public class CartController {
      *
      * @return {@link String}
      */
-    @GetMapping(value = {"/cart.html", "/cartList.html"})
+    @GetMapping("/cartList.html")
     public String cartListPage(Model model) {
         Cart cart = cartService.fetchTotalCartItems();
         log.debug("cart {} ", cart);
@@ -101,10 +102,16 @@ public class CartController {
      * @return {@link String}
      */
     @GetMapping("/addToCart")
-    public String addToCart(@RequestParam("skuId") Long skuId, @RequestParam("count") Integer count, RedirectAttributes ra) {
-        cartService.addToCart(skuId, count);
-        ra.addAttribute("skuId", skuId);
-        return "redirect:http://cart.gulimall.com/addToCartSuccessPage.html";
+    public String addToCart(@RequestParam("skuId") Long skuId, @RequestParam("count") Integer count,  @RequestParam("itemUrl") String itemUrl, RedirectAttributes ra) {
+        try {
+            cartService.addToCart(skuId, count);
+            ra.addAttribute("skuId", skuId);
+            return "redirect:http://cart.gulimall.com/addToCartSuccessPage.html";
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+            ra.addFlashAttribute("msg", "加入购物车失败，请稍后再试");
+            return "redirect:" + itemUrl;
+        }
     }
 
     /**

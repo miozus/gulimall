@@ -1,7 +1,7 @@
 package cn.miozus.gulimall.member.controller;
 
-import cn.miozus.common.utils.PageUtils;
-import cn.miozus.common.utils.R;
+import cn.miozus.gulimall.common.utils.PageUtils;
+import cn.miozus.gulimall.common.utils.R;
 import cn.miozus.gulimall.member.entity.MemberReceiveAddressEntity;
 import cn.miozus.gulimall.member.service.MemberReceiveAddressService;
 import org.springframework.beans.factory.annotation.Autowired;

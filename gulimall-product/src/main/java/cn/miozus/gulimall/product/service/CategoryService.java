@@ -2,7 +2,7 @@ package cn.miozus.gulimall.product.service;
 
 import cn.miozus.gulimall.product.vo.Catalog2Vo;
 import com.baomidou.mybatisplus.extension.service.IService;
-import cn.miozus.common.utils.PageUtils;
+import cn.miozus.gulimall.common.utils.PageUtils;
 import cn.miozus.gulimall.product.entity.CategoryEntity;
 
 import java.util.List;

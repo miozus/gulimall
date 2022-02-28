@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import cn.miozus.gulimall.product.entity.CategoryBrandRelationEntity;
 import cn.miozus.gulimall.product.service.CategoryBrandRelationService;
-import cn.miozus.common.utils.R;
+import cn.miozus.gulimall.common.utils.R;
 
 
 /**

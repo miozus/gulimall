@@ -647,6 +647,7 @@
           </div>
           <div class="box-btns-two">
 <!--            <a href="http://cart.gulimall.com/addToCart">加入购物车</a>-->
+            <span th:if="${msg!=null}">[[${msg}]]</span>
             <a href="#" id="addToCart" th:attr="skuId=${item.info.skuId}">加入购物车</a>
           </div>
           <div class="box-btns-three">
@@ -1329,8 +1330,9 @@
     $("#addToCart").click(function(){
         var count = $("#countInput").val();
         var skuId = $(this).attr("skuId");
+        var itemUrl = location.href.toString();
 
-        location.href = "http://cart.gulimall.com/addToCart?skuId="+ skuId + "&count=" + count;
+        location.href = "http://cart.gulimall.com/addToCart?skuId="+ skuId + "&count=" + count + "&itemUrl=" + itemUrl;
         return false;
 
     });

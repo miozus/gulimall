@@ -182,8 +182,8 @@ class GulimallCouponApplicationTests {
     @Test
     public void testBasicType(){
         //int i1 =  null;
-        int i2 = (Integer) null;
-        System.out.println("i2 = " + i2);
+//        int i2 = (Integer) null;
+//        System.out.println("i2 = " + i2);
     }
 
     @Test
@@ -192,7 +192,7 @@ class GulimallCouponApplicationTests {
         List myList = Arrays.asList(myArray);
         System.out.println(myList.size());//1
         System.out.println(myList.get(0));//数组地址值
-        System.out.println(myList.get(1));//报错：ArrayIndexOutOfBoundsException
+//        System.out.println(myList.get(1));//报错：ArrayIndexOutOfBoundsException
         int[] array = (int[]) myList.get(0);
         System.out.println(array[0]);//1
 

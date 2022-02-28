@@ -1,9 +1,11 @@
 package cn.miozus.gulimall.cart.service.impl;
 
-import cn.miozus.common.annotation.DeleteRedis;
-import cn.miozus.common.annotation.GetRedis;
-import cn.miozus.common.annotation.PutRedis;
-import cn.miozus.common.utils.R;
+import cn.miozus.gulimall.common.annotation.DeleteRedis;
+import cn.miozus.gulimall.common.annotation.GetRedis;
+import cn.miozus.gulimall.common.annotation.PutRedis;
+import cn.miozus.gulimall.common.enume.BizCodeEnum;
+import cn.miozus.gulimall.common.exception.GuliMallBindException;
+import cn.miozus.gulimall.common.utils.R;
 import cn.miozus.gulimall.cart.feign.ProductFeignService;
 import cn.miozus.gulimall.cart.interceptor.CartInterceptor;
 import cn.miozus.gulimall.cart.service.CartService;
@@ -13,7 +15,6 @@ import cn.miozus.gulimall.cart.vo.CartItem;
 import cn.miozus.gulimall.cart.vo.SkuInfoVo;
 import com.alibaba.fastjson.TypeReference;
 import com.alibaba.nacos.common.utils.CollectionUtils;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,10 +63,9 @@ public class CartServiceImpl implements CartService {
      * @param count 数量
      * @return {@link CartItem}
      */
-    @SneakyThrows
     @Override
     @PutRedis("更新数量或新增单品")
-    public CartItem addToCart(Long skuId, Integer count) {
+    public CartItem addToCart(Long skuId, Integer count) throws ExecutionException, InterruptedException {
         CartItem cartItem = cartService.fetchCartItem(skuId);
         if (Objects.nonNull(cartItem)) {
             int sum = cartItem.getCount() + count;
@@ -130,7 +130,7 @@ public class CartServiceImpl implements CartService {
         String tempCartKey = CART_PREFIX + userInfoTo.getUserKey();
 
         if (Objects.isNull(userId)) {
-            List<CartItem> tempCartItems = cartService.collectRedisCartItems(tempCartKey);
+            List<CartItem> tempCartItems = fetchCartItemsList(tempCartKey);
             cart.setItems(tempCartItems);
             return cart;
         }
@@ -141,8 +141,8 @@ public class CartServiceImpl implements CartService {
 
     private Cart addAllCartItems(Cart cart, String oauthCartKey, String tempCartKey) {
 
-        List<CartItem> oauthCartItems = cartService.collectRedisCartItems(oauthCartKey);
-        List<CartItem> tempCartItems = cartService.collectRedisCartItems(tempCartKey);
+        List<CartItem> oauthCartItems = fetchCartItemsList(oauthCartKey);
+        List<CartItem> tempCartItems = fetchCartItemsList(tempCartKey);
 
         if (CollectionUtils.isNotEmpty(tempCartItems)) {
             oauthCartItems = cartService.addAllRedisCartItemsByKey(tempCartItems, oauthCartItems);
@@ -185,24 +185,28 @@ public class CartServiceImpl implements CartService {
      * <p>
      * 未登录：（通过URL访问），不予查询
      * 登录：商品服务查询最新价格
-     * 筛选：只返回缓存中已勾选的商品
+     * * 筛选：只返回缓存中已勾选的商品
+     * * 空：没有勾选，无法支付
      *
      * @return {@link List}<{@link CartItem}>
      */
     @Override
-    public List<CartItem> fetchOrderCartItems() {
+    public List<CartItem> fetchCheckedOrderCartItems() throws Throwable{
         UserInfoTo userInfoTo = CartInterceptor.threadLocal.get();
         Long userId = userInfoTo.getUserId();
         if (Objects.isNull(userId)) {
             return Collections.emptyList();
         }
-        return cartService.fetchCheckedOrderCartItems(userId);
+        List<CartItem> cartItems = fetchCheckedOrderCartItems(userId);
+        if (CollectionUtils.isEmpty(cartItems)) {
+            throw new GuliMallBindException("用户" + userId, BizCodeEnum.CART_ITEM_EMPTY_EXCEPTION);
+        }
+        return cartItems;
     }
 
-    @Override
     public List<CartItem> fetchCheckedOrderCartItems(Long userId) {
         String oauthCartKey = CART_PREFIX + userId;
-        List<CartItem> cartItems = cartService.collectRedisCartItems(oauthCartKey);
+        List<CartItem> cartItems = fetchCartItemsList(oauthCartKey);
         return cartItems.stream()
                 .map(item -> {
                     Long skuId = item.getSkuId();
@@ -254,8 +258,13 @@ public class CartServiceImpl implements CartService {
      * @return {@link List}<{@link CartItem}>
      */
     @GetRedis("获取整车商品")
-    public List<CartItem> collectRedisCartItems(@GetRedis("key") String cartKey) {
+    @Override
+    public List<CartItem> collectCartItemsRedis(@GetRedis("key") String cartKey) {
         return Collections.emptyList();
+    }
+
+    private List<CartItem> fetchCartItemsList(String cartKey) {
+        return cartService.collectCartItemsRedis(cartKey);
     }
 
 }

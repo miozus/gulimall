@@ -1,6 +1,6 @@
 package cn.miozus.gulimall.plugins.controller;
 
-import cn.miozus.common.utils.R;
+import cn.miozus.gulimall.common.utils.R;
 import cn.miozus.gulimall.plugins.component.SmsComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

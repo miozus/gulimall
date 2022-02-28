@@ -2,7 +2,7 @@ package cn.miozus.gulimall.ware.service;
 
 import cn.miozus.gulimall.ware.vo.FareVo;
 import com.baomidou.mybatisplus.extension.service.IService;
-import cn.miozus.common.utils.PageUtils;
+import cn.miozus.gulimall.common.utils.PageUtils;
 import cn.miozus.gulimall.ware.entity.WareInfoEntity;
 
 import java.math.BigDecimal;

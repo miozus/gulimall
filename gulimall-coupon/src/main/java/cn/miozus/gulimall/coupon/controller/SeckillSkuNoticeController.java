@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import cn.miozus.gulimall.coupon.entity.SeckillSkuNoticeEntity;
 import cn.miozus.gulimall.coupon.service.SeckillSkuNoticeService;
-import cn.miozus.common.utils.PageUtils;
-import cn.miozus.common.utils.R;
+import cn.miozus.gulimall.common.utils.PageUtils;
+import cn.miozus.gulimall.common.utils.R;
 
 
 

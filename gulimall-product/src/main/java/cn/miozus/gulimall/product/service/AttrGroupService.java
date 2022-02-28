@@ -4,7 +4,7 @@ import cn.miozus.gulimall.product.vo.AttrGroupRelationVo;
 import cn.miozus.gulimall.product.vo.AttrGroupWithAttrVo;
 import cn.miozus.gulimall.product.vo.SkuItemVo;
 import com.baomidou.mybatisplus.extension.service.IService;
-import cn.miozus.common.utils.PageUtils;
+import cn.miozus.gulimall.common.utils.PageUtils;
 import cn.miozus.gulimall.product.entity.AttrGroupEntity;
 
 import java.util.List;

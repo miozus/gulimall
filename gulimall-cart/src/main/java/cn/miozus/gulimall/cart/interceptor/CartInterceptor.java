@@ -1,8 +1,8 @@
 package cn.miozus.gulimall.cart.interceptor;
 
-import cn.miozus.common.constant.AuthServerConstant;
-import cn.miozus.common.constant.CartConstant;
-import cn.miozus.common.vo.MemberRespVo;
+import cn.miozus.gulimall.common.constant.AuthServerConstant;
+import cn.miozus.gulimall.common.constant.CartConstant;
+import cn.miozus.gulimall.common.vo.MemberRespVo;
 import cn.miozus.gulimall.cart.to.UserInfoTo;
 import com.alibaba.cloud.commons.lang.StringUtils;
 import org.apache.commons.lang.ArrayUtils;
@@ -18,7 +18,7 @@ import java.util.UUID;
 
 /**
  * 购物车拦截器
- *
+ * <p>
  * 在本地线程变量中封装登录/临时用户信息，通过浏览器的 cookie 作为媒介
  *
  * @author miao
@@ -54,7 +54,6 @@ public class CartInterceptor implements HandlerInterceptor {
     private boolean checkLoginStateAndSetTempUserByThreadLocal(HttpServletRequest request) {
         HttpSession session = request.getSession();
         MemberRespVo member = (MemberRespVo) session.getAttribute(AuthServerConstant.LOGIN_USER);
-
         UserInfoTo userInfo = new UserInfoTo();
 
         if (Objects.nonNull(member)) {

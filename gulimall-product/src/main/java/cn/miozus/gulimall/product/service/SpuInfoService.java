@@ -1,6 +1,6 @@
 package cn.miozus.gulimall.product.service;
 
-import cn.miozus.common.utils.PageUtils;
+import cn.miozus.gulimall.common.utils.PageUtils;
 import cn.miozus.gulimall.product.entity.SpuInfoEntity;
 import cn.miozus.gulimall.product.vo.SpuSaveVo;
 import com.baomidou.mybatisplus.extension.service.IService;

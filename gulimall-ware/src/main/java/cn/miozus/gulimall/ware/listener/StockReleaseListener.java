@@ -1,7 +1,7 @@
 package cn.miozus.gulimall.ware.listener;
 
-import cn.miozus.common.to.mq.OrderTo;
-import cn.miozus.common.to.mq.StockLockedUndoLogTo;
+import cn.miozus.gulimall.common.to.mq.OrderTo;
+import cn.miozus.gulimall.common.to.mq.StockLockedUndoLogTo;
 import cn.miozus.gulimall.ware.config.RabbitMqStockConfig;
 import cn.miozus.gulimall.ware.service.WareSkuService;
 import com.rabbitmq.client.Channel;

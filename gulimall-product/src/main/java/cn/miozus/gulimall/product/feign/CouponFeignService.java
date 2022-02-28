@@ -1,8 +1,8 @@
 package cn.miozus.gulimall.product.feign;
 
-import cn.miozus.common.to.SkuReductionTo;
-import cn.miozus.common.to.SpuBoundTo;
-import cn.miozus.common.utils.R;
+import cn.miozus.gulimall.common.to.SkuReductionTo;
+import cn.miozus.gulimall.common.to.SpuBoundTo;
+import cn.miozus.gulimall.common.utils.R;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;

@@ -1,9 +1,9 @@
 package cn.miozus.gulimall.search.controller;
 
 
-import cn.miozus.common.enume.BizCodeEnum;
-import cn.miozus.common.to.es.SkuEsModel;
-import cn.miozus.common.utils.R;
+import cn.miozus.gulimall.common.enume.BizCodeEnum;
+import cn.miozus.gulimall.common.to.es.SkuEsModel;
+import cn.miozus.gulimall.common.utils.R;
 import cn.miozus.gulimall.search.service.ProductSaveService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

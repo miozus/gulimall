@@ -21,6 +21,6 @@ public interface CartFeignService {
      * @return {@link List}<{@link OrderItemVo}>
      */
     @GetMapping("/cartItems")
-    public List<OrderItemVo> fetchOrderCartItems();
+    public List<OrderItemVo> fetchCheckedOrderCartItems();
 
 }

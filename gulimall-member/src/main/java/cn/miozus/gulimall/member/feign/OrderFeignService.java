@@ -1,6 +1,7 @@
 package cn.miozus.gulimall.member.feign;
 
-import cn.miozus.common.utils.R;
+import cn.miozus.gulimall.common.utils.R;
+import cn.miozus.gulimall.member.feign.fallback.MemberOrderFallBackFactory;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,7 +14,7 @@ import java.util.Map;
  * @author miao
  * @date 2022/01/28
  */
-@FeignClient("gulimall-order")
+@FeignClient(value = "gulimall-order", fallbackFactory = MemberOrderFallBackFactory.class)
 public interface OrderFeignService {
 
     /**

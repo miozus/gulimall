@@ -1,7 +1,7 @@
 package cn.miozus.gulimall.product.app;
 
-import cn.miozus.common.utils.PageUtils;
-import cn.miozus.common.utils.R;
+import cn.miozus.gulimall.common.utils.PageUtils;
+import cn.miozus.gulimall.common.utils.R;
 import cn.miozus.gulimall.product.entity.SpuInfoEntity;
 import cn.miozus.gulimall.product.service.SpuInfoService;
 import cn.miozus.gulimall.product.vo.SpuSaveVo;

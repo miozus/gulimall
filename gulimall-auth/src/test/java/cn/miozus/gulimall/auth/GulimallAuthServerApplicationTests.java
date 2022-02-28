@@ -4,7 +4,7 @@ import cn.miozus.gulimall.auth.api.GiteeApi;
 import cn.miozus.gulimall.auth.api.GithubApi;
 import cn.miozus.gulimall.auth.vo.GiteeUserInfo;
 import cn.miozus.gulimall.auth.vo.GithubUserInfo;
-import cn.miozus.common.constant.RegexConstant;
+import cn.miozus.gulimall.common.constant.RegexConstant;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

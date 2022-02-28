@@ -21,9 +21,7 @@ import java.util.List;
 public class CartItem implements Serializable {
     private Long skuId;
 
-    /**
-     * 选中与否
-     */
+    /** 选中与否 */
     private Boolean isChecked = true;
     private String title ;
     private String image ;
@@ -32,11 +30,8 @@ public class CartItem implements Serializable {
     private Integer count;
     @Setter(AccessLevel.NONE)
     private BigDecimal totalPrice;
-    /**
-     * 实时计算总价格
-     *
-     * @return {@link BigDecimal}
-     */
+
+    /** 实时计算总价格 */
     public BigDecimal getTotalPrice() {
         return this.price.multiply(new BigDecimal("" + this.count));
     }

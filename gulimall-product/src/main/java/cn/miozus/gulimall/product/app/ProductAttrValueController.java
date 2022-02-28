@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import cn.miozus.gulimall.product.entity.ProductAttrValueEntity;
 import cn.miozus.gulimall.product.service.ProductAttrValueService;
-import cn.miozus.common.utils.PageUtils;
-import cn.miozus.common.utils.R;
+import cn.miozus.gulimall.common.utils.PageUtils;
+import cn.miozus.gulimall.common.utils.R;
 
 
 

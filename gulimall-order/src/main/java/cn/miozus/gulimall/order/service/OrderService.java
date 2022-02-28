@@ -1,13 +1,15 @@
 package cn.miozus.gulimall.order.service;
 
-import cn.miozus.common.exception.GuliMallBindException;
-import cn.miozus.common.utils.PageUtils;
+import cn.miozus.gulimall.common.exception.GuliMallBindException;
+import cn.miozus.gulimall.common.utils.PageUtils;
 import cn.miozus.gulimall.order.entity.OrderEntity;
 import cn.miozus.gulimall.order.to.OrderCreateTo;
-import cn.miozus.gulimall.order.vo.*;
+import cn.miozus.gulimall.order.vo.OrderConfirmVo;
+import cn.miozus.gulimall.order.vo.OrderSubmitVo;
+import cn.miozus.gulimall.order.vo.PayAsyncVo;
+import cn.miozus.gulimall.order.vo.PayVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -82,13 +84,5 @@ public interface OrderService extends IService<OrderEntity> {
      * @return
      */
     String handlePayResult(PayAsyncVo vo);
-
-    /**
-     * 删除购物车订单项目
-     *
-     * @param skuIds sku id
-     * @return {@link Boolean}
-     */
-    Boolean deleteOrderCartItemsRedis(List<Long> skuIds);
 }
 

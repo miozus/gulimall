@@ -1,7 +1,7 @@
 package cn.miozus.gulimall.member.interceptor;
 
-import cn.miozus.common.constant.AuthServerConstant;
-import cn.miozus.common.vo.MemberRespVo;
+import cn.miozus.gulimall.common.constant.AuthServerConstant;
+import cn.miozus.gulimall.common.vo.MemberRespVo;
 import com.alibaba.nacos.common.utils.Objects;
 import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
@@ -39,7 +39,10 @@ public class LoginUserInterceptor implements HandlerInterceptor {
 
     private boolean callBetweenFeignService(HttpServletRequest request) {
         String uri = request.getRequestURI();
-        return new AntPathMatcher().match("/member/**", uri);
+//        boolean isMemberFeignService = new AntPathMatcher().match("/memberOrder.html", uri);
+        boolean isMemberAllService = new AntPathMatcher().match("/member/**", uri);
+//        return isMemberFeignService || isMemberAllService;
+        return isMemberAllService;
     }
 
     /**
@@ -60,7 +63,7 @@ public class LoginUserInterceptor implements HandlerInterceptor {
             response.sendRedirect("http://auth.gulimall.com/login.html");
             return false;
         }
-        session.setAttribute("msg", "");
+        session.removeAttribute("msg");
         LoginUserInterceptor.loginUserThreadLocal.set(loginUser);
         return true;
 

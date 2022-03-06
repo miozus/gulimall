@@ -1,5 +1,6 @@
 package cn.miozus.gulimall.member.web;
 
+import cn.miozus.gulimall.common.enume.SysLog;
 import cn.miozus.gulimall.common.utils.R;
 import cn.miozus.gulimall.member.service.MemberWebService;
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +30,7 @@ public class MemberWebController {
      * @return {@link String}
      */
     @GetMapping("/memberOrder.html")
+    @SysLog("获取购物车列表")
     public String memberOrderPage(@RequestParam(value = "pageNum", defaultValue = "1") String pageNum, Model model) {
         R r = memberWebService.renderPage(pageNum);
         log.debug("📒 r {} ", r);

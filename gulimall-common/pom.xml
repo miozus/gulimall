@@ -29,12 +29,19 @@
         <spring.cloud.starter.netflix.hystrix.version>2.2.4.RELEASE</spring.cloud.starter.netflix.hystrix.version>
         <spring-boot-admin-starter-client.version>2.3.0</spring-boot-admin-starter-client.version>
         <spring-boot-starter-actuator.version>2.3.2.RELEASE</spring-boot-starter-actuator.version>
+        <spring-boot-starter-data-redis.version>2.3.2.RELEASE</spring-boot-starter-data-redis.version>
 
 
     </properties>
 
 
     <dependencies>
+        <!-- 分布式缓存 redis -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+            <version>${spring-boot-starter-data-redis.version}</version>
+        </dependency>
         <!--微服务监控台:健康状态-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

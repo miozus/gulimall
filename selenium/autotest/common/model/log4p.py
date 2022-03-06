@@ -35,8 +35,8 @@ class Logger4Python(object):
         formatter = logging.Formatter(
             '%(asctime)s %(levelname)s --- [%(funcName)s] %(module)s-L%(lineno)d : %(message)s'
         )  # 日志的格式
-        fileHandler = logging.FileHandler('autotest.log',
-                                          encoding='utf-8')  # 日志文件路径文件名称，编码格式
+        log_dir = r'E:\projects\IdeaProjects\gulimall\selenium\test_report.log'
+        fileHandler = logging.FileHandler(log_dir, encoding='utf-8')  # 日志文件路径文件名称，编码格式
         fileHandler.setLevel(logging.DEBUG)  # 日志打印级别
         fileHandler.setFormatter(formatter)
         logger.addHandler(fileHandler)

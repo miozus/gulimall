@@ -11,5 +11,8 @@ spring:
           - data-id: actuator.yml
             group: pro
             refresh: true
+          - data-id: datasource.yml
+            group: pro
+            refresh: true
         namespace: b6551d73-e51d-4bcc-a0e1-c507eab9f13a
         server-addr: 39.108.228.2:8848

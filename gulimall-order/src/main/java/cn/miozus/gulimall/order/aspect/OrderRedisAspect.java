@@ -114,6 +114,7 @@ public class OrderRedisAspect {
         Long uid = loginUser.getId();
         String tokenKey = OrderConstant.ORDER_USER_TOKEN_PREFIX + uid;
         String token = orderSubmitVo.getOrderToken();
+//        return RedisUtil.deleteKeyIfExist(tokenKey, token);
         String deleteKeyIfExistsLuaScript = "if redis.call('get',KEYS[1]) == ARGV[1] then " +
                 "return redis.call('del',KEYS[1]); " +
                 "else " +

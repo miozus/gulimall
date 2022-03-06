@@ -75,5 +75,6 @@ def main(out=sys.stderr, verbosity=2):
 
 
 if __name__ == '__main__':
-    with open('test_report.log', 'a+') as f:
+    log_dir = r'E:\projects\IdeaProjects\gulimall\selenium\test_report.log'
+    with open(log_dir, 'a+') as f:
         main(f)

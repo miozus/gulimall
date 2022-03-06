@@ -22,6 +22,12 @@
         <dependency>
             <groupId>cn.miozus.gulimall</groupId>
             <artifactId>gulimall-common</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-data-redis</artifactId>
+                </exclusion>
+            </exclusions>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <!--    初始勾选的依赖    -->

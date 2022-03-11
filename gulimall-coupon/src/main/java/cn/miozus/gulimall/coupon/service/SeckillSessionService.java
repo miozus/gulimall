@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import cn.miozus.gulimall.common.utils.PageUtils;
 import cn.miozus.gulimall.coupon.entity.SeckillSessionEntity;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,5 +17,12 @@ import java.util.Map;
 public interface SeckillSessionService extends IService<SeckillSessionEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    /**
+     * 查询最近持续三天的秒杀商品
+     *
+     * @return {@link List}<{@link SeckillSessionEntity}>
+     */
+    List<SeckillSessionEntity> queryLast3dSession();
 }
 

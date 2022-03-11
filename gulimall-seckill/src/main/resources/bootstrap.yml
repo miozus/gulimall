@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: gulimall-seckill
+  cloud:
+    nacos:
+      config:
+        extension-configs:
+          - data-id: other.yml
+            group: pro
+            refresh: true
+          - data-id: rabbitmq.yml
+            group: pro
+            refresh: true
+          - data-id: threadpool.yml
+            group: pro
+            refresh: true
+          - data-id: redis.yml
+            group: pro
+            refresh: true
+          - data-id: feign.yml
+            group: pro
+            refresh: true
+          - data-id: cache.yml
+            group: pro
+            refresh: true
+          - data-id: actuator.yml
+            group: pro
+            refresh: true
+        namespace: 5bf8ea26-5aa9-4308-9ed4-042d525b8b33
+        server-addr: 39.108.228.2:8848

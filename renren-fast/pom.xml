@@ -50,9 +50,24 @@
 		<remote-addr>192.168.1.10:22</remote-addr>
 		<remote-username>root</remote-username>
 		<remote-passwd>123456</remote-passwd>
+		<!--自定义配置-->
+		<spring-boot-starter-actuator.version>2.3.2.RELEASE</spring-boot-starter-actuator.version>
+		<spring-boot-admin-starter-client.version>2.3.0</spring-boot-admin-starter-client.version>
 	</properties>
 
 	<dependencies>
+		<!--微服务监控台:健康状态-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+			<version>${spring-boot-starter-actuator.version}</version>
+		</dependency>
+		<!--微服务监控台:该依赖必须要加上，否则会访问不到健康监控的接口-->
+		<dependency>
+			<groupId>de.codecentric</groupId>
+			<artifactId>spring-boot-admin-starter-client</artifactId>
+			<version>${spring-boot-admin-starter-client.version}</version>
+		</dependency>
 		<!--    公共依赖包    -->
 		<dependency>
 			<groupId>cn.miozus.gulimall</groupId>

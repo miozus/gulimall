@@ -37,11 +37,11 @@
             <optional>true</optional>
         </dependency>
         <!-- 使用最新版不用 SpringBoot 自带 -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.projectlombok</groupId>-->
+<!--            <artifactId>lombok</artifactId>-->
+<!--            <optional>true</optional>-->
+<!--        </dependency>-->
         <!--    公共依赖包    -->
         <dependency>
             <groupId>cn.miozus.gulimall</groupId>

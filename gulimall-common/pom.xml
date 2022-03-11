@@ -23,13 +23,14 @@
         <httpcore.version>4.4.15</httpcore.version>
         <fastjson.version>1.2.79</fastjson.version>
         <validation.api.version>2.0.1.Final</validation.api.version>
-        <hutool.all.version>5.7.20</hutool.all.version>
+        <hutool.all.version>5.7.21</hutool.all.version>
         <hibernate.validator.version>7.0.1.Final</hibernate.validator.version>
         <spring.web.version>5.2.8.RELEASE</spring.web.version>
         <spring.cloud.starter.netflix.hystrix.version>2.2.4.RELEASE</spring.cloud.starter.netflix.hystrix.version>
         <spring-boot-admin-starter-client.version>2.3.0</spring-boot-admin-starter-client.version>
         <spring-boot-starter-actuator.version>2.3.2.RELEASE</spring-boot-starter-actuator.version>
         <spring-boot-starter-data-redis.version>2.3.2.RELEASE</spring-boot-starter-data-redis.version>
+        <spring-cloud-starter-openfeign.version>2.2.4.RELEASE</spring-cloud-starter-openfeign.version>
 
 
     </properties>
@@ -58,7 +59,7 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
-            <version>2.2.4.RELEASE</version>
+            <version>${spring-cloud-starter-openfeign.version}</version>
         </dependency>
         <!-- Feign 熔断机制 -->
         <dependency>
@@ -159,5 +160,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
 
 </project>

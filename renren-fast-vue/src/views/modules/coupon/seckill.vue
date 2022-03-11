@@ -36,13 +36,17 @@
       </el-table-column>
       <el-table-column
         prop="startTime"
+        value-format="yyyy-MM-dd" 
         header-align="center"
+        type="date"
         align="center"
         label="开始日期">
       </el-table-column>
       <el-table-column
         prop="endTime"
         header-align="center"
+        type="date"
+        value-format="yyyy-MM-dd" 
         align="center"
         label="结束日期">
       </el-table-column>

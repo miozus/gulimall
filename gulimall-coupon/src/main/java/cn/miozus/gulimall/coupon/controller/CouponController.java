@@ -1,21 +1,15 @@
 package cn.miozus.gulimall.coupon.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import cn.miozus.gulimall.coupon.entity.CouponEntity;
-import cn.miozus.gulimall.coupon.service.CouponService;
 import cn.miozus.gulimall.common.utils.PageUtils;
 import cn.miozus.gulimall.common.utils.R;
+import cn.miozus.gulimall.coupon.entity.CouponEntity;
+import cn.miozus.gulimall.coupon.service.CouponService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
+import java.util.Map;
 
 
 /**
@@ -32,14 +26,10 @@ public class CouponController {
     @Autowired
     private CouponService couponService;
 
-    @Value("${coupon.user.name}")
-    public String name;
-    @Value("${coupon.user.age}")
-    public Integer age;
-    @Value("${coupon.user.sex}")
-    public String sex;
-    @Value("${coupon.user.email}")
-    public String email;
+    public String name="sudongpo";
+    public Integer age=23;
+    public String sex="Female";
+    public String email="nacos@qq.com";
 
     @RequestMapping("config")
     public R testConfig() {

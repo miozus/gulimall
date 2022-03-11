@@ -47,6 +47,7 @@ public class LoginUserInterceptor implements HandlerInterceptor {
         String uri = request.getRequestURI();
         boolean isNotifyUrl = new AntPathMatcher().match("/notify/pay", uri);
         boolean isOrderFeignService = new AntPathMatcher().match("/order/order/SN/**", uri);
+
         return isNotifyUrl || isOrderFeignService ;
     }
 

@@ -39,6 +39,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
+
         <!--  前端页面渲染模板  -->
        <dependency>
             <groupId>org.springframework.boot</groupId>

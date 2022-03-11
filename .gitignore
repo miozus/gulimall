@@ -25,6 +25,7 @@ buildNumber.properties
 Thumbs.db
 ehthumbs.db
 Desktop.ini
+.git.bfg-report
 
 # Python:
 *.py[cod]

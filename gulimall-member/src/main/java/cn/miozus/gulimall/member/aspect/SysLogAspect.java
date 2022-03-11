@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 
 /**
- * syslog切面
+ * 系统日志切面
  *
  * @author miozus
  * @date 2022/02/28
@@ -25,7 +25,6 @@ import java.util.Date;
 public class SysLogAspect {
 //    @Autowired
 //    private SysLogService sysLogService;
-//    private static Logger logger = LoggerFactory.getLogger(SysLogAspect.class);
 
     @Around("@annotation(sysLog)")
     public Object around(ProceedingJoinPoint joinPoint, SysLog sysLog) throws Throwable {

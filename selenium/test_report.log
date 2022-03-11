@@ -7091,3 +7091,242 @@ AssertionError: '' != '收银台'
 Ran 5 tests in 34.447s
 
 FAILED (failures=1, errors=1, skipped=1)
+test_00_index (__main__.OrderTest) ... 2022-03-12 00:04:01,251 INFO --- [wrapper] restful-L28 : [GET] http://gulimall.com/ [open]
+2022-03-12 00:04:03,389 INFO --- [tearDown] order_test-L67 : test_00_index : []
+FAIL
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... 2022-03-12 00:04:03,408 INFO --- [wrapper] restful-L28 : [GET] http://auth.gulimall.com/login.html [sign_login]
+2022-03-12 00:04:15,734 INFO --- [wait] pageobject-L20 : wait timeout
+2022-03-12 00:04:15,738 INFO --- [tearDown] order_test-L67 : test_02_order_confirm : []
+ERROR
+test_03_go_pay (__main__.OrderTest) ... 2022-03-12 00:04:28,016 INFO --- [wait] pageobject-L20 : wait timeout
+2022-03-12 00:04:28,020 INFO --- [tearDown] order_test-L67 : test_03_go_pay : []
+ERROR
+test_04_alipay (__main__.OrderTest) ... 2022-03-12 00:04:38,262 INFO --- [wait] pageobject-L20 : wait timeout
+2022-03-12 00:04:38,266 INFO --- [tearDown] order_test-L67 : test_04_alipay : []
+ERROR
+
+======================================================================
+ERROR: test_02_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 39, in test_02_order_confirm
+    p.login_if_absent()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 72, in wrapper
+    retVal = func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\cart.py", line 42, in login_if_absent
+    p.sign_login("administrator", "administrator")
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 30, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\login.py", line 18, in sign_login
+    self.wait(self.account_login_link).click()
+AttributeError: 'NoneType' object has no attribute 'click'
+
+======================================================================
+ERROR: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 53, in test_03_go_pay
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 13, in submit
+    self.wait(self.submit_button).click()
+AttributeError: 'NoneType' object has no attribute 'click'
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 59, in test_04_alipay
+    p.go_alipay()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 22, in go_alipay
+    self.wait(self.alipay_link).click()
+AttributeError: 'NoneType' object has no attribute 'click'
+
+======================================================================
+FAIL: test_00_index (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 26, in test_00_index
+    self.assertEqual(self.driver.title, '谷粒商城')
+AssertionError: 'gulimall.com' != '谷粒商城'
+- gulimall.com
++ 谷粒商城
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 37.020s
+
+FAILED (failures=1, errors=3, skipped=1)
+test_00_index (__main__.OrderTest) ... 2022-03-12 00:21:16,764 INFO --- [wrapper] restful-L28 : [GET] http://gulimall.com/ [open]
+2022-03-12 00:21:18,882 INFO --- [tearDown] order_test-L67 : test_00_index : []
+FAIL
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... 2022-03-12 00:21:18,903 INFO --- [wrapper] restful-L28 : [GET] http://auth.gulimall.com/login.html [sign_login]
+2022-03-12 00:21:31,236 INFO --- [wait] pageobject-L20 : wait timeout
+2022-03-12 00:21:31,240 INFO --- [tearDown] order_test-L67 : test_02_order_confirm : []
+ERROR
+test_03_go_pay (__main__.OrderTest) ... 2022-03-12 00:21:43,551 INFO --- [wait] pageobject-L20 : wait timeout
+2022-03-12 00:21:43,555 INFO --- [tearDown] order_test-L67 : test_03_go_pay : []
+ERROR
+test_04_alipay (__main__.OrderTest) ... 2022-03-12 00:21:54,119 INFO --- [wait] pageobject-L20 : wait timeout
+2022-03-12 00:21:54,124 INFO --- [tearDown] order_test-L67 : test_04_alipay : [{"domain": ".gulimall.com", "httpOnly": true, "name": "GULISESSION", "path": "/", "sameSite": "Lax", "secure": false, "value": "MGE5MmExZDQtZGJmMC00MjAzLTg2MzktOWNmNjc4MzMyODM1"}]
+ERROR
+
+======================================================================
+ERROR: test_02_order_confirm (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 39, in test_02_order_confirm
+    p.login_if_absent()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 72, in wrapper
+    retVal = func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\cart.py", line 42, in login_if_absent
+    p.sign_login("administrator", "administrator")
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\common\decorator\restful.py", line 30, in wrapper
+    return func(*args, **kwargs)
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\login.py", line 18, in sign_login
+    self.wait(self.account_login_link).click()
+AttributeError: 'NoneType' object has no attribute 'click'
+
+======================================================================
+ERROR: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 53, in test_03_go_pay
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 13, in submit
+    self.wait(self.submit_button).click()
+AttributeError: 'NoneType' object has no attribute 'click'
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 59, in test_04_alipay
+    p.go_alipay()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 22, in go_alipay
+    self.wait(self.alipay_link).click()
+AttributeError: 'NoneType' object has no attribute 'click'
+
+======================================================================
+FAIL: test_00_index (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 26, in test_00_index
+    self.assertEqual(self.driver.title, '谷粒商城')
+AssertionError: 'gulimall.com' != '谷粒商城'
+- gulimall.com
++ 谷粒商城
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 37.364s
+
+FAILED (failures=1, errors=3, skipped=1)
+test_00_index (__main__.OrderTest) ... 2022-03-12 00:22:33,177 INFO --- [wrapper] restful-L28 : [GET] http://gulimall.com/ [open]
+2022-03-12 00:22:35,056 INFO --- [tearDown] order_test-L67 : test_00_index : []
+ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... 2022-03-12 00:22:35,081 INFO --- [wrapper] restful-L28 : [GET] http://auth.gulimall.com/login.html [sign_login]
+2022-03-12 00:22:38,456 INFO --- [wrapper] restful-L74 : [GET] http://cart.gulimall.com/cartList.html [login_if_absent]
+2022-03-12 00:22:40,357 INFO --- [wrapper] restful-L28 : [GET] http://item.gulimall.com/15.html [add_item]
+2022-03-12 00:22:54,015 INFO --- [tearDown] order_test-L67 : test_02_order_confirm : [{"domain": ".gulimall.com", "httpOnly": false, "name": "user-key", "path": "/", "secure": false, "value": "9259ecc7-5c83-493c-8a3d-542c7f78f5a2"}, {"domain": ".gulimall.com", "httpOnly": true, "name": "GULISESSION", "path": "/", "sameSite": "Lax", "secure": false, "value": "Y2RkNWFlMzMtODIwOC00NmYzLWI0ZTgtZTMzMzQ4Yjg0YWVm"}]
+ok
+test_03_go_pay (__main__.OrderTest) ... 2022-03-12 00:22:56,055 INFO --- [tearDown] order_test-L67 : test_03_go_pay : [{"domain": ".gulimall.com", "httpOnly": false, "name": "user-key", "path": "/", "secure": false, "value": "9259ecc7-5c83-493c-8a3d-542c7f78f5a2"}, {"domain": ".gulimall.com", "httpOnly": true, "name": "GULISESSION", "path": "/", "sameSite": "Lax", "secure": false, "value": "Y2RkNWFlMzMtODIwOC00NmYzLWI0ZTgtZTMzMzQ4Yjg0YWVm"}]
+ERROR
+test_04_alipay (__main__.OrderTest) ... 2022-03-12 00:23:06,310 INFO --- [wait] pageobject-L20 : wait timeout
+2022-03-12 00:23:06,316 INFO --- [tearDown] order_test-L67 : test_04_alipay : [{"domain": ".gulimall.com", "httpOnly": false, "name": "user-key", "path": "/", "secure": false, "value": "9259ecc7-5c83-493c-8a3d-542c7f78f5a2"}, {"domain": ".gulimall.com", "httpOnly": true, "name": "GULISESSION", "path": "/", "sameSite": "Lax", "secure": false, "value": "Y2RkNWFlMzMtODIwOC00NmYzLWI0ZTgtZTMzMzQ4Yjg0YWVm"}]
+ERROR
+
+======================================================================
+ERROR: test_03_go_pay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 53, in test_03_go_pay
+    p.submit()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\order.py", line 13, in submit
+    self.wait(self.submit_button).click()
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webelement.py", line 81, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webelement.py", line 710, in _execute
+    return self._parent.execute(command, params)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 424, in execute
+    self.error_handler.check_response(response)
+  File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: element not interactable
+  (Session info: chrome=99.0.4844.51)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x002A69A3+2582947]
+	Ordinal0 [0x0023A6D1+2139857]
+	Ordinal0 [0x00133960+1063264]
+	Ordinal0 [0x00160E4E+1248846]
+	Ordinal0 [0x00156B53+1207123]
+	Ordinal0 [0x0017854C+1344844]
+	Ordinal0 [0x00156524+1205540]
+	Ordinal0 [0x001786A4+1345188]
+	Ordinal0 [0x0018834A+1409866]
+	Ordinal0 [0x00178366+1344358]
+	Ordinal0 [0x00155176+1200502]
+	Ordinal0 [0x00156066+1204326]
+	GetHandleVerifier [0x0044BE02+1675858]
+	GetHandleVerifier [0x0050036C+2414524]
+	GetHandleVerifier [0x0033BB01+560977]
+	GetHandleVerifier [0x0033A8D3+556323]
+	Ordinal0 [0x0024020E+2163214]
+	Ordinal0 [0x00245078+2183288]
+	Ordinal0 [0x002451C0+2183616]
+	Ordinal0 [0x0024EE1C+2223644]
+	BaseThreadInitThunk [0x75EC6739+25]
+	RtlGetFullPathName_UEx [0x775E8E7F+1215]
+	RtlGetFullPathName_UEx [0x775E8E4D+1165]
+	(No symbol) [0x00000000]
+
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 59, in test_04_alipay
+    p.go_alipay()
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 22, in go_alipay
+    self.wait(self.alipay_link).click()
+AttributeError: 'NoneType' object has no attribute 'click'
+
+----------------------------------------------------------------------
+Ran 5 tests in 33.145s
+
+FAILED (errors=2, skipped=1)
+test_00_index (__main__.OrderTest) ... 2022-03-12 00:24:06,142 INFO --- [wrapper] restful-L28 : [GET] http://gulimall.com/ [open]
+2022-03-12 00:24:06,406 INFO --- [tearDown] order_test-L67 : test_00_index : []
+ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... 2022-03-12 00:24:06,436 INFO --- [wrapper] restful-L28 : [GET] http://auth.gulimall.com/login.html [sign_login]
+2022-03-12 00:24:08,772 INFO --- [wrapper] restful-L74 : [GET] http://cart.gulimall.com/cartList.html [login_if_absent]
+2022-03-12 00:24:09,392 INFO --- [wrapper] restful-L28 : [GET] http://item.gulimall.com/15.html [add_item]
+2022-03-12 00:24:13,963 INFO --- [minus_until_one] cart-L58 : __repr__ tried to abtract for 1 tiems
+2022-03-12 00:24:17,224 INFO --- [tearDown] order_test-L67 : test_02_order_confirm : [{"domain": ".gulimall.com", "httpOnly": false, "name": "user-key", "path": "/", "secure": false, "value": "22961179-7c61-4aab-8ac6-ab8bd8e88eb7"}, {"domain": ".gulimall.com", "httpOnly": true, "name": "GULISESSION", "path": "/", "sameSite": "Lax", "secure": false, "value": "MjM2YTQzN2YtNWMxZC00ODFiLWI4ZDUtNWIzOTA3ZGM3MDY1"}]
+ok
+test_03_go_pay (__main__.OrderTest) ... 2022-03-12 00:24:23,019 INFO --- [tearDown] order_test-L67 : test_03_go_pay : [{"domain": ".gulimall.com", "httpOnly": false, "name": "user-key", "path": "/", "secure": false, "value": "22961179-7c61-4aab-8ac6-ab8bd8e88eb7"}, {"domain": ".gulimall.com", "httpOnly": true, "name": "GULISESSION", "path": "/", "sameSite": "Lax", "secure": false, "value": "MjM2YTQzN2YtNWMxZC00ODFiLWI4ZDUtNWIzOTA3ZGM3MDY1"}]
+ok
+test_04_alipay (__main__.OrderTest) ... 2022-03-12 00:24:32,083 INFO --- [wait] pageobject-L20 : wait timeout
+2022-03-12 00:24:38,450 INFO --- [wait] pageobject-L20 : wait timeout
+2022-03-12 00:24:49,156 INFO --- [wait] pageobject-L20 : wait timeout
+2022-03-12 00:24:49,163 INFO --- [tearDown] order_test-L67 : test_04_alipay : [{"domain": "excashier.alipaydev.com", "httpOnly": true, "name": "JSESSIONID", "path": "/", "secure": false, "value": "192287D5C2F23C5EEAE20E75DC024ED9"}, {"domain": ".alipaydev.com", "expiry": 1678551866, "httpOnly": false, "name": "riskOriginalAccountMobileSendTime", "path": "/", "secure": false, "value": "-1"}, {"domain": ".alipaydev.com", "expiry": 1678551866, "httpOnly": false, "name": "riskCredibleMobileSendTime", "path": "/", "secure": false, "value": "-1"}, {"domain": ".alipaydev.com", "expiry": 1678551866, "httpOnly": false, "name": "riskMobileCreditSendTime", "path": "/", "secure": false, "value": "-1"}, {"domain": ".alipaydev.com", "expiry": 1678551866, "httpOnly": false, "name": "riskMobileAccoutSendTime", "path": "/", "secure": false, "value": "-1"}, {"domain": ".alipaydev.com", "expiry": 1678551866, "httpOnly": false, "name": "ctuMobileSendTime", "path": "/", "secure": false, "value": "-1"}, {"domain": ".alipaydev.com", "expiry": 1678551866, "httpOnly": false, "name": "credibleMobileSendTime", "path": "/", "secure": false, "value": "-1"}, {"domain": ".alipaydev.com", "expiry": 1678551866, "httpOnly": false, "name": "mobileSendTime", "path": "/", "secure": false, "value": "-1"}, {"domain": ".alipaydev.com", "expiry": 1678551866, "httpOnly": false, "name": "rtk", "path": "/", "secure": false, "value": "exDjti2fbHF5WSErnxw0z+6JXUS0HGlbNDll0idiDZXsGJWLmb/"}, {"domain": "excashier.alipaydev.com", "httpOnly": false, "name": "spanner", "path": "/", "secure": true, "value": "/0ZudZP+X2VzsKus8FylyAkwDd8RKVVG"}, {"domain": ".alipaydev.com", "httpOnly": false, "name": "ctoken", "path": "/", "secure": false, "value": "_DU18bQ9N0rliAm_"}, {"domain": ".alipaydev.com", "expiry": 1678551866, "httpOnly": false, "name": "riskMobileBankSendTime", "path": "/", "secure": false, "value": "-1"}, {"domain": "excashier.alipaydev.com", "expiry": 1962375866, "httpOnly": false, "name": "_uab_collina", "path": "/", "secure": false, "value": "164701586641377203120018"}, {"domain": ".alipaydev.com", "httpOnly": false, "name": "ALIPAYJSESSIONID", "path": "/", "secure": false, "value": "GZ00XRoKEDhIkv3QAMSDGDEpF8AfDjsuperapiGZ00"}, {"domain": ".alipaydev.com", "httpOnly": false, "name": "zone", "path": "/", "secure": false, "value": "GZ00B"}, {"domain": "excashier.alipaydev.com", "httpOnly": true, "name": "JSESSIONID", "path": "/standard", "secure": true, "value": "192287D5C2F23C5EEAE20E75DC024ED9"}]
+ERROR
+
+======================================================================
+ERROR: test_04_alipay (__main__.OrderTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 61, in test_04_alipay
+    p.pay_by_input_secret(user['secret'])
+  File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\pages\pay.py", line 38, in pay_by_input_secret
+    self.wait(self.secret_input).send_keys(password)
+AttributeError: 'NoneType' object has no attribute 'send_keys'
+
+----------------------------------------------------------------------
+Ran 5 tests in 43.027s
+
+FAILED (errors=1, skipped=1)

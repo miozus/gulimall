@@ -23,8 +23,6 @@ import java.util.Date;
 @Aspect
 @Slf4j
 public class SysLogAspect {
-//    @Autowired
-//    private SysLogService sysLogService;
 
     @Around("@annotation(sysLog)")
     public Object around(ProceedingJoinPoint joinPoint, SysLog sysLog) throws Throwable {

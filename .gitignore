@@ -1,5 +1,6 @@
 # root
 .idea
+.iml
 log/
 target/
 pom.xml.tag
@@ -26,6 +27,11 @@ Thumbs.db
 ehthumbs.db
 Desktop.ini
 .git.bfg-report
+
+### IntelliJ IDEA ###
+*.iws
+*.iml
+*.ipr
 
 # Python:
 *.py[cod]

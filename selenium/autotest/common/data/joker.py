@@ -4,7 +4,11 @@ user = {
     'password':
     'administrator',
     'phone':
+<<<<<<< HEAD
+    '18085568298',
+=======
     '18555032655',
+>>>>>>> 38a0b44e191e85dac8cab24b21ad6a70f9b6063d
     'code':
     '9844b',
     'account':

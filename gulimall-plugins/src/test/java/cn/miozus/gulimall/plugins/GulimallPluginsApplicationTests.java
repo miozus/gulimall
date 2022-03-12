@@ -130,7 +130,15 @@ class GulimallPluginsApplicationTests {
         // 填写本地文件的完整路径。如果未指定本地路径，则默认从示例程序所属项目对应本地路径中上传文件流。
         InputStream inputStream = new FileInputStream("C:\\Users\\lss81\\Pictures\\program_icon.png");
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+t        // 依次填写Bucket名称（例如examplebucket）和Object完整路径（例如exampledir/exampleobject.txt）。Object完整路径中不能包含Bucket名称。
+=======
         // 依次填写Bucket名称（例如examplebucket）和Object完整路径（例如exampledir/exampleobject.txt）。Object完整路径中不能包含Bucket名称。
+>>>>>>> 303a8d9ded25d7c588878a6b26695bb8fa8c9f2b
+=======
+        // 依次填写Bucket名称（例如examplebucket）和Object完整路径（例如exampledir/exampleobject.txt）。Object完整路径中不能包含Bucket名称。
+>>>>>>> 38a0b44e191e85dac8cab24b21ad6a70f9b6063d
         ossClient.putObject("gulimall-miozus", "product/program_icon_from_plugin.png", inputStream);
 
         // 关闭OSSClient。

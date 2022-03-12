@@ -7091,6 +7091,8 @@ AssertionError: '' != 'ÊÕÒøÌ¨'
 Ran 5 tests in 34.447s
 
 FAILED (failures=1, errors=1, skipped=1)
+<<<<<<< HEAD
+=======
 test_00_index (__main__.OrderTest) ... 2022-03-12 00:04:01,251 INFO --- [wrapper] restful-L28 : [GET] http://gulimall.com/ [open]
 2022-03-12 00:04:03,389 INFO --- [tearDown] order_test-L67 : test_00_index : []
 FAIL
@@ -7330,3 +7332,4 @@ AttributeError: 'NoneType' object has no attribute 'send_keys'
 Ran 5 tests in 43.027s
 
 FAILED (errors=1, skipped=1)
+>>>>>>> 38a0b44e191e85dac8cab24b21ad6a70f9b6063d

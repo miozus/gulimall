@@ -14,11 +14,7 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 
 /**
-<<<<<<< HEAD
- * syslog切面
-=======
  * 系统日志切面
->>>>>>> 38a0b44e191e85dac8cab24b21ad6a70f9b6063d
  *
  * @author miozus
  * @date 2022/02/28
@@ -27,12 +23,10 @@ import java.util.Date;
 @Aspect
 @Slf4j
 public class SysLogAspect {
+
 //    @Autowired
 //    private SysLogService sysLogService;
-<<<<<<< HEAD
 //    private static Logger logger = LoggerFactory.getLogger(SysLogAspect.class);
-=======
->>>>>>> 38a0b44e191e85dac8cab24b21ad6a70f9b6063d
 
     @Around("@annotation(sysLog)")
     public Object around(ProceedingJoinPoint joinPoint, SysLog sysLog) throws Throwable {

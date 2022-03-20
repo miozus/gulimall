@@ -4,7 +4,7 @@ test_oauth_login (__main__.MallTest) ... skipped 'ok'
 test_order_confim (__main__.MallTest) ... skipped 'todo'
 test_order_pay (__main__.MallTest) ... skipped 'todo'
 test_regist (__main__.MallTest)
-ÑéÖ¤ÂëÁÙÊ±Éú³ÉÔÚ Redis ... skipped 'Ò»´ÎÐÔ'
+ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Redis ... skipped 'Ò»ï¿½ï¿½ï¿½ï¿½'
 test_sign_login (__main__.MallTest) ... skipped 'ok'
 
 ----------------------------------------------------------------------
@@ -17,7 +17,7 @@ test_oauth_login (__main__.MallTest) ... skipped 'ok'
 test_order_confim (__main__.MallTest) ... skipped 'todo'
 test_order_pay (__main__.MallTest) ... skipped 'todo'
 test_regist (__main__.MallTest)
-ÑéÖ¤ÂëÁÙÊ±Éú³ÉÔÚ Redis ... skipped 'Ò»´ÎÐÔ'
+ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Redis ... skipped 'Ò»ï¿½ï¿½ï¿½ï¿½'
 test_sign_login (__main__.MallTest) ... skipped 'ok'
 
 ----------------------------------------------------------------------
@@ -31,7 +31,7 @@ test_oauth_login (__main__.MallTest) ... skipped 'ok'
 test_order_confim (__main__.MallTest) ... skipped 'todo'
 test_order_pay (__main__.MallTest) ... skipped 'todo'
 test_regist (__main__.MallTest)
-ÑéÖ¤ÂëÁÙÊ±Éú³ÉÔÚ Redis ... skipped 'Ò»´ÎÐÔ'
+ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Redis ... skipped 'Ò»ï¿½ï¿½ï¿½ï¿½'
 test_sign_login (__main__.MallTest) ... skipped 'ok'
 
 ======================================================================
@@ -53,7 +53,7 @@ test_oauth_login (__main__.MallTest) ... skipped 'ok'
 test_order_confim (__main__.MallTest) ... skipped 'todo'
 test_order_pay (__main__.MallTest) ... skipped 'todo'
 test_regist (__main__.MallTest)
-ÑéÖ¤ÂëÁÙÊ±Éú³ÉÔÚ Redis ... skipped 'Ò»´ÎÐÔ'
+ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Redis ... skipped 'Ò»ï¿½ï¿½ï¿½ï¿½'
 test_sign_login (__main__.MallTest) ... skipped 'ok'
 
 ----------------------------------------------------------------------
@@ -67,7 +67,7 @@ test_oauth_login (__main__.MallTest) ... skipped 'ok'
 test_order_confim (__main__.MallTest) ... skipped 'todo'
 test_order_pay (__main__.MallTest) ... skipped 'todo'
 test_regist (__main__.MallTest)
-ÑéÖ¤ÂëÁÙÊ±Éú³ÉÔÚ Redis ... skipped 'Ò»´ÎÐÔ'
+ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Redis ... skipped 'Ò»ï¿½ï¿½ï¿½ï¿½'
 test_sign_login (__main__.MallTest) ... skipped 'ok'
 
 ======================================================================
@@ -75,10 +75,10 @@ FAIL: test_go_pay (__main__.MallTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\gulimall.py", line 58, in test_go_pay
-    self.assertEqual(self.driver.title, '¶©µ¥È·ÈÏ')
-AssertionError: '¹ºÎï³µ' != '¶©µ¥È·ÈÏ'
-- ¹ºÎï³µ
-+ ¶©µ¥È·ÈÏ
+    self.assertEqual(self.driver.title, 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½')
+AssertionError: 'ï¿½ï¿½ï¿½ï³µ' != 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
+- ï¿½ï¿½ï¿½ï³µ
++ ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½
 
 
 ----------------------------------------------------------------------
@@ -92,7 +92,7 @@ test_oauth_login (__main__.MallTest) ... skipped 'ok'
 test_order_confim (__main__.MallTest) ... skipped 'todo'
 test_order_pay (__main__.MallTest) ... skipped 'todo'
 test_regist (__main__.MallTest)
-ÑéÖ¤ÂëÁÙÊ±Éú³ÉÔÚ Redis ... skipped 'Ò»´ÎÐÔ'
+ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Redis ... skipped 'Ò»ï¿½ï¿½ï¿½ï¿½'
 test_sign_login (__main__.MallTest) ... skipped 'ok'
 
 ----------------------------------------------------------------------
@@ -106,7 +106,7 @@ test_oauth_login (__main__.MallTest) ... skipped 'ok'
 test_order_confim (__main__.MallTest) ... skipped 'todo'
 test_order_pay (__main__.MallTest) ... skipped 'todo'
 test_regist (__main__.MallTest)
-ÑéÖ¤ÂëÁÙÊ±Éú³ÉÔÚ Redis ... skipped 'Ò»´ÎÐÔ'
+ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Redis ... skipped 'Ò»ï¿½ï¿½ï¿½ï¿½'
 test_sign_login (__main__.MallTest) ... skipped 'ok'
 
 ----------------------------------------------------------------------
@@ -120,7 +120,7 @@ test_oauth_login (__main__.MallTest) ... skipped 'ok'
 test_order_confim (__main__.MallTest) ... ERROR
 test_order_pay (__main__.MallTest) ... skipped 'todo'
 test_regist (__main__.MallTest)
-ÑéÖ¤ÂëÁÙÊ±Éú³ÉÔÚ Redis ... skipped 'Ò»´ÎÐÔ'
+ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Redis ... skipped 'Ò»ï¿½ï¿½ï¿½ï¿½'
 test_sign_login (__main__.MallTest) ... skipped 'ok'
 
 ======================================================================
@@ -175,7 +175,7 @@ test_oauth_login (__main__.MallTest) ... skipped 'ok'
 test_order_confim (__main__.MallTest) ... skipped 'todo'
 test_order_pay (__main__.MallTest) ... skipped 'todo'
 test_regist (__main__.MallTest)
-ÑéÖ¤ÂëÁÙÊ±Éú³ÉÔÚ Redis ... skipped 'Ò»´ÎÐÔ'
+ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Redis ... skipped 'Ò»ï¿½ï¿½ï¿½ï¿½'
 test_sign_login (__main__.MallTest) ... ERROR
 
 ======================================================================
@@ -229,22 +229,22 @@ test_go_pay (__main__.MallTest) ... skipped 'ok'
 test_oauth_login (__main__.MallTest) ... skipped 'ok'
 test_order_confim (__main__.MallTest) ... skipped 'todo'
 test_order_pay (__main__.MallTest) ... skipped 'todo'
-test_regist (__main__.MallTest) ... skipped 'Ò»´ÎÐÔ'
+test_regist (__main__.MallTest) ... skipped 'Ò»ï¿½ï¿½ï¿½ï¿½'
 test_sign_login (__main__.MallTest) ... ok
 
 ----------------------------------------------------------------------
 Ran 8 tests in 3.977s
 
 OK (skipped=7)
-test_add_cart (__main__.MallTest) ... skipped 'ÀëÏß¹ºÎï³µ'
-test_add_cart_login (__main__.MallTest) ... skipped 'ÔÚÏß¹ºÎï³µ'
-test_go_pay (__main__.MallTest) ... skipped '¶©µ¥È·ÈÏ'
+test_add_cart (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_add_cart_login (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_go_pay (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
 test_index (__main__.MallTest) ... ERROR
-test_oauth_login (__main__.MallTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
-test_order_confim (__main__.MallTest) ... skipped 'Ìø×ªÖ§¸¶'
+test_oauth_login (__main__.MallTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
+test_order_confim (__main__.MallTest) ... skipped 'ï¿½ï¿½×ªÖ§ï¿½ï¿½'
 test_order_pay (__main__.MallTest) ... skipped 'todo'
-test_regist (__main__.MallTest) ... skipped '×¢²áÕËºÅ'
-test_sign_login (__main__.MallTest) ... skipped 'ÕËºÅµÇÂ¼'
+test_regist (__main__.MallTest) ... skipped '×¢ï¿½ï¿½ï¿½Ëºï¿½'
+test_sign_login (__main__.MallTest) ... skipped 'ï¿½ËºÅµï¿½Â¼'
 
 ======================================================================
 ERROR: test_index (__main__.MallTest)
@@ -288,15 +288,15 @@ Backtrace:
 Ran 9 tests in 0.004s
 
 FAILED (errors=1, skipped=8)
-test_add_cart (__main__.MallTest) ... skipped 'ÀëÏß¹ºÎï³µ'
-test_add_cart_login (__main__.MallTest) ... skipped 'ÔÚÏß¹ºÎï³µ'
-test_go_pay (__main__.MallTest) ... skipped '¶©µ¥È·ÈÏ'
+test_add_cart (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_add_cart_login (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_go_pay (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
 test_index (__main__.MallTest) ... ERROR
-test_oauth_login (__main__.MallTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
-test_order_confim (__main__.MallTest) ... skipped 'Ìø×ªÖ§¸¶'
+test_oauth_login (__main__.MallTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
+test_order_confim (__main__.MallTest) ... skipped 'ï¿½ï¿½×ªÖ§ï¿½ï¿½'
 test_order_pay (__main__.MallTest) ... skipped 'todo'
-test_regist (__main__.MallTest) ... skipped '×¢²áÕËºÅ'
-test_sign_login (__main__.MallTest) ... skipped 'ÕËºÅµÇÂ¼'
+test_regist (__main__.MallTest) ... skipped '×¢ï¿½ï¿½ï¿½Ëºï¿½'
+test_sign_login (__main__.MallTest) ... skipped 'ï¿½ËºÅµï¿½Â¼'
 
 ======================================================================
 ERROR: test_index (__main__.MallTest)
@@ -340,14 +340,14 @@ Backtrace:
 Ran 9 tests in 0.004s
 
 FAILED (errors=1, skipped=8)
-test_add_cart (__main__.MallTest) ... skipped 'ÀëÏß¹ºÎï³µ'
-test_add_cart_login (__main__.MallTest) ... skipped 'ÔÚÏß¹ºÎï³µ'
-test_go_pay (__main__.MallTest) ... skipped '¶©µ¥È·ÈÏ'
+test_add_cart (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_add_cart_login (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_go_pay (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
 test_index (__main__.MallTest) ... ERROR
-test_oauth_login (__main__.MallTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
-test_order_confim (__main__.MallTest) ... skipped 'Ìø×ªÖ§¸¶'
+test_oauth_login (__main__.MallTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
+test_order_confim (__main__.MallTest) ... skipped 'ï¿½ï¿½×ªÖ§ï¿½ï¿½'
 test_order_pay (__main__.MallTest) ... skipped 'todo'
-test_regist (__main__.MallTest) ... skipped '×¢²áÕËºÅ'
+test_regist (__main__.MallTest) ... skipped '×¢ï¿½ï¿½ï¿½Ëºï¿½'
 test_sign_login (__main__.MallTest) ... ERROR
 
 ======================================================================
@@ -405,14 +405,14 @@ Backtrace:
 Ran 9 tests in 18.014s
 
 FAILED (errors=2, skipped=7)
-test_add_cart (__main__.MallTest) ... skipped 'ÀëÏß¹ºÎï³µ'
-test_add_cart_login (__main__.MallTest) ... skipped 'ÔÚÏß¹ºÎï³µ'
-test_go_pay (__main__.MallTest) ... skipped '¶©µ¥È·ÈÏ'
+test_add_cart (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_add_cart_login (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_go_pay (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
 test_index (__main__.MallTest) ... ERROR
-test_oauth_login (__main__.MallTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
-test_order_confim (__main__.MallTest) ... skipped 'Ìø×ªÖ§¸¶'
+test_oauth_login (__main__.MallTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
+test_order_confim (__main__.MallTest) ... skipped 'ï¿½ï¿½×ªÖ§ï¿½ï¿½'
 test_order_pay (__main__.MallTest) ... skipped 'todo'
-test_regist (__main__.MallTest) ... skipped '×¢²áÕËºÅ'
+test_regist (__main__.MallTest) ... skipped '×¢ï¿½ï¿½ï¿½Ëºï¿½'
 test_sign_login (__main__.MallTest) ... ok
 
 ======================================================================
@@ -429,14 +429,14 @@ TypeError: home() takes 0 positional arguments but 1 was given
 Ran 9 tests in 2.163s
 
 FAILED (errors=1, skipped=7)
-test_add_cart (__main__.MallTest) ... skipped 'ÀëÏß¹ºÎï³µ'
-test_add_cart_login (__main__.MallTest) ... skipped 'ÔÚÏß¹ºÎï³µ'
-test_go_pay (__main__.MallTest) ... skipped '¶©µ¥È·ÈÏ'
+test_add_cart (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_add_cart_login (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_go_pay (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
 test_index (__main__.MallTest) ... ERROR
-test_oauth_login (__main__.MallTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
-test_order_confim (__main__.MallTest) ... skipped 'Ìø×ªÖ§¸¶'
+test_oauth_login (__main__.MallTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
+test_order_confim (__main__.MallTest) ... skipped 'ï¿½ï¿½×ªÖ§ï¿½ï¿½'
 test_order_pay (__main__.MallTest) ... skipped 'todo'
-test_regist (__main__.MallTest) ... skipped '×¢²áÕËºÅ'
+test_regist (__main__.MallTest) ... skipped '×¢ï¿½ï¿½ï¿½Ëºï¿½'
 test_sign_login (__main__.MallTest) ... ERROR
 
 ======================================================================
@@ -519,14 +519,14 @@ Backtrace:
 Ran 9 tests in 0.005s
 
 FAILED (errors=2, skipped=7)
-test_add_cart (__main__.MallTest) ... skipped 'ÀëÏß¹ºÎï³µ'
-test_add_cart_login (__main__.MallTest) ... skipped 'ÔÚÏß¹ºÎï³µ'
-test_go_pay (__main__.MallTest) ... skipped '¶©µ¥È·ÈÏ'
+test_add_cart (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_add_cart_login (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_go_pay (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
 test_index (__main__.MallTest) ... ERROR
-test_oauth_login (__main__.MallTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
-test_order_confim (__main__.MallTest) ... skipped 'Ìø×ªÖ§¸¶'
+test_oauth_login (__main__.MallTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
+test_order_confim (__main__.MallTest) ... skipped 'ï¿½ï¿½×ªÖ§ï¿½ï¿½'
 test_order_pay (__main__.MallTest) ... skipped 'todo'
-test_regist (__main__.MallTest) ... skipped '×¢²áÕËºÅ'
+test_regist (__main__.MallTest) ... skipped '×¢ï¿½ï¿½ï¿½Ëºï¿½'
 test_sign_login (__main__.MallTest) ... ok
 
 ======================================================================
@@ -543,15 +543,15 @@ TypeError: home() takes 0 positional arguments but 1 was given
 Ran 9 tests in 2.032s
 
 FAILED (errors=1, skipped=7)
-test_add_cart (__main__.MallTest) ... skipped 'ÀëÏß¹ºÎï³µ'
-test_add_cart_login (__main__.MallTest) ... skipped 'ÔÚÏß¹ºÎï³µ'
-test_go_pay (__main__.MallTest) ... skipped '¶©µ¥È·ÈÏ'
+test_add_cart (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_add_cart_login (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_go_pay (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
 test_index (__main__.MallTest) ... ERROR
-test_oauth_login (__main__.MallTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
-test_order_confim (__main__.MallTest) ... skipped 'Ìø×ªÖ§¸¶'
+test_oauth_login (__main__.MallTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
+test_order_confim (__main__.MallTest) ... skipped 'ï¿½ï¿½×ªÖ§ï¿½ï¿½'
 test_order_pay (__main__.MallTest) ... skipped 'todo'
-test_regist (__main__.MallTest) ... skipped '×¢²áÕËºÅ'
-test_sign_login (__main__.MallTest) ... skipped 'ÕËºÅµÇÂ¼'
+test_regist (__main__.MallTest) ... skipped '×¢ï¿½ï¿½ï¿½Ëºï¿½'
+test_sign_login (__main__.MallTest) ... skipped 'ï¿½ËºÅµï¿½Â¼'
 
 ======================================================================
 ERROR: test_index (__main__.MallTest)
@@ -595,15 +595,15 @@ Backtrace:
 Ran 9 tests in 0.003s
 
 FAILED (errors=1, skipped=8)
-test_add_cart (__main__.MallTest) ... skipped 'ÀëÏß¹ºÎï³µ'
-test_add_cart_login (__main__.MallTest) ... skipped 'ÔÚÏß¹ºÎï³µ'
-test_go_pay (__main__.MallTest) ... skipped '¶©µ¥È·ÈÏ'
+test_add_cart (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_add_cart_login (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_go_pay (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
 test_index (__main__.MallTest) ... ERROR
-test_oauth_login (__main__.MallTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
-test_order_confim (__main__.MallTest) ... skipped 'Ìø×ªÖ§¸¶'
+test_oauth_login (__main__.MallTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
+test_order_confim (__main__.MallTest) ... skipped 'ï¿½ï¿½×ªÖ§ï¿½ï¿½'
 test_order_pay (__main__.MallTest) ... skipped 'todo'
-test_regist (__main__.MallTest) ... skipped '×¢²áÕËºÅ'
-test_sign_login (__main__.MallTest) ... skipped 'ÕËºÅµÇÂ¼'
+test_regist (__main__.MallTest) ... skipped '×¢ï¿½ï¿½ï¿½Ëºï¿½'
+test_sign_login (__main__.MallTest) ... skipped 'ï¿½ËºÅµï¿½Â¼'
 
 ======================================================================
 ERROR: test_index (__main__.MallTest)
@@ -619,15 +619,15 @@ TypeError: home() takes 0 positional arguments but 1 was given
 Ran 9 tests in 0.257s
 
 FAILED (errors=1, skipped=8)
-test_add_cart (__main__.MallTest) ... skipped 'ÀëÏß¹ºÎï³µ'
-test_add_cart_login (__main__.MallTest) ... skipped 'ÔÚÏß¹ºÎï³µ'
-test_go_pay (__main__.MallTest) ... skipped '¶©µ¥È·ÈÏ'
+test_add_cart (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_add_cart_login (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_go_pay (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
 test_index (__main__.MallTest) ... ERROR
-test_oauth_login (__main__.MallTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
-test_order_confim (__main__.MallTest) ... skipped 'Ìø×ªÖ§¸¶'
+test_oauth_login (__main__.MallTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
+test_order_confim (__main__.MallTest) ... skipped 'ï¿½ï¿½×ªÖ§ï¿½ï¿½'
 test_order_pay (__main__.MallTest) ... skipped 'todo'
-test_regist (__main__.MallTest) ... skipped '×¢²áÕËºÅ'
-test_sign_login (__main__.MallTest) ... skipped 'ÕËºÅµÇÂ¼'
+test_regist (__main__.MallTest) ... skipped '×¢ï¿½ï¿½ï¿½Ëºï¿½'
+test_sign_login (__main__.MallTest) ... skipped 'ï¿½ËºÅµï¿½Â¼'
 
 ======================================================================
 ERROR: test_index (__main__.MallTest)
@@ -643,15 +643,15 @@ TypeError: home() takes 0 positional arguments but 1 was given
 Ran 9 tests in 0.245s
 
 FAILED (errors=1, skipped=8)
-test_add_cart (__main__.MallTest) ... skipped 'ÀëÏß¹ºÎï³µ'
-test_add_cart_login (__main__.MallTest) ... skipped 'ÔÚÏß¹ºÎï³µ'
-test_go_pay (__main__.MallTest) ... skipped '¶©µ¥È·ÈÏ'
+test_add_cart (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_add_cart_login (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_go_pay (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
 test_index (__main__.MallTest) ... ERROR
-test_oauth_login (__main__.MallTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
-test_order_confim (__main__.MallTest) ... skipped 'Ìø×ªÖ§¸¶'
+test_oauth_login (__main__.MallTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
+test_order_confim (__main__.MallTest) ... skipped 'ï¿½ï¿½×ªÖ§ï¿½ï¿½'
 test_order_pay (__main__.MallTest) ... skipped 'todo'
-test_regist (__main__.MallTest) ... skipped '×¢²áÕËºÅ'
-test_sign_login (__main__.MallTest) ... skipped 'ÕËºÅµÇÂ¼'
+test_regist (__main__.MallTest) ... skipped '×¢ï¿½ï¿½ï¿½Ëºï¿½'
+test_sign_login (__main__.MallTest) ... skipped 'ï¿½ËºÅµï¿½Â¼'
 
 ======================================================================
 ERROR: test_index (__main__.MallTest)
@@ -667,15 +667,15 @@ TypeError: home() takes 0 positional arguments but 1 was given
 Ran 9 tests in 0.254s
 
 FAILED (errors=1, skipped=8)
-test_add_cart (__main__.MallTest) ... skipped 'ÀëÏß¹ºÎï³µ'
-test_add_cart_login (__main__.MallTest) ... skipped 'ÔÚÏß¹ºÎï³µ'
-test_go_pay (__main__.MallTest) ... skipped '¶©µ¥È·ÈÏ'
+test_add_cart (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_add_cart_login (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_go_pay (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
 test_index (__main__.MallTest) ... ERROR
-test_oauth_login (__main__.MallTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
-test_order_confim (__main__.MallTest) ... skipped 'Ìø×ªÖ§¸¶'
+test_oauth_login (__main__.MallTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
+test_order_confim (__main__.MallTest) ... skipped 'ï¿½ï¿½×ªÖ§ï¿½ï¿½'
 test_order_pay (__main__.MallTest) ... skipped 'todo'
-test_regist (__main__.MallTest) ... skipped '×¢²áÕËºÅ'
-test_sign_login (__main__.MallTest) ... skipped 'ÕËºÅµÇÂ¼'
+test_regist (__main__.MallTest) ... skipped '×¢ï¿½ï¿½ï¿½Ëºï¿½'
+test_sign_login (__main__.MallTest) ... skipped 'ï¿½ËºÅµï¿½Â¼'
 
 ======================================================================
 ERROR: test_index (__main__.MallTest)
@@ -691,29 +691,29 @@ TypeError: home() takes 0 positional arguments but 1 was given
 Ran 9 tests in 0.271s
 
 FAILED (errors=1, skipped=8)
-test_add_cart (__main__.MallTest) ... skipped 'ÀëÏß¹ºÎï³µ'
-test_add_cart_login (__main__.MallTest) ... skipped 'ÔÚÏß¹ºÎï³µ'
-test_go_pay (__main__.MallTest) ... skipped '¶©µ¥È·ÈÏ'
+test_add_cart (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_add_cart_login (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_go_pay (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
 test_index (__main__.MallTest) ... ok
-test_oauth_login (__main__.MallTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
-test_order_confim (__main__.MallTest) ... skipped 'Ìø×ªÖ§¸¶'
+test_oauth_login (__main__.MallTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
+test_order_confim (__main__.MallTest) ... skipped 'ï¿½ï¿½×ªÖ§ï¿½ï¿½'
 test_order_pay (__main__.MallTest) ... skipped 'todo'
-test_regist (__main__.MallTest) ... skipped '×¢²áÕËºÅ'
-test_sign_login (__main__.MallTest) ... skipped 'ÕËºÅµÇÂ¼'
+test_regist (__main__.MallTest) ... skipped '×¢ï¿½ï¿½ï¿½Ëºï¿½'
+test_sign_login (__main__.MallTest) ... skipped 'ï¿½ËºÅµï¿½Â¼'
 
 ----------------------------------------------------------------------
 Ran 9 tests in 1.597s
 
 OK (skipped=8)
-test_add_cart (__main__.MallTest) ... skipped 'ÀëÏß¹ºÎï³µ'
-test_add_cart_login (__main__.MallTest) ... skipped 'ÔÚÏß¹ºÎï³µ'
-test_go_pay (__main__.MallTest) ... skipped '¶©µ¥È·ÈÏ'
+test_add_cart (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_add_cart_login (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_go_pay (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
 test_index (__main__.MallTest) ... ERROR
-test_oauth_login (__main__.MallTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
-test_order_confim (__main__.MallTest) ... skipped 'Ìø×ªÖ§¸¶'
+test_oauth_login (__main__.MallTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
+test_order_confim (__main__.MallTest) ... skipped 'ï¿½ï¿½×ªÖ§ï¿½ï¿½'
 test_order_pay (__main__.MallTest) ... skipped 'todo'
-test_regist (__main__.MallTest) ... skipped '×¢²áÕËºÅ'
-test_sign_login (__main__.MallTest) ... skipped 'ÕËºÅµÇÂ¼'
+test_regist (__main__.MallTest) ... skipped '×¢ï¿½ï¿½ï¿½Ëºï¿½'
+test_sign_login (__main__.MallTest) ... skipped 'ï¿½ËºÅµï¿½Â¼'
 
 ======================================================================
 ERROR: test_index (__main__.MallTest)
@@ -727,68 +727,68 @@ TypeError: can only concatenate str (not "list") to str
 Ran 9 tests in 0.004s
 
 FAILED (errors=1, skipped=8)
-test_add_cart (__main__.MallTest) ... skipped 'ÀëÏß¹ºÎï³µ'
-test_add_cart_login (__main__.MallTest) ... skipped 'ÔÚÏß¹ºÎï³µ'
-test_go_pay (__main__.MallTest) ... skipped '¶©µ¥È·ÈÏ'
+test_add_cart (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_add_cart_login (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_go_pay (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
 test_index (__main__.MallTest) ... ok
-test_oauth_login (__main__.MallTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
-test_order_confim (__main__.MallTest) ... skipped 'Ìø×ªÖ§¸¶'
+test_oauth_login (__main__.MallTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
+test_order_confim (__main__.MallTest) ... skipped 'ï¿½ï¿½×ªÖ§ï¿½ï¿½'
 test_order_pay (__main__.MallTest) ... skipped 'todo'
-test_regist (__main__.MallTest) ... skipped '×¢²áÕËºÅ'
-test_sign_login (__main__.MallTest) ... skipped 'ÕËºÅµÇÂ¼'
+test_regist (__main__.MallTest) ... skipped '×¢ï¿½ï¿½ï¿½Ëºï¿½'
+test_sign_login (__main__.MallTest) ... skipped 'ï¿½ËºÅµï¿½Â¼'
 
 ----------------------------------------------------------------------
 Ran 9 tests in 1.387s
 
 OK (skipped=8)
-test_add_cart (__main__.MallTest) ... skipped 'ÀëÏß¹ºÎï³µ'
-test_add_cart_login (__main__.MallTest) ... skipped 'ÔÚÏß¹ºÎï³µ'
-test_go_pay (__main__.MallTest) ... skipped '¶©µ¥È·ÈÏ'
+test_add_cart (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_add_cart_login (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_go_pay (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
 test_index (__main__.MallTest) ... ok
-test_oauth_login (__main__.MallTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
-test_order_confim (__main__.MallTest) ... skipped 'Ìø×ªÖ§¸¶'
+test_oauth_login (__main__.MallTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
+test_order_confim (__main__.MallTest) ... skipped 'ï¿½ï¿½×ªÖ§ï¿½ï¿½'
 test_order_pay (__main__.MallTest) ... skipped 'todo'
-test_regist (__main__.MallTest) ... skipped '×¢²áÕËºÅ'
-test_sign_login (__main__.MallTest) ... skipped 'ÕËºÅµÇÂ¼'
+test_regist (__main__.MallTest) ... skipped '×¢ï¿½ï¿½ï¿½Ëºï¿½'
+test_sign_login (__main__.MallTest) ... skipped 'ï¿½ËºÅµï¿½Â¼'
 
 ----------------------------------------------------------------------
 Ran 9 tests in 0.944s
 
 OK (skipped=8)
-test_add_cart (__main__.MallTest) ... skipped 'ÀëÏß¹ºÎï³µ'
-test_add_cart_login (__main__.MallTest) ... skipped 'ÔÚÏß¹ºÎï³µ'
-test_go_pay (__main__.MallTest) ... skipped '¶©µ¥È·ÈÏ'
+test_add_cart (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_add_cart_login (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_go_pay (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
 test_index (__main__.MallTest) ... FAIL
-test_oauth_login (__main__.MallTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
-test_order_confim (__main__.MallTest) ... skipped 'Ìø×ªÖ§¸¶'
+test_oauth_login (__main__.MallTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
+test_order_confim (__main__.MallTest) ... skipped 'ï¿½ï¿½×ªÖ§ï¿½ï¿½'
 test_order_pay (__main__.MallTest) ... skipped 'todo'
-test_regist (__main__.MallTest) ... skipped '×¢²áÕËºÅ'
-test_sign_login (__main__.MallTest) ... skipped 'ÕËºÅµÇÂ¼'
+test_regist (__main__.MallTest) ... skipped '×¢ï¿½ï¿½ï¿½Ëºï¿½'
+test_sign_login (__main__.MallTest) ... skipped 'ï¿½ËºÅµï¿½Â¼'
 
 ======================================================================
 FAIL: test_index (__main__.MallTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\gulimall.py", line 21, in test_index
-    self.assertEqual(self.driver.title, '¹ÈÁ£ÉÌ³Ç')
-AssertionError: 'ÐÂ±êÇ©Ò³' != '¹ÈÁ£ÉÌ³Ç'
-- ÐÂ±êÇ©Ò³
-+ ¹ÈÁ£ÉÌ³Ç
+    self.assertEqual(self.driver.title, 'ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½')
+AssertionError: 'ï¿½Â±ï¿½Ç©Ò³' != 'ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½'
+- ï¿½Â±ï¿½Ç©Ò³
++ ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½
 
 
 ----------------------------------------------------------------------
 Ran 9 tests in 0.003s
 
 FAILED (failures=1, skipped=8)
-test_add_cart (__main__.MallTest) ... skipped 'ÀëÏß¹ºÎï³µ'
-test_add_cart_login (__main__.MallTest) ... skipped 'ÔÚÏß¹ºÎï³µ'
-test_go_pay (__main__.MallTest) ... skipped '¶©µ¥È·ÈÏ'
+test_add_cart (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_add_cart_login (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_go_pay (__main__.MallTest) ... skipped 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
 test_index (__main__.MallTest) ... ok
-test_oauth_login (__main__.MallTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
-test_order_confim (__main__.MallTest) ... skipped 'Ìø×ªÖ§¸¶'
+test_oauth_login (__main__.MallTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
+test_order_confim (__main__.MallTest) ... skipped 'ï¿½ï¿½×ªÖ§ï¿½ï¿½'
 test_order_pay (__main__.MallTest) ... skipped 'todo'
-test_regist (__main__.MallTest) ... skipped '×¢²áÕËºÅ'
-test_sign_login (__main__.MallTest) ... skipped 'ÕËºÅµÇÂ¼'
+test_regist (__main__.MallTest) ... skipped '×¢ï¿½ï¿½ï¿½Ëºï¿½'
+test_sign_login (__main__.MallTest) ... skipped 'ï¿½ËºÅµï¿½Â¼'
 
 ----------------------------------------------------------------------
 Ran 9 tests in 1.130s
@@ -988,11 +988,11 @@ Backtrace:
 Ran 9 tests in 63.195s
 
 FAILED (errors=4, skipped=1)
-test_add_cart (__main__.AuthorizeTest) ... skipped 'ÀëÏß¹ºÎï³µ'
+test_add_cart (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_index (__main__.AuthorizeTest) ... ERROR
 test_oauth_login (__main__.AuthorizeTest) ... ERROR
-test_regist (__main__.AuthorizeTest) ... skipped '×¢²áÕËºÅ'
-test_sign_login (__main__.AuthorizeTest) ... skipped 'ÕËºÅµÇÂ¼'
+test_regist (__main__.AuthorizeTest) ... skipped '×¢ï¿½ï¿½ï¿½Ëºï¿½'
+test_sign_login (__main__.AuthorizeTest) ... skipped 'ï¿½ËºÅµï¿½Â¼'
 
 ======================================================================
 ERROR: test_index (__main__.AuthorizeTest)
@@ -1050,11 +1050,11 @@ TypeError: Object of type Api is not JSON serializable
 Ran 5 tests in 0.008s
 
 FAILED (errors=2, skipped=3)
-test_add_cart (__main__.AuthorizeTest) ... skipped 'ÀëÏß¹ºÎï³µ'
+test_add_cart (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_index (__main__.AuthorizeTest) ... FAIL
 test_oauth_login (__main__.AuthorizeTest) ... ERROR
-test_regist (__main__.AuthorizeTest) ... skipped '×¢²áÕËºÅ'
-test_sign_login (__main__.AuthorizeTest) ... skipped 'ÕËºÅµÇÂ¼'
+test_regist (__main__.AuthorizeTest) ... skipped '×¢ï¿½ï¿½ï¿½Ëºï¿½'
+test_sign_login (__main__.AuthorizeTest) ... skipped 'ï¿½ËºÅµï¿½Â¼'
 
 ======================================================================
 ERROR: test_oauth_login (__main__.AuthorizeTest)
@@ -1102,21 +1102,21 @@ FAIL: test_index (__main__.AuthorizeTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 22, in test_index
-    self.assertEqual(self.driver.title, '¹ÈÁ£ÉÌ³Ç')
-AssertionError: 'Error' != '¹ÈÁ£ÉÌ³Ç'
+    self.assertEqual(self.driver.title, 'ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½')
+AssertionError: 'Error' != 'ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½'
 - Error
-+ ¹ÈÁ£ÉÌ³Ç
++ ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½
 
 
 ----------------------------------------------------------------------
 Ran 5 tests in 14.443s
 
 FAILED (failures=1, errors=1, skipped=3)
-test_add_cart (__main__.AuthorizeTest) ... skipped 'ÀëÏß¹ºÎï³µ'
+test_add_cart (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_index (__main__.AuthorizeTest) ... ok
 test_oauth_login (__main__.AuthorizeTest) ... ok
-test_regist (__main__.AuthorizeTest) ... skipped '×¢²áÕËºÅ'
-test_sign_login (__main__.AuthorizeTest) ... skipped 'ÕËºÅµÇÂ¼'
+test_regist (__main__.AuthorizeTest) ... skipped '×¢ï¿½ï¿½ï¿½Ëºï¿½'
+test_sign_login (__main__.AuthorizeTest) ... skipped 'ï¿½ËºÅµï¿½Â¼'
 
 ----------------------------------------------------------------------
 Ran 5 tests in 8.421s
@@ -1125,8 +1125,8 @@ OK (skipped=3)
 test_add_cart (__main__.AuthorizeTest) ... ok
 test_index (__main__.AuthorizeTest) ... ok
 test_oauth_login (__main__.AuthorizeTest) ... ERROR
-test_regist (__main__.AuthorizeTest) ... skipped '×¢²áÕËºÅ'
-test_sign_login (__main__.AuthorizeTest) ... skipped 'ÕËºÅµÇÂ¼'
+test_regist (__main__.AuthorizeTest) ... skipped '×¢ï¿½ï¿½ï¿½Ëºï¿½'
+test_sign_login (__main__.AuthorizeTest) ... skipped 'ï¿½ËºÅµï¿½Â¼'
 
 ======================================================================
 ERROR: test_oauth_login (__main__.AuthorizeTest)
@@ -1176,8 +1176,8 @@ FAILED (errors=1, skipped=2)
 test_add_cart (__main__.AuthorizeTest) ... ok
 test_index (__main__.AuthorizeTest) ... ok
 test_oauth_login (__main__.AuthorizeTest) ... ERROR
-test_regist (__main__.AuthorizeTest) ... skipped '×¢²áÕËºÅ'
-test_sign_login (__main__.AuthorizeTest) ... skipped 'ÕËºÅµÇÂ¼'
+test_regist (__main__.AuthorizeTest) ... skipped '×¢ï¿½ï¿½ï¿½Ëºï¿½'
+test_sign_login (__main__.AuthorizeTest) ... skipped 'ï¿½ËºÅµï¿½Â¼'
 
 ======================================================================
 ERROR: test_oauth_login (__main__.AuthorizeTest)
@@ -1326,9 +1326,9 @@ Backtrace:
 Ran 5 tests in 24.462s
 
 FAILED (errors=1, skipped=1)
-test_add_cart_login (__main__.OrderTest) ... skipped 'ÔÚÏß¹ºÎï³µ'
-test_go_pay (__main__.OrderTest) ... skipped '¶©µ¥È·ÈÏ'
-test_index (__main__.OrderTest) ... skipped 'Ê×Ò³'
+test_add_cart_login (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_go_pay (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
+test_index (__main__.OrderTest) ... skipped 'ï¿½ï¿½Ò³'
 test_order_confirm (__main__.OrderTest) ... ERROR
 test_order_pay (__main__.OrderTest) ... skipped 'todo'
 
@@ -1377,9 +1377,9 @@ Backtrace:
 Ran 5 tests in 12.037s
 
 FAILED (errors=1, skipped=4)
-test_add_cart_login (__main__.OrderTest) ... skipped 'ÔÚÏß¹ºÎï³µ'
-test_go_pay (__main__.OrderTest) ... skipped '¶©µ¥È·ÈÏ'
-test_index (__main__.OrderTest) ... skipped 'Ê×Ò³'
+test_add_cart_login (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_go_pay (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
+test_index (__main__.OrderTest) ... skipped 'ï¿½ï¿½Ò³'
 test_order_confirm (__main__.OrderTest) ... ERROR
 test_order_pay (__main__.OrderTest) ... skipped 'todo'
 
@@ -1428,9 +1428,9 @@ Backtrace:
 Ran 5 tests in 12.202s
 
 FAILED (errors=1, skipped=4)
-test_add_cart_login (__main__.OrderTest) ... skipped 'ÔÚÏß¹ºÎï³µ'
-test_go_pay (__main__.OrderTest) ... skipped '¶©µ¥È·ÈÏ'
-test_index (__main__.OrderTest) ... skipped 'Ê×Ò³'
+test_add_cart_login (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_go_pay (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
+test_index (__main__.OrderTest) ... skipped 'ï¿½ï¿½Ò³'
 test_order_confirm (__main__.OrderTest) ... ERROR
 test_order_pay (__main__.OrderTest) ... skipped 'todo'
 
@@ -1479,9 +1479,9 @@ Backtrace:
 Ran 5 tests in 11.867s
 
 FAILED (errors=1, skipped=4)
-test_add_cart_login (__main__.OrderTest) ... skipped 'ÔÚÏß¹ºÎï³µ'
-test_go_pay (__main__.OrderTest) ... skipped '¶©µ¥È·ÈÏ'
-test_index (__main__.OrderTest) ... skipped 'Ê×Ò³'
+test_add_cart_login (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_go_pay (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
+test_index (__main__.OrderTest) ... skipped 'ï¿½ï¿½Ò³'
 test_order_confirm (__main__.OrderTest) ... ERROR
 test_order_pay (__main__.OrderTest) ... skipped 'todo'
 
@@ -1530,9 +1530,9 @@ Backtrace:
 Ran 5 tests in 12.438s
 
 FAILED (errors=1, skipped=4)
-test_add_cart_login (__main__.OrderTest) ... skipped 'ÔÚÏß¹ºÎï³µ'
-test_go_pay (__main__.OrderTest) ... skipped '¶©µ¥È·ÈÏ'
-test_index (__main__.OrderTest) ... skipped 'Ê×Ò³'
+test_add_cart_login (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_go_pay (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
+test_index (__main__.OrderTest) ... skipped 'ï¿½ï¿½Ò³'
 test_order_confirm (__main__.OrderTest) ... ERROR
 test_order_pay (__main__.OrderTest) ... skipped 'todo'
 
@@ -1581,9 +1581,9 @@ Backtrace:
 Ran 5 tests in 12.166s
 
 FAILED (errors=1, skipped=4)
-test_add_cart_login (__main__.OrderTest) ... skipped 'ÔÚÏß¹ºÎï³µ'
-test_go_pay (__main__.OrderTest) ... skipped '¶©µ¥È·ÈÏ'
-test_index (__main__.OrderTest) ... skipped 'Ê×Ò³'
+test_add_cart_login (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_go_pay (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
+test_index (__main__.OrderTest) ... skipped 'ï¿½ï¿½Ò³'
 test_order_confirm (__main__.OrderTest) ... ERROR
 test_order_pay (__main__.OrderTest) ... skipped 'todo'
 
@@ -1632,9 +1632,9 @@ Backtrace:
 Ran 5 tests in 11.577s
 
 FAILED (errors=1, skipped=4)
-test_add_cart_login (__main__.OrderTest) ... skipped 'ÔÚÏß¹ºÎï³µ'
-test_go_pay (__main__.OrderTest) ... skipped '¶©µ¥È·ÈÏ'
-test_index (__main__.OrderTest) ... skipped 'Ê×Ò³'
+test_add_cart_login (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_go_pay (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
+test_index (__main__.OrderTest) ... skipped 'ï¿½ï¿½Ò³'
 test_order_confirm (__main__.OrderTest) ... ERROR
 test_order_pay (__main__.OrderTest) ... skipped 'todo'
 
@@ -1683,9 +1683,9 @@ Backtrace:
 Ran 5 tests in 11.490s
 
 FAILED (errors=1, skipped=4)
-test_add_cart_login (__main__.OrderTest) ... skipped 'ÔÚÏß¹ºÎï³µ'
-test_go_pay (__main__.OrderTest) ... skipped '¶©µ¥È·ÈÏ'
-test_index (__main__.OrderTest) ... skipped 'Ê×Ò³'
+test_add_cart_login (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_go_pay (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
+test_index (__main__.OrderTest) ... skipped 'ï¿½ï¿½Ò³'
 test_order_confirm (__main__.OrderTest) ... ERROR
 test_order_pay (__main__.OrderTest) ... skipped 'todo'
 
@@ -1734,9 +1734,9 @@ Backtrace:
 Ran 5 tests in 11.417s
 
 FAILED (errors=1, skipped=4)
-test_add_cart_login (__main__.OrderTest) ... skipped 'ÔÚÏß¹ºÎï³µ'
-test_go_pay (__main__.OrderTest) ... skipped '¶©µ¥È·ÈÏ'
-test_index (__main__.OrderTest) ... skipped 'Ê×Ò³'
+test_add_cart_login (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_go_pay (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
+test_index (__main__.OrderTest) ... skipped 'ï¿½ï¿½Ò³'
 test_order_confirm (__main__.OrderTest) ... ERROR
 test_order_pay (__main__.OrderTest) ... skipped 'todo'
 
@@ -1785,9 +1785,9 @@ Backtrace:
 Ran 5 tests in 11.768s
 
 FAILED (errors=1, skipped=4)
-test_add_cart_login (__main__.OrderTest) ... skipped 'ÔÚÏß¹ºÎï³µ'
-test_go_pay (__main__.OrderTest) ... skipped '¶©µ¥È·ÈÏ'
-test_index (__main__.OrderTest) ... skipped 'Ê×Ò³'
+test_add_cart_login (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_go_pay (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
+test_index (__main__.OrderTest) ... skipped 'ï¿½ï¿½Ò³'
 test_order_confirm (__main__.OrderTest) ... ERROR
 test_order_pay (__main__.OrderTest) ... skipped 'todo'
 
@@ -1838,8 +1838,8 @@ Ran 5 tests in 70.637s
 FAILED (errors=1, skipped=4)
 test_add_cart (__main__.AuthorizeTest) ... ERROR
 test_index (__main__.AuthorizeTest) ... ok
-test_oauth_login (__main__.AuthorizeTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
-test_regist (__main__.AuthorizeTest) ... skipped '×¢²áÕËºÅ'
+test_oauth_login (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
+test_regist (__main__.AuthorizeTest) ... skipped '×¢ï¿½ï¿½ï¿½Ëºï¿½'
 test_sign_login (__main__.AuthorizeTest) ... ERROR
 
 ======================================================================
@@ -1938,18 +1938,18 @@ Ran 5 tests in 20.433s
 
 FAILED (errors=2, skipped=2)
 test_add_cart (__main__.AuthorizeTest) ... ok
-test_index (__main__.AuthorizeTest) ... skipped 'Ê×Ò³'
-test_oauth_login (__main__.AuthorizeTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
-test_regist (__main__.AuthorizeTest) ... skipped '×¢²áÕËºÅ'
+test_index (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½Ò³'
+test_oauth_login (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
+test_regist (__main__.AuthorizeTest) ... skipped '×¢ï¿½ï¿½ï¿½Ëºï¿½'
 test_sign_login (__main__.AuthorizeTest) ... ok
 
 ----------------------------------------------------------------------
 Ran 5 tests in 15.625s
 
 OK (skipped=3)
-test_add_cart_login (__main__.OrderTest) ... skipped 'ÔÚÏß¹ºÎï³µ'
-test_go_pay (__main__.OrderTest) ... skipped '¶©µ¥È·ÈÏ'
-test_index (__main__.OrderTest) ... skipped 'Ê×Ò³'
+test_add_cart_login (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_go_pay (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
+test_index (__main__.OrderTest) ... skipped 'ï¿½ï¿½Ò³'
 test_order_confirm (__main__.OrderTest) ... ERROR
 test_order_pay (__main__.OrderTest) ... skipped 'todo'
 
@@ -2004,9 +2004,9 @@ Backtrace:
 Ran 5 tests in 6.514s
 
 FAILED (errors=1, skipped=4)
-test_add_cart_login (__main__.OrderTest) ... skipped 'ÔÚÏß¹ºÎï³µ'
-test_go_pay (__main__.OrderTest) ... skipped '¶©µ¥È·ÈÏ'
-test_index (__main__.OrderTest) ... skipped 'Ê×Ò³'
+test_add_cart_login (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_go_pay (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
+test_index (__main__.OrderTest) ... skipped 'ï¿½ï¿½Ò³'
 test_order_confirm (__main__.OrderTest) ... ERROR
 test_order_pay (__main__.OrderTest) ... skipped 'todo'
 
@@ -2061,9 +2061,9 @@ Backtrace:
 Ran 5 tests in 3.087s
 
 FAILED (errors=1, skipped=4)
-test_add_cart_login (__main__.OrderTest) ... skipped 'ÔÚÏß¹ºÎï³µ'
-test_go_pay (__main__.OrderTest) ... skipped '¶©µ¥È·ÈÏ'
-test_index (__main__.OrderTest) ... skipped 'Ê×Ò³'
+test_add_cart_login (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_go_pay (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
+test_index (__main__.OrderTest) ... skipped 'ï¿½ï¿½Ò³'
 test_order_confirm (__main__.OrderTest) ... ERROR
 test_order_pay (__main__.OrderTest) ... skipped 'todo'
 
@@ -2118,9 +2118,9 @@ Backtrace:
 Ran 5 tests in 2.666s
 
 FAILED (errors=1, skipped=4)
-test_add_cart_login (__main__.OrderTest) ... skipped 'ÔÚÏß¹ºÎï³µ'
-test_go_pay (__main__.OrderTest) ... skipped '¶©µ¥È·ÈÏ'
-test_index (__main__.OrderTest) ... skipped 'Ê×Ò³'
+test_add_cart_login (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_go_pay (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
+test_index (__main__.OrderTest) ... skipped 'ï¿½ï¿½Ò³'
 test_order_confirm (__main__.OrderTest) ... ERROR
 test_order_pay (__main__.OrderTest) ... skipped 'todo'
 
@@ -2175,9 +2175,9 @@ Backtrace:
 Ran 5 tests in 2.511s
 
 FAILED (errors=1, skipped=4)
-test_add_cart_login (__main__.OrderTest) ... skipped 'ÔÚÏß¹ºÎï³µ'
-test_go_pay (__main__.OrderTest) ... skipped '¶©µ¥È·ÈÏ'
-test_index (__main__.OrderTest) ... skipped 'Ê×Ò³'
+test_add_cart_login (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_go_pay (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
+test_index (__main__.OrderTest) ... skipped 'ï¿½ï¿½Ò³'
 test_order_confirm (__main__.OrderTest) ... ERROR
 test_order_pay (__main__.OrderTest) ... skipped 'todo'
 
@@ -2232,9 +2232,9 @@ Backtrace:
 Ran 5 tests in 2.187s
 
 FAILED (errors=1, skipped=4)
-test_add_cart_login (__main__.OrderTest) ... skipped 'ÔÚÏß¹ºÎï³µ'
-test_go_pay (__main__.OrderTest) ... skipped '¶©µ¥È·ÈÏ'
-test_index (__main__.OrderTest) ... skipped 'Ê×Ò³'
+test_add_cart_login (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_go_pay (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
+test_index (__main__.OrderTest) ... skipped 'ï¿½ï¿½Ò³'
 test_order_confirm (__main__.OrderTest) ... ERROR
 test_order_pay (__main__.OrderTest) ... skipped 'todo'
 
@@ -2289,9 +2289,9 @@ Backtrace:
 Ran 5 tests in 2.563s
 
 FAILED (errors=1, skipped=4)
-test_add_cart_login (__main__.OrderTest) ... skipped 'ÔÚÏß¹ºÎï³µ'
-test_go_pay (__main__.OrderTest) ... skipped '¶©µ¥È·ÈÏ'
-test_index (__main__.OrderTest) ... skipped 'Ê×Ò³'
+test_add_cart_login (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_go_pay (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
+test_index (__main__.OrderTest) ... skipped 'ï¿½ï¿½Ò³'
 test_order_confirm (__main__.OrderTest) ... ERROR
 test_order_pay (__main__.OrderTest) ... skipped 'todo'
 
@@ -2346,9 +2346,9 @@ Backtrace:
 Ran 5 tests in 3.889s
 
 FAILED (errors=1, skipped=4)
-test_add_cart_login (__main__.OrderTest) ... skipped 'ÔÚÏß¹ºÎï³µ'
-test_go_pay (__main__.OrderTest) ... skipped '¶©µ¥È·ÈÏ'
-test_index (__main__.OrderTest) ... skipped 'Ê×Ò³'
+test_add_cart_login (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_go_pay (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
+test_index (__main__.OrderTest) ... skipped 'ï¿½ï¿½Ò³'
 test_order_confirm (__main__.OrderTest) ... ERROR
 test_order_pay (__main__.OrderTest) ... skipped 'todo'
 
@@ -2403,9 +2403,9 @@ Backtrace:
 Ran 5 tests in 4.415s
 
 FAILED (errors=1, skipped=4)
-test_add_cart_login (__main__.OrderTest) ... skipped 'ÔÚÏß¹ºÎï³µ'
-test_go_pay (__main__.OrderTest) ... skipped '¶©µ¥È·ÈÏ'
-test_index (__main__.OrderTest) ... skipped 'Ê×Ò³'
+test_add_cart_login (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_go_pay (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
+test_index (__main__.OrderTest) ... skipped 'ï¿½ï¿½Ò³'
 test_order_confirm (__main__.OrderTest) ... FAIL
 test_order_pay (__main__.OrderTest) ... skipped 'todo'
 
@@ -2414,19 +2414,19 @@ FAIL: test_order_confirm (__main__.OrderTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 43, in test_order_confirm
-    self.assertEqual(self.driver.title, '½áËãÒ³')
-AssertionError: '¶©µ¥È·ÈÏ' != '½áËãÒ³'
-- ¶©µ¥È·ÈÏ
-+ ½áËãÒ³
+    self.assertEqual(self.driver.title, 'ï¿½ï¿½ï¿½ï¿½Ò³')
+AssertionError: 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½' != 'ï¿½ï¿½ï¿½ï¿½Ò³'
+- ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½
++ ï¿½ï¿½ï¿½ï¿½Ò³
 
 
 ----------------------------------------------------------------------
 Ran 5 tests in 6.119s
 
 FAILED (failures=1, skipped=4)
-test_add_cart_login (__main__.OrderTest) ... skipped 'ÔÚÏß¹ºÎï³µ'
-test_go_pay (__main__.OrderTest) ... skipped '¶©µ¥È·ÈÏ'
-test_index (__main__.OrderTest) ... skipped 'Ê×Ò³'
+test_add_cart_login (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_go_pay (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
+test_index (__main__.OrderTest) ... skipped 'ï¿½ï¿½Ò³'
 test_order_confirm (__main__.OrderTest) ... ERROR
 test_order_pay (__main__.OrderTest) ... skipped 'todo'
 
@@ -2475,9 +2475,9 @@ Backtrace:
 Ran 5 tests in 17.921s
 
 FAILED (errors=1, skipped=4)
-test_add_cart_login (__main__.OrderTest) ... skipped 'ÔÚÏß¹ºÎï³µ'
-test_go_pay (__main__.OrderTest) ... skipped '¶©µ¥È·ÈÏ'
-test_index (__main__.OrderTest) ... skipped 'Ê×Ò³'
+test_add_cart_login (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_go_pay (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
+test_index (__main__.OrderTest) ... skipped 'ï¿½ï¿½Ò³'
 test_order_confirm (__main__.OrderTest) ... FAIL
 test_order_pay (__main__.OrderTest) ... skipped 'todo'
 
@@ -2486,19 +2486,19 @@ FAIL: test_order_confirm (__main__.OrderTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 43, in test_order_confirm
-    self.assertEqual(self.driver.title, '½áËãÒ³')
-AssertionError: '¶©µ¥È·ÈÏ' != '½áËãÒ³'
-- ¶©µ¥È·ÈÏ
-+ ½áËãÒ³
+    self.assertEqual(self.driver.title, 'ï¿½ï¿½ï¿½ï¿½Ò³')
+AssertionError: 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½' != 'ï¿½ï¿½ï¿½ï¿½Ò³'
+- ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½
++ ï¿½ï¿½ï¿½ï¿½Ò³
 
 
 ----------------------------------------------------------------------
 Ran 5 tests in 8.998s
 
 FAILED (failures=1, skipped=4)
-test_add_cart_login (__main__.OrderTest) ... skipped 'ÔÚÏß¹ºÎï³µ'
-test_go_pay (__main__.OrderTest) ... skipped '¶©µ¥È·ÈÏ'
-test_index (__main__.OrderTest) ... skipped 'Ê×Ò³'
+test_add_cart_login (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_go_pay (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
+test_index (__main__.OrderTest) ... skipped 'ï¿½ï¿½Ò³'
 test_order_confirm (__main__.OrderTest) ... FAIL
 test_order_pay (__main__.OrderTest) ... skipped 'todo'
 
@@ -2507,20 +2507,20 @@ FAIL: test_order_confirm (__main__.OrderTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 43, in test_order_confirm
-    self.assertEqual(self.driver.title, '½áËãÒ³')
-AssertionError: '¶©µ¥È·ÈÏ' != '½áËãÒ³'
-- ¶©µ¥È·ÈÏ
-+ ½áËãÒ³
+    self.assertEqual(self.driver.title, 'ï¿½ï¿½ï¿½ï¿½Ò³')
+AssertionError: 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½' != 'ï¿½ï¿½ï¿½ï¿½Ò³'
+- ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½
++ ï¿½ï¿½ï¿½ï¿½Ò³
 
 
 ----------------------------------------------------------------------
 Ran 5 tests in 5.577s
 
 FAILED (failures=1, skipped=4)
-test_add_cart_online (__main__.OrderTest) ... skipped 'ÔÚÏß¹ºÎï³µ'
+test_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_go_pay (__main__.OrderTest) ... FAIL
-test_index (__main__.OrderTest) ... skipped 'Ê×Ò³'
-test_order_confirm (__main__.OrderTest) ... skipped '¶©µ¥È·ÈÏ'
+test_index (__main__.OrderTest) ... skipped 'ï¿½ï¿½Ò³'
+test_order_confirm (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
 test_order_pay (__main__.OrderTest) ... skipped 'todo'
 
 ======================================================================
@@ -2528,20 +2528,20 @@ FAIL: test_go_pay (__main__.OrderTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 47, in test_go_pay
-    self.assertEqual(self.driver.title, '½áËãÒ³')
-AssertionError: '¶©µ¥È·ÈÏ' != '½áËãÒ³'
-- ¶©µ¥È·ÈÏ
-+ ½áËãÒ³
+    self.assertEqual(self.driver.title, 'ï¿½ï¿½ï¿½ï¿½Ò³')
+AssertionError: 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½' != 'ï¿½ï¿½ï¿½ï¿½Ò³'
+- ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½
++ ï¿½ï¿½ï¿½ï¿½Ò³
 
 
 ----------------------------------------------------------------------
 Ran 5 tests in 12.999s
 
 FAILED (failures=1, skipped=4)
-test_add_cart_online (__main__.OrderTest) ... skipped 'ÔÚÏß¹ºÎï³µ'
+test_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_go_pay (__main__.OrderTest) ... FAIL
-test_index (__main__.OrderTest) ... skipped 'Ê×Ò³'
-test_order_confirm (__main__.OrderTest) ... skipped '¶©µ¥È·ÈÏ'
+test_index (__main__.OrderTest) ... skipped 'ï¿½ï¿½Ò³'
+test_order_confirm (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
 test_order_pay (__main__.OrderTest) ... skipped 'todo'
 
 ======================================================================
@@ -2549,20 +2549,20 @@ FAIL: test_go_pay (__main__.OrderTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 47, in test_go_pay
-    self.assertEqual(self.driver.title, '½áËãÒ³')
-AssertionError: '¶©µ¥È·ÈÏ' != '½áËãÒ³'
-- ¶©µ¥È·ÈÏ
-+ ½áËãÒ³
+    self.assertEqual(self.driver.title, 'ï¿½ï¿½ï¿½ï¿½Ò³')
+AssertionError: 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½' != 'ï¿½ï¿½ï¿½ï¿½Ò³'
+- ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½
++ ï¿½ï¿½ï¿½ï¿½Ò³
 
 
 ----------------------------------------------------------------------
 Ran 5 tests in 8.490s
 
 FAILED (failures=1, skipped=4)
-test_add_cart_online (__main__.OrderTest) ... skipped 'ÔÚÏß¹ºÎï³µ'
+test_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_go_pay (__main__.OrderTest) ... FAIL
-test_index (__main__.OrderTest) ... skipped 'Ê×Ò³'
-test_order_confirm (__main__.OrderTest) ... skipped '¶©µ¥È·ÈÏ'
+test_index (__main__.OrderTest) ... skipped 'ï¿½ï¿½Ò³'
+test_order_confirm (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
 test_order_pay (__main__.OrderTest) ... skipped 'todo'
 
 ======================================================================
@@ -2570,10 +2570,10 @@ FAIL: test_go_pay (__main__.OrderTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 47, in test_go_pay
-    self.assertEqual(self.driver.title, '½áËãÒ³')
-AssertionError: '¶©µ¥È·ÈÏ' != '½áËãÒ³'
-- ¶©µ¥È·ÈÏ
-+ ½áËãÒ³
+    self.assertEqual(self.driver.title, 'ï¿½ï¿½ï¿½ï¿½Ò³')
+AssertionError: 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½' != 'ï¿½ï¿½ï¿½ï¿½Ò³'
+- ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½
++ ï¿½ï¿½ï¿½ï¿½Ò³
 
 
 ----------------------------------------------------------------------
@@ -2581,9 +2581,9 @@ Ran 5 tests in 7.153s
 
 FAILED (failures=1, skipped=4)
 test_add_cart (__main__.AuthorizeTest) ... ok
-test_index (__main__.AuthorizeTest) ... skipped 'Ê×Ò³'
-test_oauth_login (__main__.AuthorizeTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
-test_regist (__main__.AuthorizeTest) ... skipped '×¢²áÕËºÅ'
+test_index (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½Ò³'
+test_oauth_login (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
+test_regist (__main__.AuthorizeTest) ... skipped '×¢ï¿½ï¿½ï¿½Ëºï¿½'
 test_sign_login (__main__.AuthorizeTest) ... ok
 
 ----------------------------------------------------------------------
@@ -2591,20 +2591,20 @@ Ran 5 tests in 9.043s
 
 OK (skipped=3)
 test_add_cart (__main__.AuthorizeTest) ... ok
-test_index (__main__.AuthorizeTest) ... skipped 'Ê×Ò³'
-test_oauth_login (__main__.AuthorizeTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
+test_index (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½Ò³'
+test_oauth_login (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
 test_regist (__main__.AuthorizeTest) ... FAIL
-test_sign_login (__main__.AuthorizeTest) ... skipped 'ÕËºÅµÇÂ¼'
+test_sign_login (__main__.AuthorizeTest) ... skipped 'ï¿½ËºÅµï¿½Â¼'
 
 ======================================================================
 FAIL: test_regist (__main__.AuthorizeTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 30, in test_regist
-    self.assertEqual(self.driver.title, 'ÓÃ»§µÇÂ¼')
-AssertionError: 'gulimall×¢²áÒ³Ãæ' != 'ÓÃ»§µÇÂ¼'
-- gulimall×¢²áÒ³Ãæ
-+ ÓÃ»§µÇÂ¼
+    self.assertEqual(self.driver.title, 'ï¿½Ã»ï¿½ï¿½ï¿½Â¼')
+AssertionError: 'gulimall×¢ï¿½ï¿½Ò³ï¿½ï¿½' != 'ï¿½Ã»ï¿½ï¿½ï¿½Â¼'
+- gulimall×¢ï¿½ï¿½Ò³ï¿½ï¿½
++ ï¿½Ã»ï¿½ï¿½ï¿½Â¼
 
 
 ----------------------------------------------------------------------
@@ -2612,20 +2612,20 @@ Ran 5 tests in 5.469s
 
 FAILED (failures=1, skipped=3)
 test_add_cart (__main__.AuthorizeTest) ... ok
-test_index (__main__.AuthorizeTest) ... skipped 'Ê×Ò³'
-test_oauth_login (__main__.AuthorizeTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
+test_index (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½Ò³'
+test_oauth_login (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
 test_regist (__main__.AuthorizeTest) ... FAIL
-test_sign_login (__main__.AuthorizeTest) ... skipped 'ÕËºÅµÇÂ¼'
+test_sign_login (__main__.AuthorizeTest) ... skipped 'ï¿½ËºÅµï¿½Â¼'
 
 ======================================================================
 FAIL: test_regist (__main__.AuthorizeTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 30, in test_regist
-    self.assertEqual(self.driver.title, 'ÓÃ»§µÇÂ¼')
-AssertionError: 'gulimall×¢²áÒ³Ãæ' != 'ÓÃ»§µÇÂ¼'
-- gulimall×¢²áÒ³Ãæ
-+ ÓÃ»§µÇÂ¼
+    self.assertEqual(self.driver.title, 'ï¿½Ã»ï¿½ï¿½ï¿½Â¼')
+AssertionError: 'gulimall×¢ï¿½ï¿½Ò³ï¿½ï¿½' != 'ï¿½Ã»ï¿½ï¿½ï¿½Â¼'
+- gulimall×¢ï¿½ï¿½Ò³ï¿½ï¿½
++ ï¿½Ã»ï¿½ï¿½ï¿½Â¼
 
 
 ----------------------------------------------------------------------
@@ -2633,20 +2633,20 @@ Ran 5 tests in 4.813s
 
 FAILED (failures=1, skipped=3)
 test_add_cart (__main__.AuthorizeTest) ... ok
-test_index (__main__.AuthorizeTest) ... skipped 'Ê×Ò³'
-test_oauth_login (__main__.AuthorizeTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
+test_index (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½Ò³'
+test_oauth_login (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
 test_regist (__main__.AuthorizeTest) ... FAIL
-test_sign_login (__main__.AuthorizeTest) ... skipped 'ÕËºÅµÇÂ¼'
+test_sign_login (__main__.AuthorizeTest) ... skipped 'ï¿½ËºÅµï¿½Â¼'
 
 ======================================================================
 FAIL: test_regist (__main__.AuthorizeTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 30, in test_regist
-    self.assertEqual(self.driver.title, 'ÓÃ»§µÇÂ¼')
-AssertionError: 'Error' != 'ÓÃ»§µÇÂ¼'
+    self.assertEqual(self.driver.title, 'ï¿½Ã»ï¿½ï¿½ï¿½Â¼')
+AssertionError: 'Error' != 'ï¿½Ã»ï¿½ï¿½ï¿½Â¼'
 - Error
-+ ÓÃ»§µÇÂ¼
++ ï¿½Ã»ï¿½ï¿½ï¿½Â¼
 
 
 ----------------------------------------------------------------------
@@ -2654,10 +2654,10 @@ Ran 5 tests in 63.996s
 
 FAILED (failures=1, skipped=3)
 test_add_cart (__main__.AuthorizeTest) ... ok
-test_index (__main__.AuthorizeTest) ... skipped 'Ê×Ò³'
-test_oauth_login (__main__.AuthorizeTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
+test_index (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½Ò³'
+test_oauth_login (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
 test_regist (__main__.AuthorizeTest) ... ERROR
-test_sign_login (__main__.AuthorizeTest) ... skipped 'ÕËºÅµÇÂ¼'
+test_sign_login (__main__.AuthorizeTest) ... skipped 'ï¿½ËºÅµï¿½Â¼'
 
 ======================================================================
 ERROR: test_regist (__main__.AuthorizeTest)
@@ -2704,10 +2704,10 @@ Backtrace:
 Ran 5 tests in 13.243s
 
 FAILED (errors=1, skipped=3)
-test_00_index (__main__.AuthorizeTest) ... skipped 'Ê×Ò³'
+test_00_index (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½Ò³'
 test_01_regist (__main__.AuthorizeTest) ... FAIL
-test_02_sign_login (__main__.AuthorizeTest) ... skipped 'ÕËºÅµÇÂ¼'
-test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
+test_02_sign_login (__main__.AuthorizeTest) ... skipped 'ï¿½ËºÅµï¿½Â¼'
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
 test_04_add_cart (__main__.AuthorizeTest) ... ok
 
 ======================================================================
@@ -2715,20 +2715,20 @@ FAIL: test_01_regist (__main__.AuthorizeTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 30, in test_01_regist
-    self.assertEqual(self.driver.title, 'ÓÃ»§µÇÂ¼')
-AssertionError: 'Error' != 'ÓÃ»§µÇÂ¼'
+    self.assertEqual(self.driver.title, 'ï¿½Ã»ï¿½ï¿½ï¿½Â¼')
+AssertionError: 'Error' != 'ï¿½Ã»ï¿½ï¿½ï¿½Â¼'
 - Error
-+ ÓÃ»§µÇÂ¼
++ ï¿½Ã»ï¿½ï¿½ï¿½Â¼
 
 
 ----------------------------------------------------------------------
 Ran 5 tests in 107.348s
 
 FAILED (failures=1, skipped=3)
-test_00_index (__main__.AuthorizeTest) ... skipped 'Ê×Ò³'
+test_00_index (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½Ò³'
 test_01_regist (__main__.AuthorizeTest) ... ERROR
-test_02_sign_login (__main__.AuthorizeTest) ... skipped 'ÕËºÅµÇÂ¼'
-test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
+test_02_sign_login (__main__.AuthorizeTest) ... skipped 'ï¿½ËºÅµï¿½Â¼'
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
 test_04_add_cart (__main__.AuthorizeTest) ... ok
 
 ======================================================================
@@ -2776,10 +2776,10 @@ Backtrace:
 Ran 5 tests in 13.130s
 
 FAILED (errors=1, skipped=3)
-test_00_index (__main__.AuthorizeTest) ... skipped 'Ê×Ò³'
+test_00_index (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½Ò³'
 test_01_regist (__main__.AuthorizeTest) ... ERROR
-test_02_sign_login (__main__.AuthorizeTest) ... skipped 'ÕËºÅµÇÂ¼'
-test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
+test_02_sign_login (__main__.AuthorizeTest) ... skipped 'ï¿½ËºÅµï¿½Â¼'
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
 test_04_add_cart (__main__.AuthorizeTest) ... ok
 
 ======================================================================
@@ -2827,10 +2827,10 @@ Backtrace:
 Ran 5 tests in 12.593s
 
 FAILED (errors=1, skipped=3)
-test_00_index (__main__.AuthorizeTest) ... skipped 'Ê×Ò³'
+test_00_index (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½Ò³'
 test_01_regist (__main__.AuthorizeTest) ... FAIL
-test_02_sign_login (__main__.AuthorizeTest) ... skipped 'ÕËºÅµÇÂ¼'
-test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
+test_02_sign_login (__main__.AuthorizeTest) ... skipped 'ï¿½ËºÅµï¿½Â¼'
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
 test_04_add_cart (__main__.AuthorizeTest) ... ok
 
 ======================================================================
@@ -2838,20 +2838,20 @@ FAIL: test_01_regist (__main__.AuthorizeTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 30, in test_01_regist
-    self.assertEqual(self.driver.title, 'ÓÃ»§µÇÂ¼')
-AssertionError: 'Error' != 'ÓÃ»§µÇÂ¼'
+    self.assertEqual(self.driver.title, 'ï¿½Ã»ï¿½ï¿½ï¿½Â¼')
+AssertionError: 'Error' != 'ï¿½Ã»ï¿½ï¿½ï¿½Â¼'
 - Error
-+ ÓÃ»§µÇÂ¼
++ ï¿½Ã»ï¿½ï¿½ï¿½Â¼
 
 
 ----------------------------------------------------------------------
 Ran 5 tests in 63.651s
 
 FAILED (failures=1, skipped=3)
-test_00_index (__main__.AuthorizeTest) ... skipped 'Ê×Ò³'
+test_00_index (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½Ò³'
 test_01_regist (__main__.AuthorizeTest) ... ERROR
-test_02_sign_login (__main__.AuthorizeTest) ... skipped 'ÕËºÅµÇÂ¼'
-test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
+test_02_sign_login (__main__.AuthorizeTest) ... skipped 'ï¿½ËºÅµï¿½Â¼'
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
 test_04_add_cart (__main__.AuthorizeTest) ... ok
 
 ======================================================================
@@ -2901,8 +2901,8 @@ Ran 5 tests in 12.792s
 FAILED (errors=1, skipped=3)
 test_00_index (__main__.AuthorizeTest) ... ok
 test_01_regist (__main__.AuthorizeTest) ... FAIL
-test_02_sign_login (__main__.AuthorizeTest) ... skipped 'ÕËºÅµÇÂ¼'
-test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
+test_02_sign_login (__main__.AuthorizeTest) ... skipped 'ï¿½ËºÅµï¿½Â¼'
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
 test_04_add_cart (__main__.AuthorizeTest) ... ok
 
 ======================================================================
@@ -2910,10 +2910,10 @@ FAIL: test_01_regist (__main__.AuthorizeTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 30, in test_01_regist
-    self.assertEqual(self.driver.title, 'ÓÃ»§µÇÂ¼')
-AssertionError: 'gulimall×¢²áÒ³Ãæ' != 'ÓÃ»§µÇÂ¼'
-- gulimall×¢²áÒ³Ãæ
-+ ÓÃ»§µÇÂ¼
+    self.assertEqual(self.driver.title, 'ï¿½Ã»ï¿½ï¿½ï¿½Â¼')
+AssertionError: 'gulimall×¢ï¿½ï¿½Ò³ï¿½ï¿½' != 'ï¿½Ã»ï¿½ï¿½ï¿½Â¼'
+- gulimall×¢ï¿½ï¿½Ò³ï¿½ï¿½
++ ï¿½Ã»ï¿½ï¿½ï¿½Â¼
 
 
 ----------------------------------------------------------------------
@@ -2922,19 +2922,19 @@ Ran 5 tests in 25.477s
 FAILED (failures=1, skipped=2)
 test_00_index (__main__.AuthorizeTest) ... ok
 test_01_regist (__main__.AuthorizeTest) ... FAIL
-test_02_sign_login (__main__.AuthorizeTest) ... skipped 'ÕËºÅµÇÂ¼'
-test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
-test_04_add_cart (__main__.AuthorizeTest) ... skipped 'ÀëÏß¹ºÎï³µ'
+test_02_sign_login (__main__.AuthorizeTest) ... skipped 'ï¿½ËºÅµï¿½Â¼'
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
+test_04_add_cart (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 
 ======================================================================
 FAIL: test_01_regist (__main__.AuthorizeTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 30, in test_01_regist
-    self.assertEqual(self.driver.title, 'ÓÃ»§µÇÂ¼')
-AssertionError: 'gulimall×¢²áÒ³Ãæ' != 'ÓÃ»§µÇÂ¼'
-- gulimall×¢²áÒ³Ãæ
-+ ÓÃ»§µÇÂ¼
+    self.assertEqual(self.driver.title, 'ï¿½Ã»ï¿½ï¿½ï¿½Â¼')
+AssertionError: 'gulimall×¢ï¿½ï¿½Ò³ï¿½ï¿½' != 'ï¿½Ã»ï¿½ï¿½ï¿½Â¼'
+- gulimall×¢ï¿½ï¿½Ò³ï¿½ï¿½
++ ï¿½Ã»ï¿½ï¿½ï¿½Â¼
 
 
 ----------------------------------------------------------------------
@@ -2943,19 +2943,19 @@ Ran 5 tests in 32.924s
 FAILED (failures=1, skipped=3)
 test_00_index (__main__.AuthorizeTest) ... ok
 test_01_regist (__main__.AuthorizeTest) ... FAIL
-test_02_sign_login (__main__.AuthorizeTest) ... skipped 'ÕËºÅµÇÂ¼'
-test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
-test_04_add_cart (__main__.AuthorizeTest) ... skipped 'ÀëÏß¹ºÎï³µ'
+test_02_sign_login (__main__.AuthorizeTest) ... skipped 'ï¿½ËºÅµï¿½Â¼'
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
+test_04_add_cart (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 
 ======================================================================
 FAIL: test_01_regist (__main__.AuthorizeTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 30, in test_01_regist
-    self.assertEqual(self.driver.title, 'ÓÃ»§µÇÂ¼')
-AssertionError: 'gulimall×¢²áÒ³Ãæ' != 'ÓÃ»§µÇÂ¼'
-- gulimall×¢²áÒ³Ãæ
-+ ÓÃ»§µÇÂ¼
+    self.assertEqual(self.driver.title, 'ï¿½Ã»ï¿½ï¿½ï¿½Â¼')
+AssertionError: 'gulimall×¢ï¿½ï¿½Ò³ï¿½ï¿½' != 'ï¿½Ã»ï¿½ï¿½ï¿½Â¼'
+- gulimall×¢ï¿½ï¿½Ò³ï¿½ï¿½
++ ï¿½Ã»ï¿½ï¿½ï¿½Â¼
 
 
 ----------------------------------------------------------------------
@@ -2964,19 +2964,19 @@ Ran 5 tests in 24.108s
 FAILED (failures=1, skipped=3)
 test_00_index (__main__.AuthorizeTest) ... ok
 test_01_regist (__main__.AuthorizeTest) ... FAIL
-test_02_sign_login (__main__.AuthorizeTest) ... skipped 'ÕËºÅµÇÂ¼'
-test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
-test_04_add_cart (__main__.AuthorizeTest) ... skipped 'ÀëÏß¹ºÎï³µ'
+test_02_sign_login (__main__.AuthorizeTest) ... skipped 'ï¿½ËºÅµï¿½Â¼'
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
+test_04_add_cart (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 
 ======================================================================
 FAIL: test_01_regist (__main__.AuthorizeTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 30, in test_01_regist
-    self.assertEqual(self.driver.title, 'ÓÃ»§µÇÂ¼')
-AssertionError: 'gulimall×¢²áÒ³Ãæ' != 'ÓÃ»§µÇÂ¼'
-- gulimall×¢²áÒ³Ãæ
-+ ÓÃ»§µÇÂ¼
+    self.assertEqual(self.driver.title, 'ï¿½Ã»ï¿½ï¿½ï¿½Â¼')
+AssertionError: 'gulimall×¢ï¿½ï¿½Ò³ï¿½ï¿½' != 'ï¿½Ã»ï¿½ï¿½ï¿½Â¼'
+- gulimall×¢ï¿½ï¿½Ò³ï¿½ï¿½
++ ï¿½Ã»ï¿½ï¿½ï¿½Â¼
 
 
 ----------------------------------------------------------------------
@@ -2985,19 +2985,19 @@ Ran 5 tests in 0.884s
 FAILED (failures=1, skipped=3)
 test_00_index (__main__.AuthorizeTest) ... ok
 test_01_regist (__main__.AuthorizeTest) ... FAIL
-test_02_sign_login (__main__.AuthorizeTest) ... skipped 'ÕËºÅµÇÂ¼'
-test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
-test_04_add_cart (__main__.AuthorizeTest) ... skipped 'ÀëÏß¹ºÎï³µ'
+test_02_sign_login (__main__.AuthorizeTest) ... skipped 'ï¿½ËºÅµï¿½Â¼'
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
+test_04_add_cart (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 
 ======================================================================
 FAIL: test_01_regist (__main__.AuthorizeTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 30, in test_01_regist
-    self.assertEqual(self.driver.title, 'ÓÃ»§µÇÂ¼')
-AssertionError: 'gulimall×¢²áÒ³Ãæ' != 'ÓÃ»§µÇÂ¼'
-- gulimall×¢²áÒ³Ãæ
-+ ÓÃ»§µÇÂ¼
+    self.assertEqual(self.driver.title, 'ï¿½Ã»ï¿½ï¿½ï¿½Â¼')
+AssertionError: 'gulimall×¢ï¿½ï¿½Ò³ï¿½ï¿½' != 'ï¿½Ã»ï¿½ï¿½ï¿½Â¼'
+- gulimall×¢ï¿½ï¿½Ò³ï¿½ï¿½
++ ï¿½Ã»ï¿½ï¿½ï¿½Â¼
 
 
 ----------------------------------------------------------------------
@@ -3006,19 +3006,19 @@ Ran 5 tests in 0.955s
 FAILED (failures=1, skipped=3)
 test_00_index (__main__.AuthorizeTest) ... ok
 test_01_regist (__main__.AuthorizeTest) ... FAIL
-test_02_sign_login (__main__.AuthorizeTest) ... skipped 'ÕËºÅµÇÂ¼'
-test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
-test_04_add_cart (__main__.AuthorizeTest) ... skipped 'ÀëÏß¹ºÎï³µ'
+test_02_sign_login (__main__.AuthorizeTest) ... skipped 'ï¿½ËºÅµï¿½Â¼'
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
+test_04_add_cart (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 
 ======================================================================
 FAIL: test_01_regist (__main__.AuthorizeTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 30, in test_01_regist
-    self.assertEqual(self.driver.title, 'ÓÃ»§µÇÂ¼')
-AssertionError: 'gulimall×¢²áÒ³Ãæ' != 'ÓÃ»§µÇÂ¼'
-- gulimall×¢²áÒ³Ãæ
-+ ÓÃ»§µÇÂ¼
+    self.assertEqual(self.driver.title, 'ï¿½Ã»ï¿½ï¿½ï¿½Â¼')
+AssertionError: 'gulimall×¢ï¿½ï¿½Ò³ï¿½ï¿½' != 'ï¿½Ã»ï¿½ï¿½ï¿½Â¼'
+- gulimall×¢ï¿½ï¿½Ò³ï¿½ï¿½
++ ï¿½Ã»ï¿½ï¿½ï¿½Â¼
 
 
 ----------------------------------------------------------------------
@@ -3026,10 +3026,10 @@ Ran 5 tests in 0.891s
 
 FAILED (failures=1, skipped=3)
 test_00_index (__main__.AuthorizeTest) ... ok
-test_01_regist (__main__.AuthorizeTest) ... skipped '×¢²áÕËºÅ'
+test_01_regist (__main__.AuthorizeTest) ... skipped '×¢ï¿½ï¿½ï¿½Ëºï¿½'
 test_02_sign_login (__main__.AuthorizeTest) ... ERROR
-test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
-test_04_add_cart (__main__.AuthorizeTest) ... skipped 'ÀëÏß¹ºÎï³µ'
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
+test_04_add_cart (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 
 ======================================================================
 ERROR: test_02_sign_login (__main__.AuthorizeTest)
@@ -3077,10 +3077,10 @@ Ran 5 tests in 10.689s
 
 FAILED (errors=1, skipped=3)
 test_00_index (__main__.AuthorizeTest) ... ok
-test_01_regist (__main__.AuthorizeTest) ... skipped '×¢²áÕËºÅ'
+test_01_regist (__main__.AuthorizeTest) ... skipped '×¢ï¿½ï¿½ï¿½Ëºï¿½'
 test_02_sign_login (__main__.AuthorizeTest) ... ERROR
-test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
-test_04_add_cart (__main__.AuthorizeTest) ... skipped 'ÀëÏß¹ºÎï³µ'
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
+test_04_add_cart (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 
 ======================================================================
 ERROR: test_02_sign_login (__main__.AuthorizeTest)
@@ -3128,30 +3128,30 @@ Ran 5 tests in 10.545s
 
 FAILED (errors=1, skipped=3)
 test_00_index (__main__.AuthorizeTest) ... ok
-test_01_regist (__main__.AuthorizeTest) ... skipped '×¢²áÕËºÅ'
+test_01_regist (__main__.AuthorizeTest) ... skipped '×¢ï¿½ï¿½ï¿½Ëºï¿½'
 test_02_sign_login (__main__.AuthorizeTest) ... ok
-test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
-test_04_add_cart (__main__.AuthorizeTest) ... skipped 'ÀëÏß¹ºÎï³µ'
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
+test_04_add_cart (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 
 ----------------------------------------------------------------------
 Ran 5 tests in 19.769s
 
 OK (skipped=3)
 test_00_index (__main__.AuthorizeTest) ... ok
-test_01_regist (__main__.AuthorizeTest) ... skipped '×¢²áÕËºÅ'
+test_01_regist (__main__.AuthorizeTest) ... skipped '×¢ï¿½ï¿½ï¿½Ëºï¿½'
 test_02_sign_login (__main__.AuthorizeTest) ... FAIL
-test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
-test_04_add_cart (__main__.AuthorizeTest) ... skipped 'ÀëÏß¹ºÎï³µ'
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
+test_04_add_cart (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 
 ======================================================================
 FAIL: test_02_sign_login (__main__.AuthorizeTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 38, in test_02_sign_login
-    self.assertEqual(self.driver.title, '¹ÈÁ£ÉÌ³Ç')
-AssertionError: 'Error' != '¹ÈÁ£ÉÌ³Ç'
+    self.assertEqual(self.driver.title, 'ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½')
+AssertionError: 'Error' != 'ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½'
 - Error
-+ ¹ÈÁ£ÉÌ³Ç
++ ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½
 
 
 ----------------------------------------------------------------------
@@ -3159,20 +3159,20 @@ Ran 5 tests in 66.355s
 
 FAILED (failures=1, skipped=3)
 test_00_index (__main__.AuthorizeTest) ... ok
-test_01_regist (__main__.AuthorizeTest) ... skipped '×¢²áÕËºÅ'
+test_01_regist (__main__.AuthorizeTest) ... skipped '×¢ï¿½ï¿½ï¿½Ëºï¿½'
 test_02_sign_login (__main__.AuthorizeTest) ... FAIL
-test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
-test_04_add_cart (__main__.AuthorizeTest) ... skipped 'ÀëÏß¹ºÎï³µ'
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
+test_04_add_cart (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 
 ======================================================================
 FAIL: test_02_sign_login (__main__.AuthorizeTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 38, in test_02_sign_login
-    self.assertEqual(self.driver.title, '¹ÈÁ£ÉÌ³Ç')
-AssertionError: 'Error' != '¹ÈÁ£ÉÌ³Ç'
+    self.assertEqual(self.driver.title, 'ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½')
+AssertionError: 'Error' != 'ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½'
 - Error
-+ ¹ÈÁ£ÉÌ³Ç
++ ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½
 
 
 ----------------------------------------------------------------------
@@ -3180,20 +3180,20 @@ Ran 5 tests in 76.940s
 
 FAILED (failures=1, skipped=3)
 test_00_index (__main__.AuthorizeTest) ... ok
-test_01_regist (__main__.AuthorizeTest) ... skipped '×¢²áÕËºÅ'
+test_01_regist (__main__.AuthorizeTest) ... skipped '×¢ï¿½ï¿½ï¿½Ëºï¿½'
 test_02_sign_login (__main__.AuthorizeTest) ... FAIL
-test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
-test_04_add_cart (__main__.AuthorizeTest) ... skipped 'ÀëÏß¹ºÎï³µ'
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
+test_04_add_cart (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 
 ======================================================================
 FAIL: test_02_sign_login (__main__.AuthorizeTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\authorize.py", line 38, in test_02_sign_login
-    self.assertEqual(self.driver.title, '¹ÈÁ£ÉÌ³Ç')
-AssertionError: 'Error' != '¹ÈÁ£ÉÌ³Ç'
+    self.assertEqual(self.driver.title, 'ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½')
+AssertionError: 'Error' != 'ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½'
 - Error
-+ ¹ÈÁ£ÉÌ³Ç
++ ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½
 
 
 ----------------------------------------------------------------------
@@ -3201,11 +3201,11 @@ Ran 5 tests in 60.839s
 
 FAILED (failures=1, skipped=3)
 test_00_index (__main__.AuthorizeTest) ... ok
-test_01_regist (__main__.AuthorizeTest) ... skipped '×¢²áÕËºÅ'
+test_01_regist (__main__.AuthorizeTest) ... skipped '×¢ï¿½ï¿½ï¿½Ëºï¿½'
 test_021_sign_login (__main__.AuthorizeTest) ... ERROR
-test_02_sign_login (__main__.AuthorizeTest) ... skipped 'ÕËºÅµÇÂ¼'
-test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
-test_04_add_cart (__main__.AuthorizeTest) ... skipped 'ÀëÏß¹ºÎï³µ'
+test_02_sign_login (__main__.AuthorizeTest) ... skipped 'ï¿½ËºÅµï¿½Â¼'
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
+test_04_add_cart (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 
 ======================================================================
 ERROR: test_021_sign_login (__main__.AuthorizeTest)
@@ -3263,11 +3263,11 @@ Ran 6 tests in 19.149s
 
 FAILED (errors=1, skipped=4)
 test_00_index (__main__.AuthorizeTest) ... ok
-test_01_regist (__main__.AuthorizeTest) ... skipped '×¢²áÕËºÅ'
+test_01_regist (__main__.AuthorizeTest) ... skipped '×¢ï¿½ï¿½ï¿½Ëºï¿½'
 test_021_sign_login_error_account (__main__.AuthorizeTest) ... ERROR
-test_02_sign_login (__main__.AuthorizeTest) ... skipped 'ÕËºÅµÇÂ¼'
-test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
-test_04_add_cart (__main__.AuthorizeTest) ... skipped 'ÀëÏß¹ºÎï³µ'
+test_02_sign_login (__main__.AuthorizeTest) ... skipped 'ï¿½ËºÅµï¿½Â¼'
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
+test_04_add_cart (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 
 ======================================================================
 ERROR: test_021_sign_login_error_account (__main__.AuthorizeTest)
@@ -3315,11 +3315,11 @@ Ran 6 tests in 71.199s
 
 FAILED (errors=1, skipped=4)
 test_00_index (__main__.AuthorizeTest) ... ok
-test_01_regist (__main__.AuthorizeTest) ... skipped '×¢²áÕËºÅ'
+test_01_regist (__main__.AuthorizeTest) ... skipped '×¢ï¿½ï¿½ï¿½Ëºï¿½'
 test_021_sign_login_error_account (__main__.AuthorizeTest) ... ERROR
-test_02_sign_login (__main__.AuthorizeTest) ... skipped 'ÕËºÅµÇÂ¼'
-test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
-test_04_add_cart (__main__.AuthorizeTest) ... skipped 'ÀëÏß¹ºÎï³µ'
+test_02_sign_login (__main__.AuthorizeTest) ... skipped 'ï¿½ËºÅµï¿½Â¼'
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
+test_04_add_cart (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 
 ======================================================================
 ERROR: test_021_sign_login_error_account (__main__.AuthorizeTest)
@@ -3367,11 +3367,11 @@ Ran 6 tests in 12.576s
 
 FAILED (errors=1, skipped=4)
 test_00_index (__main__.AuthorizeTest) ... ok
-test_01_regist (__main__.AuthorizeTest) ... skipped '×¢²áÕËºÅ'
+test_01_regist (__main__.AuthorizeTest) ... skipped '×¢ï¿½ï¿½ï¿½Ëºï¿½'
 test_021_sign_login_error_account (__main__.AuthorizeTest) ... ERROR
-test_02_sign_login (__main__.AuthorizeTest) ... skipped 'ÕËºÅµÇÂ¼'
-test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
-test_04_add_cart (__main__.AuthorizeTest) ... skipped 'ÀëÏß¹ºÎï³µ'
+test_02_sign_login (__main__.AuthorizeTest) ... skipped 'ï¿½ËºÅµï¿½Â¼'
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
+test_04_add_cart (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 
 ======================================================================
 ERROR: test_021_sign_login_error_account (__main__.AuthorizeTest)
@@ -3419,11 +3419,11 @@ Ran 6 tests in 14.114s
 
 FAILED (errors=1, skipped=4)
 test_00_index (__main__.AuthorizeTest) ... ok
-test_01_regist (__main__.AuthorizeTest) ... skipped '×¢²áÕËºÅ'
+test_01_regist (__main__.AuthorizeTest) ... skipped '×¢ï¿½ï¿½ï¿½Ëºï¿½'
 test_021_sign_login_error_account (__main__.AuthorizeTest) ... ERROR
-test_02_sign_login (__main__.AuthorizeTest) ... skipped 'ÕËºÅµÇÂ¼'
-test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
-test_04_add_cart (__main__.AuthorizeTest) ... skipped 'ÀëÏß¹ºÎï³µ'
+test_02_sign_login (__main__.AuthorizeTest) ... skipped 'ï¿½ËºÅµï¿½Â¼'
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
+test_04_add_cart (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 
 ======================================================================
 ERROR: test_021_sign_login_error_account (__main__.AuthorizeTest)
@@ -3481,11 +3481,11 @@ Ran 6 tests in 68.008s
 
 FAILED (errors=1, skipped=4)
 test_00_index (__main__.AuthorizeTest) ... ok
-test_01_regist (__main__.AuthorizeTest) ... skipped '×¢²áÕËºÅ'
+test_01_regist (__main__.AuthorizeTest) ... skipped '×¢ï¿½ï¿½ï¿½Ëºï¿½'
 test_021_sign_login_error_account (__main__.AuthorizeTest) ... ERROR
-test_02_sign_login (__main__.AuthorizeTest) ... skipped 'ÕËºÅµÇÂ¼'
-test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ÊÚÈ¨µÇÂ¼'
-test_04_add_cart (__main__.AuthorizeTest) ... skipped 'ÀëÏß¹ºÎï³µ'
+test_02_sign_login (__main__.AuthorizeTest) ... skipped 'ï¿½ËºÅµï¿½Â¼'
+test_03_oauth_login (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½È¨ï¿½ï¿½Â¼'
+test_04_add_cart (__main__.AuthorizeTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 
 ======================================================================
 ERROR: test_021_sign_login_error_account (__main__.AuthorizeTest)
@@ -3532,32 +3532,32 @@ Backtrace:
 Ran 6 tests in 10.641s
 
 FAILED (errors=1, skipped=4)
-test_add_cart_online (__main__.OrderTest) ... skipped 'ÔÚÏß¹ºÎï³µ'
+test_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_ali_pay (__main__.OrderTest) ... skipped 'todo'
 test_go_pay (__main__.OrderTest) ... FAIL
-test_index (__main__.OrderTest) ... skipped 'Ê×Ò³'
-test_order_confirm (__main__.OrderTest) ... skipped '¶©µ¥È·ÈÏ'
+test_index (__main__.OrderTest) ... skipped 'ï¿½ï¿½Ò³'
+test_order_confirm (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
 
 ======================================================================
 FAIL: test_go_pay (__main__.OrderTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 48, in test_go_pay
-    self.assertEqual(self.driver.title, 'ÊÕÒøÌ¨')
-AssertionError: '¶©µ¥È·ÈÏ' != 'ÊÕÒøÌ¨'
-- ¶©µ¥È·ÈÏ
-+ ÊÕÒøÌ¨
+    self.assertEqual(self.driver.title, 'ï¿½ï¿½ï¿½ï¿½Ì¨')
+AssertionError: 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½' != 'ï¿½ï¿½ï¿½ï¿½Ì¨'
+- ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½
++ ï¿½ï¿½ï¿½ï¿½Ì¨
 
 
 ----------------------------------------------------------------------
 Ran 5 tests in 9.132s
 
 FAILED (failures=1, skipped=4)
-test_add_cart_online (__main__.OrderTest) ... skipped 'ÔÚÏß¹ºÎï³µ'
-test_ali_pay (__main__.OrderTest) ... skipped 'Ö§¸¶±¦Ö§¸¶'
+test_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
+test_ali_pay (__main__.OrderTest) ... skipped 'Ö§ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½'
 test_go_pay (__main__.OrderTest) ... ERROR
-test_index (__main__.OrderTest) ... skipped 'Ê×Ò³'
-test_order_confirm (__main__.OrderTest) ... skipped '¶©µ¥È·ÈÏ'
+test_index (__main__.OrderTest) ... skipped 'ï¿½ï¿½Ò³'
+test_order_confirm (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
 
 ======================================================================
 ERROR: test_go_pay (__main__.OrderTest)
@@ -3583,9 +3583,9 @@ Ran 5 tests in 8.562s
 FAILED (errors=1, skipped=4)
 test_00_index (__main__.OrderTest) ... ok
 test_01_add_cart_online (__main__.OrderTest) ... ok
-test_02_order_confirm (__main__.OrderTest) ... skipped '²»¼Ó¹º_¶©µ¥È·ÈÏ'
+test_02_order_confirm (__main__.OrderTest) ... skipped 'ï¿½ï¿½ï¿½Ó¹ï¿½_ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
 test_03_go_pay (__main__.OrderTest) ... ERROR
-test_04_alipay (__main__.OrderTest) ... skipped 'Ìø×ªÖ§¸¶±¦Ö§¸¶'
+test_04_alipay (__main__.OrderTest) ... skipped 'ï¿½ï¿½×ªÖ§ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½'
 
 ======================================================================
 ERROR: test_03_go_pay (__main__.OrderTest)
@@ -3633,7 +3633,7 @@ Ran 5 tests in 23.380s
 
 FAILED (errors=1, skipped=2)
 test_00_index (__main__.OrderTest) ... ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'Î´¼Ó¹º_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'Î´ï¿½Ó¹ï¿½_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... ok
 test_03_go_pay (__main__.OrderTest) ... ERROR
 test_04_alipay (__main__.OrderTest) ... ERROR
@@ -3677,7 +3677,7 @@ Ran 5 tests in 66.181s
 
 FAILED (errors=2, skipped=1)
 test_00_index (__main__.OrderTest) ... ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... ok
 test_03_go_pay (__main__.OrderTest) ... ERROR
 test_04_alipay (__main__.OrderTest) ... ERROR
@@ -3721,7 +3721,7 @@ Ran 5 tests in 52.612s
 
 FAILED (errors=2, skipped=1)
 test_00_index (__main__.OrderTest) ... ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... FAIL
 test_03_go_pay (__main__.OrderTest) ... ERROR
 test_04_alipay (__main__.OrderTest) ... ERROR
@@ -3788,10 +3788,10 @@ FAIL: test_02_order_confirm (__main__.OrderTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 37, in test_02_order_confirm
-    self.assertEqual(self.driver.title, '¶©µ¥È·ÈÏ')
-AssertionError: '¹ºÎï³µ' != '¶©µ¥È·ÈÏ'
-- ¹ºÎï³µ
-+ ¶©µ¥È·ÈÏ
+    self.assertEqual(self.driver.title, 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½')
+AssertionError: 'ï¿½ï¿½ï¿½ï³µ' != 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
+- ï¿½ï¿½ï¿½ï³µ
++ ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½
 
 
 ----------------------------------------------------------------------
@@ -3799,7 +3799,7 @@ Ran 5 tests in 20.425s
 
 FAILED (failures=1, errors=2, skipped=1)
 test_00_index (__main__.OrderTest) ... FAIL
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... ERROR
 test_03_go_pay (__main__.OrderTest) ... ERROR
 test_04_alipay (__main__.OrderTest) ... ERROR
@@ -3907,16 +3907,16 @@ FAIL: test_00_index (__main__.OrderTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 22, in test_00_index
-    self.assertEqual(self.driver.title, '¹ÈÁ£ÉÌ³Ç')
-AssertionError: '' != '¹ÈÁ£ÉÌ³Ç'
-+ ¹ÈÁ£ÉÌ³Ç
+    self.assertEqual(self.driver.title, 'ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½')
+AssertionError: '' != 'ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½'
++ ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½
 
 ----------------------------------------------------------------------
 Ran 5 tests in 22.260s
 
 FAILED (failures=1, errors=3, skipped=1)
 test_00_index (__main__.OrderTest) ... FAIL
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... ERROR
 test_03_go_pay (__main__.OrderTest) ... ERROR
 test_04_alipay (__main__.OrderTest) ... ERROR
@@ -4024,16 +4024,16 @@ FAIL: test_00_index (__main__.OrderTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 22, in test_00_index
-    self.assertEqual(self.driver.title, '¹ÈÁ£ÉÌ³Ç')
-AssertionError: '' != '¹ÈÁ£ÉÌ³Ç'
-+ ¹ÈÁ£ÉÌ³Ç
+    self.assertEqual(self.driver.title, 'ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½')
+AssertionError: '' != 'ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½'
++ ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½
 
 ----------------------------------------------------------------------
 Ran 5 tests in 23.325s
 
 FAILED (failures=1, errors=3, skipped=1)
 test_00_index (__main__.OrderTest) ... ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... FAIL
 test_03_go_pay (__main__.OrderTest) ... ERROR
 test_04_alipay (__main__.OrderTest) ... ERROR
@@ -4100,10 +4100,10 @@ FAIL: test_02_order_confirm (__main__.OrderTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 37, in test_02_order_confirm
-    self.assertEqual(self.driver.title, '¶©µ¥È·ÈÏ')
-AssertionError: '¹ºÎï³µ' != '¶©µ¥È·ÈÏ'
-- ¹ºÎï³µ
-+ ¶©µ¥È·ÈÏ
+    self.assertEqual(self.driver.title, 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½')
+AssertionError: 'ï¿½ï¿½ï¿½ï³µ' != 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
+- ï¿½ï¿½ï¿½ï³µ
++ ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½
 
 
 ----------------------------------------------------------------------
@@ -4111,7 +4111,7 @@ Ran 5 tests in 31.554s
 
 FAILED (failures=1, errors=2, skipped=1)
 test_00_index (__main__.OrderTest) ... ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... FAIL
 test_03_go_pay (__main__.OrderTest) ... ERROR
 test_04_alipay (__main__.OrderTest) ... ERROR
@@ -4178,10 +4178,10 @@ FAIL: test_02_order_confirm (__main__.OrderTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 37, in test_02_order_confirm
-    self.assertEqual(self.driver.title, '¶©µ¥È·ÈÏ')
-AssertionError: '¹ºÎï³µ' != '¶©µ¥È·ÈÏ'
-- ¹ºÎï³µ
-+ ¶©µ¥È·ÈÏ
+    self.assertEqual(self.driver.title, 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½')
+AssertionError: 'ï¿½ï¿½ï¿½ï³µ' != 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
+- ï¿½ï¿½ï¿½ï³µ
++ ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½
 
 
 ----------------------------------------------------------------------
@@ -4189,7 +4189,7 @@ Ran 5 tests in 28.530s
 
 FAILED (failures=1, errors=2, skipped=1)
 test_00_index (__main__.OrderTest) ... ERROR
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... FAIL
 ERROR
 test_03_go_pay (__main__.OrderTest) ... ERROR
@@ -4291,10 +4291,10 @@ FAIL: test_02_order_confirm (__main__.OrderTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 38, in test_02_order_confirm
-    self.assertEqual(self.driver.title, '¶©µ¥È·ÈÏ')
-AssertionError: '¹ºÎï³µ' != '¶©µ¥È·ÈÏ'
-- ¹ºÎï³µ
-+ ¶©µ¥È·ÈÏ
+    self.assertEqual(self.driver.title, 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½')
+AssertionError: 'ï¿½ï¿½ï¿½ï³µ' != 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
+- ï¿½ï¿½ï¿½ï³µ
++ ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½
 
 
 ----------------------------------------------------------------------
@@ -4302,7 +4302,7 @@ Ran 5 tests in 37.211s
 
 FAILED (failures=1, errors=6, skipped=1)
 test_00_index (__main__.OrderTest) ... ERROR
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... FAIL
 ERROR
 test_03_go_pay (__main__.OrderTest) ... ERROR
@@ -4381,10 +4381,10 @@ FAIL: test_02_order_confirm (__main__.OrderTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 38, in test_02_order_confirm
-    self.assertEqual(self.driver.title, '¶©µ¥È·ÈÏ')
-AssertionError: '¹ºÎï³µ' != '¶©µ¥È·ÈÏ'
-- ¹ºÎï³µ
-+ ¶©µ¥È·ÈÏ
+    self.assertEqual(self.driver.title, 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½')
+AssertionError: 'ï¿½ï¿½ï¿½ï³µ' != 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
+- ï¿½ï¿½ï¿½ï³µ
++ ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½
 
 
 ----------------------------------------------------------------------
@@ -4392,7 +4392,7 @@ Ran 5 tests in 38.555s
 
 FAILED (failures=1, errors=6, skipped=1)
 test_00_index (__main__.OrderTest) ... ERROR
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... FAIL
 ERROR
 test_03_go_pay (__main__.OrderTest) ... ERROR
@@ -4471,10 +4471,10 @@ FAIL: test_02_order_confirm (__main__.OrderTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 41, in test_02_order_confirm
-    self.assertEqual(self.driver.title, '¶©µ¥È·ÈÏ')
-AssertionError: '¹ºÎï³µ' != '¶©µ¥È·ÈÏ'
-- ¹ºÎï³µ
-+ ¶©µ¥È·ÈÏ
+    self.assertEqual(self.driver.title, 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½')
+AssertionError: 'ï¿½ï¿½ï¿½ï³µ' != 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
+- ï¿½ï¿½ï¿½ï³µ
++ ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½
 
 
 ----------------------------------------------------------------------
@@ -4482,7 +4482,7 @@ Ran 5 tests in 21.341s
 
 FAILED (failures=1, errors=6, skipped=1)
 test_00_index (__main__.OrderTest) ... ERROR
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... ERROR
 ERROR
 test_03_go_pay (__main__.OrderTest) ... ERROR
@@ -4503,7 +4503,7 @@ ERROR: test_02_order_confirm (__main__.OrderTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order.py", line 41, in test_02_order_confirm
-    self.assertEqual(self.driver.title, '¶©µ¥È·ÈÏ')
+    self.assertEqual(self.driver.title, 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½')
   File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 447, in title
     resp = self.execute(Command.GET_TITLE)
   File "E:\miniconda3\envs\autotest\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 424, in execute
@@ -4599,7 +4599,7 @@ Ran 5 tests in 58.878s
 FAILED (errors=7, skipped=1)
 test_00_index (__main__.OrderTest) ... ERROR
 test_01_add_cart_online (__main__.OrderTest) ... ERROR
-test_02_order_confirm (__main__.OrderTest) ... skipped 'Î´¼Ó¹º[»Ò]_¶©µ¥È·ÈÏ'
+test_02_order_confirm (__main__.OrderTest) ... skipped 'Î´ï¿½Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
 test_03_go_pay (__main__.OrderTest) ... ERROR
 ERROR
 test_04_alipay (__main__.OrderTest) ... ERROR
@@ -4676,7 +4676,7 @@ Ran 5 tests in 22.505s
 
 FAILED (errors=6, skipped=1)
 test_00_index (__main__.OrderTest) ... ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... ERROR
 ERROR
 test_03_go_pay (__main__.OrderTest) ... ERROR
@@ -4809,7 +4809,7 @@ Ran 5 tests in 24.968s
 
 FAILED (errors=6, skipped=1)
 test_00_index (__main__.OrderTest) ... ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... ERROR
 test_03_go_pay (__main__.OrderTest) ... ERROR
 test_04_alipay (__main__.OrderTest) ... ERROR
@@ -4915,7 +4915,7 @@ Ran 5 tests in 25.641s
 
 FAILED (errors=3, skipped=1)
 test_00_index (__main__.OrderTest) ... ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... ERROR
 test_03_go_pay (__main__.OrderTest) ... ERROR
 test_04_alipay (__main__.OrderTest) ... ERROR
@@ -5044,7 +5044,7 @@ Ran 5 tests in 34.952s
 
 FAILED (errors=3, skipped=1)
 test_00_index (__main__.OrderTest) ... ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... ok
 test_03_go_pay (__main__.OrderTest) ... ERROR
 test_04_alipay (__main__.OrderTest) ... ERROR
@@ -5112,7 +5112,7 @@ Ran 5 tests in 27.495s
 FAILED (errors=2, skipped=1)
 test_00_index (__main__.OrderTest) ... ok
 test_01_add_cart_online (__main__.OrderTest) ... FAIL
-test_02_order_confirm (__main__.OrderTest) ... skipped 'Î´¼Ó¹º[»Ò]_¶©µ¥È·ÈÏ'
+test_02_order_confirm (__main__.OrderTest) ... skipped 'Î´ï¿½Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
 test_03_go_pay (__main__.OrderTest) ... ERROR
 test_04_alipay (__main__.OrderTest) ... ERROR
 
@@ -5209,10 +5209,10 @@ Ran 5 tests in 28.207s
 
 FAILED (failures=1, errors=2, skipped=1)
 test_00_index (__main__.OrderTest) ... ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... ERROR
 test_03_go_pay (__main__.OrderTest) ... test_00_index (__main__.OrderTest) ... ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... ok
 test_03_go_pay (__main__.OrderTest) ... ERROR
 test_04_alipay (__main__.OrderTest) ... ERROR
@@ -5279,7 +5279,7 @@ Ran 5 tests in 20.769s
 
 FAILED (errors=2, skipped=1)
 test_00_index (__main__.OrderTest) ... ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... ERROR
 test_03_go_pay (__main__.OrderTest) ... ERROR
 test_04_alipay (__main__.OrderTest) ... ERROR
@@ -5379,7 +5379,7 @@ Ran 5 tests in 33.761s
 
 FAILED (errors=3, skipped=1)
 test_00_index (__main__.OrderTest) ... ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... ERROR
 test_03_go_pay (__main__.OrderTest) ... ERROR
 test_04_alipay (__main__.OrderTest) ... ERROR
@@ -5479,7 +5479,7 @@ Ran 5 tests in 31.484s
 
 FAILED (errors=3, skipped=1)
 test_00_index (__main__.OrderTest) ... ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... ERROR
 test_03_go_pay (__main__.OrderTest) ... ERROR
 test_04_alipay (__main__.OrderTest) ... ERROR
@@ -5579,7 +5579,7 @@ Ran 5 tests in 30.731s
 
 FAILED (errors=3, skipped=1)
 test_00_index (__main__.OrderTest) ... ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... ERROR
 test_03_go_pay (__main__.OrderTest) ... ERROR
 test_04_alipay (__main__.OrderTest) ... ERROR
@@ -5679,10 +5679,10 @@ Ran 5 tests in 31.503s
 
 FAILED (errors=3, skipped=1)
 test_00_index (__main__.OrderTest) ... ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... ERROR
 test_03_go_pay (__main__.OrderTest) ... test_00_index (__main__.OrderTest) ... ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... FAIL
 test_03_go_pay (__main__.OrderTest) ... ERROR
 test_04_alipay (__main__.OrderTest) ... ERROR
@@ -5770,10 +5770,10 @@ FAIL: test_02_order_confirm (__main__.OrderTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 44, in test_02_order_confirm
-    self.assertEqual(self.driver.title, '¶©µ¥È·ÈÏ')
-AssertionError: 'ÓÃ»§µÇÂ¼' != '¶©µ¥È·ÈÏ'
-- ÓÃ»§µÇÂ¼
-+ ¶©µ¥È·ÈÏ
+    self.assertEqual(self.driver.title, 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½')
+AssertionError: 'ï¿½Ã»ï¿½ï¿½ï¿½Â¼' != 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½'
+- ï¿½Ã»ï¿½ï¿½ï¿½Â¼
++ ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½
 
 
 ----------------------------------------------------------------------
@@ -5781,11 +5781,11 @@ Ran 5 tests in 27.649s
 
 FAILED (failures=1, errors=2, skipped=1)
 test_00_index (__main__.OrderTest) ... ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... ERROR
 test_03_go_pay (__main__.OrderTest) ... ERROR
 test_04_alipay (__main__.OrderTest) ... test_00_index (__main__.OrderTest) ... ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... ERROR
 test_03_go_pay (__main__.OrderTest) ... ERROR
 test_04_alipay (__main__.OrderTest) ... ERROR
@@ -5883,10 +5883,10 @@ Ran 5 tests in 24.831s
 
 FAILED (errors=3, skipped=1)
 test_00_index (__main__.OrderTest) ... ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... ok
 test_03_go_pay (__main__.OrderTest) ... test_00_index (__main__.OrderTest) ... ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... ok
 test_03_go_pay (__main__.OrderTest) ... ERROR
 test_04_alipay (__main__.OrderTest) ... ERROR
@@ -5974,7 +5974,7 @@ Ran 5 tests in 50.132s
 
 FAILED (errors=2, skipped=1)
 test_00_index (__main__.OrderTest) ... ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... ok
 test_03_go_pay (__main__.OrderTest) ... FAIL
 test_04_alipay (__main__.OrderTest) ... ERROR
@@ -5994,10 +5994,10 @@ FAIL: test_03_go_pay (__main__.OrderTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 50, in test_03_go_pay
-    self.assertEqual(self.driver.title, 'ÊÕÒøÌ¨')
-AssertionError: '¶©µ¥È·ÈÏ' != 'ÊÕÒøÌ¨'
-- ¶©µ¥È·ÈÏ
-+ ÊÕÒøÌ¨
+    self.assertEqual(self.driver.title, 'ï¿½ï¿½ï¿½ï¿½Ì¨')
+AssertionError: 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½' != 'ï¿½ï¿½ï¿½ï¿½Ì¨'
+- ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½
++ ï¿½ï¿½ï¿½ï¿½Ì¨
 
 
 ----------------------------------------------------------------------
@@ -6005,7 +6005,7 @@ Ran 5 tests in 48.859s
 
 FAILED (failures=1, errors=1, skipped=1)
 test_00_index (__main__.OrderTest) ... ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... ok
 test_03_go_pay (__main__.OrderTest) ... FAIL
 test_04_alipay (__main__.OrderTest) ... ERROR
@@ -6025,10 +6025,10 @@ FAIL: test_03_go_pay (__main__.OrderTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 50, in test_03_go_pay
-    self.assertEqual(self.driver.title, 'ÊÕÒøÌ¨')
-AssertionError: '¶©µ¥È·ÈÏ' != 'ÊÕÒøÌ¨'
-- ¶©µ¥È·ÈÏ
-+ ÊÕÒøÌ¨
+    self.assertEqual(self.driver.title, 'ï¿½ï¿½ï¿½ï¿½Ì¨')
+AssertionError: 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½' != 'ï¿½ï¿½ï¿½ï¿½Ì¨'
+- ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½
++ ï¿½ï¿½ï¿½ï¿½Ì¨
 
 
 ----------------------------------------------------------------------
@@ -6036,10 +6036,10 @@ Ran 5 tests in 87.873s
 
 FAILED (failures=1, errors=1, skipped=1)
 test_00_index (__main__.OrderTest) ... ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... ERROR
 test_03_go_pay (__main__.OrderTest) ... test_00_index (__main__.OrderTest) ... ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... ok
 test_03_go_pay (__main__.OrderTest) ... FAIL
 test_04_alipay (__main__.OrderTest) ... ERROR
@@ -6059,10 +6059,10 @@ FAIL: test_03_go_pay (__main__.OrderTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 50, in test_03_go_pay
-    self.assertEqual(self.driver.title, 'ÊÕÒøÌ¨')
-AssertionError: '¶©µ¥È·ÈÏ' != 'ÊÕÒøÌ¨'
-- ¶©µ¥È·ÈÏ
-+ ÊÕÒøÌ¨
+    self.assertEqual(self.driver.title, 'ï¿½ï¿½ï¿½ï¿½Ì¨')
+AssertionError: 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½' != 'ï¿½ï¿½ï¿½ï¿½Ì¨'
+- ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½
++ ï¿½ï¿½ï¿½ï¿½Ì¨
 
 
 ----------------------------------------------------------------------
@@ -6070,7 +6070,7 @@ Ran 5 tests in 82.556s
 
 FAILED (failures=1, errors=1, skipped=1)
 test_00_index (__main__.OrderTest) ... ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... ok
 test_03_go_pay (__main__.OrderTest) ... FAIL
 test_04_alipay (__main__.OrderTest) ... ERROR
@@ -6090,10 +6090,10 @@ FAIL: test_03_go_pay (__main__.OrderTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 50, in test_03_go_pay
-    self.assertEqual(self.driver.title, 'ÊÕÒøÌ¨')
-AssertionError: '¶©µ¥È·ÈÏ' != 'ÊÕÒøÌ¨'
-- ¶©µ¥È·ÈÏ
-+ ÊÕÒøÌ¨
+    self.assertEqual(self.driver.title, 'ï¿½ï¿½ï¿½ï¿½Ì¨')
+AssertionError: 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½' != 'ï¿½ï¿½ï¿½ï¿½Ì¨'
+- ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½
++ ï¿½ï¿½ï¿½ï¿½Ì¨
 
 
 ----------------------------------------------------------------------
@@ -6101,7 +6101,7 @@ Ran 5 tests in 65.093s
 
 FAILED (failures=1, errors=1, skipped=1)
 test_00_index (__main__.OrderTest) ... ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... ok
 test_03_go_pay (__main__.OrderTest) ... FAIL
 test_04_alipay (__main__.OrderTest) ... ERROR
@@ -6121,10 +6121,10 @@ FAIL: test_03_go_pay (__main__.OrderTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 50, in test_03_go_pay
-    self.assertEqual(self.driver.title, 'ÊÕÒøÌ¨')
-AssertionError: '¶©µ¥È·ÈÏ' != 'ÊÕÒøÌ¨'
-- ¶©µ¥È·ÈÏ
-+ ÊÕÒøÌ¨
+    self.assertEqual(self.driver.title, 'ï¿½ï¿½ï¿½ï¿½Ì¨')
+AssertionError: 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½' != 'ï¿½ï¿½ï¿½ï¿½Ì¨'
+- ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½
++ ï¿½ï¿½ï¿½ï¿½Ì¨
 
 
 ----------------------------------------------------------------------
@@ -6132,7 +6132,7 @@ Ran 5 tests in 100.180s
 
 FAILED (failures=1, errors=1, skipped=1)
 test_00_index (__main__.OrderTest) ... ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... ok
 test_03_go_pay (__main__.OrderTest) ... FAIL
 test_04_alipay (__main__.OrderTest) ... ERROR
@@ -6152,10 +6152,10 @@ FAIL: test_03_go_pay (__main__.OrderTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 52, in test_03_go_pay
-    self.assertEqual(self.driver.title, 'ÊÕÒøÌ¨')
-AssertionError: '¶©µ¥È·ÈÏ' != 'ÊÕÒøÌ¨'
-- ¶©µ¥È·ÈÏ
-+ ÊÕÒøÌ¨
+    self.assertEqual(self.driver.title, 'ï¿½ï¿½ï¿½ï¿½Ì¨')
+AssertionError: 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½' != 'ï¿½ï¿½ï¿½ï¿½Ì¨'
+- ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½
++ ï¿½ï¿½ï¿½ï¿½Ì¨
 
 
 ----------------------------------------------------------------------
@@ -6163,7 +6163,7 @@ Ran 5 tests in 42.819s
 
 FAILED (failures=1, errors=1, skipped=1)
 test_00_index (__main__.OrderTest) ... ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... ok
 test_03_go_pay (__main__.OrderTest) ... ok
 test_04_alipay (__main__.OrderTest) ... ERROR
@@ -6183,7 +6183,7 @@ Ran 5 tests in 45.002s
 
 FAILED (errors=1, skipped=1)
 test_00_index (__main__.OrderTest) ... ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... ok
 test_03_go_pay (__main__.OrderTest) ... FAIL
 test_04_alipay (__main__.OrderTest) ... ERROR
@@ -6203,10 +6203,10 @@ FAIL: test_03_go_pay (__main__.OrderTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 53, in test_03_go_pay
-    self.assertEqual(self.driver.title, 'ÊÕÒøÌ¨')
-AssertionError: '¶©µ¥È·ÈÏ' != 'ÊÕÒøÌ¨'
-- ¶©µ¥È·ÈÏ
-+ ÊÕÒøÌ¨
+    self.assertEqual(self.driver.title, 'ï¿½ï¿½ï¿½ï¿½Ì¨')
+AssertionError: 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½' != 'ï¿½ï¿½ï¿½ï¿½Ì¨'
+- ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½
++ ï¿½ï¿½ï¿½ï¿½Ì¨
 
 
 ----------------------------------------------------------------------
@@ -6214,7 +6214,7 @@ Ran 5 tests in 35.179s
 
 FAILED (failures=1, errors=1, skipped=1)
 test_00_index (__main__.OrderTest) ... ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... ok
 test_03_go_pay (__main__.OrderTest) ... FAIL
 test_04_alipay (__main__.OrderTest) ... ERROR
@@ -6234,10 +6234,10 @@ FAIL: test_03_go_pay (__main__.OrderTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 54, in test_03_go_pay
-    self.assertEqual(self.driver.title, 'ÊÕÒøÌ¨')
-AssertionError: '¶©µ¥È·ÈÏ' != 'ÊÕÒøÌ¨'
-- ¶©µ¥È·ÈÏ
-+ ÊÕÒøÌ¨
+    self.assertEqual(self.driver.title, 'ï¿½ï¿½ï¿½ï¿½Ì¨')
+AssertionError: 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½' != 'ï¿½ï¿½ï¿½ï¿½Ì¨'
+- ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½
++ ï¿½ï¿½ï¿½ï¿½Ì¨
 
 
 ----------------------------------------------------------------------
@@ -6245,7 +6245,7 @@ Ran 5 tests in 60.422s
 
 FAILED (failures=1, errors=1, skipped=1)
 test_00_index (__main__.OrderTest) ... ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... ok
 test_03_go_pay (__main__.OrderTest) ... FAIL
 test_04_alipay (__main__.OrderTest) ... ERROR
@@ -6265,10 +6265,10 @@ FAIL: test_03_go_pay (__main__.OrderTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 54, in test_03_go_pay
-    self.assertEqual(self.driver.title, 'ÊÕÒøÌ¨')
-AssertionError: '¹ºÎï³µ' != 'ÊÕÒøÌ¨'
-- ¹ºÎï³µ
-+ ÊÕÒøÌ¨
+    self.assertEqual(self.driver.title, 'ï¿½ï¿½ï¿½ï¿½Ì¨')
+AssertionError: 'ï¿½ï¿½ï¿½ï³µ' != 'ï¿½ï¿½ï¿½ï¿½Ì¨'
+- ï¿½ï¿½ï¿½ï³µ
++ ï¿½ï¿½ï¿½ï¿½Ì¨
 
 
 ----------------------------------------------------------------------
@@ -6276,7 +6276,7 @@ Ran 5 tests in 39.075s
 
 FAILED (failures=1, errors=1, skipped=1)
 test_00_index (__main__.OrderTest) ... ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... ok
 test_03_go_pay (__main__.OrderTest) ... ERROR
 ERROR
@@ -6460,7 +6460,7 @@ Ran 5 tests in 26.662s
 
 FAILED (errors=4, skipped=1)
 test_00_index (__main__.OrderTest) ... ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... ok
 test_03_go_pay (__main__.OrderTest) ... ok
 test_04_alipay (__main__.OrderTest) ... ERROR
@@ -6480,7 +6480,7 @@ Ran 5 tests in 48.213s
 
 FAILED (errors=1, skipped=1)
 test_00_index (__main__.OrderTest) ... ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... ok
 test_03_go_pay (__main__.OrderTest) ... FAIL
 test_04_alipay (__main__.OrderTest) ... ERROR
@@ -6581,10 +6581,10 @@ FAIL: test_03_go_pay (__main__.OrderTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 54, in test_03_go_pay
-    self.assertEqual(self.driver.title, 'ÊÕÒøÌ¨')
-AssertionError: '¶©µ¥È·ÈÏ' != 'ÊÕÒøÌ¨'
-- ¶©µ¥È·ÈÏ
-+ ÊÕÒøÌ¨
+    self.assertEqual(self.driver.title, 'ï¿½ï¿½ï¿½ï¿½Ì¨')
+AssertionError: 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½' != 'ï¿½ï¿½ï¿½ï¿½Ì¨'
+- ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½
++ ï¿½ï¿½ï¿½ï¿½Ì¨
 
 
 ----------------------------------------------------------------------
@@ -6592,7 +6592,7 @@ Ran 5 tests in 56.955s
 
 FAILED (failures=1, errors=2, skipped=1)
 test_00_index (__main__.OrderTest) ... ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... ok
 test_03_go_pay (__main__.OrderTest) ... FAIL
 test_04_alipay (__main__.OrderTest) ... ERROR
@@ -6612,10 +6612,10 @@ FAIL: test_03_go_pay (__main__.OrderTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 54, in test_03_go_pay
-    self.assertEqual(self.driver.title, 'ÊÕÒøÌ¨')
-AssertionError: '¶©µ¥È·ÈÏ' != 'ÊÕÒøÌ¨'
-- ¶©µ¥È·ÈÏ
-+ ÊÕÒøÌ¨
+    self.assertEqual(self.driver.title, 'ï¿½ï¿½ï¿½ï¿½Ì¨')
+AssertionError: 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½' != 'ï¿½ï¿½ï¿½ï¿½Ì¨'
+- ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½
++ ï¿½ï¿½ï¿½ï¿½Ì¨
 
 
 ----------------------------------------------------------------------
@@ -6623,7 +6623,7 @@ Ran 5 tests in 39.295s
 
 FAILED (failures=1, errors=1, skipped=1)
 test_00_index (__main__.OrderTest) ... ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... ok
 test_03_go_pay (__main__.OrderTest) ... ok
 test_04_alipay (__main__.OrderTest) ... ERROR
@@ -6643,7 +6643,7 @@ Ran 5 tests in 27.358s
 
 FAILED (errors=1, skipped=1)
 test_00_index (__main__.OrderTest) ... ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... ok
 test_03_go_pay (__main__.OrderTest) ... FAIL
 test_04_alipay (__main__.OrderTest) ... ERROR
@@ -6663,10 +6663,10 @@ FAIL: test_03_go_pay (__main__.OrderTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 54, in test_03_go_pay
-    self.assertEqual(self.driver.title, 'ÊÕÒøÌ¨')
-AssertionError: '¶©µ¥È·ÈÏ' != 'ÊÕÒøÌ¨'
-- ¶©µ¥È·ÈÏ
-+ ÊÕÒøÌ¨
+    self.assertEqual(self.driver.title, 'ï¿½ï¿½ï¿½ï¿½Ì¨')
+AssertionError: 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½' != 'ï¿½ï¿½ï¿½ï¿½Ì¨'
+- ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½
++ ï¿½ï¿½ï¿½ï¿½Ì¨
 
 
 ----------------------------------------------------------------------
@@ -6674,7 +6674,7 @@ Ran 5 tests in 39.047s
 
 FAILED (failures=1, errors=1, skipped=1)
 test_00_index (__main__.OrderTest) ... ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... ERROR
 test_03_go_pay (__main__.OrderTest) ... ERROR
 test_04_alipay (__main__.OrderTest) ... ERROR
@@ -6716,7 +6716,7 @@ Ran 5 tests in 40.513s
 
 FAILED (errors=3, skipped=1)
 test_00_index (__main__.OrderTest) ... ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... ok
 test_03_go_pay (__main__.OrderTest) ... FAIL
 test_04_alipay (__main__.OrderTest) ... ERROR
@@ -6736,10 +6736,10 @@ FAIL: test_03_go_pay (__main__.OrderTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 54, in test_03_go_pay
-    self.assertEqual(self.driver.title, 'ÊÕÒøÌ¨')
-AssertionError: '¶©µ¥È·ÈÏ' != 'ÊÕÒøÌ¨'
-- ¶©µ¥È·ÈÏ
-+ ÊÕÒøÌ¨
+    self.assertEqual(self.driver.title, 'ï¿½ï¿½ï¿½ï¿½Ì¨')
+AssertionError: 'ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½' != 'ï¿½ï¿½ï¿½ï¿½Ì¨'
+- ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½
++ ï¿½ï¿½ï¿½ï¿½Ì¨
 
 
 ----------------------------------------------------------------------
@@ -6747,7 +6747,7 @@ Ran 5 tests in 41.183s
 
 FAILED (failures=1, errors=1, skipped=1)
 test_00_index (__main__.OrderTest) ... ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... ok
 test_03_go_pay (__main__.OrderTest) ... ok
 test_04_alipay (__main__.OrderTest) ... ERROR
@@ -6802,7 +6802,7 @@ Ran 5 tests in 58.931s
 
 FAILED (errors=1, skipped=1)
 test_00_index (__main__.OrderTest) ... ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... ok
 test_03_go_pay (__main__.OrderTest) ... ok
 test_04_alipay (__main__.OrderTest) ... ERROR
@@ -6857,7 +6857,7 @@ Ran 5 tests in 36.942s
 
 FAILED (errors=1, skipped=1)
 test_00_index (__main__.OrderTest) ... ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... ok
 test_03_go_pay (__main__.OrderTest) ... ok
 test_04_alipay (__main__.OrderTest) ... ERROR
@@ -6912,7 +6912,7 @@ Ran 5 tests in 37.022s
 
 FAILED (errors=1, skipped=1)
 test_00_index (__main__.OrderTest) ... ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... ok
 test_03_go_pay (__main__.OrderTest) ... ok
 test_04_alipay (__main__.OrderTest) ... ERROR
@@ -6932,7 +6932,7 @@ Ran 5 tests in 43.074s
 
 FAILED (errors=1, skipped=1)
 test_00_index (__main__.OrderTest) ... ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... ok
 test_03_go_pay (__main__.OrderTest) ... ok
 test_04_alipay (__main__.OrderTest) ... ERROR
@@ -6954,7 +6954,7 @@ FAILED (errors=1, skipped=1)
 test_00_index (__main__.OrderTest) ... 2022-03-04 20:44:51,681 INFO --- [wrapper] restful-L28 : [GET] http://gulimall.com/ [open]
 2022-03-04 20:44:53,138 INFO --- [tearDown] order_test-L67 : test_00_index : []
 ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... 2022-03-04 20:44:53,152 INFO --- [wrapper] restful-L28 : [GET] http://auth.gulimall.com/login.html [sign_login]
 2022-03-04 20:44:55,540 INFO --- [wrapper] restful-L74 : [GET] http://cart.gulimall.com/cartList.html [login_if_absent]
 2022-03-04 20:44:56,365 INFO --- [wrapper] restful-L28 : [GET] http://item.gulimall.com/15.html [add_item]
@@ -7019,7 +7019,7 @@ FAILED (errors=1, skipped=1)
 test_00_index (__main__.OrderTest) ... 2022-03-04 21:41:50,093 INFO --- [wrapper] restful-L28 : [GET] http://gulimall.com/ [open]
 2022-03-04 21:41:50,366 INFO --- [tearDown] order_test-L67 : test_00_index : []
 ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... 2022-03-04 21:41:50,380 INFO --- [wrapper] restful-L28 : [GET] http://auth.gulimall.com/login.html [sign_login]
 2022-03-04 21:41:51,907 INFO --- [wrapper] restful-L74 : [GET] http://cart.gulimall.com/cartList.html [login_if_absent]
 2022-03-04 21:41:52,316 INFO --- [wrapper] restful-L28 : [GET] http://item.gulimall.com/15.html [add_item]
@@ -7055,7 +7055,7 @@ FAILED (errors=1, skipped=1)
 test_00_index (__main__.OrderTest) ... 2022-03-06 20:13:13,773 INFO --- [wrapper] restful-L28 : [GET] http://gulimall.com/ [open]
 2022-03-06 20:13:15,159 INFO --- [tearDown] order_test-L67 : test_00_index : []
 ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... 2022-03-06 20:13:15,178 INFO --- [wrapper] restful-L28 : [GET] http://auth.gulimall.com/login.html [sign_login]
 2022-03-06 20:13:17,552 INFO --- [wrapper] restful-L74 : [GET] http://cart.gulimall.com/cartList.html [login_if_absent]
 2022-03-06 20:13:18,340 INFO --- [wrapper] restful-L28 : [GET] http://item.gulimall.com/15.html [add_item]
@@ -7083,9 +7083,9 @@ FAIL: test_03_go_pay (__main__.OrderTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 54, in test_03_go_pay
-    self.assertEqual(self.driver.title, 'ÊÕÒøÌ¨')
-AssertionError: '' != 'ÊÕÒøÌ¨'
-+ ÊÕÒøÌ¨
+    self.assertEqual(self.driver.title, 'ï¿½ï¿½ï¿½ï¿½Ì¨')
+AssertionError: '' != 'ï¿½ï¿½ï¿½ï¿½Ì¨'
++ ï¿½ï¿½ï¿½ï¿½Ì¨
 
 ----------------------------------------------------------------------
 Ran 5 tests in 34.447s
@@ -7096,7 +7096,7 @@ FAILED (failures=1, errors=1, skipped=1)
 test_00_index (__main__.OrderTest) ... 2022-03-12 00:04:01,251 INFO --- [wrapper] restful-L28 : [GET] http://gulimall.com/ [open]
 2022-03-12 00:04:03,389 INFO --- [tearDown] order_test-L67 : test_00_index : []
 FAIL
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... 2022-03-12 00:04:03,408 INFO --- [wrapper] restful-L28 : [GET] http://auth.gulimall.com/login.html [sign_login]
 2022-03-12 00:04:15,734 INFO --- [wait] pageobject-L20 : wait timeout
 2022-03-12 00:04:15,738 INFO --- [tearDown] order_test-L67 : test_02_order_confirm : []
@@ -7149,10 +7149,10 @@ FAIL: test_00_index (__main__.OrderTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 26, in test_00_index
-    self.assertEqual(self.driver.title, '¹ÈÁ£ÉÌ³Ç')
-AssertionError: 'gulimall.com' != '¹ÈÁ£ÉÌ³Ç'
+    self.assertEqual(self.driver.title, 'ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½')
+AssertionError: 'gulimall.com' != 'ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½'
 - gulimall.com
-+ ¹ÈÁ£ÉÌ³Ç
++ ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½
 
 
 ----------------------------------------------------------------------
@@ -7162,7 +7162,7 @@ FAILED (failures=1, errors=3, skipped=1)
 test_00_index (__main__.OrderTest) ... 2022-03-12 00:21:16,764 INFO --- [wrapper] restful-L28 : [GET] http://gulimall.com/ [open]
 2022-03-12 00:21:18,882 INFO --- [tearDown] order_test-L67 : test_00_index : []
 FAIL
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... 2022-03-12 00:21:18,903 INFO --- [wrapper] restful-L28 : [GET] http://auth.gulimall.com/login.html [sign_login]
 2022-03-12 00:21:31,236 INFO --- [wait] pageobject-L20 : wait timeout
 2022-03-12 00:21:31,240 INFO --- [tearDown] order_test-L67 : test_02_order_confirm : []
@@ -7215,10 +7215,10 @@ FAIL: test_00_index (__main__.OrderTest)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "e:\projects\IdeaProjects\gulimall\selenium\autotest\test\order_test.py", line 26, in test_00_index
-    self.assertEqual(self.driver.title, '¹ÈÁ£ÉÌ³Ç')
-AssertionError: 'gulimall.com' != '¹ÈÁ£ÉÌ³Ç'
+    self.assertEqual(self.driver.title, 'ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½')
+AssertionError: 'gulimall.com' != 'ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½'
 - gulimall.com
-+ ¹ÈÁ£ÉÌ³Ç
++ ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½
 
 
 ----------------------------------------------------------------------
@@ -7228,7 +7228,7 @@ FAILED (failures=1, errors=3, skipped=1)
 test_00_index (__main__.OrderTest) ... 2022-03-12 00:22:33,177 INFO --- [wrapper] restful-L28 : [GET] http://gulimall.com/ [open]
 2022-03-12 00:22:35,056 INFO --- [tearDown] order_test-L67 : test_00_index : []
 ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... 2022-03-12 00:22:35,081 INFO --- [wrapper] restful-L28 : [GET] http://auth.gulimall.com/login.html [sign_login]
 2022-03-12 00:22:38,456 INFO --- [wrapper] restful-L74 : [GET] http://cart.gulimall.com/cartList.html [login_if_absent]
 2022-03-12 00:22:40,357 INFO --- [wrapper] restful-L28 : [GET] http://item.gulimall.com/15.html [add_item]
@@ -7303,7 +7303,7 @@ FAILED (errors=2, skipped=1)
 test_00_index (__main__.OrderTest) ... 2022-03-12 00:24:06,142 INFO --- [wrapper] restful-L28 : [GET] http://gulimall.com/ [open]
 2022-03-12 00:24:06,406 INFO --- [tearDown] order_test-L67 : test_00_index : []
 ok
-test_01_add_cart_online (__main__.OrderTest) ... skipped 'ÒÑ¼Ó¹º[ÂÌ]_ÔÚÏß¹ºÎï³µ'
+test_01_add_cart_online (__main__.OrderTest) ... skipped 'ï¿½Ñ¼Ó¹ï¿½[ï¿½ï¿½]_ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï³µ'
 test_02_order_confirm (__main__.OrderTest) ... 2022-03-12 00:24:06,436 INFO --- [wrapper] restful-L28 : [GET] http://auth.gulimall.com/login.html [sign_login]
 2022-03-12 00:24:08,772 INFO --- [wrapper] restful-L74 : [GET] http://cart.gulimall.com/cartList.html [login_if_absent]
 2022-03-12 00:24:09,392 INFO --- [wrapper] restful-L28 : [GET] http://item.gulimall.com/15.html [add_item]

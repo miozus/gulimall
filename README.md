@@ -1,8 +1,10 @@
 # 谷粒商城
 
-All my effCort is the parody of JD.COM since 2019.
-
-仿京东商城 2019
+> All my effort is the parody of JD.COM since 2019.
+>
+> 仿京东商城 2019
+> 
+> ![SpringCLoud](https://img.shields.io/badge/dependencies-SpringCloud-brightgreen?logo=spring)
 
 ---
 
@@ -52,7 +54,7 @@ All my effCort is the parody of JD.COM since 2019.
 
 基础服务设施（技术栈）还有：
 
-| 序号  | 基础设施 | 技术栈                                                                                        | 备注                                       |
+| 序号  | 基础设施 | 技术栈                                                                                        | 截图                                       |
 |-----|-----------|---------------------------------------------------------------|---------------------------|
 | 1   | 服务器 | Docker 部署中间件 | ![docker-server..png](docs/img/docker-server.png) | 
 | 2   | 测试 | Selenium（Python）单元测试                                                                       |  ![img.png](docs/img/selenium.png)                                      | 
@@ -66,7 +68,7 @@ All my effCort is the parody of JD.COM since 2019.
 
 具体参考教程视频或其他 Gulimall 开源笔记。因为 Nacos 配置中心，管理每个微服务的配置，类多且繁杂，但好在持久化在一个数据库中。本人使用 2G*2 服务器内存太吃紧，所处这里不展开共享测试了。
 
--[ ] 后续重构项目会将账号信息隐藏后，加上注解公开配置文件，并开源 Notion 笔记开发细节，手摸手教你实现从零到一完成电商系统。
+- [ ] 后续重构项目会将账号信息隐藏后，加上注解公开配置文件，并开源 Notion 笔记开发细节，手摸手教你实现从零到一完成电商系统。
 
 2.部署
 
@@ -264,7 +266,7 @@ public class SysLogAspect {
     - 单例：日志对象、浏览器对象必须只有1个，用的加锁双重校验保证多线程安全。（可惜复用浏览器上次对话还要搜集会话信息）
     - 装饰器: 封装了 URL 路由方法，一般点击操作需要先打开网页
     - 模版：上述模型都封装模块，每次写新页面，直接调用组件;写测试用例，就调用页面、方法、数据。
-- 结合浏览器插件熟悉测试流程：
+- 模拟真人操作流程
     - 通过测试，发现和修复了文档标题、登录后应隐藏登录入口、Hystrix 熔断的隔离级别导致 Feign 通讯丢失请求头等问题
 - 没有接口测试：接口文档参照上面的。
     -[ ] 后期重构的话，准备使用 Apifox 工具

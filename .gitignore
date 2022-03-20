@@ -43,4 +43,6 @@ build
 # VSCode
 __pycache__
 .vscode
-# Python:
+
+# node
+node_modules/

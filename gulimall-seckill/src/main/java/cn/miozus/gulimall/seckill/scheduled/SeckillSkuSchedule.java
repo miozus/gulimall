@@ -9,7 +9,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 /**
- * 你好定时任务
+ * 秒杀定时任务
  *
  * @author miozus
  * @date 2022/03/06
@@ -22,10 +22,10 @@ public class SeckillSkuSchedule {
     SeckillService seckillService;
 
     @Async
-    @Scheduled(cron = "0 * * * * ?")
+    @Scheduled(cron = "0 9 * * * ?")
     @Idempotent("秒杀商品上架加锁")
     public void uploadContinuous3DaysSku() {
-        log.info("hello schedule");
+        log.info("⏰ uploadContinuous3DaysSku schedule");
         seckillService.uploadContinuous3DaySku();
     }
 }

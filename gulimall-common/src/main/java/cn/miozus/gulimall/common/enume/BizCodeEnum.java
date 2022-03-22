@@ -5,13 +5,14 @@ package cn.miozus.gulimall.common.enume;
  * 10:通用
  * - 001:参数格式校验
  * - 002:短信验证码频率太高
- * 11:商品
+ * 11: 商品
  * 12: 订单
  * 13: 购物车
  * 14: 物流
  * 15: 用户
  * 16: 中间件
  * 21: 库存
+ * 22: 秒杀
  *
  * @author miao
  * @date 2021/10/02
@@ -35,7 +36,8 @@ public enum BizCodeEnum {
     REDIS_TOKEN_INVALID_EXCEPTION(16001,"令牌校验失败，请勿重复提交"),
     REDIS_CONDITION_DEPEND_PREVIEW_EXCEPTION(16002,"前置条件出异常，操作缓存失败"),
     FEIGN_READ_TIMEOUT_EXCEPTION(16003,"远程查询超时，网络故障"),
-    NO_STOCK_EXCEPTION(21000,"库存不足");
+    NO_STOCK_EXCEPTION(21000,"库存不足"),
+    SECKILL_FETCH_EXCEPTION(22001,"秒杀信息查询故障");
 
     private final int code;
     private final String msg;

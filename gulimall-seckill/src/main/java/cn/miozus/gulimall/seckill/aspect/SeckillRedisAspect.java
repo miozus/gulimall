@@ -1,9 +1,13 @@
 package cn.miozus.gulimall.seckill.aspect;
 
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.lang.UUID;
 import cn.hutool.json.JSONUtil;
+import cn.miozus.gulimall.common.annotation.GetRedis;
 import cn.miozus.gulimall.common.annotation.Idempotent;
 import cn.miozus.gulimall.common.annotation.PutRedis;
+import cn.miozus.gulimall.common.enume.BizCodeEnum;
+import cn.miozus.gulimall.common.exception.GuliMallBindException;
 import cn.miozus.gulimall.common.utils.R;
 import cn.miozus.gulimall.seckill.feign.ProductFeignService;
 import cn.miozus.gulimall.seckill.to.SeckillSkuRedisTo;
@@ -11,6 +15,7 @@ import cn.miozus.gulimall.seckill.vo.SeckillSessionWithSkus;
 import cn.miozus.gulimall.seckill.vo.SeckillSkuVo;
 import cn.miozus.gulimall.seckill.vo.SkuInfoVo;
 import com.alibaba.fastjson.TypeReference;
+import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -23,7 +28,9 @@ import org.springframework.data.redis.core.BoundHashOperations;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -49,8 +56,9 @@ public class SeckillRedisAspect {
     private static final String SECKILL_SKUS_STOCK_SEMAPHORE_CACHE_PREFIX = "seckill:stock:";
     private static final String SECKILL_UPLOAD_LOCK = "seckill:upload:lock";
 
+
     @Around("@annotation(idempotent)")
-    public void around(ProceedingJoinPoint pjp, Idempotent idempotent) {
+    public void lockForWriteOnce(ProceedingJoinPoint pjp, Idempotent idempotent) {
         RLock lock = redissonClient.getLock(SECKILL_UPLOAD_LOCK);
         lock.lock(10, TimeUnit.MINUTES);
         try {
@@ -63,11 +71,46 @@ public class SeckillRedisAspect {
     }
 
     @Around("@annotation(putRedis)")
-    public void around(ProceedingJoinPoint pjp, PutRedis putRedis) {
+    public void saveEntity(ProceedingJoinPoint pjp, PutRedis putRedis) {
         List<SeckillSessionWithSkus> sessionData = (List<SeckillSessionWithSkus>) pjp.getArgs()[0];
         saveSkuIds(sessionData);
         saveRelationSkus(sessionData);
     }
+
+    @Around("@annotation(getRedis)")
+    public Object fetchNewsOne(ProceedingJoinPoint pjp, GetRedis getRedis) {
+        Object retVal = null;
+        long now = DateUtil.current();
+        Set<String> keys = redisTemplate.keys(SECKILL_SESSION_CACHE_PREFIX + "*");
+        if (CollectionUtils.isEmpty(keys)) {
+            return retVal;
+        }
+        for (String key : keys) {
+            String[] interval = key.replace(SECKILL_SESSION_CACHE_PREFIX, "").split("_");
+            long start = Long.parseLong(interval[0]);
+            long end = Long.parseLong(interval[1]);
+            if (start <= now && now <= end) {
+
+                BoundHashOperations<String, Object, Object> ops = redisTemplate.boundHashOps(SECKILL_SKUS_CACHE_PREFIX);
+                List<String> range = redisTemplate.opsForList().range(key, -100, 100);
+                List<Object> objects = ops.multiGet(Collections.singleton(range));
+                if (CollectionUtils.isNotEmpty(objects)) {
+                    return objects.stream().map(objStr -> JSONUtil.toBean((String) objStr, SeckillSkuRedisTo.class))
+                            .collect(Collectors.toList());
+                }
+                // 当前时间段最多1个场次
+                break;
+            }
+        }
+
+        try {
+            retVal = pjp.proceed();
+        } catch (Throwable e) {
+            throw new GuliMallBindException(BizCodeEnum.SECKILL_FETCH_EXCEPTION);
+        }
+        return retVal;
+    }
+
 
     private void saveSkuIds(List<SeckillSessionWithSkus> sessionData) {
         sessionData.forEach(s -> {
@@ -82,6 +125,7 @@ public class SeckillRedisAspect {
             }
         });
     }
+
 
     /**
      * 保存sku关系

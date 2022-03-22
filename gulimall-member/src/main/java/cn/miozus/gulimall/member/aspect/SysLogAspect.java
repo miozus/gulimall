@@ -24,6 +24,10 @@ import java.util.Date;
 @Slf4j
 public class SysLogAspect {
 
+//    @Autowired
+//    private SysLogService sysLogService;
+//    private static Logger logger = LoggerFactory.getLogger(SysLogAspect.class);
+
     @Around("@annotation(sysLog)")
     public Object around(ProceedingJoinPoint joinPoint, SysLog sysLog) throws Throwable {
         long beginTime = SystemClock.now();

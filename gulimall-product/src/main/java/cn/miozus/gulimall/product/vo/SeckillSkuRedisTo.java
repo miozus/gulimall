@@ -1,16 +1,14 @@
-package cn.miozus.gulimall.seckill.to;
+package cn.miozus.gulimall.product.vo;
 
-import cn.hutool.core.date.DateUtil;
-import cn.miozus.gulimall.seckill.vo.SkuInfoVo;
 import lombok.Data;
 
 import java.math.BigDecimal;
 
 /**
- * 秒杀sku Redis 传输对象
+ * 秒杀sku缓存来
  *
- * @author miozus
- * @date 2022/03/08
+ * @author Miozus
+ * @date 2022/03/24
  */
 @Data
 public class SeckillSkuRedisTo {
@@ -60,13 +58,5 @@ public class SeckillSkuRedisTo {
     /** 开抢携带随机码  */
     private String randomCode;
 
-    /** 是系统时间处在活动时间内 */
-    public boolean isExpiryDate() {
-        long now = DateUtil.current();
-        return (this.startTime <= now && now <= this.endTime);
-    }
-
-    /** sku 详情 */
-    private SkuInfoVo skuInfo;
 
 }

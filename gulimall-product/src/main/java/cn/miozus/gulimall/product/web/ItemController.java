@@ -29,9 +29,9 @@ public class ItemController {
      * @see String
      */
     @GetMapping("/{skuId}.html")
-    public String skuItem(@PathVariable("skuId") Long skuId, Model model) {
+    public String querySkuItem(@PathVariable("skuId") Long skuId, Model model) {
         log.info("准备查询商品详情[skuId:{}]", skuId);
-        SkuItemVo vo = skuInfoService.item(skuId);
+        SkuItemVo vo = skuInfoService.querySkuItem(skuId);
         model.addAttribute("item", vo);
         return "item";
     }

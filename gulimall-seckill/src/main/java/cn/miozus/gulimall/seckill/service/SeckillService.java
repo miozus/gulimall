@@ -25,9 +25,17 @@ public interface SeckillService {
     void saveSessionDataRedis(List<SeckillSessionWithSkus> sessionData);
 
     /**
-     * 获取秒杀sku信息
+     * 获取秒杀sku信息（所有）用于展示
      *
      * @return {@link SeckillSkuRedisTo}
      */
-    List<SeckillSkuRedisTo> fetchSeckillSkuInfo();
+    List<SeckillSkuRedisTo> fetchCurrentSeckillSkus();
+
+    /**
+     * 获取秒杀sku（单个）用于详情
+     *
+     * @param skuId sku id
+     * @return {@link SeckillSkuRedisTo}
+     */
+    SeckillSkuRedisTo fetchSeckillSku(Long skuId);
 }

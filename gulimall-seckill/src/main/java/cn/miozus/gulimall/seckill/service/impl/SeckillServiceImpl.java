@@ -42,12 +42,18 @@ public class SeckillServiceImpl implements SeckillService {
     @Override
     @PutRedis("保存秒杀商品信息")
     public void saveSessionDataRedis(List<SeckillSessionWithSkus> sessionData) {
-
+        // AOP
     }
 
     @Override
-    @GetRedis("查询秒杀商品信息")
-    public List<SeckillSkuRedisTo> fetchSeckillSkuInfo() {
+    @GetRedis("查询所有秒杀商品信息")
+    public List<SeckillSkuRedisTo> fetchCurrentSeckillSkus() {
         return Collections.emptyList();
+    }
+
+    @Override
+    @GetRedis("查询单个商品携带的秒杀信息")
+    public SeckillSkuRedisTo fetchSeckillSku(Long skuId) {
+        return new SeckillSkuRedisTo();
     }
 }

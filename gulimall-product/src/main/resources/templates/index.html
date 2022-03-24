@@ -596,7 +596,7 @@
             resp.data.forEach(function (item) {
                 $("#seckillContent").append(
                     `
-                    <li>
+                    <li onclick="location.href='http://item.gulimall.com/${item.skuInfo.skuId}.html'">
                         <img src="${item.skuInfo.skuDefaultImg}" alt="seckill_img" style="width: 130px;height: 100px">
                         <p>${item.skuInfo.skuTitle}</p>
                         <span>${item.seckillPrice}</span>

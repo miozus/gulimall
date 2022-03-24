@@ -2,12 +2,16 @@ package cn.miozus.gulimall.product.service.impl;
 
 import cn.miozus.gulimall.common.utils.PageUtils;
 import cn.miozus.gulimall.common.utils.Query;
+import cn.miozus.gulimall.common.utils.R;
 import cn.miozus.gulimall.product.dao.SkuInfoDao;
 import cn.miozus.gulimall.product.entity.SkuImagesEntity;
 import cn.miozus.gulimall.product.entity.SkuInfoEntity;
 import cn.miozus.gulimall.product.entity.SpuInfoDescEntity;
+import cn.miozus.gulimall.product.feign.SeckillFeignService;
 import cn.miozus.gulimall.product.service.*;
+import cn.miozus.gulimall.product.vo.SeckillSkuRedisTo;
 import cn.miozus.gulimall.product.vo.SkuItemVo;
+import com.alibaba.fastjson.TypeReference;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
@@ -44,6 +48,8 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> i
     SkuSaleAttrValueService skuSaleAttrValueService;
     @Autowired
     ThreadPoolExecutor executor;
+    @Autowired
+    SeckillFeignService seckillFeignService;
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -137,7 +143,7 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> i
      */
     @SneakyThrows
     @Override
-    public SkuItemVo item(Long skuId) {
+    public SkuItemVo querySkuItem(Long skuId) {
         SkuItemVo vo = new SkuItemVo();
 
         CompletableFuture<SkuInfoEntity> infoFuture = CompletableFuture.supplyAsync(() -> {
@@ -168,7 +174,16 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> i
             vo.setImages(images);
         }, executor);
 
-        CompletableFuture.allOf(descFuture, saleAttrFuture, groupAttrFuture, imagesFuture).get();
+        CompletableFuture<Void> seckillFuture = CompletableFuture.runAsync(() -> {
+            R r = seckillFeignService.fetchSeckillSku(skuId);
+            if (r.getCode()==0) {
+                SeckillSkuRedisTo info = r.getData(new TypeReference<SeckillSkuRedisTo>() {
+                });
+                vo.setSeckillInfo(info);
+            }
+        }, executor);
+
+        CompletableFuture.allOf(descFuture, saleAttrFuture, groupAttrFuture, imagesFuture, seckillFuture).get();
 
         return vo;
     }

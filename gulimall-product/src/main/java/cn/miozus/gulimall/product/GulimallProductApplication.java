@@ -13,7 +13,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  */
 @EnableDiscoveryClient
 @SpringBootApplication
-@EnableFeignClients(basePackages="cn.miozus.gulimall.product.feign")
+@EnableFeignClients
 public class GulimallProductApplication {
 
     public static void main(String[] args) {

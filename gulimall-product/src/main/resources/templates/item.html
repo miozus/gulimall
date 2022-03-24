@@ -64,13 +64,13 @@
           <a th:unless="${session.loginUser != null}" href="http://auth.gulimall.com/login.html" class="aa">你好，请登录</a>
         </li>
         <li th:if="${session.loginUser == null}">
-          <a  href="http://auth.gulimall.com/register.html" class="li_2">免费注册</a>
+          <a href="http://auth.gulimall.com/register.html" class="li_2">免费注册</a>
           |
         </li>
         <li><a href="http://order.gulimall.com/list.html" class="aa">我的订单</a> |</li>
 
         <li class="jingdong"><a href="/static/item/javascript:;">我的京东</a><span
-                class="glyphicon glyphicon-menu-down">|</span>
+            class="glyphicon glyphicon-menu-down">|</span>
           <ol class="jingdong_ol">
             <li><a href="/static/item/javascript:;">待处理订单</a></li>
             <li><a href="/static/item/javascript:;">消息</a></li>
@@ -89,7 +89,7 @@
         <li><a href="/static/item/javascript:;" class="aa">京东会员</a> |</li>
         <li><a href="/static/item/javascript:;" class="aa">企业采购</a> |</li>
         <li class="fuwu"><a href="/static/item/javascript:;">客户服务</a><span
-                class="glyphicon glyphicon-menu-down"></span> |
+            class="glyphicon glyphicon-menu-down"></span> |
           <ol class="fuwu_ol">
             <h6>客户</h6>
             <li><a href="/static/item/javascript:;">帮助中心</a></li>
@@ -110,7 +110,7 @@
           </ol>
         </li>
         <li class="daohang"><a href="/static/item/javascript:;">网站导航</a><span
-                class="glyphicon glyphicon-menu-down"></span> |
+            class="glyphicon glyphicon-menu-down"></span> |
           <ol class="daohang_ol">
             <li style="width: 34%;">
               <h5>特色主题</h5>
@@ -253,7 +253,7 @@
                 <h6><a href="/static/item/#">京东金融客户端</a></h6>
                 <p>新人专享大礼包</p>
                 <div><a href="/static/item/#"><img src="/static/item/img/11.png"/></a><a href="#"><img
-                        src="img/22.png"/></a></div>
+                    src="img/22.png"/></a></div>
               </div>
             </div>
           </div>
@@ -269,7 +269,7 @@
           <button href="javascript:search();">搜索</button>
         </div>
         <div class="nav_top_three"><a href="http://cart.gulimall.com/cartList.html">我的购物车</a><span
-                class="glyphicon glyphicon-shopping-cart"></span>
+            class="glyphicon glyphicon-shopping-cart"></span>
           <div class="nav_top_three_1">
             <img src="/static/item/img/44.png"/>购物车还没有商品，赶紧选购吧！
           </div>
@@ -278,18 +278,18 @@
       <div class="nav_down">
         <ul class="nav_down_ul">
           <li class="nav_down_ul_1" style="width: 24%;float: left;"><a
-                  href="/static/item/javascript:;">全部商品分类</a>
+              href="/static/item/javascript:;">全部商品分类</a>
 
           </li>
           <li class="ul_li"><a href="/static/item/javascript:;">服装城</a></li>
           <li class="ul_li"><a href="/static/item/javascript:;">美妆馆</a></li>
           <li class="ul_li"><a href="/static/item/javascript:;">超市</a></li>
           <li class="ul_li" style="border-right: 1px solid lavender;"><a
-                  href="/static/item/javascript:;">生鲜</a></li>
+              href="/static/item/javascript:;">生鲜</a></li>
           <li class="ul_li"><a href="/static/item/javascript:;">全球购</a></li>
           <li class="ul_li"><a href="/static/item/javascript:;">闪购</a></li>
           <li class="ul_li" style="border-right: 1px solid lavender;"><a
-                  href="/static/item/javascript:;">拍卖</a></li>
+              href="/static/item/javascript:;">拍卖</a></li>
           <li class="ul_li"><a href="/static/item/javascript:;">金融</a></li>
         </ul>
       </div>
@@ -523,8 +523,14 @@
               <span>￥</span>
               <span th:text="${#numbers.formatDecimal(item.info.price, 3, 2)}"></span>
             </li>
-            <li>
-              预约享资格
+            <li th:if="${item.seckillInfo != null}" style="color: red"
+                th:with="now=${#dates.createNow().getTime()},startTime=${item.seckillInfo.startTime},endTime=${item.seckillInfo.endTime}">
+              <span th:if="${now < startTime}">
+              商品将会在[[${$dates.format(new java.util.Date(startTime),"yyyy-MM-dd HH:mm:ss")}]]进行秒杀
+              </span>
+              <span th:if="${startTime <= now && now <= endTime}">
+              秒杀价:[[${#numbers.formatDecimal(item.seckillInfo.seckillPrice, 1, 2)}]]
+              </span>
             </li>
             <li>
               <a href="/static/item/">
@@ -646,7 +652,7 @@
             </div>
           </div>
           <div class="box-btns-two">
-<!--            <a href="http://cart.gulimall.com/addToCart">加入购物车</a>-->
+            <!--            <a href="http://cart.gulimall.com/addToCart">加入购物车</a>-->
             <span th:if="${msg!=null}">[[${msg}]]</span>
             <a href="#" id="addToCart" th:attr="skuId=${item.info.skuId}">加入购物车</a>
           </div>
@@ -945,7 +951,7 @@
                     本产品全国联保，享受三包服务，质保期为：一年保<br/>
                     如因质量问题或故障，凭厂商维修中心或特约维修点的质量检测证明，享受7日内退货，15日内换货，15日以上在保质期内享受免费保修等安保服务！<br/>
                     (注：如厂家在商品介绍中有售后保障的说明，则此商品按照厂家说明执行售后保障服务。)您可以查询本品牌在各地售后服务中心的练习方式<a
-                          href="/static/item/#">请点击这儿查询...</a><br/><br/>
+                      href="/static/item/#">请点击这儿查询...</a><br/><br/>
                   </div>
                 </div>
                 <div class="lianBao oCn">
@@ -957,7 +963,7 @@
                     本产品全国联保，享受三包服务，质保期为：一年保<br/>
                     如因质量问题或故障，凭厂商维修中心或特约维修点的质量检测证明，享受7日内退货，15日内换货，15日以上在保质期内享受免费保修等安保服务！<br/>
                     (注：如厂家在商品介绍中有售后保障的说明，则此商品按照厂家说明执行售后保障服务。)您可以查询本品牌在各地售后服务中心的练习方式<a
-                          href="/static/item/#">请点击这儿查询...</a><br/><br/><br/>
+                      href="/static/item/#">请点击这儿查询...</a><br/><br/><br/>
                   </div>
                 </div>
 
@@ -1065,7 +1071,7 @@
                 <li><a href="/static/item/##">差评（100+）</a></li>
                 <li><a href="/static/item/##"><input type="checkbox"/>只看当前商品价格</a></li>
                 <li class="imga" style="float: right;"><a href="/static/item/##">推荐排序 <img
-                        src="/static/item/img/animaite.png"/> </a>
+                    src="/static/item/img/animaite.png"/> </a>
                 </li>
               </ul>
             </div>
@@ -1327,12 +1333,12 @@
         window.location.href = "http://search.gulimall.com/search.html?keyword=" + keyword;
     }
 
-    $("#addToCart").click(function(){
+    $("#addToCart").click(function () {
         var count = $("#countInput").val();
         var skuId = $(this).attr("skuId");
         var itemUrl = location.href.toString();
 
-        location.href = "http://cart.gulimall.com/addToCart?skuId="+ skuId + "&count=" + count + "&itemUrl=" + itemUrl;
+        location.href = "http://cart.gulimall.com/addToCart?skuId=" + skuId + "&count=" + count + "&itemUrl=" + itemUrl;
         return false;
 
     });

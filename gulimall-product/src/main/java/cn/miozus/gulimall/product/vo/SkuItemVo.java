@@ -27,6 +27,8 @@ public class SkuItemVo {
     List<SkuItemSaleAttrVo> saleAttr;
     SpuInfoDescEntity desc;
     List<SpuItemGroupAttrVo> groupAttrs;
+    /** 附加秒杀信息 */
+    SeckillSkuRedisTo seckillInfo;
 
     /** sku 商品销售属性视图对象 */
     @Data

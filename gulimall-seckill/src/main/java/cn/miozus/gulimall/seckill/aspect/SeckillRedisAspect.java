@@ -30,6 +30,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
@@ -76,7 +77,7 @@ public class SeckillRedisAspect {
     }
 
     /**
-     * 查询最新活动场次
+     * 查询最新秒杀活动（场次/单个商品附加信息）
      *
      * @param pjp      pjp
      * @param getRedis 拉取远程缓存
@@ -84,31 +85,61 @@ public class SeckillRedisAspect {
      */
     @SneakyThrows
     @Around("@annotation(getRedis)")
-    public Object fetchOne(ProceedingJoinPoint pjp, GetRedis getRedis) {
+    public Object fetch(ProceedingJoinPoint pjp, GetRedis getRedis) {
         Object retVal = pjp.proceed();
+        Object[] arg = pjp.getArgs();
+        BoundHashOperations<String, String, String> ops = redisTemplate.boundHashOps(SECKILL_SKUS_CACHE_PREFIX);
+
+        if (arg.length == 0){
+            return fetchCurrentSeckillSkus(retVal, ops);
+        }
+        return fetchSeckillSku(retVal, arg[0], ops);
+    }
+
+    private Object fetchCurrentSeckillSkus(Object retVal, BoundHashOperations<String, String, String> ops) {
         Set<String> keys = redisTemplate.keys(SECKILL_SESSION_CACHE_PREFIX + "*");
         if (CollectionUtils.isEmpty(keys)) {
             return retVal;
         }
         for (String key : keys) {
-            if (isExpiryDate(key)) {
-                BoundHashOperations<String, String, String> ops = redisTemplate.boundHashOps(SECKILL_SKUS_CACHE_PREFIX);
-                List<String> range = redisTemplate.opsForList().range(key, -100, 100);
-                if (CollectionUtils.isNotEmpty(range)) {
-                    List<String> objects = ops.multiGet(range);
-                    if (CollectionUtils.isNotEmpty(objects)) {
-                        return objects.stream().map(objStr -> JSONUtil.toBean(objStr, SeckillSkuRedisTo.class))
-                                .collect(Collectors.toList());
-                    }
+            if (!isExpiryDateString(key)) {
+                continue;
+            }
+            List<String> range = redisTemplate.opsForList().range(key, -100, 100);
+            if (CollectionUtils.isEmpty(range)) {
+                continue;
+            }
+            List<String> objects = ops.multiGet(range);
+            if (CollectionUtils.isEmpty(objects)) {
+                continue;
+            }
+            // 当前时间段最多1个场次（每个场次有许多商品）
+            return objects.stream().map(objStr -> JSONUtil.toBean(objStr, SeckillSkuRedisTo.class))
+                    .collect(Collectors.toList());
+        }
+        return retVal;
+    }
+
+    private Object fetchSeckillSku(Object retVal, Object arg, BoundHashOperations<String, String, String> ops) {
+        Set<String> keys = ops.keys();
+        if (CollectionUtils.isEmpty(keys)) {
+            return retVal;
+        }
+        String regex = "\\d_" + arg;
+        for (String key : keys) {
+            if (Pattern.matches(regex, key)) {
+                String object = ops.get(key);
+                SeckillSkuRedisTo redisTo = JSONUtil.toBean(object, SeckillSkuRedisTo.class);
+                if (!redisTo.isExpiryDate()) {
+                    redisTo.setRandomCode("");
                 }
-                // 当前时间段最多1个场次（每个场次有许多商品）
-                break;
+                return redisTo;
             }
         }
         return retVal;
     }
 
-    private boolean isExpiryDate(String key) {
+    private boolean isExpiryDateString(String key) {
         String[] interval = key.replace(SECKILL_SESSION_CACHE_PREFIX, "").split("_");
         long now = DateUtil.current();
         long start = Long.parseLong(interval[0]);

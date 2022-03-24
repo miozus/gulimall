@@ -121,6 +121,7 @@ public class R extends HashMap<String, Object> {
 
     /**
      * 获取数据
+     * 默认键 "data"
      * alibaba-fastjson 设置要转换的类型
      * R<HashMap<"data",Object> > Object > JSON.String > JSON > ReferenceType
      *
@@ -133,6 +134,12 @@ public class R extends HashMap<String, Object> {
         return JSON.parseObject(s, typeReference);
     }
 
+    /**
+     * 获取数据
+     * 自定义键值： 相当于开箱取票码，如有校验字段必须手动写
+     * @param typeReference 引用类
+     * @return {@link T}
+     */
     public <T> T getData(String key, TypeReference<T> typeReference) {
         Object data = this.get(key);
         String s = JSON.toJSONString(data);

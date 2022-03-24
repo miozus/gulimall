@@ -4,8 +4,8 @@ import cn.miozus.gulimall.common.utils.R;
 import cn.miozus.gulimall.seckill.service.SeckillService;
 import cn.miozus.gulimall.seckill.to.SeckillSkuRedisTo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ import java.util.List;
  * @date 2022/03/16
  */
 
-@Controller
+@RestController
 public class SeckillController {
 
     @Autowired

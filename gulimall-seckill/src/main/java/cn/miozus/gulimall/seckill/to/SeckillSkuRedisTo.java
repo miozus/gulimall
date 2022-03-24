@@ -47,9 +47,6 @@ public class SeckillSkuRedisTo {
      */
     private Integer seckillSort;
 
-    /** sku 详情 */
-    private SkuInfoVo skuInfo;
-
     /**
      * 每日开始时间
      */
@@ -61,5 +58,8 @@ public class SeckillSkuRedisTo {
 
     /** 开抢携带随机码  */
     private String randomCode;
+
+    /** sku 详情 */
+    private SkuInfoVo skuInfo;
 
 }

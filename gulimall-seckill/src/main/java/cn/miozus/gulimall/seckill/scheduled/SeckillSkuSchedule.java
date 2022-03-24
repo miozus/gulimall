@@ -22,7 +22,7 @@ public class SeckillSkuSchedule {
     SeckillService seckillService;
 
     @Async
-    @Scheduled(cron = "0 9 * * * ?")
+    @Scheduled(cron = "0 0 0/2 * * ?")
     @Idempotent("秒杀商品上架加锁")
     public void uploadContinuous3DaysSku() {
         log.info("⏰ uploadContinuous3DaysSku schedule");

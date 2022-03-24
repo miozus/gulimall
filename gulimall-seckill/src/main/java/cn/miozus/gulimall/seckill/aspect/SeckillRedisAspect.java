@@ -6,8 +6,6 @@ import cn.hutool.json.JSONUtil;
 import cn.miozus.gulimall.common.annotation.GetRedis;
 import cn.miozus.gulimall.common.annotation.Idempotent;
 import cn.miozus.gulimall.common.annotation.PutRedis;
-import cn.miozus.gulimall.common.enume.BizCodeEnum;
-import cn.miozus.gulimall.common.exception.GuliMallBindException;
 import cn.miozus.gulimall.common.utils.R;
 import cn.miozus.gulimall.seckill.feign.ProductFeignService;
 import cn.miozus.gulimall.seckill.to.SeckillSkuRedisTo;
@@ -16,6 +14,7 @@ import cn.miozus.gulimall.seckill.vo.SeckillSkuVo;
 import cn.miozus.gulimall.seckill.vo.SkuInfoVo;
 import com.alibaba.fastjson.TypeReference;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
+import lombok.SneakyThrows;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -28,7 +27,6 @@ import org.springframework.data.redis.core.BoundHashOperations;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -77,38 +75,45 @@ public class SeckillRedisAspect {
         saveRelationSkus(sessionData);
     }
 
+    /**
+     * 查询最新活动场次
+     *
+     * @param pjp      pjp
+     * @param getRedis 拉取远程缓存
+     * @return {@link Object} emptyList as default
+     */
+    @SneakyThrows
     @Around("@annotation(getRedis)")
-    public Object fetchNewsOne(ProceedingJoinPoint pjp, GetRedis getRedis) {
-        Object retVal = null;
-        long now = DateUtil.current();
+    public Object fetchOne(ProceedingJoinPoint pjp, GetRedis getRedis) {
+        Object retVal = pjp.proceed();
         Set<String> keys = redisTemplate.keys(SECKILL_SESSION_CACHE_PREFIX + "*");
         if (CollectionUtils.isEmpty(keys)) {
             return retVal;
         }
         for (String key : keys) {
-            String[] interval = key.replace(SECKILL_SESSION_CACHE_PREFIX, "").split("_");
-            long start = Long.parseLong(interval[0]);
-            long end = Long.parseLong(interval[1]);
-            if (start <= now && now <= end) {
-
-                BoundHashOperations<String, Object, Object> ops = redisTemplate.boundHashOps(SECKILL_SKUS_CACHE_PREFIX);
+            if (isExpiryDate(key)) {
+                BoundHashOperations<String, String, String> ops = redisTemplate.boundHashOps(SECKILL_SKUS_CACHE_PREFIX);
                 List<String> range = redisTemplate.opsForList().range(key, -100, 100);
-                List<Object> objects = ops.multiGet(Collections.singleton(range));
-                if (CollectionUtils.isNotEmpty(objects)) {
-                    return objects.stream().map(objStr -> JSONUtil.toBean((String) objStr, SeckillSkuRedisTo.class))
-                            .collect(Collectors.toList());
+                if (CollectionUtils.isNotEmpty(range)) {
+                    List<String> objects = ops.multiGet(range);
+                    if (CollectionUtils.isNotEmpty(objects)) {
+                        return objects.stream().map(objStr -> JSONUtil.toBean(objStr, SeckillSkuRedisTo.class))
+                                .collect(Collectors.toList());
+                    }
                 }
-                // 当前时间段最多1个场次
+                // 当前时间段最多1个场次（每个场次有许多商品）
                 break;
             }
         }
-
-        try {
-            retVal = pjp.proceed();
-        } catch (Throwable e) {
-            throw new GuliMallBindException(BizCodeEnum.SECKILL_FETCH_EXCEPTION);
-        }
         return retVal;
+    }
+
+    private boolean isExpiryDate(String key) {
+        String[] interval = key.replace(SECKILL_SESSION_CACHE_PREFIX, "").split("_");
+        long now = DateUtil.current();
+        long start = Long.parseLong(interval[0]);
+        long end = Long.parseLong(interval[1]);
+        return start <= now && now <= end;
     }
 
 
@@ -156,9 +161,9 @@ public class SeckillRedisAspect {
 
     private void saveSeckillSku(long startTime, long endTime, BoundHashOperations<String, Object, Object> ops, SeckillSkuVo vo, String token, Long skuId, String ssId) {
         SeckillSkuRedisTo to = new SeckillSkuRedisTo();
-        R info = productFeignService.querySkuInfo(skuId);
-        if (info.getCode() == 0) {
-            SkuInfoVo skuInfoVo = info.getData(new TypeReference<SkuInfoVo>() {
+        R r = productFeignService.querySkuInfo(skuId);
+        if (r.getCode() == 0) {
+            SkuInfoVo skuInfoVo = r.getData("skuInfo", new TypeReference<SkuInfoVo>() {
             });
             to.setSkuInfo(skuInfoVo);
         }
@@ -167,6 +172,7 @@ public class SeckillRedisAspect {
         to.setRandomCode(token);
         to.setStartTime(startTime);
         to.setEndTime(endTime);
+
         String str = JSONUtil.toJsonStr(to);
         ops.put(ssId, str);
 

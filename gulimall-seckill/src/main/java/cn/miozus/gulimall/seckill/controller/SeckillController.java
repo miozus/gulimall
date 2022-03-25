@@ -49,6 +49,13 @@ public class SeckillController {
         }
         return R.ok().setData(to);
     }
+    @GetMapping("/kill")
+    public R addToSeckill(
+            @PathVariable("killId") String killId,
+            @PathVariable("key") String key,
+            @PathVariable("num") Integer num) {
+        return null;
+    }
 
 
 }

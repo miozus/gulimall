@@ -154,10 +154,10 @@ public class SeckillRedisAspect {
             long endTime = s.getEndTime().getTime();
             String key = SECKILL_SESSION_CACHE_PREFIX + startTime + "_" + endTime;
             if (Boolean.FALSE.equals(redisTemplate.hasKey(key))) {
-                List<String> ssId = s.getRelationSkus().stream().map(
+                List<String> killId = s.getRelationSkus().stream().map(
                         item -> item.getPromotionSessionId() + "_" + item.getSkuId()
                 ).collect(Collectors.toList());
-                redisTemplate.opsForList().leftPushAll(key, ssId);
+                redisTemplate.opsForList().leftPushAll(key, killId);
             }
         });
     }
@@ -182,15 +182,15 @@ public class SeckillRedisAspect {
             relationSkus.forEach(vo -> {
                 String token = UUID.randomUUID().toString(true);
                 Long skuId = vo.getSkuId();
-                String ssId = vo.getPromotionSessionId() + "_" + skuId;
-                if (Boolean.FALSE.equals(ops.hasKey(ssId))) {
-                    saveSeckillSku(startTime, endTime, ops, vo, token, skuId, ssId);
+                String killId = vo.getPromotionSessionId() + "_" + skuId;
+                if (Boolean.FALSE.equals(ops.hasKey(killId))) {
+                    saveSeckillSku(startTime, endTime, ops, vo, token, skuId, killId);
                 }
             });
         });
     }
 
-    private void saveSeckillSku(long startTime, long endTime, BoundHashOperations<String, Object, Object> ops, SeckillSkuVo vo, String token, Long skuId, String ssId) {
+    private void saveSeckillSku(long startTime, long endTime, BoundHashOperations<String, Object, Object> ops, SeckillSkuVo vo, String token, Long skuId, String killId) {
         SeckillSkuRedisTo to = new SeckillSkuRedisTo();
         R r = productFeignService.querySkuInfo(skuId);
         if (r.getCode() == 0) {
@@ -205,7 +205,7 @@ public class SeckillRedisAspect {
         to.setEndTime(endTime);
 
         String str = JSONUtil.toJsonStr(to);
-        ops.put(ssId, str);
+        ops.put(killId, str);
 
         trySetSemaphorePermits(vo, token);
 

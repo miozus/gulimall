@@ -1,4 +1,4 @@
-package cn.miozus.gulimall.member.interceptor;
+package cn.miozus.gulimall.seckill.interceptor;
 
 import cn.miozus.gulimall.common.constant.AuthServerConstant;
 import cn.miozus.gulimall.common.vo.MemberRespVo;
@@ -31,16 +31,23 @@ public class LoginUserInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        if (callBetweenFeignService(request)) {
-            return true;
+        if (isAddToSeckill(request)) {
+            return releaseLoginUserOnly(request, response);
         }
-        return releaseLoginUserOnly(request, response);
+        return true;
+    }
+
+    private boolean isAddToSeckill(HttpServletRequest request) {
+        String uri = request.getRequestURI();
+        return new AntPathMatcher().match("/kill/**", uri);
     }
 
     private boolean callBetweenFeignService(HttpServletRequest request) {
         String uri = request.getRequestURI();
         boolean isMemberAllService = new AntPathMatcher().match("/member/**", uri);
-        return isMemberAllService;
+        boolean isFetchSeckillSkus = new AntPathMatcher().match("/currentSeckillSkus", uri);
+        boolean isFetchSeckillSku = new AntPathMatcher().match("/sku/seckill/**", uri);
+        return isMemberAllService || isFetchSeckillSku || isFetchSeckillSkus;
     }
 
     /**

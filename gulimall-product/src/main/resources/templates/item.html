@@ -651,11 +651,35 @@
 
             </div>
           </div>
-          <div class="box-btns-two">
-            <!--            <a href="http://cart.gulimall.com/addToCart">加入购物车</a>-->
+
+          <div class="box-btns-two"
+          >
             <span th:if="${msg!=null}">[[${msg}]]</span>
-            <a href="#" id="addToCart" th:attr="skuId=${item.info.skuId}">加入购物车</a>
+            <a
+                th:if="${
+                item.seckillInfo != null && (
+                item.seckillInfo.startTime <= #dates.createNow().getTime() && #dates.createNow().getTime() <= item.seckillInfo.endTime
+                )}"
+                th:attr="
+                skuId=${item.info.skuId},
+                sessionId=${item.seckillInfo.promotionSessionId},
+                code=${item.seckillInfo.randomCode}"
+                href="#" id="addToSeckill"
+            >
+              立即秒杀
+            </a>
+            <a
+                th:if="${
+                item.seckillInfo == null || (
+                item.seckillInfo.startTime > #dates.createNow().getTime() && #dates.createNow().getTime() > item.seckillInfo.endTime
+                )}"
+                th:attr="skuId=${item.info.skuId}"
+                href="#" id="addToCart"
+            >
+              加入购物车
+            </a>
           </div>
+
           <div class="box-btns-three">
             <img src="/static/item/img/e4ed3606843f664591ff1f68f7fda12d.png" alt=""/> 分享
           </div>
@@ -1342,6 +1366,20 @@
         return false;
 
     });
+
+    $("#addToSeckill").click(function () {
+        var isLogin = [[${session.loginUser != null}]];
+        if (isLogin) {
+            const host = "http://seckill.gulimall.com";
+            const path = "/kill?";
+            var params = `killId=${$(this).attr("sessionId")}_${$(this).attr("skuId")}&key=${$(this).attr("code")}&num=${$("#countInput").val()}`;
+            alert(params)
+            location.href = host + path + params;
+        } else {
+            alert("秒杀请先登录")
+        }
+        return false;
+    })
 
 </script>
 

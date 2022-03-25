@@ -7331,3 +7331,10 @@ Ran 5 tests in 43.027s
 
 FAILED (errors=1, skipped=1)
 >>>>>>> 38a0b44e191e85dac8cab24b21ad6a70f9b6063d
+test_00_index (__main__.OrderTest) ... 2022-03-25 17:08:39,435 INFO --- [wrapper] restful-L28 : [GET] http://gulimall.com/ [open]
+2022-03-25 17:08:40,055 INFO --- [tearDown] order_test-L67 : test_00_index : []
+ok
+test_01_add_cart_online (__main__.OrderTest) ... skipped '已加购[绿]_在线购物车'
+test_02_order_confirm (__main__.OrderTest) ... 2022-03-25 17:08:40,474 INFO --- [wrapper] restful-L28 : [GET] http://auth.gulimall.com/login.html [sign_login]
+2022-03-25 17:08:45,234 INFO --- [wrapper] restful-L74 : [GET] http://cart.gulimall.com/cartList.html [login_if_absent]
+2022-03-25 17:08:46,811 INFO --- [wrapper] restful-L28 : [GET] http://item.gulimall.com/15.html [add_item]

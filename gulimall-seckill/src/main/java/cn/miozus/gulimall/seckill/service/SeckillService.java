@@ -1,5 +1,6 @@
 package cn.miozus.gulimall.seckill.service;
 
+import cn.miozus.gulimall.common.utils.R;
 import cn.miozus.gulimall.seckill.to.SeckillSkuRedisTo;
 import cn.miozus.gulimall.seckill.vo.SeckillSessionWithSkus;
 
@@ -38,4 +39,14 @@ public interface SeckillService {
      * @return {@link SeckillSkuRedisTo}
      */
     SeckillSkuRedisTo fetchSeckillSku(Long skuId);
+
+    /**
+     * 添加到秒杀流程
+     *
+     * @param killId 秒杀商品缓存键 sessionId_skuId
+     * @param key    随机码 randomCode
+     * @param num    数量
+     * @return {@link R}
+     */
+    String kill(String killId, String key, Integer num);
 }

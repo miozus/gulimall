@@ -58,6 +58,11 @@ public class AuthTableAspect {
         RedirectAttributes redirectAttributes = (RedirectAttributes) args[2];
         HttpSession session = (HttpSession) args[3];
         String returnUrl = pjp.proceed(args).toString();
+
+        if (args[4] != null) {
+            returnUrl = "redirect:" +  args[4];
+        }
+
         String remainUrl = tableInterceptor.remainUrl();
         String clazz = param.getClass().getSimpleName();
 

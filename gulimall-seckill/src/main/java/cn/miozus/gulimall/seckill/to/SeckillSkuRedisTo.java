@@ -65,6 +65,15 @@ public class SeckillSkuRedisTo {
         long now = DateUtil.current();
         return (this.startTime <= now && now <= this.endTime);
     }
+    public boolean isNotExpiryDate() {
+        return !isExpiryDate();
+    }
+
+    /** 获取秒杀活动剩余时间 */
+    public Long getTTL(){
+        long now = DateUtil.current();
+        return this.endTime - now;
+    }
 
     /** sku 详情 */
     private SkuInfoVo skuInfo;

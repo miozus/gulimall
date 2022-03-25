@@ -1,6 +1,7 @@
 package cn.miozus.gulimall.seckill.service.impl;
 
 import cn.miozus.gulimall.common.annotation.GetRedis;
+import cn.miozus.gulimall.common.annotation.Idempotent;
 import cn.miozus.gulimall.common.annotation.PutRedis;
 import cn.miozus.gulimall.common.utils.R;
 import cn.miozus.gulimall.seckill.feign.CouponFeignService;
@@ -8,6 +9,7 @@ import cn.miozus.gulimall.seckill.service.SeckillService;
 import cn.miozus.gulimall.seckill.to.SeckillSkuRedisTo;
 import cn.miozus.gulimall.seckill.vo.SeckillSessionWithSkus;
 import com.alibaba.fastjson.TypeReference;
+import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -55,5 +57,11 @@ public class SeckillServiceImpl implements SeckillService {
     @GetRedis("查询单个商品携带的秒杀信息")
     public SeckillSkuRedisTo fetchSeckillSku(Long skuId) {
         return new SeckillSkuRedisTo();
+    }
+
+    @Override
+    @Idempotent("校验秒杀请求全字段")
+    public String kill(String killId, String key, Integer num) {
+        return IdWorker.getTimeId();
     }
 }

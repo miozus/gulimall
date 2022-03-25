@@ -1373,10 +1373,14 @@
             const host = "http://seckill.gulimall.com";
             const path = "/kill?";
             var params = `killId=${$(this).attr("sessionId")}_${$(this).attr("skuId")}&key=${$(this).attr("code")}&num=${$("#countInput").val()}`;
-            alert(params)
             location.href = host + path + params;
         } else {
             alert("秒杀请先登录")
+            const returnUrl = location.href
+            const host = "http://auth.gulimall.com"
+            const path =  "/login.html"
+            var params = `?returnUrl=${returnUrl}`
+            location.href = host + path + params;
         }
         return false;
     })

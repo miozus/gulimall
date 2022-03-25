@@ -1,14 +1,15 @@
 package cn.miozus.gulimall.auth.controller;
 
 
-import cn.miozus.gulimall.common.annotation.TableInterceptor;
-import cn.miozus.gulimall.common.constant.AuthServerConstant;
-import cn.miozus.gulimall.common.utils.R;
 import cn.miozus.gulimall.auth.service.AuthService;
 import cn.miozus.gulimall.auth.vo.UserLoginVo;
 import cn.miozus.gulimall.auth.vo.UserRegisterVo;
+import cn.miozus.gulimall.common.annotation.TableInterceptor;
+import cn.miozus.gulimall.common.constant.AuthServerConstant;
+import cn.miozus.gulimall.common.utils.R;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -61,8 +62,6 @@ public class LoginController {
      * 🐞 Request method 'POST' not : 用户注册[POST] > forward 转发（路径映射默认[GET]） > MVC.model 返回渲染视图（但表单重复提交）
      * > 重定向到简单路由（但请求域中的变量访问不到了） > MVC.redirectAttributes 模拟重定向视图携带数据（写完整URL） ✅
      * <p>
-     * TODO：分布式重定向问题，利用 session 作为媒介，只要跳转下一个页面，会删除媒介
-     * TODO: 验证码错误返回后，表单数据被清空了， redirectAttributes （size=0）
      *
      * @param vo                 用户注册提供的数据
      * @param result             参数校验结果
@@ -92,7 +91,8 @@ public class LoginController {
      */
     @PostMapping("/login")
     @TableInterceptor(value = "登录表单", remainUrl = "redirect:http://auth.gulimall.com/login.html")
-    public String login(@Valid UserLoginVo vo, BindingResult bindingResult, RedirectAttributes redirectAttributes, HttpSession session) {
+    public String login(@Valid UserLoginVo vo, BindingResult bindingResult, RedirectAttributes redirectAttributes, HttpSession session,
+                        @Nullable @RequestParam("returnUrl") String returnUrl) {
         return "redirect:http://gulimall.com";
     }
 

@@ -2,12 +2,15 @@ package cn.miozus.gulimall.seckill.aspect;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.lang.UUID;
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.json.JSONUtil;
 import cn.miozus.gulimall.common.annotation.GetRedis;
 import cn.miozus.gulimall.common.annotation.Idempotent;
 import cn.miozus.gulimall.common.annotation.PutRedis;
 import cn.miozus.gulimall.common.utils.R;
+import cn.miozus.gulimall.common.vo.MemberRespVo;
 import cn.miozus.gulimall.seckill.feign.ProductFeignService;
+import cn.miozus.gulimall.seckill.interceptor.LoginUserInterceptor;
 import cn.miozus.gulimall.seckill.to.SeckillSkuRedisTo;
 import cn.miozus.gulimall.seckill.vo.SeckillSessionWithSkus;
 import cn.miozus.gulimall.seckill.vo.SeckillSkuVo;
@@ -26,6 +29,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.BoundHashOperations;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 import java.util.Set;
@@ -49,6 +53,8 @@ public class SeckillRedisAspect {
     ProductFeignService productFeignService;
     @Autowired
     RedissonClient redissonClient;
+    @Autowired
+    LoginUserInterceptor loginUserInterceptor;
 
     private static final String SECKILL_SESSION_CACHE_PREFIX = "seckill:session:";
     private static final String SECKILL_SKUS_CACHE_PREFIX = "seckill:skus:";
@@ -56,17 +62,32 @@ public class SeckillRedisAspect {
     private static final String SECKILL_UPLOAD_LOCK = "seckill:upload:lock";
 
 
+    @SneakyThrows
     @Around("@annotation(idempotent)")
-    public void lockForWriteOnce(ProceedingJoinPoint pjp, Idempotent idempotent) {
+    public Object idempotentRedis(ProceedingJoinPoint pjp, Idempotent idempotent) {
+        String comment = idempotent.value();
+        switch (comment) {
+            case "秒杀商品上架加锁" :
+                return lockForUploadOnce(pjp);
+            case "校验秒杀请求全字段":
+                return verifySeckillParams(pjp);
+            default:
+                return null;
+        }
+    }
+
+    private Object lockForUploadOnce(ProceedingJoinPoint pjp) {
         RLock lock = redissonClient.getLock(SECKILL_UPLOAD_LOCK);
         lock.lock(10, TimeUnit.MINUTES);
+        Object retVal;
         try {
-            pjp.proceed();
+            retVal = pjp.proceed();
         } catch (Throwable e) {
             throw new RuntimeException(e);
         } finally {
             lock.unlock();
         }
+        return retVal;
     }
 
     @Around("@annotation(putRedis)")
@@ -90,10 +111,61 @@ public class SeckillRedisAspect {
         Object[] arg = pjp.getArgs();
         BoundHashOperations<String, String, String> ops = redisTemplate.boundHashOps(SECKILL_SKUS_CACHE_PREFIX);
 
-        if (arg.length == 0){
+        if (arg.length == 0) {
             return fetchCurrentSeckillSkus(retVal, ops);
         }
-        return fetchSeckillSku(retVal, arg[0], ops);
+        return fetchSeckillSku(arg[0], ops);
+    }
+
+    /**
+     * 校验秒杀请求参数和幂等性加锁
+     * 秒杀新流程
+     *
+     * @param pjp pjp
+     * @return {@link Object}
+     * @throws Throwable throwable
+     */
+    private Object verifySeckillParams(ProceedingJoinPoint pjp) throws Throwable {
+        Object[] args = pjp.getArgs();
+        String killId = (String) args[0];
+        String key = (String) args[1];
+        Integer num = (Integer) args[2];
+        // 全参数合法性校验
+        BoundHashOperations<String, String, String> ops = redisTemplate.boundHashOps(SECKILL_SKUS_CACHE_PREFIX);
+        String redis = ops.get(killId);
+        if (StringUtils.isEmpty(redis)) {
+            return null;
+        }
+        SeckillSkuRedisTo to = JSONUtil.toBean(redis, SeckillSkuRedisTo.class);
+        if (to.isNotExpiryDate()) {
+            return null;
+        }
+        String ssId = to.getPromotionSessionId() + "_" + to.getSkuId();
+        if (ObjectUtil.notEqual(key, to.getRandomCode()) || ObjectUtil.notEqual(killId, ssId)) {
+            return null;
+        }
+        if ((num > to.getSeckillLimit())) {
+            return null;
+        }
+        // 幂等性占位，获取信号量，发送消息队列
+        MemberRespVo memberRespVo = LoginUserInterceptor.loginUserThreadLocal.get();
+        String occupyKey = memberRespVo.getId() + "_" + to.getSkuId();
+        Boolean occupied = redisTemplate.opsForValue().setIfAbsent(occupyKey, num.toString(), to.getTTL(), TimeUnit.MILLISECONDS);
+        if (Boolean.FALSE.equals(occupied)) {
+            return null;
+        }
+        RSemaphore semaphore = redissonClient.getSemaphore(SECKILL_SKUS_STOCK_SEMAPHORE_CACHE_PREFIX + key);
+        try {
+            boolean acquire = semaphore.tryAcquire(num, 100, TimeUnit.MILLISECONDS);
+            if (acquire) {
+                Object retVal = pjp.proceed();
+                System.out.println("⭐ retVal = " + retVal);
+                return retVal;
+            }
+        } catch (InterruptedException e) {
+            return null;
+        }
+        return null;
     }
 
     private Object fetchCurrentSeckillSkus(Object retVal, BoundHashOperations<String, String, String> ops) {
@@ -120,23 +192,23 @@ public class SeckillRedisAspect {
         return retVal;
     }
 
-    private Object fetchSeckillSku(Object retVal, Object arg, BoundHashOperations<String, String, String> ops) {
+    private Object fetchSeckillSku(Object arg, BoundHashOperations<String, String, String> ops) {
         Set<String> keys = ops.keys();
         if (CollectionUtils.isEmpty(keys)) {
-            return retVal;
+            return null;
         }
         String regex = "\\d_" + arg;
         for (String key : keys) {
             if (Pattern.matches(regex, key)) {
                 String object = ops.get(key);
                 SeckillSkuRedisTo redisTo = JSONUtil.toBean(object, SeckillSkuRedisTo.class);
-                if (!redisTo.isExpiryDate()) {
+                if (redisTo.isNotExpiryDate()) {
                     redisTo.setRandomCode("");
                 }
                 return redisTo;
             }
         }
-        return retVal;
+        return null;
     }
 
     private boolean isExpiryDateString(String key) {

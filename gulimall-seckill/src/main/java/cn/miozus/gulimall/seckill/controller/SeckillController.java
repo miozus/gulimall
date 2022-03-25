@@ -3,9 +3,11 @@ package cn.miozus.gulimall.seckill.controller;
 import cn.miozus.gulimall.common.utils.R;
 import cn.miozus.gulimall.seckill.service.SeckillService;
 import cn.miozus.gulimall.seckill.to.SeckillSkuRedisTo;
+import com.alibaba.cloud.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -49,12 +51,26 @@ public class SeckillController {
         }
         return R.ok().setData(to);
     }
+
+    /**
+     * 添加到秒杀流程
+     *
+     * @param killId 秒杀商品缓存键 sessionId_skuId
+     * @param key    随机码 randomCode
+     * @param num    数量
+     * @return {@link R}
+     */
     @GetMapping("/kill")
     public R addToSeckill(
-            @PathVariable("killId") String killId,
-            @PathVariable("key") String key,
-            @PathVariable("num") Integer num) {
-        return null;
+            @RequestParam("killId") String killId,
+            @RequestParam("key") String key,
+            @RequestParam("num") Integer num) {
+        String orderSn = seckillService.kill(killId, key, num);
+        System.out.println("🎊 orderSn = " + orderSn);
+        if (StringUtils.isNotEmpty(orderSn)) {
+            return R.ok().setData(orderSn);
+        }
+        return R.error();
     }
 
 

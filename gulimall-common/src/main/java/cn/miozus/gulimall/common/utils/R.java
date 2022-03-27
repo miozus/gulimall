@@ -104,9 +104,19 @@ public class R extends HashMap<String, Object> {
      *
      * @return {@link Boolean}
      */
-    public Boolean isOk() {
-        return "success".equalsIgnoreCase((String) this.get("msg"));
+    public boolean isOk() {
+        return getCode() == 0;
     }
+
+    /**
+     * 不成功
+     *
+     * @return boolean
+     */
+    public boolean isNotOk() {
+        return !isOk();
+    }
+
 
     /**
      * 集数据

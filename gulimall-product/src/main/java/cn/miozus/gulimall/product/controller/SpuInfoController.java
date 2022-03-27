@@ -72,7 +72,6 @@ public class SpuInfoController {
      */
     @RequestMapping("/save")
     public R save(@RequestBody SpuSaveVo vo) {
-        //spuInfoService.save(vo);
         // 牵扯太多，准备开始大保存
         spuInfoService.saveSpuInfo(vo);
 

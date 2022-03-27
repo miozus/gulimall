@@ -4,6 +4,7 @@ import cn.miozus.gulimall.common.utils.R;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * 调用商品服务
@@ -20,6 +21,16 @@ public interface ProductFeignService {
      * @return {@link R}
      */
     @PostMapping("/product/spuinfo/bySkuId/{skuId}")
-    public R querySpuInfoBySkuId(@PathVariable("skuId") Long skuId);
+    R querySpuInfo(@PathVariable("skuId") Long skuId);
+
+    /**
+     * 查询sku信息按sku id
+     *
+     * @param skuId sku id
+     * @return {@link R}
+     */
+    @RequestMapping("/product/skuinfo/info/{skuId}")
+    R querySkuInfo(@PathVariable("skuId") Long skuId);
+
 
 }

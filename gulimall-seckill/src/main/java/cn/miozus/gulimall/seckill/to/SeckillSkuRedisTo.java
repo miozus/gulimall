@@ -15,46 +15,26 @@ import java.math.BigDecimal;
 @Data
 public class SeckillSkuRedisTo {
 
-    /**
-     * id
-     */
+    /** id */
     private Long id;
-    /**
-     * 活动id
-     */
+    /** 活动id */
     private Long promotionId;
-    /**
-     * 活动场次id
-     */
+    /** 活动场次id */
     private Long promotionSessionId;
-    /**
-     * 商品id
-     */
+    /** 商品id */
     private Long skuId;
-    /**
-     * 秒杀价格
-     */
+    /** 秒杀价格 */
     private BigDecimal seckillPrice;
-    /**
-     * 秒杀总量
-     */
+    /** 秒杀总量 */
     private Integer seckillCount;
-    /**
-     * 每人限购数量
-     */
+    /** 每人限购数量 */
     private Integer seckillLimit;
-    /**
-     * 排序
-     */
+    /** 排序 */
     private Integer seckillSort;
 
-    /**
-     * 每日开始时间
-     */
+    /** 每日开始时间 */
     private Long startTime;
-    /**
-     * 每日结束时间
-     */
+    /** 每日结束时间 */
     private Long endTime;
 
     /** 开抢携带随机码  */
@@ -70,7 +50,7 @@ public class SeckillSkuRedisTo {
     }
 
     /** 获取秒杀活动剩余时间 */
-    public Long getTTL(){
+    public Long getTtl() {
         long now = DateUtil.current();
         return this.endTime - now;
     }

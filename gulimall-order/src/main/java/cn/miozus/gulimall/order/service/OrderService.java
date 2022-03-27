@@ -1,6 +1,7 @@
 package cn.miozus.gulimall.order.service;
 
 import cn.miozus.gulimall.common.exception.GuliMallBindException;
+import cn.miozus.gulimall.common.to.mq.SeckillOrderTo;
 import cn.miozus.gulimall.common.utils.PageUtils;
 import cn.miozus.gulimall.order.entity.OrderEntity;
 import cn.miozus.gulimall.order.to.OrderCreateTo;
@@ -84,5 +85,12 @@ public interface OrderService extends IService<OrderEntity> {
      * @return
      */
     String handlePayResult(PayAsyncVo vo);
+
+    /**
+     * 创建秒杀订单
+     *
+     * @param to 来
+     */
+    void createSeckillOrder(SeckillOrderTo to);
 }
 

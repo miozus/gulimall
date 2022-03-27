@@ -77,7 +77,7 @@ public class AuthTableAspect {
         // 检查表单提交过程收集异常信息
         try {
             R r = doProceedingMethodStrategy(param, clazz);
-            if (r.getCode() == 0) {
+            if (r.isOk()) {
                 MemberRespVo data = r.getData("data", new TypeReference<MemberRespVo>() {
                 });
                 if ("UserLoginVo".equals(clazz)) {

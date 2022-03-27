@@ -5,6 +5,7 @@ import cn.miozus.gulimall.common.utils.R;
 import cn.miozus.gulimall.coupon.entity.SeckillSessionEntity;
 import cn.miozus.gulimall.coupon.service.SeckillSessionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -28,6 +29,9 @@ public class SeckillSessionController {
     @GetMapping("/last3dSession")
     public R queryLast3dSession() {
         List<SeckillSessionEntity> sessions = seckillSessionService.queryLast3dSession();
+        if (CollectionUtils.isEmpty(sessions)) {
+            return R.error();
+        }
         return R.ok().setData(sessions);
     }
 

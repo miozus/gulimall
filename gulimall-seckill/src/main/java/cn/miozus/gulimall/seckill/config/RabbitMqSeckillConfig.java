@@ -14,6 +14,22 @@ import javax.annotation.PostConstruct;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * 延时队列流程图：订单
+ *
+ *                                       Publisher                                       Consumer
+ *                                           │                                               ▲
+ *                                           │                                               │
+ *             order.create.order   ┌────────▼───────────┐order.release.order    ┌───────────┴─────────────┐
+ *          ┌───────────────────────┤order-event-exchange├──────────────────────►│order.release.order.queue│
+ *          │                       └────────▲────────┬──┘                       └─────────────────────────┘
+ *          │                                │        │
+ * ┌────────▼────────┐  order.release.order  │        │   order.release.other.#  ┌─────────────────────────┐
+ * │order.delay.queue├───────────────────────┘        └─────────────────────────►│stock.release.stock.queue│
+ * └─────────────────┘                                                           └───────────┬─────────────┘
+ *                                                                                           │
+ *                                                                                           ▼
+ *                                                                                       Consumer
+ *
  * 兔子消息队列配置
  *
  * @author miao
@@ -21,7 +37,7 @@ import java.util.concurrent.TimeUnit;
  */
 @Slf4j
 @Configuration
-public class RabbitMqOrderConfig {
+public class RabbitMqSeckillConfig {
 
     @Autowired
     RabbitTemplate rabbitTemplate;
@@ -31,79 +47,28 @@ public class RabbitMqOrderConfig {
     public static final int DELAY_QUEUE_TTL = (int) TimeUnit.MINUTES.toMillis(15L);
     public static final String DELAY_QUEUE_ROUTING_KEY = "order.create.order";
     public static final String RELEASE_ORDER_QUEUE = "order.release.order.queue";
+    public static final String SECKILL_ORDER_QUEUE = "order.seckill.order.queue";
     public static final String RELEASE_ORDER_ROUTING_KEY = "order.release.order";
     public static final String RELEASE_STOCK_QUEUE = "stock.release.stock.queue";
     public static final String RELEASE_OTHER_QUEUE_ROUTING_KEY = "order.release.other";
     private static final String RELEASE_OTHER_THEME_ROUTING_KEY = "order.release.other.#";
+    public static final String DELAY_QUEUE_SECKILL_ROUTING_KEY = "order.seckill.order";
 
-
-    /**
-     * 延时队列流程图：订单
-     *
-     *                                       Publisher                                       Consumer
-     *                                           │                                               ▲
-     *                                           │                                               │
-     *             order.create.order   ┌────────▼───────────┐order.release.order    ┌───────────┴─────────────┐
-     *          ┌───────────────────────┤order-event-exchange├──────────────────────►│order.release.order.queue│
-     *          │                       └────────▲────────┬──┘                       └─────────────────────────┘
-     *          │                                │        │
-     * ┌────────▼────────┐  order.release.order  │        │   order.release.other.#  ┌─────────────────────────┐
-     * │order.delay.queue├───────────────────────┘        └─────────────────────────►│stock.release.stock.queue│
-     * └─────────────────┘                                                           └───────────┬─────────────┘
-     *                                                                                           │
-     *                                                                                           ▼
-     *                                                                                       Consumer
-     *
-     * 下单服务 = 订单 + 库存
-     * 设置错误不能覆盖设置，只能删掉重新缠绵
-     */
     @Bean
     Exchange exchange() {
         return new TopicExchange(EXCHANGE, true, false);
     }
 
     @Bean
-    Queue delayQueue() {
-        return QueueBuilder.durable(DELAY_QUEUE)
-                .deadLetterExchange(EXCHANGE)
-                .deadLetterRoutingKey(RELEASE_ORDER_ROUTING_KEY)
-                .ttl(DELAY_QUEUE_TTL)
-                .build();
+    Queue seckillQueue() {
+        return new Queue(SECKILL_ORDER_QUEUE, true, false,false);
     }
 
     @Bean
-    Queue releaseQueue() {
-        return new Queue(RELEASE_ORDER_QUEUE, true, false, false);
+    Binding seckillBinding(Queue seckillQueue, TopicExchange exchange) {
+        return BindingBuilder.bind(seckillQueue).to(exchange).with(DELAY_QUEUE_SECKILL_ROUTING_KEY);
     }
 
-    @Bean
-    Queue releaseStockQueue() {
-        return new Queue(RELEASE_STOCK_QUEUE, true, false, false);
-    }
-
-    @Bean
-    Binding createBinding(Queue delayQueue, TopicExchange exchange) {
-        return BindingBuilder.bind(delayQueue).to(exchange).with(DELAY_QUEUE_ROUTING_KEY);
-    }
-
-    @Bean
-    Binding releaseBinding(Queue releaseQueue, TopicExchange exchange) {
-        return BindingBuilder.bind(releaseQueue).to(exchange).with(RELEASE_ORDER_ROUTING_KEY);
-    }
-
-    /**
-     * 订单释放其他绑定
-     *
-     * 比如双重解锁库存
-     *
-     * @param releaseStockQueue 订单释放订单队列
-     * @param exchange               交换机
-     * @return {@link Binding}
-     */
-    @Bean
-    Binding releaseOtherBinding(Queue releaseStockQueue, TopicExchange exchange) {
-        return BindingBuilder.bind(releaseStockQueue).to(exchange).with(RELEASE_OTHER_THEME_ROUTING_KEY);
-    }
 
     /**
      * 消息转换器：JSON & Object

@@ -7,6 +7,7 @@ import cn.hutool.json.JSONUtil;
 import cn.miozus.gulimall.common.annotation.GetRedis;
 import cn.miozus.gulimall.common.annotation.Idempotent;
 import cn.miozus.gulimall.common.annotation.PutRedis;
+import cn.miozus.gulimall.common.to.mq.SeckillOrderTo;
 import cn.miozus.gulimall.common.utils.R;
 import cn.miozus.gulimall.common.vo.MemberRespVo;
 import cn.miozus.gulimall.seckill.feign.ProductFeignService;
@@ -26,6 +27,7 @@ import org.redisson.api.RSemaphore;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.data.redis.core.BoundHashOperations;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
@@ -45,6 +47,7 @@ import java.util.stream.Collectors;
  */
 @Aspect
 @Component
+@Order(1)
 public class SeckillRedisAspect {
 
     @Autowired
@@ -67,7 +70,7 @@ public class SeckillRedisAspect {
     public Object idempotentRedis(ProceedingJoinPoint pjp, Idempotent idempotent) {
         String comment = idempotent.value();
         switch (comment) {
-            case "秒杀商品上架加锁" :
+            case "秒杀商品上架加锁":
                 return lockForUploadOnce(pjp);
             case "校验秒杀请求全字段":
                 return verifySeckillParams(pjp);
@@ -118,8 +121,8 @@ public class SeckillRedisAspect {
     }
 
     /**
-     * 校验秒杀请求参数和幂等性加锁
      * 秒杀新流程
+     * 校验秒杀请求参数和幂等性加锁
      *
      * @param pjp pjp
      * @return {@link Object}
@@ -140,7 +143,9 @@ public class SeckillRedisAspect {
         if (to.isNotExpiryDate()) {
             return null;
         }
-        String ssId = to.getPromotionSessionId() + "_" + to.getSkuId();
+        Long skuId = to.getSkuId();
+        Long promotionSessionId = to.getPromotionSessionId();
+        String ssId = promotionSessionId + "_" + skuId;
         if (ObjectUtil.notEqual(key, to.getRandomCode()) || ObjectUtil.notEqual(killId, ssId)) {
             return null;
         }
@@ -149,8 +154,9 @@ public class SeckillRedisAspect {
         }
         // 幂等性占位，获取信号量，发送消息队列
         MemberRespVo memberRespVo = LoginUserInterceptor.loginUserThreadLocal.get();
-        String occupyKey = memberRespVo.getId() + "_" + to.getSkuId();
-        Boolean occupied = redisTemplate.opsForValue().setIfAbsent(occupyKey, num.toString(), to.getTTL(), TimeUnit.MILLISECONDS);
+        Long memberId = memberRespVo.getId();
+        String occupyKey = memberId + "_" + skuId;
+        Boolean occupied = redisTemplate.opsForValue().setIfAbsent(occupyKey, num.toString(), to.getTtl(), TimeUnit.MILLISECONDS);
         if (Boolean.FALSE.equals(occupied)) {
             return null;
         }
@@ -158,9 +164,13 @@ public class SeckillRedisAspect {
         try {
             boolean acquire = semaphore.tryAcquire(num, 100, TimeUnit.MILLISECONDS);
             if (acquire) {
-                Object retVal = pjp.proceed();
-                System.out.println("⭐ retVal = " + retVal);
-                return retVal;
+                SeckillOrderTo orderTo = new SeckillOrderTo();
+                orderTo.setNum(num);
+                orderTo.setSkuId(skuId);
+                orderTo.setMemberId(memberId);
+                orderTo.setSeckillPrice(to.getSeckillPrice());
+                orderTo.setPromotionSessionId(promotionSessionId);
+                return pjp.proceed(new SeckillOrderTo[]{orderTo});
             }
         } catch (InterruptedException e) {
             return null;
@@ -219,7 +229,6 @@ public class SeckillRedisAspect {
         return start <= now && now <= end;
     }
 
-
     private void saveSkuIds(List<SeckillSessionWithSkus> sessionData) {
         sessionData.forEach(s -> {
             long startTime = s.getStartTime().getTime();
@@ -265,7 +274,7 @@ public class SeckillRedisAspect {
     private void saveSeckillSku(long startTime, long endTime, BoundHashOperations<String, Object, Object> ops, SeckillSkuVo vo, String token, Long skuId, String killId) {
         SeckillSkuRedisTo to = new SeckillSkuRedisTo();
         R r = productFeignService.querySkuInfo(skuId);
-        if (r.getCode() == 0) {
+        if (r.isOk()) {
             SkuInfoVo skuInfoVo = r.getData("skuInfo", new TypeReference<SkuInfoVo>() {
             });
             to.setSkuInfo(skuInfoVo);

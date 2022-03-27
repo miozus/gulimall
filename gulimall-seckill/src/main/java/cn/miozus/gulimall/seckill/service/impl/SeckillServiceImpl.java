@@ -2,6 +2,7 @@ package cn.miozus.gulimall.seckill.service.impl;
 
 import cn.miozus.gulimall.common.annotation.GetRedis;
 import cn.miozus.gulimall.common.annotation.Idempotent;
+import cn.miozus.gulimall.common.annotation.PostRabbitMq;
 import cn.miozus.gulimall.common.annotation.PutRedis;
 import cn.miozus.gulimall.common.utils.R;
 import cn.miozus.gulimall.seckill.feign.CouponFeignService;
@@ -33,7 +34,7 @@ public class SeckillServiceImpl implements SeckillService {
     @Override
     public void uploadContinuous3DaySku() {
         R r = couponFeignService.queryLast3dSession();
-        if (r.getCode() == 0) {
+        if (r.isOk()) {
             List<SeckillSessionWithSkus> sessionData = r.getData(new TypeReference<List<SeckillSessionWithSkus>>() {
             });
             seckillService.saveSessionDataRedis(sessionData);
@@ -61,6 +62,7 @@ public class SeckillServiceImpl implements SeckillService {
 
     @Override
     @Idempotent("校验秒杀请求全字段")
+    @PostRabbitMq("推送秒杀消息")
     public String kill(String killId, String key, Integer num) {
         return IdWorker.getTimeId();
     }

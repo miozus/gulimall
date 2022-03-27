@@ -3,7 +3,9 @@ package cn.miozus.gulimall.order.entity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.Tolerate;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -13,6 +15,7 @@ import java.util.List;
 /**
  * 订单实体
  * 订单
+ * 建造者模式 + 数据模型 + 空构造方法
  *
  * @author SuDongpo
  * @email miozus@outlook.com
@@ -20,9 +23,13 @@ import java.util.List;
  */
 @Data
 @TableName("oms_order")
+@Builder
 public class OrderEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@Tolerate
+	public OrderEntity() {
+	}
 	/**
 	 * id
 	 */

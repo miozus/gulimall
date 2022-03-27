@@ -79,7 +79,7 @@ public class CartServiceImpl implements CartService {
     private CartItem buildCartItemAsync(Long skuId, Integer count) throws InterruptedException, ExecutionException {
         CartItem cartItem = new CartItem();
         CompletableFuture<Void> skuInfoFuture = CompletableFuture.runAsync(() -> {
-            R info = productFeignService.info(skuId);
+            R info = productFeignService.querySkuInfoById(skuId);
             SkuInfoVo skuInfo = info.getData("skuInfo", new TypeReference<SkuInfoVo>() {
             });
             BigDecimal price = new BigDecimal(skuInfo.getPrice() + "");
@@ -191,7 +191,7 @@ public class CartServiceImpl implements CartService {
      * @return {@link List}<{@link CartItem}>
      */
     @Override
-    public List<CartItem> fetchCheckedOrderCartItems() throws Throwable{
+    public List<CartItem> fetchCheckedOrderCartItems() {
         UserInfoTo userInfoTo = CartInterceptor.threadLocal.get();
         Long userId = userInfoTo.getUserId();
         if (Objects.isNull(userId)) {

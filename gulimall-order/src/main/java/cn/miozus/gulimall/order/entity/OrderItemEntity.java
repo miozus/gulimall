@@ -2,7 +2,9 @@ package cn.miozus.gulimall.order.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.Tolerate;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -17,9 +19,13 @@ import java.math.BigDecimal;
  */
 @Data
 @TableName("oms_order_item")
+@Builder
 public class OrderItemEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@Tolerate
+	public OrderItemEntity() {
+	}
 	/**
 	 * id
 	 */

@@ -183,7 +183,7 @@ public class MallSearchServiceImpl implements MallSearchService {
                 vo.setNavValue(split[1]);
                 R r = productFeignService.attrInfo(Long.valueOf(split[0]));
                 result.getAttrIds().add(Long.valueOf(split[0]));
-                if (r.getCode() == 0) {
+                if (r.isOk()) {
                     AttrResponseVo data = r.getData("attr", new TypeReference<AttrResponseVo>() {
                     });
                     vo.setNavName(data.getAttrName());

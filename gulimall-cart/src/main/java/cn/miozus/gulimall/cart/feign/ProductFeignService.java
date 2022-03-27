@@ -18,12 +18,30 @@ import java.util.List;
 @FeignClient("gulimall-product")
 public interface ProductFeignService {
 
+    /**
+     * 查询sku信息通过id
+     *
+     * @param skuId sku id
+     * @return {@link R}
+     */
     @RequestMapping("/product/skuinfo/info/{skuId}")
-    R info(@PathVariable("skuId") Long skuId);
+    R querySkuInfoById(@PathVariable("skuId") Long skuId);
 
+    /**
+     * 查询sku attrs
+     *
+     * @param skuId sku id
+     * @return {@link List}<{@link String}>
+     */
     @GetMapping("/product/skusaleattrvalue/stringlist/{skuId}")
     List<String> querySkuAttrs(@PathVariable("skuId") Long skuId);
 
+    /**
+     * 查询sku价格
+     *
+     * @param skuId sku id
+     * @return {@link BigDecimal}
+     */
     @GetMapping("/product/skuinfo/{skuId}/price")
     BigDecimal querySkuPrice(@PathVariable("skuId") Long skuId);
 

@@ -1,5 +1,7 @@
 package cn.miozus.gulimall.order.service.impl;
 
+import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.bean.copier.CopyOptions;
 import cn.miozus.gulimall.common.annotation.DeleteRedis;
 import cn.miozus.gulimall.common.annotation.Idempotent;
 import cn.miozus.gulimall.common.annotation.PostRabbitMq;
@@ -9,6 +11,7 @@ import cn.miozus.gulimall.common.enume.BizCodeEnum;
 import cn.miozus.gulimall.common.enume.OrderStatusEnum;
 import cn.miozus.gulimall.common.exception.GuliMallBindException;
 import cn.miozus.gulimall.common.to.SkuHasStockVo;
+import cn.miozus.gulimall.common.to.mq.SeckillOrderTo;
 import cn.miozus.gulimall.common.utils.PageUtils;
 import cn.miozus.gulimall.common.utils.Query;
 import cn.miozus.gulimall.common.utils.R;
@@ -62,7 +65,7 @@ import java.util.stream.Collectors;
 @Service("orderService")
 public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> implements OrderService {
 
-    private ThreadLocal<OrderSubmitVo> orderSubmitVoThreadLocal = new ThreadLocal<>();
+    private final ThreadLocal<OrderSubmitVo> orderSubmitVoThreadLocal = new ThreadLocal<>();
 
     @Autowired
     MemberFeignService memberFeignService;
@@ -113,7 +116,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         CompletableFuture<Void> orderItemFuture = CompletableFuture.runAsync(() -> {
             List<OrderItemVo> orderItems = cartFeignService.fetchCheckedOrderCartItems();
             confirmVo.setItems(orderItems);
-        }, executor).thenRunAsync(() -> updateStocksWareFeignService(confirmVo), executor);
+        }, executor).thenRunAsync(() -> updateStocksByWareFeignService(confirmVo), executor);
 
         Integer integration = loginUser.getIntegration();
         confirmVo.setIntegration(integration);
@@ -343,6 +346,53 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         return "success";
     }
 
+    @Override
+    public void createSeckillOrder(SeckillOrderTo to) {
+        if (Objects.isNull(to)) {
+            return;
+        }
+        CompletableFuture.runAsync(() -> {
+            saveOrderBySeckill(to);
+        }, executor);
+        CompletableFuture.supplyAsync(() -> buildOrderSpuInfo(to.getSkuId()), executor)
+                .thenAcceptAsync(orderSpuInfo -> {
+                    OrderItemEntity orderSkuInfo = buildOrderSkuInfo(to.getSkuId());
+                    BeanUtil.copyProperties(orderSpuInfo, orderSkuInfo, CopyOptions.create().ignoreNullValue());
+                    Objects.requireNonNull(orderSkuInfo).setOrderSn(to.getOrderSn());
+                    orderSkuInfo.setSkuQuantity(to.getNum());
+                    orderItemService.save(orderSkuInfo);
+                }, executor);
+    }
+
+    private void saveOrderBySeckill(SeckillOrderTo to) {
+        BigDecimal multiply = new BigDecimal(to.getSeckillPrice().toString()).multiply(new BigDecimal(to.getNum().toString()));
+        OrderEntity order = OrderEntity.builder()
+                .orderSn(to.getOrderSn())
+                .memberId(to.getMemberId())
+                .payAmount(multiply)
+                .status(OrderStatusEnum.CREATE_NEW.getCode())
+                .createTime(new Date())
+                .build();
+        this.save(order);
+    }
+
+    private OrderItemEntity buildOrderSkuInfo(Long skuId) {
+        R r = productFeignService.querySkuInfo(skuId);
+        if (r.isNotOk()) {
+            return null;
+        }
+        SeckillSkuInfoVo info = r.getData("skuInfo", new TypeReference<SeckillSkuInfoVo>() {
+        });
+        return OrderItemEntity.builder()
+                .spuId(info.getSpuId())
+                .categoryId(info.getCatalogId())
+                .skuId(info.getSkuId())
+                .skuName(info.getSkuName())
+                .skuPic(info.getSkuDefaultImg())
+                .skuPrice(info.getPrice())
+                .build();
+    }
+
     private void updateOrderStatusPayed(PayAsyncVo vo) {
         String outTradeNo = vo.getOut_trade_no();
         this.baseMapper.updateOrderStatus(outTradeNo, OrderStatusEnum.PAYED.getCode());
@@ -439,16 +489,14 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
      * @return {@link OrderItemEntity}
      */
     private OrderItemEntity buildOrderItemSingle(OrderItemVo item) {
-        OrderItemEntity entity = new OrderItemEntity();
+        OrderItemEntity entity;
         Long skuId = item.getSkuId();
 
-        R r = productFeignService.querySpuInfoBySkuId(skuId);
-        SpuInfoVo spuInfo = r.getData("spuInfo", new TypeReference<SpuInfoVo>() {
-        });
-        entity.setSpuId(spuInfo.getId());
-        entity.setSpuName(spuInfo.getSpuName());
-        entity.setCategoryId(spuInfo.getCatalogId());
-        entity.setSpuBrand(spuInfo.getBrandId().toString());
+        entity = buildOrderSpuInfo(skuId);
+
+        if (Objects.isNull(entity)) {
+            throw new GuliMallBindException(BizCodeEnum.FEIGN_READ_TIMEOUT_EXCEPTION);
+        }
 
         String skuAttrsVals = StringUtils.join(item.getSkuAttrs(), ";");
         entity.setSkuId(skuId);
@@ -474,6 +522,21 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         BigDecimal realAmount = originAmount.subtract(convenience);
         entity.setRealAmount(realAmount);
         return entity;
+    }
+
+    private OrderItemEntity buildOrderSpuInfo(Long skuId) {
+        R r = productFeignService.querySpuInfo(skuId);
+        if (r.getCode() != 0) {
+            return null;
+        }
+        SpuInfoVo info = r.getData("spuInfo", new TypeReference<SpuInfoVo>() {
+        });
+        return OrderItemEntity.builder()
+                .spuId(info.getId())
+                .spuName(info.getSpuName())
+                .categoryId(info.getCatalogId())
+                .spuBrand(info.getBrandId().toString())
+                .build();
     }
 
     /**
@@ -519,10 +582,12 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         order.setStatus(OrderStatusEnum.CREATE_NEW.getCode());
         order.setConfirmStatus(0);
         order.setAutoConfirmDay(7);
+        // 已经使用完毕，手动释放，否则无法回收导致 OOM
+        orderSubmitVoThreadLocal.remove();
         return order;
     }
 
-    private void updateStocksWareFeignService(OrderConfirmVo confirmVo) {
+    private void updateStocksByWareFeignService(OrderConfirmVo confirmVo) {
         List<OrderItemVo> items = confirmVo.getItems();
         List<Long> skuIds = items.stream().map(OrderItemVo::getSkuId).collect(Collectors.toList());
         R data = wareFeignService.querySkuHasStock(skuIds);

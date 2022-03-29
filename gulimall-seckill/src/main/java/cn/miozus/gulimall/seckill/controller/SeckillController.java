@@ -1,9 +1,12 @@
 package cn.miozus.gulimall.seckill.controller;
 
+import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.date.TimeInterval;
 import cn.miozus.gulimall.common.utils.R;
 import cn.miozus.gulimall.seckill.service.SeckillService;
 import cn.miozus.gulimall.seckill.to.SeckillSkuRedisTo;
 import com.alibaba.cloud.commons.lang.StringUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +23,7 @@ import java.util.Objects;
  * @date 2022/03/16
  */
 
+@Slf4j
 @RestController
 public class SeckillController {
 
@@ -46,7 +50,8 @@ public class SeckillController {
     @GetMapping("/sku/seckill/{skuId}")
     public R fetchSeckillSku(@PathVariable("skuId") Long skuId) {
         SeckillSkuRedisTo to = seckillService.fetchSeckillSku(skuId);
-        if (Objects.isNull(to.getId())) {
+        log.debug("seckillSku: may NPE", to);
+        if (Objects.isNull(to)) {
             return R.error();
         }
         return R.ok().setData(to);
@@ -65,12 +70,15 @@ public class SeckillController {
             @RequestParam("killId") String killId,
             @RequestParam("key") String key,
             @RequestParam("num") Integer num) {
+
+        TimeInterval timer = DateUtil.timer();
         String orderSn = seckillService.kill(killId, key, num);
-        System.out.println("🎊 orderSn = " + orderSn);
-        if (StringUtils.isNotEmpty(orderSn)) {
-            return R.ok().setData(orderSn);
+        log.info("秒杀创建订单用时：" + timer.interval());
+        System.out.println("🎊 seckill orderSn = " + orderSn);
+        if (StringUtils.isEmpty(orderSn)) {
+            return R.error();
         }
-        return R.error();
+        return R.ok().setData(orderSn);
     }
 
 

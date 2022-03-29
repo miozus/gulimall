@@ -10,7 +10,6 @@ import cn.miozus.gulimall.seckill.service.SeckillService;
 import cn.miozus.gulimall.seckill.to.SeckillSkuRedisTo;
 import cn.miozus.gulimall.seckill.vo.SeckillSessionWithSkus;
 import com.alibaba.fastjson.TypeReference;
-import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -57,13 +56,13 @@ public class SeckillServiceImpl implements SeckillService {
     @Override
     @GetRedis("查询单个商品携带的秒杀信息")
     public SeckillSkuRedisTo fetchSeckillSku(Long skuId) {
-        return new SeckillSkuRedisTo();
+        return null;
     }
 
     @Override
     @Idempotent("校验秒杀请求全字段")
-    @PostRabbitMq("推送秒杀消息")
+    @PostRabbitMq("推送秒杀订单消息")
     public String kill(String killId, String key, Integer num) {
-        return IdWorker.getTimeId();
+        return null;
     }
 }

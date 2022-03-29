@@ -16,6 +16,7 @@ import cn.miozus.gulimall.common.utils.PageUtils;
 import cn.miozus.gulimall.common.utils.Query;
 import cn.miozus.gulimall.common.utils.R;
 import cn.miozus.gulimall.common.vo.MemberRespVo;
+import cn.miozus.gulimall.order.config.AlipayTemplate;
 import cn.miozus.gulimall.order.dao.OrderDao;
 import cn.miozus.gulimall.order.entity.OrderEntity;
 import cn.miozus.gulimall.order.entity.OrderItemEntity;
@@ -53,6 +54,7 @@ import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.stream.Collectors;
+
 
 
 /**
@@ -160,7 +162,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         saveOrderAndOrderItems(orderTo);
 
         R r = callLockOrderStockFeignMethod(orderTo);
-        if (r.getCode() != 0) {
+        if (r.isNotOk()) {
             throw new GuliMallBindException(r.getMsg());
         }
 
@@ -340,7 +342,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         savePaymentInfoEntity(vo);
 
         String tradeStatus = vo.getTrade_status();
-        if ("TRADE_SUCCESS".equals(tradeStatus) || "TRADE_FINISHED".equals(tradeStatus)) {
+        if (AlipayTemplate.TRADE_SUCCESS.equals(tradeStatus) || AlipayTemplate.TRADE_FINISHED.equals(tradeStatus)) {
             updateOrderStatusPayed(vo);
         }
         return "success";
@@ -348,23 +350,20 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
     @Override
     public void createSeckillOrder(SeckillOrderTo to) {
-        if (Objects.isNull(to)) {
-            return;
-        }
-        CompletableFuture.runAsync(() -> {
-            saveOrderBySeckill(to);
-        }, executor);
+        CompletableFuture.runAsync(() -> saveOrderFromSeckill(to), executor);
         CompletableFuture.supplyAsync(() -> buildOrderSpuInfo(to.getSkuId()), executor)
-                .thenAcceptAsync(orderSpuInfo -> {
-                    OrderItemEntity orderSkuInfo = buildOrderSkuInfo(to.getSkuId());
-                    BeanUtil.copyProperties(orderSpuInfo, orderSkuInfo, CopyOptions.create().ignoreNullValue());
-                    Objects.requireNonNull(orderSkuInfo).setOrderSn(to.getOrderSn());
-                    orderSkuInfo.setSkuQuantity(to.getNum());
-                    orderItemService.save(orderSkuInfo);
-                }, executor);
+                .thenAcceptAsync(orderSpuInfo -> saveOrderItemFromSeckill(to, orderSpuInfo), executor);
     }
 
-    private void saveOrderBySeckill(SeckillOrderTo to) {
+    private void saveOrderItemFromSeckill(SeckillOrderTo to, OrderItemEntity orderSpuInfo) {
+        OrderItemEntity orderSkuInfo = buildOrderSkuInfo(to.getSkuId());
+        BeanUtil.copyProperties(orderSpuInfo, orderSkuInfo, CopyOptions.create().ignoreNullValue());
+        Objects.requireNonNull(orderSkuInfo).setOrderSn(to.getOrderSn());
+        orderSkuInfo.setSkuQuantity(to.getNum());
+        orderItemService.save(orderSkuInfo);
+    }
+
+    private void saveOrderFromSeckill(SeckillOrderTo to) {
         BigDecimal multiply = new BigDecimal(to.getSeckillPrice().toString()).multiply(new BigDecimal(to.getNum().toString()));
         OrderEntity order = OrderEntity.builder()
                 .orderSn(to.getOrderSn())
@@ -526,7 +525,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
     private OrderItemEntity buildOrderSpuInfo(Long skuId) {
         R r = productFeignService.querySpuInfo(skuId);
-        if (r.getCode() != 0) {
+        if (r.isNotOk()) {
             return null;
         }
         SpuInfoVo info = r.getData("spuInfo", new TypeReference<SpuInfoVo>() {

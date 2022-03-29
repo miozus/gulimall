@@ -188,7 +188,7 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
         WareOrderTaskEntity stockTask = wareOrderTaskService.getById(taskId);
         String orderSn = stockTask.getOrderSn();
         R r = orderFeignService.queryOrderBySn(orderSn);
-        if (r.getCode() != 0) {
+        if (r.isNotOk()) {
             throw new GuliMallBindException(BizCodeEnum.FEIGN_READ_TIMEOUT_EXCEPTION);
         }
         OrderVo data = r.getData(new TypeReference<OrderVo>() {

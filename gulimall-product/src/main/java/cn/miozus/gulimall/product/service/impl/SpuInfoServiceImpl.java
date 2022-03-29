@@ -121,7 +121,7 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
         BeanUtils.copyProperties(bounds, spuBoundTo);
         spuBoundTo.setSpuId(spuId);
         R r = couponFeignService.saveSpuBounds(spuBoundTo);
-        if (r.getCode() != 0) {
+        if (r.isNotOk()) {
             log.error("远程保存 spu 积分信息失败");
         }
         // 保存库存信息：基本信息 pms_sku_info  // 展开遍历，方便接下来的步骤复用

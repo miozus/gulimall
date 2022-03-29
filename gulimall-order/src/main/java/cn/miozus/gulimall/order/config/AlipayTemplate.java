@@ -19,6 +19,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AlipayTemplate {
 
+    public static final String TRADE_SUCCESS = "TRADE_SUCCESS";
+    public static final String TRADE_FINISHED = "TRADE_FINISHED";
+
     /**
      * 在支付宝创建的应用的id
      */

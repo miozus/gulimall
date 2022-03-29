@@ -7,6 +7,7 @@ import cn.hutool.json.JSONUtil;
 import cn.miozus.gulimall.common.annotation.GetRedis;
 import cn.miozus.gulimall.common.annotation.Idempotent;
 import cn.miozus.gulimall.common.annotation.PutRedis;
+import cn.miozus.gulimall.common.exception.GuliMallBindException;
 import cn.miozus.gulimall.common.to.mq.SeckillOrderTo;
 import cn.miozus.gulimall.common.utils.R;
 import cn.miozus.gulimall.common.vo.MemberRespVo;
@@ -18,7 +19,9 @@ import cn.miozus.gulimall.seckill.vo.SeckillSkuVo;
 import cn.miozus.gulimall.seckill.vo.SkuInfoVo;
 import com.alibaba.fastjson.TypeReference;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
+import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -48,6 +51,7 @@ import java.util.stream.Collectors;
 @Aspect
 @Component
 @Order(1)
+@Slf4j
 public class SeckillRedisAspect {
 
     @Autowired
@@ -75,7 +79,7 @@ public class SeckillRedisAspect {
             case "校验秒杀请求全字段":
                 return verifySeckillParams(pjp);
             default:
-                return null;
+                return pjp.proceed();
         }
     }
 
@@ -86,7 +90,7 @@ public class SeckillRedisAspect {
         try {
             retVal = pjp.proceed();
         } catch (Throwable e) {
-            throw new RuntimeException(e);
+            throw new GuliMallBindException(e.getMessage());
         } finally {
             lock.unlock();
         }
@@ -111,13 +115,13 @@ public class SeckillRedisAspect {
     @Around("@annotation(getRedis)")
     public Object fetch(ProceedingJoinPoint pjp, GetRedis getRedis) {
         Object retVal = pjp.proceed();
-        Object[] arg = pjp.getArgs();
+        Object[] args = pjp.getArgs();
         BoundHashOperations<String, String, String> ops = redisTemplate.boundHashOps(SECKILL_SKUS_CACHE_PREFIX);
 
-        if (arg.length == 0) {
+        if (args.length == 0) {
             return fetchCurrentSeckillSkus(retVal, ops);
         }
-        return fetchSeckillSku(arg[0], ops);
+        return fetchSeckillSku(retVal, ops, args[0]);
     }
 
     /**
@@ -155,57 +159,56 @@ public class SeckillRedisAspect {
         // 幂等性占位，获取信号量，发送消息队列
         MemberRespVo memberRespVo = LoginUserInterceptor.loginUserThreadLocal.get();
         Long memberId = memberRespVo.getId();
-        String occupyKey = memberId + "_" + skuId;
+        String occupyKey = memberId + "_" + ssId;
         Boolean occupied = redisTemplate.opsForValue().setIfAbsent(occupyKey, num.toString(), to.getTtl(), TimeUnit.MILLISECONDS);
         if (Boolean.FALSE.equals(occupied)) {
             return null;
         }
         RSemaphore semaphore = redissonClient.getSemaphore(SECKILL_SKUS_STOCK_SEMAPHORE_CACHE_PREFIX + key);
-        try {
-            boolean acquire = semaphore.tryAcquire(num, 100, TimeUnit.MILLISECONDS);
-            if (acquire) {
-                SeckillOrderTo orderTo = new SeckillOrderTo();
-                orderTo.setNum(num);
-                orderTo.setSkuId(skuId);
-                orderTo.setMemberId(memberId);
-                orderTo.setSeckillPrice(to.getSeckillPrice());
-                orderTo.setPromotionSessionId(promotionSessionId);
-                return pjp.proceed(new SeckillOrderTo[]{orderTo});
+        boolean acquire = semaphore.tryAcquire(num, 100, TimeUnit.MILLISECONDS);
+        if (acquire) {
+            String orderSn = IdWorker.getTimeId();
+            SeckillOrderTo orderTo = new SeckillOrderTo();
+            orderTo.setNum(num);
+            orderTo.setSkuId(skuId);
+            orderTo.setMemberId(memberId);
+            orderTo.setSeckillPrice(to.getSeckillPrice());
+            orderTo.setPromotionSessionId(promotionSessionId);
+            orderTo.setOrderSn(orderSn);
+            // 强制修改参数，通过异常返回正常流程，而通过AOP消息队列处理收尾动作
+            try {
+                return pjp.proceed(new Object[]{orderTo, null, null});
+            } catch (Throwable e) {
+                return orderSn;
             }
-        } catch (InterruptedException e) {
-            return null;
         }
         return null;
     }
 
+    @SuppressWarnings({"squid:S2259", "squid:S4449", "ConstantConditions"})
     private Object fetchCurrentSeckillSkus(Object retVal, BoundHashOperations<String, String, String> ops) {
-        Set<String> keys = redisTemplate.keys(SECKILL_SESSION_CACHE_PREFIX + "*");
-        if (CollectionUtils.isEmpty(keys)) {
+        try {
+            Set<String> keys = redisTemplate.keys(SECKILL_SESSION_CACHE_PREFIX + "*");
+            for (String key : keys) {
+                if (isExpiryDateString(key)) {
+                    List<String> range = redisTemplate.opsForList().range(key, -100, 100);
+                    List<String> objects = ops.multiGet(range);
+                    // 当前时间段最多1个场次（每个场次有许多商品）
+                    return objects.stream().map(objStr -> JSONUtil.toBean(objStr, SeckillSkuRedisTo.class))
+                            .collect(Collectors.toList());
+                }
+            }
+        } catch (NullPointerException e) {
+            log.debug("未扫描到应该上架的秒杀活动商品，小概率可能网络故障。" + e.getMessage());
             return retVal;
-        }
-        for (String key : keys) {
-            if (!isExpiryDateString(key)) {
-                continue;
-            }
-            List<String> range = redisTemplate.opsForList().range(key, -100, 100);
-            if (CollectionUtils.isEmpty(range)) {
-                continue;
-            }
-            List<String> objects = ops.multiGet(range);
-            if (CollectionUtils.isEmpty(objects)) {
-                continue;
-            }
-            // 当前时间段最多1个场次（每个场次有许多商品）
-            return objects.stream().map(objStr -> JSONUtil.toBean(objStr, SeckillSkuRedisTo.class))
-                    .collect(Collectors.toList());
         }
         return retVal;
     }
 
-    private Object fetchSeckillSku(Object arg, BoundHashOperations<String, String, String> ops) {
+    private Object fetchSeckillSku(Object retVal, BoundHashOperations<String, String, String> ops, Object arg) {
         Set<String> keys = ops.keys();
         if (CollectionUtils.isEmpty(keys)) {
-            return null;
+            return retVal;
         }
         String regex = "\\d_" + arg;
         for (String key : keys) {
@@ -218,7 +221,7 @@ public class SeckillRedisAspect {
                 return redisTo;
             }
         }
-        return null;
+        return retVal;
     }
 
     private boolean isExpiryDateString(String key) {
@@ -293,7 +296,7 @@ public class SeckillRedisAspect {
     }
 
     /**
-     * 库存限流：尝试设置信号量:
+     * 库存限流：尝试设置信号量
      * 因为令牌是随机生成的，靠随机值锁不住，所以用上一层场次的锁，每一次
      *
      * @param vo    签证官

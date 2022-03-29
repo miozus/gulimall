@@ -2,6 +2,7 @@ package cn.miozus.gulimall.common.to.mq;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
@@ -11,7 +12,9 @@ import java.math.BigDecimal;
  * @date 2022/03/26
  */
 @Data
-public class SeckillOrderTo {
+public class SeckillOrderTo implements Serializable {
+
+    private static final long serialVersionUID = -4587938338710071805L;
 
     /** 订单id */
     private  String orderSn;

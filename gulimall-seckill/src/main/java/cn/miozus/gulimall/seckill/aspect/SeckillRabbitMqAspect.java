@@ -2,7 +2,7 @@ package cn.miozus.gulimall.seckill.aspect;
 
 import cn.miozus.gulimall.common.annotation.PostRabbitMq;
 import cn.miozus.gulimall.common.to.mq.SeckillOrderTo;
-import cn.miozus.gulimall.seckill.config.RabbitMqSeckillConfig;
+import cn.miozus.gulimall.seckill.config.SeckillRabbitMqConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
@@ -36,7 +36,7 @@ public class SeckillRabbitMqAspect {
     public Object sendRabbitMqAfterSeckill(JoinPoint point,  PostRabbitMq postRabbitMq) {
         SeckillOrderTo to = (SeckillOrderTo) point.getArgs()[0];
         rabbitTemplate.convertAndSend(
-                RabbitMqSeckillConfig.EXCHANGE, RabbitMqSeckillConfig.DELAY_QUEUE_SECKILL_ROUTING_KEY, to);
+                SeckillRabbitMqConfig.EXCHANGE, SeckillRabbitMqConfig.DELAY_QUEUE_SECKILL_ROUTING_KEY, to);
         log.info("快速创建订单：发送消息创建完成: "+ to.getOrderSn());
         return to.getOrderSn();
     }

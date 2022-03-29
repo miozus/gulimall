@@ -17,7 +17,7 @@ spring:
           - data-id: redis.yml
             group: pro
             refresh: true
-          - data-id: feign.yml
+          - data-id: sentinel.yml
             group: pro
             refresh: true
           - data-id: cache.yml

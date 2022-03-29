@@ -654,7 +654,6 @@
 
           <div class="box-btns-two"
           >
-            <span th:if="${msg!=null}">[[${msg}]]</span>
             <a
                 th:if="${
                 item.seckillInfo != null && (
@@ -681,6 +680,7 @@
           </div>
 
           <div class="box-btns-three">
+            <span th:if="${msg!=null}">[[${msg}]]</span>
             <img src="/static/item/img/e4ed3606843f664591ff1f68f7fda12d.png" alt=""/> 分享
           </div>
         </div>
@@ -1360,23 +1360,23 @@
     $("#addToCart").click(function () {
         var count = $("#countInput").val();
         var skuId = $(this).attr("skuId");
-        var itemUrl = location.href.toString();
+        var returnUrl = location.href.toString();
 
-        location.href = "http://cart.gulimall.com/addToCart?skuId=" + skuId + "&count=" + count + "&itemUrl=" + itemUrl;
+        location.href = "http://cart.gulimall.com/addToCart?skuId=" + skuId + "&count=" + count + "&returnUrl=" + returnUrl;
         return false;
 
     });
 
     $("#addToSeckill").click(function () {
         var isLogin = [[${session.loginUser != null}]];
+        var returnUrl = location.href.toString();
         if (isLogin) {
             const host = "http://seckill.gulimall.com";
             const path = "/kill?";
-            var params = `killId=${$(this).attr("sessionId")}_${$(this).attr("skuId")}&key=${$(this).attr("code")}&num=${$("#countInput").val()}`;
+            var params = `killId=${$(this).attr("sessionId")}_${$(this).attr("skuId")}&key=${$(this).attr("code")}&num=${$("#countInput").val()}&returnUrl=${returnUrl}`;
             location.href = host + path + params;
         } else {
             alert("秒杀请先登录")
-            const returnUrl = location.href
             const host = "http://auth.gulimall.com"
             const path =  "/login.html"
             var params = `?returnUrl=${returnUrl}`

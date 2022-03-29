@@ -37,21 +37,21 @@ import java.util.concurrent.TimeUnit;
  */
 @Slf4j
 @Configuration
-public class RabbitMqSeckillConfig {
+public class SeckillRabbitMqConfig {
 
     @Autowired
     RabbitTemplate rabbitTemplate;
 
-    public static final String EXCHANGE = "order-event-exchange";
     public static final String DELAY_QUEUE = "order.delay.queue";
     public static final int DELAY_QUEUE_TTL = (int) TimeUnit.MINUTES.toMillis(15L);
     public static final String DELAY_QUEUE_ROUTING_KEY = "order.create.order";
     public static final String RELEASE_ORDER_QUEUE = "order.release.order.queue";
-    public static final String SECKILL_ORDER_QUEUE = "order.seckill.order.queue";
     public static final String RELEASE_ORDER_ROUTING_KEY = "order.release.order";
     public static final String RELEASE_STOCK_QUEUE = "stock.release.stock.queue";
     public static final String RELEASE_OTHER_QUEUE_ROUTING_KEY = "order.release.other";
     private static final String RELEASE_OTHER_THEME_ROUTING_KEY = "order.release.other.#";
+    public static final String SECKILL_ORDER_QUEUE = "order.seckill.order.queue";
+    public static final String EXCHANGE = "order-event-exchange";
     public static final String DELAY_QUEUE_SECKILL_ROUTING_KEY = "order.seckill.order";
 
     @Bean

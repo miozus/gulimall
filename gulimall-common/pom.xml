@@ -37,6 +37,11 @@
 
 
     <dependencies>
+        <!-- 熔断降级限流 -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+        </dependency>
         <!-- 分布式缓存 redis -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

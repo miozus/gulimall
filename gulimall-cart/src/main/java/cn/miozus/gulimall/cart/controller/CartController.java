@@ -102,15 +102,16 @@ public class CartController {
      * @return {@link String}
      */
     @GetMapping("/addToCart")
-    public String addToCart(@RequestParam("skuId") Long skuId, @RequestParam("count") Integer count,  @RequestParam("itemUrl") String itemUrl, RedirectAttributes ra) {
+    public String addToCart(@RequestParam("skuId") Long skuId, @RequestParam("count") Integer count,
+                            @RequestParam("returnUrl") String returnUrl, RedirectAttributes ra) {
         try {
             cartService.addToCart(skuId, count);
             ra.addAttribute("skuId", skuId);
-            return "redirect:http://cart.gulimall.com/addToCartSuccessPage.html";
+            return "redirect:http://cart.gulimall.com/addToCartSuccess.html";
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
             ra.addFlashAttribute("msg", "加入购物车失败，请稍后再试");
-            return "redirect:" + itemUrl;
+            return "redirect:" + returnUrl;
         }
     }
 
@@ -120,7 +121,7 @@ public class CartController {
      * @param skuId 商品信息
      * @return {@link String}
      */
-    @GetMapping("/addToCartSuccessPage.html")
+    @GetMapping("/addToCartSuccess.html")
     public String addToCartSuccessPage(@RequestParam("skuId") Long skuId, Model model) {
         CartItem item = cartService.fetchCartItem(skuId);
         model.addAttribute("item", item);

@@ -8,11 +8,15 @@ import cn.miozus.gulimall.seckill.to.SeckillSkuRedisTo;
 import com.alibaba.cloud.commons.lang.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Objects;
 
@@ -24,7 +28,7 @@ import java.util.Objects;
  */
 
 @Slf4j
-@RestController
+@Controller
 public class SeckillController {
 
     @Autowired
@@ -35,6 +39,7 @@ public class SeckillController {
      *
      * @return {@link R}
      */
+    @ResponseBody
     @GetMapping("/currentSeckillSkus")
     public R getCurrentSeckillSkus() {
         List<SeckillSkuRedisTo> tos = seckillService.fetchCurrentSeckillSkus();
@@ -47,11 +52,12 @@ public class SeckillController {
      * @param skuId sku id
      * @return {@link R}
      */
+    @ResponseBody
     @GetMapping("/sku/seckill/{skuId}")
     public R fetchSeckillSku(@PathVariable("skuId") Long skuId) {
         SeckillSkuRedisTo to = seckillService.fetchSeckillSku(skuId);
-        log.debug("seckillSku: may NPE", to);
         if (Objects.isNull(to)) {
+            log.debug("seckillSku: may NPE", to);
             return R.error();
         }
         return R.ok().setData(to);
@@ -66,19 +72,23 @@ public class SeckillController {
      * @return {@link R}
      */
     @GetMapping("/kill")
-    public R addToSeckill(
+    public String addToSeckill(
             @RequestParam("killId") String killId,
             @RequestParam("key") String key,
-            @RequestParam("num") Integer num) {
+            @RequestParam("num") Integer num,
+            @RequestParam("returnUrl") String returnUrl,
+            Model model, RedirectAttributes ra, HttpServletRequest req) {
 
         TimeInterval timer = DateUtil.timer();
         String orderSn = seckillService.kill(killId, key, num);
-        log.info("秒杀创建订单用时：" + timer.interval());
-        System.out.println("🎊 seckill orderSn = " + orderSn);
+        log.info("创建秒杀订单" +  " [" + orderSn + "] 耗时(毫秒)： " + timer.interval());
         if (StringUtils.isEmpty(orderSn)) {
-            return R.error();
+            // 服务降级
+            ra.addFlashAttribute("msg", "当前参与活动人数过多，请稍后再试");
+            return "redirect:" +  returnUrl;
         }
-        return R.ok().setData(orderSn);
+        model.addAttribute("orderSn", orderSn);
+        return "success";
     }
 
 

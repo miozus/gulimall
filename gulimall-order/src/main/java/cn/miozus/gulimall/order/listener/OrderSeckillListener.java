@@ -22,7 +22,7 @@ import java.io.IOException;
  */
 @Slf4j
 @Service
-@RabbitListener(queues = RabbitMqOrderConfig.RELEASE_ORDER_QUEUE)
+@RabbitListener(queues = RabbitMqOrderConfig.SECKILL_ORDER_QUEUE)
 public class OrderSeckillListener {
 
     @Autowired
@@ -32,7 +32,7 @@ public class OrderSeckillListener {
     public void handleStockLockedReleaseListener(SeckillOrderTo to, Message message, Channel channel) throws IOException {
         long deliveryTag = message.getMessageProperties().getDeliveryTag();
 
-        log.info("📝准备创建秒杀订单的详细信息");
+        log.info("📝 创建秒杀订单 " + deliveryTag);
         try {
             orderService.createSeckillOrder(to);
             channel.basicAck(deliveryTag, false);

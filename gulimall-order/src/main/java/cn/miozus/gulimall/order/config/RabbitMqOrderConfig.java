@@ -35,6 +35,7 @@ public class RabbitMqOrderConfig {
     public static final String RELEASE_STOCK_QUEUE = "stock.release.stock.queue";
     public static final String RELEASE_OTHER_QUEUE_ROUTING_KEY = "order.release.other";
     private static final String RELEASE_OTHER_THEME_ROUTING_KEY = "order.release.other.#";
+    public static final String SECKILL_ORDER_QUEUE = "order.seckill.order.queue";
 
 
     /**

@@ -1,21 +1,24 @@
 spring:
-    application:
-        name: gulimall-search
-    cloud:
-        nacos:
-            config:
-                extension-configs:
-                    - data-id: other.yml
-                      group: pro
-                      refresh: true
-                    - data-id: elasticsearch.yml
-                      group: pro
-                      refresh: true
-                    - data-id: redis.yml
-                      group: pro
-                      refresh: true
-                    - data-id: actuator.yml
-                      group: pro
-                      refresh: true
-                namespace: 17852841-4990-414d-86a3-7e33c665f74d
-                server-addr: 39.108.228.2:8848
+  application:
+    name: gulimall-search
+  cloud:
+    nacos:
+      config:
+        extension-configs:
+          - data-id: other.yml
+            group: pro
+            refresh: true
+          - data-id: elasticsearch.yml
+            group: pro
+            refresh: true
+          - data-id: redis.yml
+            group: pro
+            refresh: true
+          - data-id: actuator.yml
+            group: pro
+            refresh: true
+          - data-id: sentinel.yml
+            group: local
+            refresh: true
+        namespace: 17852841-4990-414d-86a3-7e33c665f74d
+        server-addr: 39.108.228.2:8848

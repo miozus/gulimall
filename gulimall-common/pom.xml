@@ -37,6 +37,11 @@
 
 
     <dependencies>
+        <!-- 熔断降级限流配套适配器 -->
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-spring-webmvc-adapter</artifactId>
+        </dependency>
         <!-- 熔断降级限流 -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>

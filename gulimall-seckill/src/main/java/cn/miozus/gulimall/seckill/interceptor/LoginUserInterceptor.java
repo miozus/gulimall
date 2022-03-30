@@ -42,13 +42,6 @@ public class LoginUserInterceptor implements HandlerInterceptor {
         return new AntPathMatcher().match("/kill/**", uri);
     }
 
-    private boolean callBetweenFeignService(HttpServletRequest request) {
-        String uri = request.getRequestURI();
-        boolean isMemberAllService = new AntPathMatcher().match("/member/**", uri);
-        boolean isFetchSeckillSkus = new AntPathMatcher().match("/currentSeckillSkus", uri);
-        boolean isFetchSeckillSku = new AntPathMatcher().match("/sku/seckill/**", uri);
-        return isMemberAllService || isFetchSeckillSku || isFetchSeckillSkus;
-    }
 
     /**
      * 只释放登录用户

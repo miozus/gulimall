@@ -1,4 +1,4 @@
-package cn.miozus.gulimall.common.config;
+package cn.miozus.gulimall.seckill.exception;
 
 import cn.hutool.json.JSONUtil;
 import cn.miozus.gulimall.common.enume.BizCodeEnum;
@@ -8,6 +8,7 @@ import cn.miozus.gulimall.common.utils.R;
 import com.alibaba.csp.sentinel.slots.block.AbstractRule;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -26,7 +27,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @Controller
 @RestControllerAdvice
 @Slf4j
-public class DefaultExceptionHandlerConfig {
+@Order(0)
+public class SeckillDefaultExceptionHandlerConfig {
 
 
     @ExceptionHandler(BindException.class)

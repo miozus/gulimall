@@ -14,14 +14,14 @@ spring:
           - data-id: threadpool.yml
             group: pro
             refresh: true
-          - data-id: feign.yml
-            group: pro
-            refresh: true
           - data-id: redis.yml
             group: pro
             refresh: true
           - data-id: actuator.yml
             group: pro
+            refresh: true
+          - data-id: sentinel.yml
+            group: local
             refresh: true
         namespace: 7b3ed58d-2610-468e-9fa7-a201f5075d05
         server-addr: 39.108.228.2:8848

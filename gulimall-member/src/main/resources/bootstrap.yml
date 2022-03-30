@@ -17,11 +17,11 @@ spring:
           - data-id: redis.yml
             group: pro
             refresh: true
-          - data-id: feign.yml
-            group: pro
-            refresh: true
           - data-id: actuator.yml
             group: pro
+            refresh: true
+          - data-id: sentinel.yml
+            group: local
             refresh: true
         namespace: bc536abf-c763-425f-a1d6-4e934350dbf7
         server-addr: 39.108.228.2:8848

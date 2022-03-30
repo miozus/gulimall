@@ -1,21 +1,21 @@
 spring:
-    application:
-        name: renren-fast
-    cloud:
-        nacos:
-            config:
-                extension-configs:
-                - data-id: datasource.yml
-                  group: pro
-                  refresh: true
-                - data-id: other.yml
-                  group: pro
-                  refresh: true
-                - data-id: redis.yml
-                  group: pro
-                  refresh: true
-                - data-id: actuator.yml
-                  group: pro
-                  refresh: true
-                namespace: cd2f642c-6885-4a55-9cef-2d5c95d1a29b
-                server-addr: 39.108.228.2:8848
+  application:
+    name: renren-fast
+  cloud:
+    nacos:
+      config:
+        extension-configs:
+          - data-id: datasource.yml
+            group: pro
+            refresh: true
+          - data-id: other.yml
+            group: pro
+            refresh: true
+          - data-id: redis.yml
+            group: pro
+            refresh: true
+          - data-id: actuator.yml
+            group: pro
+            refresh: true
+        namespace: cd2f642c-6885-4a55-9cef-2d5c95d1a29b
+        server-addr: 39.108.228.2:8848

@@ -4,7 +4,8 @@
 >
 > 仿京东商城 2019
 > 
-> ![SpringCLoud](https://img.shields.io/badge/dependencies-SpringCloud-brightgreen?logo=spring)
+> ![SpringCLoud](https://img.shields.io/badge/SpringCloud-Hoxton.SR7-brightgreen?logo=spring)
+> ![SpringCLoud](https://img.shields.io/badge/SpringBoot-2.3.2.RELEASE-brightgreen?logo=springboot)
 
 ---
 

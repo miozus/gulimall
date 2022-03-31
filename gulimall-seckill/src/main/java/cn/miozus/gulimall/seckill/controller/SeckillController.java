@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Objects;
 
@@ -77,15 +76,15 @@ public class SeckillController {
             @RequestParam("key") String key,
             @RequestParam("num") Integer num,
             @RequestParam("returnUrl") String returnUrl,
-            Model model, RedirectAttributes ra, HttpServletRequest req) {
+            Model model, RedirectAttributes ra) {
 
         TimeInterval timer = DateUtil.timer();
         String orderSn = seckillService.kill(killId, key, num);
-        log.info("创建秒杀订单" +  " [" + orderSn + "] 耗时(毫秒)： " + timer.interval());
+        log.info("创建秒杀订单" + " [" + orderSn + "] 耗时(毫秒)： " + timer.interval());
         if (StringUtils.isEmpty(orderSn)) {
             // 服务降级
             ra.addFlashAttribute("msg", "当前参与活动人数过多，请稍后再试");
-            return "redirect:" +  returnUrl;
+            return "redirect:" + returnUrl;
         }
         model.addAttribute("orderSn", orderSn);
         return "success";
